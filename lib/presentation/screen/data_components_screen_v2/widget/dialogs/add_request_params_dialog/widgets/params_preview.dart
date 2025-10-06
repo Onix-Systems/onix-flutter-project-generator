@@ -32,6 +32,7 @@ class ParamsPreview extends StatelessWidget {
                     child: Padding(
                       padding: const EdgeInsets.only(left: 15),
                       child: Text(
+                        //ignore: lines_longer_than_80_chars
                         '${param.type} ${param.name}${param == params.last ? '' : ','}',
                         maxLines: 2,
                         overflow: TextOverflow.ellipsis,

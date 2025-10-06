@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,180 +9,46 @@ part of 'figma_styles_screen_models.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$FigmaStylesScreenEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String figmaId, String token) onGetStyles,
-    required TResult Function() onClear,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String figmaId, String token)? onGetStyles,
-    TResult? Function()? onClear,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String figmaId, String token)? onGetStyles,
-    TResult Function()? onClear,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FigmaStylesScreenEventInit value) init,
-    required TResult Function(FigmaStylesScreenEventOnGetStyles value)
-        onGetStyles,
-    required TResult Function(FigmaStylesScreenEventOnClear value) onClear,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FigmaStylesScreenEventInit value)? init,
-    TResult? Function(FigmaStylesScreenEventOnGetStyles value)? onGetStyles,
-    TResult? Function(FigmaStylesScreenEventOnClear value)? onClear,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FigmaStylesScreenEventInit value)? init,
-    TResult Function(FigmaStylesScreenEventOnGetStyles value)? onGetStyles,
-    TResult Function(FigmaStylesScreenEventOnClear value)? onClear,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $FigmaStylesScreenEventCopyWith<$Res> {
-  factory $FigmaStylesScreenEventCopyWith(FigmaStylesScreenEvent value,
-          $Res Function(FigmaStylesScreenEvent) then) =
-      _$FigmaStylesScreenEventCopyWithImpl<$Res, FigmaStylesScreenEvent>;
-}
-
-/// @nodoc
-class _$FigmaStylesScreenEventCopyWithImpl<$Res,
-        $Val extends FigmaStylesScreenEvent>
-    implements $FigmaStylesScreenEventCopyWith<$Res> {
-  _$FigmaStylesScreenEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of FigmaStylesScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$FigmaStylesScreenEventInitImplCopyWith<$Res> {
-  factory _$$FigmaStylesScreenEventInitImplCopyWith(
-          _$FigmaStylesScreenEventInitImpl value,
-          $Res Function(_$FigmaStylesScreenEventInitImpl) then) =
-      __$$FigmaStylesScreenEventInitImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$FigmaStylesScreenEventInitImplCopyWithImpl<$Res>
-    extends _$FigmaStylesScreenEventCopyWithImpl<$Res,
-        _$FigmaStylesScreenEventInitImpl>
-    implements _$$FigmaStylesScreenEventInitImplCopyWith<$Res> {
-  __$$FigmaStylesScreenEventInitImplCopyWithImpl(
-      _$FigmaStylesScreenEventInitImpl _value,
-      $Res Function(_$FigmaStylesScreenEventInitImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of FigmaStylesScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$FigmaStylesScreenEventInitImpl implements FigmaStylesScreenEventInit {
-  const _$FigmaStylesScreenEventInitImpl();
-
-  @override
-  String toString() {
-    return 'FigmaStylesScreenEvent.init()';
-  }
-
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FigmaStylesScreenEventInitImpl);
+        (other.runtimeType == runtimeType && other is FigmaStylesScreenEvent);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String figmaId, String token) onGetStyles,
-    required TResult Function() onClear,
-  }) {
-    return init();
+  String toString() {
+    return 'FigmaStylesScreenEvent()';
   }
+}
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String figmaId, String token)? onGetStyles,
-    TResult? Function()? onClear,
-  }) {
-    return init?.call();
-  }
+/// @nodoc
+class $FigmaStylesScreenEventCopyWith<$Res> {
+  $FigmaStylesScreenEventCopyWith(
+      FigmaStylesScreenEvent _, $Res Function(FigmaStylesScreenEvent) __);
+}
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String figmaId, String token)? onGetStyles,
-    TResult Function()? onClear,
-    required TResult orElse(),
-  }) {
-    if (init != null) {
-      return init();
-    }
-    return orElse();
-  }
+/// Adds pattern-matching-related methods to [FigmaStylesScreenEvent].
+extension FigmaStylesScreenEventPatterns on FigmaStylesScreenEvent {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FigmaStylesScreenEventInit value) init,
-    required TResult Function(FigmaStylesScreenEventOnGetStyles value)
-        onGetStyles,
-    required TResult Function(FigmaStylesScreenEventOnClear value) onClear,
-  }) {
-    return init(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FigmaStylesScreenEventInit value)? init,
-    TResult? Function(FigmaStylesScreenEventOnGetStyles value)? onGetStyles,
-    TResult? Function(FigmaStylesScreenEventOnClear value)? onClear,
-  }) {
-    return init?.call(this);
-  }
-
-  @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(FigmaStylesScreenEventInit value)? init,
@@ -190,52 +56,268 @@ class _$FigmaStylesScreenEventInitImpl implements FigmaStylesScreenEventInit {
     TResult Function(FigmaStylesScreenEventOnClear value)? onClear,
     required TResult orElse(),
   }) {
-    if (init != null) {
-      return init(this);
+    final _that = this;
+    switch (_that) {
+      case FigmaStylesScreenEventInit() when init != null:
+        return init(_that);
+      case FigmaStylesScreenEventOnGetStyles() when onGetStyles != null:
+        return onGetStyles(_that);
+      case FigmaStylesScreenEventOnClear() when onClear != null:
+        return onClear(_that);
+      case _:
+        return orElse();
     }
-    return orElse();
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FigmaStylesScreenEventInit value) init,
+    required TResult Function(FigmaStylesScreenEventOnGetStyles value)
+        onGetStyles,
+    required TResult Function(FigmaStylesScreenEventOnClear value) onClear,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case FigmaStylesScreenEventInit():
+        return init(_that);
+      case FigmaStylesScreenEventOnGetStyles():
+        return onGetStyles(_that);
+      case FigmaStylesScreenEventOnClear():
+        return onClear(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FigmaStylesScreenEventInit value)? init,
+    TResult? Function(FigmaStylesScreenEventOnGetStyles value)? onGetStyles,
+    TResult? Function(FigmaStylesScreenEventOnClear value)? onClear,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case FigmaStylesScreenEventInit() when init != null:
+        return init(_that);
+      case FigmaStylesScreenEventOnGetStyles() when onGetStyles != null:
+        return onGetStyles(_that);
+      case FigmaStylesScreenEventOnClear() when onClear != null:
+        return onClear(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(String figmaId, String token)? onGetStyles,
+    TResult Function()? onClear,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case FigmaStylesScreenEventInit() when init != null:
+        return init();
+      case FigmaStylesScreenEventOnGetStyles() when onGetStyles != null:
+        return onGetStyles(_that.figmaId, _that.token);
+      case FigmaStylesScreenEventOnClear() when onClear != null:
+        return onClear();
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(String figmaId, String token) onGetStyles,
+    required TResult Function() onClear,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case FigmaStylesScreenEventInit():
+        return init();
+      case FigmaStylesScreenEventOnGetStyles():
+        return onGetStyles(_that.figmaId, _that.token);
+      case FigmaStylesScreenEventOnClear():
+        return onClear();
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(String figmaId, String token)? onGetStyles,
+    TResult? Function()? onClear,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case FigmaStylesScreenEventInit() when init != null:
+        return init();
+      case FigmaStylesScreenEventOnGetStyles() when onGetStyles != null:
+        return onGetStyles(_that.figmaId, _that.token);
+      case FigmaStylesScreenEventOnClear() when onClear != null:
+        return onClear();
+      case _:
+        return null;
+    }
   }
 }
 
-abstract class FigmaStylesScreenEventInit implements FigmaStylesScreenEvent {
-  const factory FigmaStylesScreenEventInit() = _$FigmaStylesScreenEventInitImpl;
+/// @nodoc
+
+class FigmaStylesScreenEventInit implements FigmaStylesScreenEvent {
+  const FigmaStylesScreenEventInit();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is FigmaStylesScreenEventInit);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'FigmaStylesScreenEvent.init()';
+  }
 }
 
 /// @nodoc
-abstract class _$$FigmaStylesScreenEventOnGetStylesImplCopyWith<$Res> {
-  factory _$$FigmaStylesScreenEventOnGetStylesImplCopyWith(
-          _$FigmaStylesScreenEventOnGetStylesImpl value,
-          $Res Function(_$FigmaStylesScreenEventOnGetStylesImpl) then) =
-      __$$FigmaStylesScreenEventOnGetStylesImplCopyWithImpl<$Res>;
+
+class FigmaStylesScreenEventOnGetStyles implements FigmaStylesScreenEvent {
+  const FigmaStylesScreenEventOnGetStyles(
+      {required this.figmaId, required this.token});
+
+  final String figmaId;
+  final String token;
+
+  /// Create a copy of FigmaStylesScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $FigmaStylesScreenEventOnGetStylesCopyWith<FigmaStylesScreenEventOnGetStyles>
+      get copyWith => _$FigmaStylesScreenEventOnGetStylesCopyWithImpl<
+          FigmaStylesScreenEventOnGetStyles>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is FigmaStylesScreenEventOnGetStyles &&
+            (identical(other.figmaId, figmaId) || other.figmaId == figmaId) &&
+            (identical(other.token, token) || other.token == token));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, figmaId, token);
+
+  @override
+  String toString() {
+    return 'FigmaStylesScreenEvent.onGetStyles(figmaId: $figmaId, token: $token)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $FigmaStylesScreenEventOnGetStylesCopyWith<$Res>
+    implements $FigmaStylesScreenEventCopyWith<$Res> {
+  factory $FigmaStylesScreenEventOnGetStylesCopyWith(
+          FigmaStylesScreenEventOnGetStyles value,
+          $Res Function(FigmaStylesScreenEventOnGetStyles) _then) =
+      _$FigmaStylesScreenEventOnGetStylesCopyWithImpl;
   @useResult
   $Res call({String figmaId, String token});
 }
 
 /// @nodoc
-class __$$FigmaStylesScreenEventOnGetStylesImplCopyWithImpl<$Res>
-    extends _$FigmaStylesScreenEventCopyWithImpl<$Res,
-        _$FigmaStylesScreenEventOnGetStylesImpl>
-    implements _$$FigmaStylesScreenEventOnGetStylesImplCopyWith<$Res> {
-  __$$FigmaStylesScreenEventOnGetStylesImplCopyWithImpl(
-      _$FigmaStylesScreenEventOnGetStylesImpl _value,
-      $Res Function(_$FigmaStylesScreenEventOnGetStylesImpl) _then)
-      : super(_value, _then);
+class _$FigmaStylesScreenEventOnGetStylesCopyWithImpl<$Res>
+    implements $FigmaStylesScreenEventOnGetStylesCopyWith<$Res> {
+  _$FigmaStylesScreenEventOnGetStylesCopyWithImpl(this._self, this._then);
+
+  final FigmaStylesScreenEventOnGetStyles _self;
+  final $Res Function(FigmaStylesScreenEventOnGetStyles) _then;
 
   /// Create a copy of FigmaStylesScreenEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? figmaId = null,
     Object? token = null,
   }) {
-    return _then(_$FigmaStylesScreenEventOnGetStylesImpl(
+    return _then(FigmaStylesScreenEventOnGetStyles(
       figmaId: null == figmaId
-          ? _value.figmaId
+          ? _self.figmaId
           : figmaId // ignore: cast_nullable_to_non_nullable
               as String,
       token: null == token
-          ? _value.token
+          ? _self.token
           : token // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -244,443 +326,299 @@ class __$$FigmaStylesScreenEventOnGetStylesImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$FigmaStylesScreenEventOnGetStylesImpl
-    implements FigmaStylesScreenEventOnGetStyles {
-  const _$FigmaStylesScreenEventOnGetStylesImpl(
-      {required this.figmaId, required this.token});
-
-  @override
-  final String figmaId;
-  @override
-  final String token;
-
-  @override
-  String toString() {
-    return 'FigmaStylesScreenEvent.onGetStyles(figmaId: $figmaId, token: $token)';
-  }
+class FigmaStylesScreenEventOnClear implements FigmaStylesScreenEvent {
+  const FigmaStylesScreenEventOnClear();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$FigmaStylesScreenEventOnGetStylesImpl &&
-            (identical(other.figmaId, figmaId) || other.figmaId == figmaId) &&
-            (identical(other.token, token) || other.token == token));
+            other is FigmaStylesScreenEventOnClear);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, figmaId, token);
-
-  /// Create a copy of FigmaStylesScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$FigmaStylesScreenEventOnGetStylesImplCopyWith<
-          _$FigmaStylesScreenEventOnGetStylesImpl>
-      get copyWith => __$$FigmaStylesScreenEventOnGetStylesImplCopyWithImpl<
-          _$FigmaStylesScreenEventOnGetStylesImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String figmaId, String token) onGetStyles,
-    required TResult Function() onClear,
-  }) {
-    return onGetStyles(figmaId, token);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String figmaId, String token)? onGetStyles,
-    TResult? Function()? onClear,
-  }) {
-    return onGetStyles?.call(figmaId, token);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String figmaId, String token)? onGetStyles,
-    TResult Function()? onClear,
-    required TResult orElse(),
-  }) {
-    if (onGetStyles != null) {
-      return onGetStyles(figmaId, token);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FigmaStylesScreenEventInit value) init,
-    required TResult Function(FigmaStylesScreenEventOnGetStyles value)
-        onGetStyles,
-    required TResult Function(FigmaStylesScreenEventOnClear value) onClear,
-  }) {
-    return onGetStyles(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FigmaStylesScreenEventInit value)? init,
-    TResult? Function(FigmaStylesScreenEventOnGetStyles value)? onGetStyles,
-    TResult? Function(FigmaStylesScreenEventOnClear value)? onClear,
-  }) {
-    return onGetStyles?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FigmaStylesScreenEventInit value)? init,
-    TResult Function(FigmaStylesScreenEventOnGetStyles value)? onGetStyles,
-    TResult Function(FigmaStylesScreenEventOnClear value)? onClear,
-    required TResult orElse(),
-  }) {
-    if (onGetStyles != null) {
-      return onGetStyles(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class FigmaStylesScreenEventOnGetStyles
-    implements FigmaStylesScreenEvent {
-  const factory FigmaStylesScreenEventOnGetStyles(
-      {required final String figmaId,
-      required final String token}) = _$FigmaStylesScreenEventOnGetStylesImpl;
-
-  String get figmaId;
-  String get token;
-
-  /// Create a copy of FigmaStylesScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FigmaStylesScreenEventOnGetStylesImplCopyWith<
-          _$FigmaStylesScreenEventOnGetStylesImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$FigmaStylesScreenEventOnClearImplCopyWith<$Res> {
-  factory _$$FigmaStylesScreenEventOnClearImplCopyWith(
-          _$FigmaStylesScreenEventOnClearImpl value,
-          $Res Function(_$FigmaStylesScreenEventOnClearImpl) then) =
-      __$$FigmaStylesScreenEventOnClearImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$FigmaStylesScreenEventOnClearImplCopyWithImpl<$Res>
-    extends _$FigmaStylesScreenEventCopyWithImpl<$Res,
-        _$FigmaStylesScreenEventOnClearImpl>
-    implements _$$FigmaStylesScreenEventOnClearImplCopyWith<$Res> {
-  __$$FigmaStylesScreenEventOnClearImplCopyWithImpl(
-      _$FigmaStylesScreenEventOnClearImpl _value,
-      $Res Function(_$FigmaStylesScreenEventOnClearImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of FigmaStylesScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$FigmaStylesScreenEventOnClearImpl
-    implements FigmaStylesScreenEventOnClear {
-  const _$FigmaStylesScreenEventOnClearImpl();
+  int get hashCode => runtimeType.hashCode;
 
   @override
   String toString() {
     return 'FigmaStylesScreenEvent.onClear()';
   }
+}
 
+/// @nodoc
+mixin _$FigmaStylesScreenSR {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FigmaStylesScreenEventOnClearImpl);
+        (other.runtimeType == runtimeType && other is FigmaStylesScreenSR);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String figmaId, String token) onGetStyles,
-    required TResult Function() onClear,
-  }) {
-    return onClear();
+  String toString() {
+    return 'FigmaStylesScreenSR()';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String figmaId, String token)? onGetStyles,
-    TResult? Function()? onClear,
-  }) {
-    return onClear?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String figmaId, String token)? onGetStyles,
-    TResult Function()? onClear,
-    required TResult orElse(),
-  }) {
-    if (onClear != null) {
-      return onClear();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FigmaStylesScreenEventInit value) init,
-    required TResult Function(FigmaStylesScreenEventOnGetStyles value)
-        onGetStyles,
-    required TResult Function(FigmaStylesScreenEventOnClear value) onClear,
-  }) {
-    return onClear(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FigmaStylesScreenEventInit value)? init,
-    TResult? Function(FigmaStylesScreenEventOnGetStyles value)? onGetStyles,
-    TResult? Function(FigmaStylesScreenEventOnClear value)? onClear,
-  }) {
-    return onClear?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FigmaStylesScreenEventInit value)? init,
-    TResult Function(FigmaStylesScreenEventOnGetStyles value)? onGetStyles,
-    TResult Function(FigmaStylesScreenEventOnClear value)? onClear,
-    required TResult orElse(),
-  }) {
-    if (onClear != null) {
-      return onClear(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class FigmaStylesScreenEventOnClear implements FigmaStylesScreenEvent {
-  const factory FigmaStylesScreenEventOnClear() =
-      _$FigmaStylesScreenEventOnClearImpl;
 }
 
 /// @nodoc
-mixin _$FigmaStylesScreenSR {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loadFinished,
-    required TResult Function(String error) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadFinished,
-    TResult? Function(String error)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadFinished,
-    TResult Function(String error)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_LoadFinished value) loadFinished,
-    required TResult Function(_Error value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadFinished value)? loadFinished,
-    TResult? Function(_Error value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
+class $FigmaStylesScreenSRCopyWith<$Res> {
+  $FigmaStylesScreenSRCopyWith(
+      FigmaStylesScreenSR _, $Res Function(FigmaStylesScreenSR) __);
+}
+
+/// Adds pattern-matching-related methods to [FigmaStylesScreenSR].
+extension FigmaStylesScreenSRPatterns on FigmaStylesScreenSR {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadFinished value)? loadFinished,
     TResult Function(_Error value)? error,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LoadFinished() when loadFinished != null:
+        return loadFinished(_that);
+      case _Error() when error != null:
+        return error(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadFinished value) loadFinished,
+    required TResult Function(_Error value) error,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LoadFinished():
+        return loadFinished(_that);
+      case _Error():
+        return error(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadFinished value)? loadFinished,
+    TResult? Function(_Error value)? error,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LoadFinished() when loadFinished != null:
+        return loadFinished(_that);
+      case _Error() when error != null:
+        return error(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadFinished,
+    TResult Function(String error)? error,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LoadFinished() when loadFinished != null:
+        return loadFinished();
+      case _Error() when error != null:
+        return error(_that.error);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadFinished,
+    required TResult Function(String error) error,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LoadFinished():
+        return loadFinished();
+      case _Error():
+        return error(_that.error);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadFinished,
+    TResult? Function(String error)? error,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LoadFinished() when loadFinished != null:
+        return loadFinished();
+      case _Error() when error != null:
+        return error(_that.error);
+      case _:
+        return null;
+    }
+  }
 }
 
 /// @nodoc
-abstract class $FigmaStylesScreenSRCopyWith<$Res> {
-  factory $FigmaStylesScreenSRCopyWith(
-          FigmaStylesScreenSR value, $Res Function(FigmaStylesScreenSR) then) =
-      _$FigmaStylesScreenSRCopyWithImpl<$Res, FigmaStylesScreenSR>;
-}
 
-/// @nodoc
-class _$FigmaStylesScreenSRCopyWithImpl<$Res, $Val extends FigmaStylesScreenSR>
-    implements $FigmaStylesScreenSRCopyWith<$Res> {
-  _$FigmaStylesScreenSRCopyWithImpl(this._value, this._then);
+class _LoadFinished implements FigmaStylesScreenSR {
+  const _LoadFinished();
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _LoadFinished);
+  }
 
-  /// Create a copy of FigmaStylesScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$LoadFinishedImplCopyWith<$Res> {
-  factory _$$LoadFinishedImplCopyWith(
-          _$LoadFinishedImpl value, $Res Function(_$LoadFinishedImpl) then) =
-      __$$LoadFinishedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadFinishedImplCopyWithImpl<$Res>
-    extends _$FigmaStylesScreenSRCopyWithImpl<$Res, _$LoadFinishedImpl>
-    implements _$$LoadFinishedImplCopyWith<$Res> {
-  __$$LoadFinishedImplCopyWithImpl(
-      _$LoadFinishedImpl _value, $Res Function(_$LoadFinishedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of FigmaStylesScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$LoadFinishedImpl implements _LoadFinished {
-  const _$LoadFinishedImpl();
+  @override
+  int get hashCode => runtimeType.hashCode;
 
   @override
   String toString() {
     return 'FigmaStylesScreenSR.loadFinished()';
   }
+}
+
+/// @nodoc
+
+class _Error implements FigmaStylesScreenSR {
+  const _Error({required this.error});
+
+  final String error;
+
+  /// Create a copy of FigmaStylesScreenSR
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ErrorCopyWith<_Error> get copyWith =>
+      __$ErrorCopyWithImpl<_Error>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadFinishedImpl);
+        (other.runtimeType == runtimeType &&
+            other is _Error &&
+            (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(runtimeType, error);
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loadFinished,
-    required TResult Function(String error) error,
-  }) {
-    return loadFinished();
+  String toString() {
+    return 'FigmaStylesScreenSR.error(error: $error)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadFinished,
-    TResult? Function(String error)? error,
-  }) {
-    return loadFinished?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadFinished,
-    TResult Function(String error)? error,
-    required TResult orElse(),
-  }) {
-    if (loadFinished != null) {
-      return loadFinished();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_LoadFinished value) loadFinished,
-    required TResult Function(_Error value) error,
-  }) {
-    return loadFinished(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadFinished value)? loadFinished,
-    TResult? Function(_Error value)? error,
-  }) {
-    return loadFinished?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadFinished value)? loadFinished,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (loadFinished != null) {
-      return loadFinished(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _LoadFinished implements FigmaStylesScreenSR {
-  const factory _LoadFinished() = _$LoadFinishedImpl;
 }
 
 /// @nodoc
-abstract class _$$ErrorImplCopyWith<$Res> {
-  factory _$$ErrorImplCopyWith(
-          _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
-      __$$ErrorImplCopyWithImpl<$Res>;
+abstract mixin class _$ErrorCopyWith<$Res>
+    implements $FigmaStylesScreenSRCopyWith<$Res> {
+  factory _$ErrorCopyWith(_Error value, $Res Function(_Error) _then) =
+      __$ErrorCopyWithImpl;
   @useResult
   $Res call({String error});
 }
 
 /// @nodoc
-class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$FigmaStylesScreenSRCopyWithImpl<$Res, _$ErrorImpl>
-    implements _$$ErrorImplCopyWith<$Res> {
-  __$$ErrorImplCopyWithImpl(
-      _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
-      : super(_value, _then);
+class __$ErrorCopyWithImpl<$Res> implements _$ErrorCopyWith<$Res> {
+  __$ErrorCopyWithImpl(this._self, this._then);
+
+  final _Error _self;
+  final $Res Function(_Error) _then;
 
   /// Create a copy of FigmaStylesScreenSR
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? error = null,
   }) {
-    return _then(_$ErrorImpl(
+    return _then(_Error(
       error: null == error
-          ? _value.error
+          ? _self.error
           : error // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -688,160 +626,39 @@ class __$$ErrorImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
+mixin _$FigmaStylesScreenState {
+  Config get config;
 
-class _$ErrorImpl implements _Error {
-  const _$ErrorImpl({required this.error});
-
-  @override
-  final String error;
-
-  @override
-  String toString() {
-    return 'FigmaStylesScreenSR.error(error: $error)';
-  }
+  /// Create a copy of FigmaStylesScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $FigmaStylesScreenStateCopyWith<FigmaStylesScreenState> get copyWith =>
+      _$FigmaStylesScreenStateCopyWithImpl<FigmaStylesScreenState>(
+          this as FigmaStylesScreenState, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ErrorImpl &&
-            (identical(other.error, error) || other.error == error));
+            other is FigmaStylesScreenState &&
+            (identical(other.config, config) || other.config == config));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, error);
-
-  /// Create a copy of FigmaStylesScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
+  int get hashCode => Object.hash(runtimeType, config);
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loadFinished,
-    required TResult Function(String error) error,
-  }) {
-    return error(this.error);
+  String toString() {
+    return 'FigmaStylesScreenState(config: $config)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadFinished,
-    TResult? Function(String error)? error,
-  }) {
-    return error?.call(this.error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadFinished,
-    TResult Function(String error)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this.error);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_LoadFinished value) loadFinished,
-    required TResult Function(_Error value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadFinished value)? loadFinished,
-    TResult? Function(_Error value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadFinished value)? loadFinished,
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Error implements FigmaStylesScreenSR {
-  const factory _Error({required final String error}) = _$ErrorImpl;
-
-  String get error;
-
-  /// Create a copy of FigmaStylesScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$FigmaStylesScreenState {
-  Config get config => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Config config) data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? data,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FigmaStylesScreenStateData value) data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FigmaStylesScreenStateData value)? data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FigmaStylesScreenStateData value)? data,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of FigmaStylesScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $FigmaStylesScreenStateCopyWith<FigmaStylesScreenState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $FigmaStylesScreenStateCopyWith<$Res> {
+abstract mixin class $FigmaStylesScreenStateCopyWith<$Res> {
   factory $FigmaStylesScreenStateCopyWith(FigmaStylesScreenState value,
-          $Res Function(FigmaStylesScreenState) then) =
-      _$FigmaStylesScreenStateCopyWithImpl<$Res, FigmaStylesScreenState>;
+          $Res Function(FigmaStylesScreenState) _then) =
+      _$FigmaStylesScreenStateCopyWithImpl;
   @useResult
   $Res call({Config config});
 
@@ -849,15 +666,12 @@ abstract class $FigmaStylesScreenStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$FigmaStylesScreenStateCopyWithImpl<$Res,
-        $Val extends FigmaStylesScreenState>
+class _$FigmaStylesScreenStateCopyWithImpl<$Res>
     implements $FigmaStylesScreenStateCopyWith<$Res> {
-  _$FigmaStylesScreenStateCopyWithImpl(this._value, this._then);
+  _$FigmaStylesScreenStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final FigmaStylesScreenState _self;
+  final $Res Function(FigmaStylesScreenState) _then;
 
   /// Create a copy of FigmaStylesScreenState
   /// with the given fields replaced by the non-null parameter values.
@@ -866,12 +680,12 @@ class _$FigmaStylesScreenStateCopyWithImpl<$Res,
   $Res call({
     Object? config = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       config: null == config
-          ? _value.config
+          ? _self.config
           : config // ignore: cast_nullable_to_non_nullable
               as Config,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of FigmaStylesScreenState
@@ -879,19 +693,210 @@ class _$FigmaStylesScreenStateCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $ConfigCopyWith<$Res> get config {
-    return $ConfigCopyWith<$Res>(_value.config, (value) {
-      return _then(_value.copyWith(config: value) as $Val);
+    return $ConfigCopyWith<$Res>(_self.config, (value) {
+      return _then(_self.copyWith(config: value));
     });
   }
 }
 
+/// Adds pattern-matching-related methods to [FigmaStylesScreenState].
+extension FigmaStylesScreenStatePatterns on FigmaStylesScreenState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(FigmaStylesScreenStateData value)? data,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case FigmaStylesScreenStateData() when data != null:
+        return data(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(FigmaStylesScreenStateData value) data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case FigmaStylesScreenStateData():
+        return data(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(FigmaStylesScreenStateData value)? data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case FigmaStylesScreenStateData() when data != null:
+        return data(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config)? data,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case FigmaStylesScreenStateData() when data != null:
+        return data(_that.config);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config) data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case FigmaStylesScreenStateData():
+        return data(_that.config);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config)? data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case FigmaStylesScreenStateData() when data != null:
+        return data(_that.config);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
-abstract class _$$FigmaStylesScreenStateDataImplCopyWith<$Res>
+
+class FigmaStylesScreenStateData implements FigmaStylesScreenState {
+  const FigmaStylesScreenStateData({required this.config});
+
+  @override
+  final Config config;
+
+  /// Create a copy of FigmaStylesScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $FigmaStylesScreenStateDataCopyWith<FigmaStylesScreenStateData>
+      get copyWith =>
+          _$FigmaStylesScreenStateDataCopyWithImpl<FigmaStylesScreenStateData>(
+              this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is FigmaStylesScreenStateData &&
+            (identical(other.config, config) || other.config == config));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, config);
+
+  @override
+  String toString() {
+    return 'FigmaStylesScreenState.data(config: $config)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $FigmaStylesScreenStateDataCopyWith<$Res>
     implements $FigmaStylesScreenStateCopyWith<$Res> {
-  factory _$$FigmaStylesScreenStateDataImplCopyWith(
-          _$FigmaStylesScreenStateDataImpl value,
-          $Res Function(_$FigmaStylesScreenStateDataImpl) then) =
-      __$$FigmaStylesScreenStateDataImplCopyWithImpl<$Res>;
+  factory $FigmaStylesScreenStateDataCopyWith(FigmaStylesScreenStateData value,
+          $Res Function(FigmaStylesScreenStateData) _then) =
+      _$FigmaStylesScreenStateDataCopyWithImpl;
   @override
   @useResult
   $Res call({Config config});
@@ -901,132 +906,37 @@ abstract class _$$FigmaStylesScreenStateDataImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$FigmaStylesScreenStateDataImplCopyWithImpl<$Res>
-    extends _$FigmaStylesScreenStateCopyWithImpl<$Res,
-        _$FigmaStylesScreenStateDataImpl>
-    implements _$$FigmaStylesScreenStateDataImplCopyWith<$Res> {
-  __$$FigmaStylesScreenStateDataImplCopyWithImpl(
-      _$FigmaStylesScreenStateDataImpl _value,
-      $Res Function(_$FigmaStylesScreenStateDataImpl) _then)
-      : super(_value, _then);
+class _$FigmaStylesScreenStateDataCopyWithImpl<$Res>
+    implements $FigmaStylesScreenStateDataCopyWith<$Res> {
+  _$FigmaStylesScreenStateDataCopyWithImpl(this._self, this._then);
+
+  final FigmaStylesScreenStateData _self;
+  final $Res Function(FigmaStylesScreenStateData) _then;
 
   /// Create a copy of FigmaStylesScreenState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? config = null,
   }) {
-    return _then(_$FigmaStylesScreenStateDataImpl(
+    return _then(FigmaStylesScreenStateData(
       config: null == config
-          ? _value.config
+          ? _self.config
           : config // ignore: cast_nullable_to_non_nullable
               as Config,
     ));
   }
-}
-
-/// @nodoc
-
-class _$FigmaStylesScreenStateDataImpl implements FigmaStylesScreenStateData {
-  const _$FigmaStylesScreenStateDataImpl({required this.config});
-
-  @override
-  final Config config;
-
-  @override
-  String toString() {
-    return 'FigmaStylesScreenState.data(config: $config)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$FigmaStylesScreenStateDataImpl &&
-            (identical(other.config, config) || other.config == config));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, config);
 
   /// Create a copy of FigmaStylesScreenState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$FigmaStylesScreenStateDataImplCopyWith<_$FigmaStylesScreenStateDataImpl>
-      get copyWith => __$$FigmaStylesScreenStateDataImplCopyWithImpl<
-          _$FigmaStylesScreenStateDataImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Config config) data,
-  }) {
-    return data(config);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? data,
-  }) {
-    return data?.call(config);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? data,
-    required TResult orElse(),
-  }) {
-    if (data != null) {
-      return data(config);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(FigmaStylesScreenStateData value) data,
-  }) {
-    return data(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(FigmaStylesScreenStateData value)? data,
-  }) {
-    return data?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(FigmaStylesScreenStateData value)? data,
-    required TResult orElse(),
-  }) {
-    if (data != null) {
-      return data(this);
-    }
-    return orElse();
+  $ConfigCopyWith<$Res> get config {
+    return $ConfigCopyWith<$Res>(_self.config, (value) {
+      return _then(_self.copyWith(config: value));
+    });
   }
 }
 
-abstract class FigmaStylesScreenStateData implements FigmaStylesScreenState {
-  const factory FigmaStylesScreenStateData({required final Config config}) =
-      _$FigmaStylesScreenStateDataImpl;
-
-  @override
-  Config get config;
-
-  /// Create a copy of FigmaStylesScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$FigmaStylesScreenStateDataImplCopyWith<_$FigmaStylesScreenStateDataImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
+// dart format on

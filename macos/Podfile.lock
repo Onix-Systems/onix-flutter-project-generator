@@ -1,10 +1,9 @@
 PODS:
   - connectivity_plus (0.0.1):
-    - Flutter
     - FlutterMacOS
   - file_selector_macos (0.0.1):
     - FlutterMacOS
-  - flutter_secure_storage_macos (6.1.1):
+  - flutter_secure_storage_macos (6.1.3):
     - FlutterMacOS
   - FlutterMacOS (1.0.0)
   - package_info_plus (0.0.1):
@@ -23,7 +22,7 @@ PODS:
     - FlutterMacOS
 
 DEPENDENCIES:
-  - connectivity_plus (from `Flutter/ephemeral/.symlinks/plugins/connectivity_plus/darwin`)
+  - connectivity_plus (from `Flutter/ephemeral/.symlinks/plugins/connectivity_plus/macos`)
   - file_selector_macos (from `Flutter/ephemeral/.symlinks/plugins/file_selector_macos/macos`)
   - flutter_secure_storage_macos (from `Flutter/ephemeral/.symlinks/plugins/flutter_secure_storage_macos/macos`)
   - FlutterMacOS (from `Flutter/ephemeral`)
@@ -36,7 +35,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   connectivity_plus:
-    :path: Flutter/ephemeral/.symlinks/plugins/connectivity_plus/darwin
+    :path: Flutter/ephemeral/.symlinks/plugins/connectivity_plus/macos
   file_selector_macos:
     :path: Flutter/ephemeral/.symlinks/plugins/file_selector_macos/macos
   flutter_secure_storage_macos:
@@ -57,17 +56,17 @@ EXTERNAL SOURCES:
     :path: Flutter/ephemeral/.symlinks/plugins/window_manager/macos
 
 SPEC CHECKSUMS:
-  connectivity_plus: 18382e7311ba19efcaee94442b23b32507b20695
-  file_selector_macos: cc3858c981fe6889f364731200d6232dac1d812d
-  flutter_secure_storage_macos: 59459653abe1adb92abbc8ea747d79f8d19866c9
-  FlutterMacOS: 8f6f14fa908a6fb3fba0cd85dbd81ec4b251fb24
-  package_info_plus: 12f1c5c2cfe8727ca46cbd0b26677728972d9a5b
-  path_provider_foundation: 2b6b4c569c0fb62ec74538f866245ac84301af46
-  screen_retriever: 59634572a57080243dd1bf715e55b6c54f241a38
-  shared_preferences_foundation: fcdcbc04712aee1108ac7fda236f363274528f78
-  url_launcher_macos: c82c93949963e55b228a30115bd219499a6fe404
-  window_manager: 3a1844359a6295ab1e47659b1a777e36773cd6e8
+  connectivity_plus: 4adf20a405e25b42b9c9f87feff8f4b6fde18a4e
+  file_selector_macos: 6280b52b459ae6c590af5d78fc35c7267a3c4b31
+  flutter_secure_storage_macos: 7f45e30f838cf2659862a4e4e3ee1c347c2b3b54
+  FlutterMacOS: d0db08ddef1a9af05a5ec4b724367152bb0500b1
+  package_info_plus: f0052d280d17aa382b932f399edf32507174e870
+  path_provider_foundation: 080d55be775b7414fd5a5ef3ac137b97b097e564
+  screen_retriever: 4f97c103641aab8ce183fa5af3b87029df167936
+  shared_preferences_foundation: 9e1978ff2562383bd5676f64ec4e9aa8fa06a6f7
+  url_launcher_macos: 0fba8ddabfc33ce0a9afe7c5fef5aab3d8d2d673
+  window_manager: 1d01fa7ac65a6e6f83b965471b1a7fdd3f06166c
 
-PODFILE CHECKSUM: 33dc0a74a37eaaaa9a4d991374cc1fb2ce00b9ca
+PODFILE CHECKSUM: b53fbae59e25ae159da6bb715f95fed8c125e874
 
 COCOAPODS: 1.16.2

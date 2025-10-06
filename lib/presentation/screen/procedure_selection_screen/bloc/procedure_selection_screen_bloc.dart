@@ -211,7 +211,7 @@ signingConfigs {
     );
 
     await hideProgress();
-    if (result.success) {
+    if (result.isOk) {
       final fingerprints = await _getSigningFingerprintUseCase(
         projectFolder: event.directory.path,
         password: signingPassword,
@@ -222,7 +222,7 @@ signingConfigs {
         ),
       );
     } else {
-      onFailure(result.error.failure);
+      onFailure(result.asError.error);
       return;
     }
   }
@@ -251,7 +251,7 @@ signingConfigs {
     );
 
     if (result.isError) {
-      onFailure(result.error.failure);
+      onFailure(result.asError.error);
     }
 
     emit(

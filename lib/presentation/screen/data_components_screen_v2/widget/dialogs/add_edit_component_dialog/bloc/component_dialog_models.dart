@@ -9,7 +9,7 @@ part 'component_dialog_models.freezed.dart';
 class ComponentDialogSR {}
 
 @freezed
-class ComponentDialogState with _$ComponentDialogState {
+sealed class ComponentDialogState with _$ComponentDialogState {
   const factory ComponentDialogState({
     Component? component,
     Components? components,

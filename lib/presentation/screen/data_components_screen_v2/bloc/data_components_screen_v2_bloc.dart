@@ -154,7 +154,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
     );
 
     if (result.isError) {
-      onFailure(result.error.failure);
+      onFailure(result.asError.error);
       return;
     }
 
@@ -175,7 +175,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
     );
 
     if (result.isError) {
-      onFailure(result.error.failure);
+      onFailure(result.asError.error);
       return;
     }
 
@@ -191,7 +191,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
     );
 
     if (result.isError) {
-      onFailure(result.error.failure);
+      onFailure(result.asError.error);
       return;
     }
 
@@ -207,7 +207,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
     );
 
     if (result.isError) {
-      onFailure(result.error.failure);
+      onFailure(result.asError.error);
       return;
     }
 
@@ -231,7 +231,7 @@ class DataComponentsScreenV2Bloc extends BaseBloc<DataComponentsScreenV2Event,
     );
 
     if (result.isError) {
-      onFailure(result.error.failure);
+      onFailure(result.asError.error);
       return;
     }
 

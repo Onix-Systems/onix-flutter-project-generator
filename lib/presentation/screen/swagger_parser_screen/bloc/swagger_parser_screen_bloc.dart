@@ -88,17 +88,17 @@ class SwaggerParserScreenBloc extends BaseBloc<SwaggerParserScreenEvent,
 
     await hideProgress();
 
-    swaggerComponentsResult.when(
-      success: (components) {
-        emit(
-          state.copyWith(
-            config: _config,
-          ),
-        );
-        addSr(const SwaggerParserScreenSR.onContinue());
-      },
-      error: onFailure,
+    if (swaggerComponentsResult.isError) {
+      onFailure(swaggerComponentsResult.asError.error);
+      return;
+    }
+
+    emit(
+      state.copyWith(
+        config: _config,
+      ),
     );
+    addSr(const SwaggerParserScreenSR.onContinue());
   }
 
   void _onCancel(

@@ -188,6 +188,7 @@ class FastlaneService
               payload: 'internal',
               shouldBeCommented: true,
               comment:
+                  //ignore: lines_longer_than_80_chars
                   'Default available tracks are: production, beta, alpha, internal. Default value is production',
             ),
           ],
@@ -201,12 +202,14 @@ class FastlaneService
               key: 'target_name',
               payload: 'Runner',
               comment:
+                  //ignore: lines_longer_than_80_chars
                   'You can change the name of the Runner if you have more than one in Xcode',
             ),
             const FastlaneOneLineParam(
               key: 'export_method',
               payload: 'app-store',
               comment:
+                  //ignore: lines_longer_than_80_chars
                   'Valid values are: app-store, validation, ad-hoc, package, enterprise, development, developer-id and mac-application',
             ),
             const FastlaneOneLineParam(
@@ -217,12 +220,14 @@ class FastlaneService
               key: 'manual_codesign',
               payload: 'false',
               comment:
+                  //ignore: lines_longer_than_80_chars
                   'Be sure to select your preferred signature method in Xcode - Signing & Capabilities',
             ),
             FastlaneMultiLineParam(
               shouldBeCommented: true,
               key: 'provisioning_profile',
               comment:
+                  //ignore: lines_longer_than_80_chars
                   "If manual_codesign: true, be sure to specify the bundle_id and the name of the profile's provisions",
               payload: {
                 'bundle_id': shouldAttachFlavor
@@ -283,6 +288,7 @@ class FastlaneService
               payload: 'true',
               shouldBeCommented: true,
               comment:
+                  //ignore: lines_longer_than_80_chars
                   'deploy_apk_only: true is used if firebase is not integrated with play Console',
             ),
         ],
@@ -298,6 +304,7 @@ class FastlaneService
 
   List<String> _generateSlackParams() {
     final params = <String>[
+      //ignore: lines_longer_than_80_chars
       "slack: # Don't forget to specify a SLACK_URL in the .env for each flavor in the fastlane directory for each platform",
       '  username: Fastlane',
       '  send_when_error: false',

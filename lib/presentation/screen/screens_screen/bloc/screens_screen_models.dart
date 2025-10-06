@@ -5,7 +5,7 @@ import 'package:onix_flutter_bricks/domain/entity/screen/screen.dart';
 part 'screens_screen_models.freezed.dart';
 
 @freezed
-class ScreensScreenEvent with _$ScreensScreenEvent {
+sealed class ScreensScreenEvent with _$ScreensScreenEvent {
   const factory ScreensScreenEvent.init() = ScreensScreenEventInit;
 
   const factory ScreensScreenEvent.onScreenAdd({
@@ -27,13 +27,13 @@ class ScreensScreenEvent with _$ScreensScreenEvent {
 }
 
 @freezed
-class ScreensScreenSR with _$ScreensScreenSR {
+sealed class ScreensScreenSR with _$ScreensScreenSR {
   const factory ScreensScreenSR.existsError() = _ExistsError;
   const factory ScreensScreenSR.wrongNameError() = _WrongNameError;
 }
 
 @freezed
-class ScreensScreenState with _$ScreensScreenState {
+sealed class ScreensScreenState with _$ScreensScreenState {
   const factory ScreensScreenState.data({
     required Config config,
     @Default(0) int stateUpdate,

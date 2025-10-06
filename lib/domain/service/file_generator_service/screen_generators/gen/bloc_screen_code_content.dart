@@ -77,6 +77,7 @@ class BlocScreenCodeContent extends ScreenCodeContent {
 
       /// Add SR callback handler
       ..add(
+        //ignore: lines_longer_than_80_chars
         'void _onSingleResult(BuildContext context, ${screenClassName}ScreenSR singleResult) {',
       )
       ..add('switch (singleResult) {')

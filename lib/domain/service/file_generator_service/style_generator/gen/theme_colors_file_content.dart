@@ -34,6 +34,7 @@ class ThemeColorsFileContent
     final lightColorDeclarations = colorNames
         .map(
           (e) =>
+              //ignore: lines_longer_than_80_chars
               '${e}Color: AppColors.${colors.firstWhere((element) => element.name == e || element.name == '${e}Light').name},',
         )
         .toList();
@@ -47,6 +48,7 @@ class ThemeColorsFileContent
     final darkColorDeclarations = colorNames
         .map(
           (e) =>
+              //ignore: lines_longer_than_80_chars
               '${e}Color: AppColors.${colors.firstWhere((element) => element.name == e || element.name == '${e}Dark').name},',
         )
         .toList();
@@ -108,6 +110,7 @@ class ThemeColorsFileContent
     final lerpColors = colorNames
         .map(
           (e) =>
+              //ignore: lines_longer_than_80_chars
               '${e}Color: Color.lerp(${e}Color, other.${e}Color, t,) ?? ${e}Color,',
         )
         .toList();

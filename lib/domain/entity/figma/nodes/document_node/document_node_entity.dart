@@ -5,7 +5,7 @@ part 'document_node_entity.freezed.dart';
 
 // https://www.figma.com/developers/api#document-props
 @freezed
-class DocumentNodeEntity with _$DocumentNodeEntity implements BaseNode {
+sealed class DocumentNodeEntity with _$DocumentNodeEntity implements BaseNode {
   const factory DocumentNodeEntity({
     required String id,
     required String key,

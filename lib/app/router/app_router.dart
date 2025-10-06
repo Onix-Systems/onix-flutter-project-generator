@@ -120,7 +120,7 @@ class AppRouter {
           path: _editProjectScreen,
           name: 'EditProjectScreen',
           builder: (context, state) => const EditProjectScreen(),
-        )
+        ),
         //{routes end}
       ],
     );

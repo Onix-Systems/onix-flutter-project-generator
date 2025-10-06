@@ -1,6 +1,6 @@
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/file_generator_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/flavor_generator/params/flavor_generator_params.dart';
-import 'package:onix_flutter_core/onix_flutter_core.dart';
+import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class GenerateFlavorsUseCase {
   final FileGeneratorService _fileGeneratorService;

@@ -173,7 +173,7 @@ class ComponentDialogCubit
         final result = _addDataObjectComponentUseCase(component: component);
 
         if (result.isError) {
-          onFailure(result.error.failure);
+          onFailure(result.asError.error);
           return null;
         }
       }
@@ -214,7 +214,7 @@ class ComponentDialogCubit
     );
 
     if (result.isError) {
-      onFailure(result.error.failure);
+      onFailure(result.asError.error);
       return null;
     }
 
@@ -227,7 +227,7 @@ class ComponentDialogCubit
 
       if (parsedResult.isError) {
         onFailure(
-          parsedResult.error.failure,
+          parsedResult.asError.error,
         );
         return;
       }
@@ -261,7 +261,11 @@ class ComponentDialogCubit
   }
 
   DataVariableComponent _createVariable(
-      String type, String name, bool isRequired, bool isList) {
+    String type,
+    String name,
+    bool isRequired,
+    bool isList,
+  ) {
     final variableType = DartTypes.types.contains(type)
         ? SwaggerVariable(DartTypes.toSwaggerType(type))
         : SwaggerReference(type);

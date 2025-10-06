@@ -5,7 +5,7 @@ import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 part 'swagger_parser_screen_models.freezed.dart';
 
 @freezed
-class SwaggerParserScreenEvent with _$SwaggerParserScreenEvent {
+sealed class SwaggerParserScreenEvent with _$SwaggerParserScreenEvent {
   const factory SwaggerParserScreenEvent.init() = SwaggerParserScreenEventInit;
 
   const factory SwaggerParserScreenEvent.parse({
@@ -18,13 +18,13 @@ class SwaggerParserScreenEvent with _$SwaggerParserScreenEvent {
 }
 
 @freezed
-class SwaggerParserScreenSR with _$SwaggerParserScreenSR {
+sealed class SwaggerParserScreenSR with _$SwaggerParserScreenSR {
   const factory SwaggerParserScreenSR.init() = _Init;
   const factory SwaggerParserScreenSR.onContinue() = _OnContinue;
 }
 
 @freezed
-class SwaggerParserScreenState with _$SwaggerParserScreenState {
+sealed class SwaggerParserScreenState with _$SwaggerParserScreenState {
   const factory SwaggerParserScreenState.data({
     required Config config,
     required Components componentsBeforeParsing,

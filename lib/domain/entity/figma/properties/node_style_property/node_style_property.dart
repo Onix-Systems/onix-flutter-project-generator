@@ -4,7 +4,7 @@ part 'node_style_property.freezed.dart';
 
 // https://www.figma.com/developers/api#style-type
 @freezed
-class NodeStyleProperty with _$NodeStyleProperty {
+sealed class NodeStyleProperty with _$NodeStyleProperty {
   const factory NodeStyleProperty({
     required String key,
     required String name,

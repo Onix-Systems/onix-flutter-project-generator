@@ -5,7 +5,7 @@ import 'package:onix_flutter_bricks/util/enum/output_type.dart';
 part 'output_line.freezed.dart';
 
 @freezed
-class OutputLine with _$OutputLine {
+sealed class OutputLine with _$OutputLine {
   const factory OutputLine({
     required String line,
     required Color color,

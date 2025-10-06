@@ -6,7 +6,7 @@ part 'shape_with_text_node_entity.freezed.dart';
 
 // https://www.figma.com/developers/api#shape_with_text-props
 @freezed
-class ShapeWithTextNodeEntity
+sealed class ShapeWithTextNodeEntity
     with _$ShapeWithTextNodeEntity
     implements FillPaintsNode {
   const factory ShapeWithTextNodeEntity({

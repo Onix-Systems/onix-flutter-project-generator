@@ -17,11 +17,11 @@ class AddEditVariableDialog extends StatefulWidget {
   final DataVariableComponent? variable;
   final bool parentIsEnum;
   final List<String> types;
-  final Function(
-    String type,
-    String name,
-    bool isList,
-  ) process;
+  final Function({
+    required String type,
+    required String name,
+    required bool isList,
+  }) process;
 
   const AddEditVariableDialog({
     required this.types,
@@ -68,9 +68,9 @@ class _AddEditVariableDialogState extends State<AddEditVariableDialog> {
       onOk: _controller.text.isNotEmpty
           ? () {
               widget.process(
-                _selectedType,
-                _controller.text,
-                isList,
+                type: _selectedType,
+                name: _controller.text,
+                isList: isList,
               );
             }
           : null,
@@ -222,9 +222,9 @@ class _AddEditVariableDialogState extends State<AddEditVariableDialog> {
                   rightButtonLabel: S.of(context).cancel,
                   leftButtonOnPressed: () {
                     widget.process(
-                      _selectedType,
-                      _controller.text,
-                      isList,
+                      type: _selectedType,
+                      name: _controller.text,
+                      isList: isList,
                     );
                     if (context.mounted) {
                       Navigator.of(context).pop();

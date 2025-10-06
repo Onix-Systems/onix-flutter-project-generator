@@ -7,7 +7,7 @@ part 'text_node_entity.freezed.dart';
 
 // https://www.figma.com/developers/api#text-props
 @freezed
-class TextNodeEntity with _$TextNodeEntity implements FillPaintsNode {
+sealed class TextNodeEntity with _$TextNodeEntity implements FillPaintsNode {
   const factory TextNodeEntity({
     required TypeStyleMetadata style,
     required String id,

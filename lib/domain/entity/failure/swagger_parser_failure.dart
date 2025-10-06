@@ -1,9 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
-import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 // When Failed to parse swagger components
-class SwaggerParserFailure implements Failure {
+sealed class SwaggerParserFailure implements Exception {
   final String? componentName;
 
   const SwaggerParserFailure(this.componentName);
@@ -32,15 +31,15 @@ class SwaggerParserFailureFailedToParse extends SwaggerParserFailure {
 extension SwaggerParserFailureX on SwaggerParserFailure {
   String getTranslatedMessage(BuildContext context) {
     switch (runtimeType) {
-      case SwaggerParserFailureAlreadyExists:
+      case SwaggerParserFailureAlreadyExists _:
         return S.of(context).alreadyExistsError(componentName ?? '');
-      case SwaggerParserFailureNotFound:
+      case SwaggerParserFailureNotFound _:
         return S.of(context).sourceNotFound;
-      case SwaggerParserFailureDuplicatesFound:
+      case SwaggerParserFailureDuplicatesFound _:
         return S.of(context).duplicatesFoundError(componentName ?? '');
-      case SwaggerParserFailureRequestAlreadyExists:
+      case SwaggerParserFailureRequestAlreadyExists _:
         return S.of(context).requestAlreadyExistsError;
-      case SwaggerParserFailureFailedToParse:
+      case SwaggerParserFailureFailedToParse _:
       default:
         return S.of(context).parseErrorMessage;
     }

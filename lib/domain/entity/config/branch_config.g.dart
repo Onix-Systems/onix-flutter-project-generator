@@ -6,14 +6,14 @@ part of 'branch_config.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$BranchConfigImpl _$$BranchConfigImplFromJson(Map<String, dynamic> json) =>
-    _$BranchConfigImpl(
+_BranchConfig _$BranchConfigFromJson(Map<String, dynamic> json) =>
+    _BranchConfig(
       branch: json['branch'] as String? ?? 'main',
       localVersion: json['localVersion'] as String? ?? '',
       remoteVersion: json['remoteVersion'] as String? ?? '',
     );
 
-Map<String, dynamic> _$$BranchConfigImplToJson(_$BranchConfigImpl instance) =>
+Map<String, dynamic> _$BranchConfigToJson(_BranchConfig instance) =>
     <String, dynamic>{
       'branch': instance.branch,
       'localVersion': instance.localVersion,

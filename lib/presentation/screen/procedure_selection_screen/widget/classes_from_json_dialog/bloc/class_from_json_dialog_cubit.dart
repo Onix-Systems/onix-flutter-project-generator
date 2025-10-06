@@ -23,7 +23,7 @@ class ClassFromJsonDialogCubit
 
     if (parsedResult.isError) {
       onFailure(
-        parsedResult.error.failure,
+        parsedResult.asError.error,
       );
       return '';
     }

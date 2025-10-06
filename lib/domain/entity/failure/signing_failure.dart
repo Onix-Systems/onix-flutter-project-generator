@@ -1,10 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:onix_flutter_bricks/app/localization/generated/l10n.dart';
-import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 enum SigningFailureType { invalidParams, exception, signingAlreadyExist }
 
-class SigningFailure implements Failure {
+class SigningFailure implements Exception {
   SigningFailure(
     this.type, {
     this.e,

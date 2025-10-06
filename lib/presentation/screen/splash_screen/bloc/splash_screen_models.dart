@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'splash_screen_models.freezed.dart';
 
 @freezed
-class SplashScreenEvent with _$SplashScreenEvent {
+sealed class SplashScreenEvent with _$SplashScreenEvent {
   const factory SplashScreenEvent.init() = SplashScreenEventInit;
 
   const factory SplashScreenEvent.onAnimationFinished() =
@@ -11,7 +11,7 @@ class SplashScreenEvent with _$SplashScreenEvent {
 }
 
 @freezed
-class SplashScreenSR with _$SplashScreenSR {
+sealed class SplashScreenSR with _$SplashScreenSR {
   const factory SplashScreenSR.onNeedUpdate({
     required String latestReleaseUrl,
   }) = _onNeedUpdate;
@@ -20,7 +20,7 @@ class SplashScreenSR with _$SplashScreenSR {
 }
 
 @freezed
-class SplashScreenState with _$SplashScreenState {
+sealed class SplashScreenState with _$SplashScreenState {
   const factory SplashScreenState.data({
     @Default('') String remoteVersion,
     @Default('') String localVersion,

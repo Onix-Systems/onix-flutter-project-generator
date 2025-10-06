@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,250 +9,110 @@ part of 'procedure_selection_screen_models.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ProcedureSelectionScreenEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String projectPath) onNewProject,
-    required TResult Function(String projectURI) onProjectOpen,
-    required TResult Function(String language) onLocaleChange,
-    required TResult Function(
-            Directory directory, List<String> signingVars, bool overwrite)
-        onGenerateAndroidSigning,
-    required TResult Function(Directory directory, Set<String> flavors)
-        onGenerateFlavors,
-    required TResult Function() onOpenInStudio,
-    required TResult Function() onFlavorizrOutputClose,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String projectPath)? onNewProject,
-    TResult? Function(String projectURI)? onProjectOpen,
-    TResult? Function(String language)? onLocaleChange,
-    TResult? Function(
-            Directory directory, List<String> signingVars, bool overwrite)?
-        onGenerateAndroidSigning,
-    TResult? Function(Directory directory, Set<String> flavors)?
-        onGenerateFlavors,
-    TResult? Function()? onOpenInStudio,
-    TResult? Function()? onFlavorizrOutputClose,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String projectPath)? onNewProject,
-    TResult Function(String projectURI)? onProjectOpen,
-    TResult Function(String language)? onLocaleChange,
-    TResult Function(
-            Directory directory, List<String> signingVars, bool overwrite)?
-        onGenerateAndroidSigning,
-    TResult Function(Directory directory, Set<String> flavors)?
-        onGenerateFlavors,
-    TResult Function()? onOpenInStudio,
-    TResult Function()? onFlavorizrOutputClose,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProcedureSelectionScreenEventInit value) init,
-    required TResult Function(ProcedureSelectionScreenEventOnNewProject value)
-        onNewProject,
-    required TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)
-        onProjectOpen,
-    required TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)
-        onLocaleChange,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnAndroidSigning value)
-        onGenerateAndroidSigning,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnGenerateFlavors value)
-        onGenerateFlavors,
-    required TResult Function(
-            ProcedureSelectionScreenEventOpenProjectInStudio value)
-        onOpenInStudio,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnFlavorizrOutputClose value)
-        onFlavorizrOutputClose,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProcedureSelectionScreenEventInit value)? init,
-    TResult? Function(ProcedureSelectionScreenEventOnNewProject value)?
-        onNewProject,
-    TResult? Function(ProcedureSelectionScreenEventOnProjectOpen value)?
-        onProjectOpen,
-    TResult? Function(ProcedureSelectionScreenEventOnLocaleChange value)?
-        onLocaleChange,
-    TResult? Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
-        onGenerateAndroidSigning,
-    TResult? Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
-        onGenerateFlavors,
-    TResult? Function(ProcedureSelectionScreenEventOpenProjectInStudio value)?
-        onOpenInStudio,
-    TResult? Function(
-            ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
-        onFlavorizrOutputClose,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProcedureSelectionScreenEventInit value)? init,
-    TResult Function(ProcedureSelectionScreenEventOnNewProject value)?
-        onNewProject,
-    TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)?
-        onProjectOpen,
-    TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)?
-        onLocaleChange,
-    TResult Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
-        onGenerateAndroidSigning,
-    TResult Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
-        onGenerateFlavors,
-    TResult Function(ProcedureSelectionScreenEventOpenProjectInStudio value)?
-        onOpenInStudio,
-    TResult Function(ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
-        onFlavorizrOutputClose,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ProcedureSelectionScreenEventCopyWith<$Res> {
-  factory $ProcedureSelectionScreenEventCopyWith(
-          ProcedureSelectionScreenEvent value,
-          $Res Function(ProcedureSelectionScreenEvent) then) =
-      _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
-          ProcedureSelectionScreenEvent>;
-}
-
-/// @nodoc
-class _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
-        $Val extends ProcedureSelectionScreenEvent>
-    implements $ProcedureSelectionScreenEventCopyWith<$Res> {
-  _$ProcedureSelectionScreenEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$ProcedureSelectionScreenEventInitImplCopyWith<$Res> {
-  factory _$$ProcedureSelectionScreenEventInitImplCopyWith(
-          _$ProcedureSelectionScreenEventInitImpl value,
-          $Res Function(_$ProcedureSelectionScreenEventInitImpl) then) =
-      __$$ProcedureSelectionScreenEventInitImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ProcedureSelectionScreenEventInitImplCopyWithImpl<$Res>
-    extends _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
-        _$ProcedureSelectionScreenEventInitImpl>
-    implements _$$ProcedureSelectionScreenEventInitImplCopyWith<$Res> {
-  __$$ProcedureSelectionScreenEventInitImplCopyWithImpl(
-      _$ProcedureSelectionScreenEventInitImpl _value,
-      $Res Function(_$ProcedureSelectionScreenEventInitImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$ProcedureSelectionScreenEventInitImpl
-    implements ProcedureSelectionScreenEventInit {
-  const _$ProcedureSelectionScreenEventInitImpl();
-
-  @override
-  String toString() {
-    return 'ProcedureSelectionScreenEvent.init()';
-  }
-
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProcedureSelectionScreenEventInitImpl);
+            other is ProcedureSelectionScreenEvent);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String projectPath) onNewProject,
-    required TResult Function(String projectURI) onProjectOpen,
-    required TResult Function(String language) onLocaleChange,
-    required TResult Function(
-            Directory directory, List<String> signingVars, bool overwrite)
-        onGenerateAndroidSigning,
-    required TResult Function(Directory directory, Set<String> flavors)
-        onGenerateFlavors,
-    required TResult Function() onOpenInStudio,
-    required TResult Function() onFlavorizrOutputClose,
-  }) {
-    return init();
+  String toString() {
+    return 'ProcedureSelectionScreenEvent()';
   }
+}
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String projectPath)? onNewProject,
-    TResult? Function(String projectURI)? onProjectOpen,
-    TResult? Function(String language)? onLocaleChange,
-    TResult? Function(
-            Directory directory, List<String> signingVars, bool overwrite)?
-        onGenerateAndroidSigning,
-    TResult? Function(Directory directory, Set<String> flavors)?
-        onGenerateFlavors,
-    TResult? Function()? onOpenInStudio,
-    TResult? Function()? onFlavorizrOutputClose,
-  }) {
-    return init?.call();
-  }
+/// @nodoc
+class $ProcedureSelectionScreenEventCopyWith<$Res> {
+  $ProcedureSelectionScreenEventCopyWith(ProcedureSelectionScreenEvent _,
+      $Res Function(ProcedureSelectionScreenEvent) __);
+}
 
-  @override
+/// Adds pattern-matching-related methods to [ProcedureSelectionScreenEvent].
+extension ProcedureSelectionScreenEventPatterns
+    on ProcedureSelectionScreenEvent {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String projectPath)? onNewProject,
-    TResult Function(String projectURI)? onProjectOpen,
-    TResult Function(String language)? onLocaleChange,
-    TResult Function(
-            Directory directory, List<String> signingVars, bool overwrite)?
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProcedureSelectionScreenEventInit value)? init,
+    TResult Function(ProcedureSelectionScreenEventOnNewProject value)?
+        onNewProject,
+    TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)?
+        onProjectOpen,
+    TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)?
+        onLocaleChange,
+    TResult Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
         onGenerateAndroidSigning,
-    TResult Function(Directory directory, Set<String> flavors)?
+    TResult Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
         onGenerateFlavors,
-    TResult Function()? onOpenInStudio,
-    TResult Function()? onFlavorizrOutputClose,
+    TResult Function(ProcedureSelectionScreenEventOpenProjectInStudio value)?
+        onOpenInStudio,
+    TResult Function(ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
+        onFlavorizrOutputClose,
     required TResult orElse(),
   }) {
-    if (init != null) {
-      return init();
+    final _that = this;
+    switch (_that) {
+      case ProcedureSelectionScreenEventInit() when init != null:
+        return init(_that);
+      case ProcedureSelectionScreenEventOnNewProject()
+          when onNewProject != null:
+        return onNewProject(_that);
+      case ProcedureSelectionScreenEventOnProjectOpen()
+          when onProjectOpen != null:
+        return onProjectOpen(_that);
+      case ProcedureSelectionScreenEventOnLocaleChange()
+          when onLocaleChange != null:
+        return onLocaleChange(_that);
+      case ProcedureSelectionScreenEventOnAndroidSigning()
+          when onGenerateAndroidSigning != null:
+        return onGenerateAndroidSigning(_that);
+      case ProcedureSelectionScreenEventOnGenerateFlavors()
+          when onGenerateFlavors != null:
+        return onGenerateFlavors(_that);
+      case ProcedureSelectionScreenEventOpenProjectInStudio()
+          when onOpenInStudio != null:
+        return onOpenInStudio(_that);
+      case ProcedureSelectionScreenEventOnFlavorizrOutputClose()
+          when onFlavorizrOutputClose != null:
+        return onFlavorizrOutputClose(_that);
+      case _:
+        return orElse();
     }
-    return orElse();
   }
 
-  @override
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ProcedureSelectionScreenEventInit value) init,
@@ -275,10 +135,41 @@ class _$ProcedureSelectionScreenEventInitImpl
             ProcedureSelectionScreenEventOnFlavorizrOutputClose value)
         onFlavorizrOutputClose,
   }) {
-    return init(this);
+    final _that = this;
+    switch (_that) {
+      case ProcedureSelectionScreenEventInit():
+        return init(_that);
+      case ProcedureSelectionScreenEventOnNewProject():
+        return onNewProject(_that);
+      case ProcedureSelectionScreenEventOnProjectOpen():
+        return onProjectOpen(_that);
+      case ProcedureSelectionScreenEventOnLocaleChange():
+        return onLocaleChange(_that);
+      case ProcedureSelectionScreenEventOnAndroidSigning():
+        return onGenerateAndroidSigning(_that);
+      case ProcedureSelectionScreenEventOnGenerateFlavors():
+        return onGenerateFlavors(_that);
+      case ProcedureSelectionScreenEventOpenProjectInStudio():
+        return onOpenInStudio(_that);
+      case ProcedureSelectionScreenEventOnFlavorizrOutputClose():
+        return onFlavorizrOutputClose(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
   }
 
-  @override
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ProcedureSelectionScreenEventInit value)? init,
@@ -298,72 +189,289 @@ class _$ProcedureSelectionScreenEventInitImpl
             ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
         onFlavorizrOutputClose,
   }) {
-    return init?.call(this);
+    final _that = this;
+    switch (_that) {
+      case ProcedureSelectionScreenEventInit() when init != null:
+        return init(_that);
+      case ProcedureSelectionScreenEventOnNewProject()
+          when onNewProject != null:
+        return onNewProject(_that);
+      case ProcedureSelectionScreenEventOnProjectOpen()
+          when onProjectOpen != null:
+        return onProjectOpen(_that);
+      case ProcedureSelectionScreenEventOnLocaleChange()
+          when onLocaleChange != null:
+        return onLocaleChange(_that);
+      case ProcedureSelectionScreenEventOnAndroidSigning()
+          when onGenerateAndroidSigning != null:
+        return onGenerateAndroidSigning(_that);
+      case ProcedureSelectionScreenEventOnGenerateFlavors()
+          when onGenerateFlavors != null:
+        return onGenerateFlavors(_that);
+      case ProcedureSelectionScreenEventOpenProjectInStudio()
+          when onOpenInStudio != null:
+        return onOpenInStudio(_that);
+      case ProcedureSelectionScreenEventOnFlavorizrOutputClose()
+          when onFlavorizrOutputClose != null:
+        return onFlavorizrOutputClose(_that);
+      case _:
+        return null;
+    }
   }
 
-  @override
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProcedureSelectionScreenEventInit value)? init,
-    TResult Function(ProcedureSelectionScreenEventOnNewProject value)?
-        onNewProject,
-    TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)?
-        onProjectOpen,
-    TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)?
-        onLocaleChange,
-    TResult Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(String projectPath)? onNewProject,
+    TResult Function(String projectURI)? onProjectOpen,
+    TResult Function(String language)? onLocaleChange,
+    TResult Function(
+            Directory directory, List<String> signingVars, bool overwrite)?
         onGenerateAndroidSigning,
-    TResult Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
+    TResult Function(Directory directory, Set<String> flavors)?
         onGenerateFlavors,
-    TResult Function(ProcedureSelectionScreenEventOpenProjectInStudio value)?
-        onOpenInStudio,
-    TResult Function(ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
-        onFlavorizrOutputClose,
+    TResult Function()? onOpenInStudio,
+    TResult Function()? onFlavorizrOutputClose,
     required TResult orElse(),
   }) {
-    if (init != null) {
-      return init(this);
+    final _that = this;
+    switch (_that) {
+      case ProcedureSelectionScreenEventInit() when init != null:
+        return init();
+      case ProcedureSelectionScreenEventOnNewProject()
+          when onNewProject != null:
+        return onNewProject(_that.projectPath);
+      case ProcedureSelectionScreenEventOnProjectOpen()
+          when onProjectOpen != null:
+        return onProjectOpen(_that.projectURI);
+      case ProcedureSelectionScreenEventOnLocaleChange()
+          when onLocaleChange != null:
+        return onLocaleChange(_that.language);
+      case ProcedureSelectionScreenEventOnAndroidSigning()
+          when onGenerateAndroidSigning != null:
+        return onGenerateAndroidSigning(
+            _that.directory, _that.signingVars, _that.overwrite);
+      case ProcedureSelectionScreenEventOnGenerateFlavors()
+          when onGenerateFlavors != null:
+        return onGenerateFlavors(_that.directory, _that.flavors);
+      case ProcedureSelectionScreenEventOpenProjectInStudio()
+          when onOpenInStudio != null:
+        return onOpenInStudio();
+      case ProcedureSelectionScreenEventOnFlavorizrOutputClose()
+          when onFlavorizrOutputClose != null:
+        return onFlavorizrOutputClose();
+      case _:
+        return orElse();
     }
-    return orElse();
   }
-}
 
-abstract class ProcedureSelectionScreenEventInit
-    implements ProcedureSelectionScreenEvent {
-  const factory ProcedureSelectionScreenEventInit() =
-      _$ProcedureSelectionScreenEventInitImpl;
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(String projectPath) onNewProject,
+    required TResult Function(String projectURI) onProjectOpen,
+    required TResult Function(String language) onLocaleChange,
+    required TResult Function(
+            Directory directory, List<String> signingVars, bool overwrite)
+        onGenerateAndroidSigning,
+    required TResult Function(Directory directory, Set<String> flavors)
+        onGenerateFlavors,
+    required TResult Function() onOpenInStudio,
+    required TResult Function() onFlavorizrOutputClose,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ProcedureSelectionScreenEventInit():
+        return init();
+      case ProcedureSelectionScreenEventOnNewProject():
+        return onNewProject(_that.projectPath);
+      case ProcedureSelectionScreenEventOnProjectOpen():
+        return onProjectOpen(_that.projectURI);
+      case ProcedureSelectionScreenEventOnLocaleChange():
+        return onLocaleChange(_that.language);
+      case ProcedureSelectionScreenEventOnAndroidSigning():
+        return onGenerateAndroidSigning(
+            _that.directory, _that.signingVars, _that.overwrite);
+      case ProcedureSelectionScreenEventOnGenerateFlavors():
+        return onGenerateFlavors(_that.directory, _that.flavors);
+      case ProcedureSelectionScreenEventOpenProjectInStudio():
+        return onOpenInStudio();
+      case ProcedureSelectionScreenEventOnFlavorizrOutputClose():
+        return onFlavorizrOutputClose();
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(String projectPath)? onNewProject,
+    TResult? Function(String projectURI)? onProjectOpen,
+    TResult? Function(String language)? onLocaleChange,
+    TResult? Function(
+            Directory directory, List<String> signingVars, bool overwrite)?
+        onGenerateAndroidSigning,
+    TResult? Function(Directory directory, Set<String> flavors)?
+        onGenerateFlavors,
+    TResult? Function()? onOpenInStudio,
+    TResult? Function()? onFlavorizrOutputClose,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ProcedureSelectionScreenEventInit() when init != null:
+        return init();
+      case ProcedureSelectionScreenEventOnNewProject()
+          when onNewProject != null:
+        return onNewProject(_that.projectPath);
+      case ProcedureSelectionScreenEventOnProjectOpen()
+          when onProjectOpen != null:
+        return onProjectOpen(_that.projectURI);
+      case ProcedureSelectionScreenEventOnLocaleChange()
+          when onLocaleChange != null:
+        return onLocaleChange(_that.language);
+      case ProcedureSelectionScreenEventOnAndroidSigning()
+          when onGenerateAndroidSigning != null:
+        return onGenerateAndroidSigning(
+            _that.directory, _that.signingVars, _that.overwrite);
+      case ProcedureSelectionScreenEventOnGenerateFlavors()
+          when onGenerateFlavors != null:
+        return onGenerateFlavors(_that.directory, _that.flavors);
+      case ProcedureSelectionScreenEventOpenProjectInStudio()
+          when onOpenInStudio != null:
+        return onOpenInStudio();
+      case ProcedureSelectionScreenEventOnFlavorizrOutputClose()
+          when onFlavorizrOutputClose != null:
+        return onFlavorizrOutputClose();
+      case _:
+        return null;
+    }
+  }
 }
 
 /// @nodoc
-abstract class _$$ProcedureSelectionScreenEventOnNewProjectImplCopyWith<$Res> {
-  factory _$$ProcedureSelectionScreenEventOnNewProjectImplCopyWith(
-          _$ProcedureSelectionScreenEventOnNewProjectImpl value,
-          $Res Function(_$ProcedureSelectionScreenEventOnNewProjectImpl) then) =
-      __$$ProcedureSelectionScreenEventOnNewProjectImplCopyWithImpl<$Res>;
+
+class ProcedureSelectionScreenEventInit
+    implements ProcedureSelectionScreenEvent {
+  const ProcedureSelectionScreenEventInit();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ProcedureSelectionScreenEventInit);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'ProcedureSelectionScreenEvent.init()';
+  }
+}
+
+/// @nodoc
+
+class ProcedureSelectionScreenEventOnNewProject
+    implements ProcedureSelectionScreenEvent {
+  const ProcedureSelectionScreenEventOnNewProject({required this.projectPath});
+
+  final String projectPath;
+
+  /// Create a copy of ProcedureSelectionScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ProcedureSelectionScreenEventOnNewProjectCopyWith<
+          ProcedureSelectionScreenEventOnNewProject>
+      get copyWith => _$ProcedureSelectionScreenEventOnNewProjectCopyWithImpl<
+          ProcedureSelectionScreenEventOnNewProject>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ProcedureSelectionScreenEventOnNewProject &&
+            (identical(other.projectPath, projectPath) ||
+                other.projectPath == projectPath));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, projectPath);
+
+  @override
+  String toString() {
+    return 'ProcedureSelectionScreenEvent.onNewProject(projectPath: $projectPath)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ProcedureSelectionScreenEventOnNewProjectCopyWith<$Res>
+    implements $ProcedureSelectionScreenEventCopyWith<$Res> {
+  factory $ProcedureSelectionScreenEventOnNewProjectCopyWith(
+          ProcedureSelectionScreenEventOnNewProject value,
+          $Res Function(ProcedureSelectionScreenEventOnNewProject) _then) =
+      _$ProcedureSelectionScreenEventOnNewProjectCopyWithImpl;
   @useResult
   $Res call({String projectPath});
 }
 
 /// @nodoc
-class __$$ProcedureSelectionScreenEventOnNewProjectImplCopyWithImpl<$Res>
-    extends _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
-        _$ProcedureSelectionScreenEventOnNewProjectImpl>
-    implements _$$ProcedureSelectionScreenEventOnNewProjectImplCopyWith<$Res> {
-  __$$ProcedureSelectionScreenEventOnNewProjectImplCopyWithImpl(
-      _$ProcedureSelectionScreenEventOnNewProjectImpl _value,
-      $Res Function(_$ProcedureSelectionScreenEventOnNewProjectImpl) _then)
-      : super(_value, _then);
+class _$ProcedureSelectionScreenEventOnNewProjectCopyWithImpl<$Res>
+    implements $ProcedureSelectionScreenEventOnNewProjectCopyWith<$Res> {
+  _$ProcedureSelectionScreenEventOnNewProjectCopyWithImpl(
+      this._self, this._then);
+
+  final ProcedureSelectionScreenEventOnNewProject _self;
+  final $Res Function(ProcedureSelectionScreenEventOnNewProject) _then;
 
   /// Create a copy of ProcedureSelectionScreenEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? projectPath = null,
   }) {
-    return _then(_$ProcedureSelectionScreenEventOnNewProjectImpl(
+    return _then(ProcedureSelectionScreenEventOnNewProject(
       projectPath: null == projectPath
-          ? _value.projectPath
+          ? _self.projectPath
           : projectPath // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -372,224 +480,68 @@ class __$$ProcedureSelectionScreenEventOnNewProjectImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProcedureSelectionScreenEventOnNewProjectImpl
-    implements ProcedureSelectionScreenEventOnNewProject {
-  const _$ProcedureSelectionScreenEventOnNewProjectImpl(
-      {required this.projectPath});
+class ProcedureSelectionScreenEventOnProjectOpen
+    implements ProcedureSelectionScreenEvent {
+  const ProcedureSelectionScreenEventOnProjectOpen({required this.projectURI});
 
-  @override
-  final String projectPath;
+  final String projectURI;
 
-  @override
-  String toString() {
-    return 'ProcedureSelectionScreenEvent.onNewProject(projectPath: $projectPath)';
-  }
+  /// Create a copy of ProcedureSelectionScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ProcedureSelectionScreenEventOnProjectOpenCopyWith<
+          ProcedureSelectionScreenEventOnProjectOpen>
+      get copyWith => _$ProcedureSelectionScreenEventOnProjectOpenCopyWithImpl<
+          ProcedureSelectionScreenEventOnProjectOpen>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProcedureSelectionScreenEventOnNewProjectImpl &&
-            (identical(other.projectPath, projectPath) ||
-                other.projectPath == projectPath));
+            other is ProcedureSelectionScreenEventOnProjectOpen &&
+            (identical(other.projectURI, projectURI) ||
+                other.projectURI == projectURI));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, projectPath);
-
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ProcedureSelectionScreenEventOnNewProjectImplCopyWith<
-          _$ProcedureSelectionScreenEventOnNewProjectImpl>
-      get copyWith =>
-          __$$ProcedureSelectionScreenEventOnNewProjectImplCopyWithImpl<
-                  _$ProcedureSelectionScreenEventOnNewProjectImpl>(
-              this, _$identity);
+  int get hashCode => Object.hash(runtimeType, projectURI);
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String projectPath) onNewProject,
-    required TResult Function(String projectURI) onProjectOpen,
-    required TResult Function(String language) onLocaleChange,
-    required TResult Function(
-            Directory directory, List<String> signingVars, bool overwrite)
-        onGenerateAndroidSigning,
-    required TResult Function(Directory directory, Set<String> flavors)
-        onGenerateFlavors,
-    required TResult Function() onOpenInStudio,
-    required TResult Function() onFlavorizrOutputClose,
-  }) {
-    return onNewProject(projectPath);
+  String toString() {
+    return 'ProcedureSelectionScreenEvent.onProjectOpen(projectURI: $projectURI)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String projectPath)? onNewProject,
-    TResult? Function(String projectURI)? onProjectOpen,
-    TResult? Function(String language)? onLocaleChange,
-    TResult? Function(
-            Directory directory, List<String> signingVars, bool overwrite)?
-        onGenerateAndroidSigning,
-    TResult? Function(Directory directory, Set<String> flavors)?
-        onGenerateFlavors,
-    TResult? Function()? onOpenInStudio,
-    TResult? Function()? onFlavorizrOutputClose,
-  }) {
-    return onNewProject?.call(projectPath);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String projectPath)? onNewProject,
-    TResult Function(String projectURI)? onProjectOpen,
-    TResult Function(String language)? onLocaleChange,
-    TResult Function(
-            Directory directory, List<String> signingVars, bool overwrite)?
-        onGenerateAndroidSigning,
-    TResult Function(Directory directory, Set<String> flavors)?
-        onGenerateFlavors,
-    TResult Function()? onOpenInStudio,
-    TResult Function()? onFlavorizrOutputClose,
-    required TResult orElse(),
-  }) {
-    if (onNewProject != null) {
-      return onNewProject(projectPath);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProcedureSelectionScreenEventInit value) init,
-    required TResult Function(ProcedureSelectionScreenEventOnNewProject value)
-        onNewProject,
-    required TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)
-        onProjectOpen,
-    required TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)
-        onLocaleChange,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnAndroidSigning value)
-        onGenerateAndroidSigning,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnGenerateFlavors value)
-        onGenerateFlavors,
-    required TResult Function(
-            ProcedureSelectionScreenEventOpenProjectInStudio value)
-        onOpenInStudio,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnFlavorizrOutputClose value)
-        onFlavorizrOutputClose,
-  }) {
-    return onNewProject(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProcedureSelectionScreenEventInit value)? init,
-    TResult? Function(ProcedureSelectionScreenEventOnNewProject value)?
-        onNewProject,
-    TResult? Function(ProcedureSelectionScreenEventOnProjectOpen value)?
-        onProjectOpen,
-    TResult? Function(ProcedureSelectionScreenEventOnLocaleChange value)?
-        onLocaleChange,
-    TResult? Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
-        onGenerateAndroidSigning,
-    TResult? Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
-        onGenerateFlavors,
-    TResult? Function(ProcedureSelectionScreenEventOpenProjectInStudio value)?
-        onOpenInStudio,
-    TResult? Function(
-            ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
-        onFlavorizrOutputClose,
-  }) {
-    return onNewProject?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProcedureSelectionScreenEventInit value)? init,
-    TResult Function(ProcedureSelectionScreenEventOnNewProject value)?
-        onNewProject,
-    TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)?
-        onProjectOpen,
-    TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)?
-        onLocaleChange,
-    TResult Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
-        onGenerateAndroidSigning,
-    TResult Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
-        onGenerateFlavors,
-    TResult Function(ProcedureSelectionScreenEventOpenProjectInStudio value)?
-        onOpenInStudio,
-    TResult Function(ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
-        onFlavorizrOutputClose,
-    required TResult orElse(),
-  }) {
-    if (onNewProject != null) {
-      return onNewProject(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ProcedureSelectionScreenEventOnNewProject
-    implements ProcedureSelectionScreenEvent {
-  const factory ProcedureSelectionScreenEventOnNewProject(
-          {required final String projectPath}) =
-      _$ProcedureSelectionScreenEventOnNewProjectImpl;
-
-  String get projectPath;
-
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProcedureSelectionScreenEventOnNewProjectImplCopyWith<
-          _$ProcedureSelectionScreenEventOnNewProjectImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ProcedureSelectionScreenEventOnProjectOpenImplCopyWith<$Res> {
-  factory _$$ProcedureSelectionScreenEventOnProjectOpenImplCopyWith(
-          _$ProcedureSelectionScreenEventOnProjectOpenImpl value,
-          $Res Function(_$ProcedureSelectionScreenEventOnProjectOpenImpl)
-              then) =
-      __$$ProcedureSelectionScreenEventOnProjectOpenImplCopyWithImpl<$Res>;
+abstract mixin class $ProcedureSelectionScreenEventOnProjectOpenCopyWith<$Res>
+    implements $ProcedureSelectionScreenEventCopyWith<$Res> {
+  factory $ProcedureSelectionScreenEventOnProjectOpenCopyWith(
+          ProcedureSelectionScreenEventOnProjectOpen value,
+          $Res Function(ProcedureSelectionScreenEventOnProjectOpen) _then) =
+      _$ProcedureSelectionScreenEventOnProjectOpenCopyWithImpl;
   @useResult
   $Res call({String projectURI});
 }
 
 /// @nodoc
-class __$$ProcedureSelectionScreenEventOnProjectOpenImplCopyWithImpl<$Res>
-    extends _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
-        _$ProcedureSelectionScreenEventOnProjectOpenImpl>
-    implements _$$ProcedureSelectionScreenEventOnProjectOpenImplCopyWith<$Res> {
-  __$$ProcedureSelectionScreenEventOnProjectOpenImplCopyWithImpl(
-      _$ProcedureSelectionScreenEventOnProjectOpenImpl _value,
-      $Res Function(_$ProcedureSelectionScreenEventOnProjectOpenImpl) _then)
-      : super(_value, _then);
+class _$ProcedureSelectionScreenEventOnProjectOpenCopyWithImpl<$Res>
+    implements $ProcedureSelectionScreenEventOnProjectOpenCopyWith<$Res> {
+  _$ProcedureSelectionScreenEventOnProjectOpenCopyWithImpl(
+      this._self, this._then);
+
+  final ProcedureSelectionScreenEventOnProjectOpen _self;
+  final $Res Function(ProcedureSelectionScreenEventOnProjectOpen) _then;
 
   /// Create a copy of ProcedureSelectionScreenEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? projectURI = null,
   }) {
-    return _then(_$ProcedureSelectionScreenEventOnProjectOpenImpl(
+    return _then(ProcedureSelectionScreenEventOnProjectOpen(
       projectURI: null == projectURI
-          ? _value.projectURI
+          ? _self.projectURI
           : projectURI // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -598,226 +550,68 @@ class __$$ProcedureSelectionScreenEventOnProjectOpenImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProcedureSelectionScreenEventOnProjectOpenImpl
-    implements ProcedureSelectionScreenEventOnProjectOpen {
-  const _$ProcedureSelectionScreenEventOnProjectOpenImpl(
-      {required this.projectURI});
+class ProcedureSelectionScreenEventOnLocaleChange
+    implements ProcedureSelectionScreenEvent {
+  const ProcedureSelectionScreenEventOnLocaleChange({required this.language});
 
-  @override
-  final String projectURI;
+  final String language;
 
-  @override
-  String toString() {
-    return 'ProcedureSelectionScreenEvent.onProjectOpen(projectURI: $projectURI)';
-  }
+  /// Create a copy of ProcedureSelectionScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ProcedureSelectionScreenEventOnLocaleChangeCopyWith<
+          ProcedureSelectionScreenEventOnLocaleChange>
+      get copyWith => _$ProcedureSelectionScreenEventOnLocaleChangeCopyWithImpl<
+          ProcedureSelectionScreenEventOnLocaleChange>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProcedureSelectionScreenEventOnProjectOpenImpl &&
-            (identical(other.projectURI, projectURI) ||
-                other.projectURI == projectURI));
+            other is ProcedureSelectionScreenEventOnLocaleChange &&
+            (identical(other.language, language) ||
+                other.language == language));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, projectURI);
-
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ProcedureSelectionScreenEventOnProjectOpenImplCopyWith<
-          _$ProcedureSelectionScreenEventOnProjectOpenImpl>
-      get copyWith =>
-          __$$ProcedureSelectionScreenEventOnProjectOpenImplCopyWithImpl<
-                  _$ProcedureSelectionScreenEventOnProjectOpenImpl>(
-              this, _$identity);
+  int get hashCode => Object.hash(runtimeType, language);
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String projectPath) onNewProject,
-    required TResult Function(String projectURI) onProjectOpen,
-    required TResult Function(String language) onLocaleChange,
-    required TResult Function(
-            Directory directory, List<String> signingVars, bool overwrite)
-        onGenerateAndroidSigning,
-    required TResult Function(Directory directory, Set<String> flavors)
-        onGenerateFlavors,
-    required TResult Function() onOpenInStudio,
-    required TResult Function() onFlavorizrOutputClose,
-  }) {
-    return onProjectOpen(projectURI);
+  String toString() {
+    return 'ProcedureSelectionScreenEvent.onLocaleChange(language: $language)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String projectPath)? onNewProject,
-    TResult? Function(String projectURI)? onProjectOpen,
-    TResult? Function(String language)? onLocaleChange,
-    TResult? Function(
-            Directory directory, List<String> signingVars, bool overwrite)?
-        onGenerateAndroidSigning,
-    TResult? Function(Directory directory, Set<String> flavors)?
-        onGenerateFlavors,
-    TResult? Function()? onOpenInStudio,
-    TResult? Function()? onFlavorizrOutputClose,
-  }) {
-    return onProjectOpen?.call(projectURI);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String projectPath)? onNewProject,
-    TResult Function(String projectURI)? onProjectOpen,
-    TResult Function(String language)? onLocaleChange,
-    TResult Function(
-            Directory directory, List<String> signingVars, bool overwrite)?
-        onGenerateAndroidSigning,
-    TResult Function(Directory directory, Set<String> flavors)?
-        onGenerateFlavors,
-    TResult Function()? onOpenInStudio,
-    TResult Function()? onFlavorizrOutputClose,
-    required TResult orElse(),
-  }) {
-    if (onProjectOpen != null) {
-      return onProjectOpen(projectURI);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProcedureSelectionScreenEventInit value) init,
-    required TResult Function(ProcedureSelectionScreenEventOnNewProject value)
-        onNewProject,
-    required TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)
-        onProjectOpen,
-    required TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)
-        onLocaleChange,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnAndroidSigning value)
-        onGenerateAndroidSigning,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnGenerateFlavors value)
-        onGenerateFlavors,
-    required TResult Function(
-            ProcedureSelectionScreenEventOpenProjectInStudio value)
-        onOpenInStudio,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnFlavorizrOutputClose value)
-        onFlavorizrOutputClose,
-  }) {
-    return onProjectOpen(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProcedureSelectionScreenEventInit value)? init,
-    TResult? Function(ProcedureSelectionScreenEventOnNewProject value)?
-        onNewProject,
-    TResult? Function(ProcedureSelectionScreenEventOnProjectOpen value)?
-        onProjectOpen,
-    TResult? Function(ProcedureSelectionScreenEventOnLocaleChange value)?
-        onLocaleChange,
-    TResult? Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
-        onGenerateAndroidSigning,
-    TResult? Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
-        onGenerateFlavors,
-    TResult? Function(ProcedureSelectionScreenEventOpenProjectInStudio value)?
-        onOpenInStudio,
-    TResult? Function(
-            ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
-        onFlavorizrOutputClose,
-  }) {
-    return onProjectOpen?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProcedureSelectionScreenEventInit value)? init,
-    TResult Function(ProcedureSelectionScreenEventOnNewProject value)?
-        onNewProject,
-    TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)?
-        onProjectOpen,
-    TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)?
-        onLocaleChange,
-    TResult Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
-        onGenerateAndroidSigning,
-    TResult Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
-        onGenerateFlavors,
-    TResult Function(ProcedureSelectionScreenEventOpenProjectInStudio value)?
-        onOpenInStudio,
-    TResult Function(ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
-        onFlavorizrOutputClose,
-    required TResult orElse(),
-  }) {
-    if (onProjectOpen != null) {
-      return onProjectOpen(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ProcedureSelectionScreenEventOnProjectOpen
-    implements ProcedureSelectionScreenEvent {
-  const factory ProcedureSelectionScreenEventOnProjectOpen(
-          {required final String projectURI}) =
-      _$ProcedureSelectionScreenEventOnProjectOpenImpl;
-
-  String get projectURI;
-
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProcedureSelectionScreenEventOnProjectOpenImplCopyWith<
-          _$ProcedureSelectionScreenEventOnProjectOpenImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ProcedureSelectionScreenEventOnLocaleChangeImplCopyWith<
-    $Res> {
-  factory _$$ProcedureSelectionScreenEventOnLocaleChangeImplCopyWith(
-          _$ProcedureSelectionScreenEventOnLocaleChangeImpl value,
-          $Res Function(_$ProcedureSelectionScreenEventOnLocaleChangeImpl)
-              then) =
-      __$$ProcedureSelectionScreenEventOnLocaleChangeImplCopyWithImpl<$Res>;
+abstract mixin class $ProcedureSelectionScreenEventOnLocaleChangeCopyWith<$Res>
+    implements $ProcedureSelectionScreenEventCopyWith<$Res> {
+  factory $ProcedureSelectionScreenEventOnLocaleChangeCopyWith(
+          ProcedureSelectionScreenEventOnLocaleChange value,
+          $Res Function(ProcedureSelectionScreenEventOnLocaleChange) _then) =
+      _$ProcedureSelectionScreenEventOnLocaleChangeCopyWithImpl;
   @useResult
   $Res call({String language});
 }
 
 /// @nodoc
-class __$$ProcedureSelectionScreenEventOnLocaleChangeImplCopyWithImpl<$Res>
-    extends _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
-        _$ProcedureSelectionScreenEventOnLocaleChangeImpl>
-    implements
-        _$$ProcedureSelectionScreenEventOnLocaleChangeImplCopyWith<$Res> {
-  __$$ProcedureSelectionScreenEventOnLocaleChangeImplCopyWithImpl(
-      _$ProcedureSelectionScreenEventOnLocaleChangeImpl _value,
-      $Res Function(_$ProcedureSelectionScreenEventOnLocaleChangeImpl) _then)
-      : super(_value, _then);
+class _$ProcedureSelectionScreenEventOnLocaleChangeCopyWithImpl<$Res>
+    implements $ProcedureSelectionScreenEventOnLocaleChangeCopyWith<$Res> {
+  _$ProcedureSelectionScreenEventOnLocaleChangeCopyWithImpl(
+      this._self, this._then);
+
+  final ProcedureSelectionScreenEventOnLocaleChange _self;
+  final $Res Function(ProcedureSelectionScreenEventOnLocaleChange) _then;
 
   /// Create a copy of ProcedureSelectionScreenEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? language = null,
   }) {
-    return _then(_$ProcedureSelectionScreenEventOnLocaleChangeImpl(
+    return _then(ProcedureSelectionScreenEventOnLocaleChange(
       language: null == language
-          ? _value.language
+          ? _self.language
           : language // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -826,275 +620,39 @@ class __$$ProcedureSelectionScreenEventOnLocaleChangeImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProcedureSelectionScreenEventOnLocaleChangeImpl
-    implements ProcedureSelectionScreenEventOnLocaleChange {
-  const _$ProcedureSelectionScreenEventOnLocaleChangeImpl(
-      {required this.language});
-
-  @override
-  final String language;
-
-  @override
-  String toString() {
-    return 'ProcedureSelectionScreenEvent.onLocaleChange(language: $language)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ProcedureSelectionScreenEventOnLocaleChangeImpl &&
-            (identical(other.language, language) ||
-                other.language == language));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, language);
-
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ProcedureSelectionScreenEventOnLocaleChangeImplCopyWith<
-          _$ProcedureSelectionScreenEventOnLocaleChangeImpl>
-      get copyWith =>
-          __$$ProcedureSelectionScreenEventOnLocaleChangeImplCopyWithImpl<
-                  _$ProcedureSelectionScreenEventOnLocaleChangeImpl>(
-              this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String projectPath) onNewProject,
-    required TResult Function(String projectURI) onProjectOpen,
-    required TResult Function(String language) onLocaleChange,
-    required TResult Function(
-            Directory directory, List<String> signingVars, bool overwrite)
-        onGenerateAndroidSigning,
-    required TResult Function(Directory directory, Set<String> flavors)
-        onGenerateFlavors,
-    required TResult Function() onOpenInStudio,
-    required TResult Function() onFlavorizrOutputClose,
-  }) {
-    return onLocaleChange(language);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String projectPath)? onNewProject,
-    TResult? Function(String projectURI)? onProjectOpen,
-    TResult? Function(String language)? onLocaleChange,
-    TResult? Function(
-            Directory directory, List<String> signingVars, bool overwrite)?
-        onGenerateAndroidSigning,
-    TResult? Function(Directory directory, Set<String> flavors)?
-        onGenerateFlavors,
-    TResult? Function()? onOpenInStudio,
-    TResult? Function()? onFlavorizrOutputClose,
-  }) {
-    return onLocaleChange?.call(language);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String projectPath)? onNewProject,
-    TResult Function(String projectURI)? onProjectOpen,
-    TResult Function(String language)? onLocaleChange,
-    TResult Function(
-            Directory directory, List<String> signingVars, bool overwrite)?
-        onGenerateAndroidSigning,
-    TResult Function(Directory directory, Set<String> flavors)?
-        onGenerateFlavors,
-    TResult Function()? onOpenInStudio,
-    TResult Function()? onFlavorizrOutputClose,
-    required TResult orElse(),
-  }) {
-    if (onLocaleChange != null) {
-      return onLocaleChange(language);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProcedureSelectionScreenEventInit value) init,
-    required TResult Function(ProcedureSelectionScreenEventOnNewProject value)
-        onNewProject,
-    required TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)
-        onProjectOpen,
-    required TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)
-        onLocaleChange,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnAndroidSigning value)
-        onGenerateAndroidSigning,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnGenerateFlavors value)
-        onGenerateFlavors,
-    required TResult Function(
-            ProcedureSelectionScreenEventOpenProjectInStudio value)
-        onOpenInStudio,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnFlavorizrOutputClose value)
-        onFlavorizrOutputClose,
-  }) {
-    return onLocaleChange(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProcedureSelectionScreenEventInit value)? init,
-    TResult? Function(ProcedureSelectionScreenEventOnNewProject value)?
-        onNewProject,
-    TResult? Function(ProcedureSelectionScreenEventOnProjectOpen value)?
-        onProjectOpen,
-    TResult? Function(ProcedureSelectionScreenEventOnLocaleChange value)?
-        onLocaleChange,
-    TResult? Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
-        onGenerateAndroidSigning,
-    TResult? Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
-        onGenerateFlavors,
-    TResult? Function(ProcedureSelectionScreenEventOpenProjectInStudio value)?
-        onOpenInStudio,
-    TResult? Function(
-            ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
-        onFlavorizrOutputClose,
-  }) {
-    return onLocaleChange?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProcedureSelectionScreenEventInit value)? init,
-    TResult Function(ProcedureSelectionScreenEventOnNewProject value)?
-        onNewProject,
-    TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)?
-        onProjectOpen,
-    TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)?
-        onLocaleChange,
-    TResult Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
-        onGenerateAndroidSigning,
-    TResult Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
-        onGenerateFlavors,
-    TResult Function(ProcedureSelectionScreenEventOpenProjectInStudio value)?
-        onOpenInStudio,
-    TResult Function(ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
-        onFlavorizrOutputClose,
-    required TResult orElse(),
-  }) {
-    if (onLocaleChange != null) {
-      return onLocaleChange(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ProcedureSelectionScreenEventOnLocaleChange
+class ProcedureSelectionScreenEventOnAndroidSigning
     implements ProcedureSelectionScreenEvent {
-  const factory ProcedureSelectionScreenEventOnLocaleChange(
-          {required final String language}) =
-      _$ProcedureSelectionScreenEventOnLocaleChangeImpl;
-
-  String get language;
-
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProcedureSelectionScreenEventOnLocaleChangeImplCopyWith<
-          _$ProcedureSelectionScreenEventOnLocaleChangeImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ProcedureSelectionScreenEventOnAndroidSigningImplCopyWith<
-    $Res> {
-  factory _$$ProcedureSelectionScreenEventOnAndroidSigningImplCopyWith(
-          _$ProcedureSelectionScreenEventOnAndroidSigningImpl value,
-          $Res Function(_$ProcedureSelectionScreenEventOnAndroidSigningImpl)
-              then) =
-      __$$ProcedureSelectionScreenEventOnAndroidSigningImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({Directory directory, List<String> signingVars, bool overwrite});
-}
-
-/// @nodoc
-class __$$ProcedureSelectionScreenEventOnAndroidSigningImplCopyWithImpl<$Res>
-    extends _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
-        _$ProcedureSelectionScreenEventOnAndroidSigningImpl>
-    implements
-        _$$ProcedureSelectionScreenEventOnAndroidSigningImplCopyWith<$Res> {
-  __$$ProcedureSelectionScreenEventOnAndroidSigningImplCopyWithImpl(
-      _$ProcedureSelectionScreenEventOnAndroidSigningImpl _value,
-      $Res Function(_$ProcedureSelectionScreenEventOnAndroidSigningImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? directory = null,
-    Object? signingVars = null,
-    Object? overwrite = null,
-  }) {
-    return _then(_$ProcedureSelectionScreenEventOnAndroidSigningImpl(
-      directory: null == directory
-          ? _value.directory
-          : directory // ignore: cast_nullable_to_non_nullable
-              as Directory,
-      signingVars: null == signingVars
-          ? _value._signingVars
-          : signingVars // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      overwrite: null == overwrite
-          ? _value.overwrite
-          : overwrite // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
-    implements ProcedureSelectionScreenEventOnAndroidSigning {
-  const _$ProcedureSelectionScreenEventOnAndroidSigningImpl(
+  const ProcedureSelectionScreenEventOnAndroidSigning(
       {required this.directory,
       required final List<String> signingVars,
       required this.overwrite})
       : _signingVars = signingVars;
 
-  @override
   final Directory directory;
   final List<String> _signingVars;
-  @override
   List<String> get signingVars {
     if (_signingVars is EqualUnmodifiableListView) return _signingVars;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_signingVars);
   }
 
-  @override
   final bool overwrite;
 
-  @override
-  String toString() {
-    return 'ProcedureSelectionScreenEvent.onGenerateAndroidSigning(directory: $directory, signingVars: $signingVars, overwrite: $overwrite)';
-  }
+  /// Create a copy of ProcedureSelectionScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ProcedureSelectionScreenEventOnAndroidSigningCopyWith<
+          ProcedureSelectionScreenEventOnAndroidSigning>
+      get copyWith =>
+          _$ProcedureSelectionScreenEventOnAndroidSigningCopyWithImpl<
+              ProcedureSelectionScreenEventOnAndroidSigning>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProcedureSelectionScreenEventOnAndroidSigningImpl &&
+            other is ProcedureSelectionScreenEventOnAndroidSigning &&
             (identical(other.directory, directory) ||
                 other.directory == directory) &&
             const DeepCollectionEquality()
@@ -1107,244 +665,88 @@ class _$ProcedureSelectionScreenEventOnAndroidSigningImpl
   int get hashCode => Object.hash(runtimeType, directory,
       const DeepCollectionEquality().hash(_signingVars), overwrite);
 
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ProcedureSelectionScreenEventOnAndroidSigningImplCopyWith<
-          _$ProcedureSelectionScreenEventOnAndroidSigningImpl>
-      get copyWith =>
-          __$$ProcedureSelectionScreenEventOnAndroidSigningImplCopyWithImpl<
-                  _$ProcedureSelectionScreenEventOnAndroidSigningImpl>(
-              this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String projectPath) onNewProject,
-    required TResult Function(String projectURI) onProjectOpen,
-    required TResult Function(String language) onLocaleChange,
-    required TResult Function(
-            Directory directory, List<String> signingVars, bool overwrite)
-        onGenerateAndroidSigning,
-    required TResult Function(Directory directory, Set<String> flavors)
-        onGenerateFlavors,
-    required TResult Function() onOpenInStudio,
-    required TResult Function() onFlavorizrOutputClose,
-  }) {
-    return onGenerateAndroidSigning(directory, signingVars, overwrite);
+  String toString() {
+    return 'ProcedureSelectionScreenEvent.onGenerateAndroidSigning(directory: $directory, signingVars: $signingVars, overwrite: $overwrite)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String projectPath)? onNewProject,
-    TResult? Function(String projectURI)? onProjectOpen,
-    TResult? Function(String language)? onLocaleChange,
-    TResult? Function(
-            Directory directory, List<String> signingVars, bool overwrite)?
-        onGenerateAndroidSigning,
-    TResult? Function(Directory directory, Set<String> flavors)?
-        onGenerateFlavors,
-    TResult? Function()? onOpenInStudio,
-    TResult? Function()? onFlavorizrOutputClose,
-  }) {
-    return onGenerateAndroidSigning?.call(directory, signingVars, overwrite);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String projectPath)? onNewProject,
-    TResult Function(String projectURI)? onProjectOpen,
-    TResult Function(String language)? onLocaleChange,
-    TResult Function(
-            Directory directory, List<String> signingVars, bool overwrite)?
-        onGenerateAndroidSigning,
-    TResult Function(Directory directory, Set<String> flavors)?
-        onGenerateFlavors,
-    TResult Function()? onOpenInStudio,
-    TResult Function()? onFlavorizrOutputClose,
-    required TResult orElse(),
-  }) {
-    if (onGenerateAndroidSigning != null) {
-      return onGenerateAndroidSigning(directory, signingVars, overwrite);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProcedureSelectionScreenEventInit value) init,
-    required TResult Function(ProcedureSelectionScreenEventOnNewProject value)
-        onNewProject,
-    required TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)
-        onProjectOpen,
-    required TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)
-        onLocaleChange,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnAndroidSigning value)
-        onGenerateAndroidSigning,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnGenerateFlavors value)
-        onGenerateFlavors,
-    required TResult Function(
-            ProcedureSelectionScreenEventOpenProjectInStudio value)
-        onOpenInStudio,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnFlavorizrOutputClose value)
-        onFlavorizrOutputClose,
-  }) {
-    return onGenerateAndroidSigning(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProcedureSelectionScreenEventInit value)? init,
-    TResult? Function(ProcedureSelectionScreenEventOnNewProject value)?
-        onNewProject,
-    TResult? Function(ProcedureSelectionScreenEventOnProjectOpen value)?
-        onProjectOpen,
-    TResult? Function(ProcedureSelectionScreenEventOnLocaleChange value)?
-        onLocaleChange,
-    TResult? Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
-        onGenerateAndroidSigning,
-    TResult? Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
-        onGenerateFlavors,
-    TResult? Function(ProcedureSelectionScreenEventOpenProjectInStudio value)?
-        onOpenInStudio,
-    TResult? Function(
-            ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
-        onFlavorizrOutputClose,
-  }) {
-    return onGenerateAndroidSigning?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProcedureSelectionScreenEventInit value)? init,
-    TResult Function(ProcedureSelectionScreenEventOnNewProject value)?
-        onNewProject,
-    TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)?
-        onProjectOpen,
-    TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)?
-        onLocaleChange,
-    TResult Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
-        onGenerateAndroidSigning,
-    TResult Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
-        onGenerateFlavors,
-    TResult Function(ProcedureSelectionScreenEventOpenProjectInStudio value)?
-        onOpenInStudio,
-    TResult Function(ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
-        onFlavorizrOutputClose,
-    required TResult orElse(),
-  }) {
-    if (onGenerateAndroidSigning != null) {
-      return onGenerateAndroidSigning(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ProcedureSelectionScreenEventOnAndroidSigning
-    implements ProcedureSelectionScreenEvent {
-  const factory ProcedureSelectionScreenEventOnAndroidSigning(
-          {required final Directory directory,
-          required final List<String> signingVars,
-          required final bool overwrite}) =
-      _$ProcedureSelectionScreenEventOnAndroidSigningImpl;
-
-  Directory get directory;
-  List<String> get signingVars;
-  bool get overwrite;
-
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProcedureSelectionScreenEventOnAndroidSigningImplCopyWith<
-          _$ProcedureSelectionScreenEventOnAndroidSigningImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ProcedureSelectionScreenEventOnGenerateFlavorsImplCopyWith<
-    $Res> {
-  factory _$$ProcedureSelectionScreenEventOnGenerateFlavorsImplCopyWith(
-          _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl value,
-          $Res Function(_$ProcedureSelectionScreenEventOnGenerateFlavorsImpl)
-              then) =
-      __$$ProcedureSelectionScreenEventOnGenerateFlavorsImplCopyWithImpl<$Res>;
+abstract mixin class $ProcedureSelectionScreenEventOnAndroidSigningCopyWith<
+    $Res> implements $ProcedureSelectionScreenEventCopyWith<$Res> {
+  factory $ProcedureSelectionScreenEventOnAndroidSigningCopyWith(
+          ProcedureSelectionScreenEventOnAndroidSigning value,
+          $Res Function(ProcedureSelectionScreenEventOnAndroidSigning) _then) =
+      _$ProcedureSelectionScreenEventOnAndroidSigningCopyWithImpl;
   @useResult
-  $Res call({Directory directory, Set<String> flavors});
+  $Res call({Directory directory, List<String> signingVars, bool overwrite});
 }
 
 /// @nodoc
-class __$$ProcedureSelectionScreenEventOnGenerateFlavorsImplCopyWithImpl<$Res>
-    extends _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
-        _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl>
-    implements
-        _$$ProcedureSelectionScreenEventOnGenerateFlavorsImplCopyWith<$Res> {
-  __$$ProcedureSelectionScreenEventOnGenerateFlavorsImplCopyWithImpl(
-      _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl _value,
-      $Res Function(_$ProcedureSelectionScreenEventOnGenerateFlavorsImpl) _then)
-      : super(_value, _then);
+class _$ProcedureSelectionScreenEventOnAndroidSigningCopyWithImpl<$Res>
+    implements $ProcedureSelectionScreenEventOnAndroidSigningCopyWith<$Res> {
+  _$ProcedureSelectionScreenEventOnAndroidSigningCopyWithImpl(
+      this._self, this._then);
+
+  final ProcedureSelectionScreenEventOnAndroidSigning _self;
+  final $Res Function(ProcedureSelectionScreenEventOnAndroidSigning) _then;
 
   /// Create a copy of ProcedureSelectionScreenEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? directory = null,
-    Object? flavors = null,
+    Object? signingVars = null,
+    Object? overwrite = null,
   }) {
-    return _then(_$ProcedureSelectionScreenEventOnGenerateFlavorsImpl(
+    return _then(ProcedureSelectionScreenEventOnAndroidSigning(
       directory: null == directory
-          ? _value.directory
+          ? _self.directory
           : directory // ignore: cast_nullable_to_non_nullable
               as Directory,
-      flavors: null == flavors
-          ? _value._flavors
-          : flavors // ignore: cast_nullable_to_non_nullable
-              as Set<String>,
+      signingVars: null == signingVars
+          ? _self._signingVars
+          : signingVars // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      overwrite: null == overwrite
+          ? _self.overwrite
+          : overwrite // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
 
 /// @nodoc
 
-class _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl
-    implements ProcedureSelectionScreenEventOnGenerateFlavors {
-  const _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl(
+class ProcedureSelectionScreenEventOnGenerateFlavors
+    implements ProcedureSelectionScreenEvent {
+  const ProcedureSelectionScreenEventOnGenerateFlavors(
       {required this.directory, required final Set<String> flavors})
       : _flavors = flavors;
 
-  @override
   final Directory directory;
   final Set<String> _flavors;
-  @override
   Set<String> get flavors {
     if (_flavors is EqualUnmodifiableSetView) return _flavors;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableSetView(_flavors);
   }
 
-  @override
-  String toString() {
-    return 'ProcedureSelectionScreenEvent.onGenerateFlavors(directory: $directory, flavors: $flavors)';
-  }
+  /// Create a copy of ProcedureSelectionScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ProcedureSelectionScreenEventOnGenerateFlavorsCopyWith<
+          ProcedureSelectionScreenEventOnGenerateFlavors>
+      get copyWith =>
+          _$ProcedureSelectionScreenEventOnGenerateFlavorsCopyWithImpl<
+              ProcedureSelectionScreenEventOnGenerateFlavors>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl &&
+            other is ProcedureSelectionScreenEventOnGenerateFlavors &&
             (identical(other.directory, directory) ||
                 other.directory == directory) &&
             const DeepCollectionEquality().equals(other._flavors, _flavors));
@@ -1354,1046 +756,420 @@ class _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl
   int get hashCode => Object.hash(
       runtimeType, directory, const DeepCollectionEquality().hash(_flavors));
 
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ProcedureSelectionScreenEventOnGenerateFlavorsImplCopyWith<
-          _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl>
-      get copyWith =>
-          __$$ProcedureSelectionScreenEventOnGenerateFlavorsImplCopyWithImpl<
-                  _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl>(
-              this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String projectPath) onNewProject,
-    required TResult Function(String projectURI) onProjectOpen,
-    required TResult Function(String language) onLocaleChange,
-    required TResult Function(
-            Directory directory, List<String> signingVars, bool overwrite)
-        onGenerateAndroidSigning,
-    required TResult Function(Directory directory, Set<String> flavors)
-        onGenerateFlavors,
-    required TResult Function() onOpenInStudio,
-    required TResult Function() onFlavorizrOutputClose,
-  }) {
-    return onGenerateFlavors(directory, flavors);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String projectPath)? onNewProject,
-    TResult? Function(String projectURI)? onProjectOpen,
-    TResult? Function(String language)? onLocaleChange,
-    TResult? Function(
-            Directory directory, List<String> signingVars, bool overwrite)?
-        onGenerateAndroidSigning,
-    TResult? Function(Directory directory, Set<String> flavors)?
-        onGenerateFlavors,
-    TResult? Function()? onOpenInStudio,
-    TResult? Function()? onFlavorizrOutputClose,
-  }) {
-    return onGenerateFlavors?.call(directory, flavors);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String projectPath)? onNewProject,
-    TResult Function(String projectURI)? onProjectOpen,
-    TResult Function(String language)? onLocaleChange,
-    TResult Function(
-            Directory directory, List<String> signingVars, bool overwrite)?
-        onGenerateAndroidSigning,
-    TResult Function(Directory directory, Set<String> flavors)?
-        onGenerateFlavors,
-    TResult Function()? onOpenInStudio,
-    TResult Function()? onFlavorizrOutputClose,
-    required TResult orElse(),
-  }) {
-    if (onGenerateFlavors != null) {
-      return onGenerateFlavors(directory, flavors);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProcedureSelectionScreenEventInit value) init,
-    required TResult Function(ProcedureSelectionScreenEventOnNewProject value)
-        onNewProject,
-    required TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)
-        onProjectOpen,
-    required TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)
-        onLocaleChange,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnAndroidSigning value)
-        onGenerateAndroidSigning,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnGenerateFlavors value)
-        onGenerateFlavors,
-    required TResult Function(
-            ProcedureSelectionScreenEventOpenProjectInStudio value)
-        onOpenInStudio,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnFlavorizrOutputClose value)
-        onFlavorizrOutputClose,
-  }) {
-    return onGenerateFlavors(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProcedureSelectionScreenEventInit value)? init,
-    TResult? Function(ProcedureSelectionScreenEventOnNewProject value)?
-        onNewProject,
-    TResult? Function(ProcedureSelectionScreenEventOnProjectOpen value)?
-        onProjectOpen,
-    TResult? Function(ProcedureSelectionScreenEventOnLocaleChange value)?
-        onLocaleChange,
-    TResult? Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
-        onGenerateAndroidSigning,
-    TResult? Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
-        onGenerateFlavors,
-    TResult? Function(ProcedureSelectionScreenEventOpenProjectInStudio value)?
-        onOpenInStudio,
-    TResult? Function(
-            ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
-        onFlavorizrOutputClose,
-  }) {
-    return onGenerateFlavors?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProcedureSelectionScreenEventInit value)? init,
-    TResult Function(ProcedureSelectionScreenEventOnNewProject value)?
-        onNewProject,
-    TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)?
-        onProjectOpen,
-    TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)?
-        onLocaleChange,
-    TResult Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
-        onGenerateAndroidSigning,
-    TResult Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
-        onGenerateFlavors,
-    TResult Function(ProcedureSelectionScreenEventOpenProjectInStudio value)?
-        onOpenInStudio,
-    TResult Function(ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
-        onFlavorizrOutputClose,
-    required TResult orElse(),
-  }) {
-    if (onGenerateFlavors != null) {
-      return onGenerateFlavors(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ProcedureSelectionScreenEventOnGenerateFlavors
-    implements ProcedureSelectionScreenEvent {
-  const factory ProcedureSelectionScreenEventOnGenerateFlavors(
-          {required final Directory directory,
-          required final Set<String> flavors}) =
-      _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl;
-
-  Directory get directory;
-  Set<String> get flavors;
-
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProcedureSelectionScreenEventOnGenerateFlavorsImplCopyWith<
-          _$ProcedureSelectionScreenEventOnGenerateFlavorsImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ProcedureSelectionScreenEventOpenProjectInStudioImplCopyWith<
-    $Res> {
-  factory _$$ProcedureSelectionScreenEventOpenProjectInStudioImplCopyWith(
-          _$ProcedureSelectionScreenEventOpenProjectInStudioImpl value,
-          $Res Function(_$ProcedureSelectionScreenEventOpenProjectInStudioImpl)
-              then) =
-      __$$ProcedureSelectionScreenEventOpenProjectInStudioImplCopyWithImpl<
-          $Res>;
-}
-
-/// @nodoc
-class __$$ProcedureSelectionScreenEventOpenProjectInStudioImplCopyWithImpl<$Res>
-    extends _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
-        _$ProcedureSelectionScreenEventOpenProjectInStudioImpl>
-    implements
-        _$$ProcedureSelectionScreenEventOpenProjectInStudioImplCopyWith<$Res> {
-  __$$ProcedureSelectionScreenEventOpenProjectInStudioImplCopyWithImpl(
-      _$ProcedureSelectionScreenEventOpenProjectInStudioImpl _value,
-      $Res Function(_$ProcedureSelectionScreenEventOpenProjectInStudioImpl)
-          _then)
-      : super(_value, _then);
-
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$ProcedureSelectionScreenEventOpenProjectInStudioImpl
-    implements ProcedureSelectionScreenEventOpenProjectInStudio {
-  const _$ProcedureSelectionScreenEventOpenProjectInStudioImpl();
-
   @override
   String toString() {
-    return 'ProcedureSelectionScreenEvent.onOpenInStudio()';
+    return 'ProcedureSelectionScreenEvent.onGenerateFlavors(directory: $directory, flavors: $flavors)';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ProcedureSelectionScreenEventOpenProjectInStudioImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String projectPath) onNewProject,
-    required TResult Function(String projectURI) onProjectOpen,
-    required TResult Function(String language) onLocaleChange,
-    required TResult Function(
-            Directory directory, List<String> signingVars, bool overwrite)
-        onGenerateAndroidSigning,
-    required TResult Function(Directory directory, Set<String> flavors)
-        onGenerateFlavors,
-    required TResult Function() onOpenInStudio,
-    required TResult Function() onFlavorizrOutputClose,
-  }) {
-    return onOpenInStudio();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String projectPath)? onNewProject,
-    TResult? Function(String projectURI)? onProjectOpen,
-    TResult? Function(String language)? onLocaleChange,
-    TResult? Function(
-            Directory directory, List<String> signingVars, bool overwrite)?
-        onGenerateAndroidSigning,
-    TResult? Function(Directory directory, Set<String> flavors)?
-        onGenerateFlavors,
-    TResult? Function()? onOpenInStudio,
-    TResult? Function()? onFlavorizrOutputClose,
-  }) {
-    return onOpenInStudio?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String projectPath)? onNewProject,
-    TResult Function(String projectURI)? onProjectOpen,
-    TResult Function(String language)? onLocaleChange,
-    TResult Function(
-            Directory directory, List<String> signingVars, bool overwrite)?
-        onGenerateAndroidSigning,
-    TResult Function(Directory directory, Set<String> flavors)?
-        onGenerateFlavors,
-    TResult Function()? onOpenInStudio,
-    TResult Function()? onFlavorizrOutputClose,
-    required TResult orElse(),
-  }) {
-    if (onOpenInStudio != null) {
-      return onOpenInStudio();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProcedureSelectionScreenEventInit value) init,
-    required TResult Function(ProcedureSelectionScreenEventOnNewProject value)
-        onNewProject,
-    required TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)
-        onProjectOpen,
-    required TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)
-        onLocaleChange,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnAndroidSigning value)
-        onGenerateAndroidSigning,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnGenerateFlavors value)
-        onGenerateFlavors,
-    required TResult Function(
-            ProcedureSelectionScreenEventOpenProjectInStudio value)
-        onOpenInStudio,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnFlavorizrOutputClose value)
-        onFlavorizrOutputClose,
-  }) {
-    return onOpenInStudio(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProcedureSelectionScreenEventInit value)? init,
-    TResult? Function(ProcedureSelectionScreenEventOnNewProject value)?
-        onNewProject,
-    TResult? Function(ProcedureSelectionScreenEventOnProjectOpen value)?
-        onProjectOpen,
-    TResult? Function(ProcedureSelectionScreenEventOnLocaleChange value)?
-        onLocaleChange,
-    TResult? Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
-        onGenerateAndroidSigning,
-    TResult? Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
-        onGenerateFlavors,
-    TResult? Function(ProcedureSelectionScreenEventOpenProjectInStudio value)?
-        onOpenInStudio,
-    TResult? Function(
-            ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
-        onFlavorizrOutputClose,
-  }) {
-    return onOpenInStudio?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProcedureSelectionScreenEventInit value)? init,
-    TResult Function(ProcedureSelectionScreenEventOnNewProject value)?
-        onNewProject,
-    TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)?
-        onProjectOpen,
-    TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)?
-        onLocaleChange,
-    TResult Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
-        onGenerateAndroidSigning,
-    TResult Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
-        onGenerateFlavors,
-    TResult Function(ProcedureSelectionScreenEventOpenProjectInStudio value)?
-        onOpenInStudio,
-    TResult Function(ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
-        onFlavorizrOutputClose,
-    required TResult orElse(),
-  }) {
-    if (onOpenInStudio != null) {
-      return onOpenInStudio(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ProcedureSelectionScreenEventOpenProjectInStudio
-    implements ProcedureSelectionScreenEvent {
-  const factory ProcedureSelectionScreenEventOpenProjectInStudio() =
-      _$ProcedureSelectionScreenEventOpenProjectInStudioImpl;
 }
 
 /// @nodoc
-abstract class _$$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImplCopyWith<
-    $Res> {
-  factory _$$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImplCopyWith(
-          _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl value,
-          $Res Function(
-                  _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl)
-              then) =
-      __$$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImplCopyWithImpl<
-          $Res>;
-}
-
-/// @nodoc
-class __$$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImplCopyWithImpl<
-        $Res>
-    extends _$ProcedureSelectionScreenEventCopyWithImpl<$Res,
-        _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl>
-    implements
-        _$$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImplCopyWith<
-            $Res> {
-  __$$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImplCopyWithImpl(
-      _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl _value,
-      $Res Function(_$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl)
-          _then)
-      : super(_value, _then);
-
-  /// Create a copy of ProcedureSelectionScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl
-    implements ProcedureSelectionScreenEventOnFlavorizrOutputClose {
-  const _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl();
-
-  @override
-  String toString() {
-    return 'ProcedureSelectionScreenEvent.onFlavorizrOutputClose()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String projectPath) onNewProject,
-    required TResult Function(String projectURI) onProjectOpen,
-    required TResult Function(String language) onLocaleChange,
-    required TResult Function(
-            Directory directory, List<String> signingVars, bool overwrite)
-        onGenerateAndroidSigning,
-    required TResult Function(Directory directory, Set<String> flavors)
-        onGenerateFlavors,
-    required TResult Function() onOpenInStudio,
-    required TResult Function() onFlavorizrOutputClose,
-  }) {
-    return onFlavorizrOutputClose();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String projectPath)? onNewProject,
-    TResult? Function(String projectURI)? onProjectOpen,
-    TResult? Function(String language)? onLocaleChange,
-    TResult? Function(
-            Directory directory, List<String> signingVars, bool overwrite)?
-        onGenerateAndroidSigning,
-    TResult? Function(Directory directory, Set<String> flavors)?
-        onGenerateFlavors,
-    TResult? Function()? onOpenInStudio,
-    TResult? Function()? onFlavorizrOutputClose,
-  }) {
-    return onFlavorizrOutputClose?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String projectPath)? onNewProject,
-    TResult Function(String projectURI)? onProjectOpen,
-    TResult Function(String language)? onLocaleChange,
-    TResult Function(
-            Directory directory, List<String> signingVars, bool overwrite)?
-        onGenerateAndroidSigning,
-    TResult Function(Directory directory, Set<String> flavors)?
-        onGenerateFlavors,
-    TResult Function()? onOpenInStudio,
-    TResult Function()? onFlavorizrOutputClose,
-    required TResult orElse(),
-  }) {
-    if (onFlavorizrOutputClose != null) {
-      return onFlavorizrOutputClose();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProcedureSelectionScreenEventInit value) init,
-    required TResult Function(ProcedureSelectionScreenEventOnNewProject value)
-        onNewProject,
-    required TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)
-        onProjectOpen,
-    required TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)
-        onLocaleChange,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnAndroidSigning value)
-        onGenerateAndroidSigning,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnGenerateFlavors value)
-        onGenerateFlavors,
-    required TResult Function(
-            ProcedureSelectionScreenEventOpenProjectInStudio value)
-        onOpenInStudio,
-    required TResult Function(
-            ProcedureSelectionScreenEventOnFlavorizrOutputClose value)
-        onFlavorizrOutputClose,
-  }) {
-    return onFlavorizrOutputClose(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProcedureSelectionScreenEventInit value)? init,
-    TResult? Function(ProcedureSelectionScreenEventOnNewProject value)?
-        onNewProject,
-    TResult? Function(ProcedureSelectionScreenEventOnProjectOpen value)?
-        onProjectOpen,
-    TResult? Function(ProcedureSelectionScreenEventOnLocaleChange value)?
-        onLocaleChange,
-    TResult? Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
-        onGenerateAndroidSigning,
-    TResult? Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
-        onGenerateFlavors,
-    TResult? Function(ProcedureSelectionScreenEventOpenProjectInStudio value)?
-        onOpenInStudio,
-    TResult? Function(
-            ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
-        onFlavorizrOutputClose,
-  }) {
-    return onFlavorizrOutputClose?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProcedureSelectionScreenEventInit value)? init,
-    TResult Function(ProcedureSelectionScreenEventOnNewProject value)?
-        onNewProject,
-    TResult Function(ProcedureSelectionScreenEventOnProjectOpen value)?
-        onProjectOpen,
-    TResult Function(ProcedureSelectionScreenEventOnLocaleChange value)?
-        onLocaleChange,
-    TResult Function(ProcedureSelectionScreenEventOnAndroidSigning value)?
-        onGenerateAndroidSigning,
-    TResult Function(ProcedureSelectionScreenEventOnGenerateFlavors value)?
-        onGenerateFlavors,
-    TResult Function(ProcedureSelectionScreenEventOpenProjectInStudio value)?
-        onOpenInStudio,
-    TResult Function(ProcedureSelectionScreenEventOnFlavorizrOutputClose value)?
-        onFlavorizrOutputClose,
-    required TResult orElse(),
-  }) {
-    if (onFlavorizrOutputClose != null) {
-      return onFlavorizrOutputClose(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ProcedureSelectionScreenEventOnFlavorizrOutputClose
-    implements ProcedureSelectionScreenEvent {
-  const factory ProcedureSelectionScreenEventOnFlavorizrOutputClose() =
-      _$ProcedureSelectionScreenEventOnFlavorizrOutputCloseImpl;
-}
-
-/// @nodoc
-mixin _$ProcedureSelectionScreenSR {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loadFinished,
-    required TResult Function() emptyConfig,
-    required TResult Function() onNewProject,
-    required TResult Function(List<Fingerprint> fingerprints)
-        onAndroidSigningCreated,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadFinished,
-    TResult? Function()? emptyConfig,
-    TResult? Function()? onNewProject,
-    TResult? Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadFinished,
-    TResult Function()? emptyConfig,
-    TResult Function()? onNewProject,
-    TResult Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_LoadFinished value) loadFinished,
-    required TResult Function(_EmptyConfig value) emptyConfig,
-    required TResult Function(_onNewProject value) onNewProject,
-    required TResult Function(_onAndroidSigningCreated value)
-        onAndroidSigningCreated,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadFinished value)? loadFinished,
-    TResult? Function(_EmptyConfig value)? emptyConfig,
-    TResult? Function(_onNewProject value)? onNewProject,
-    TResult? Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadFinished value)? loadFinished,
-    TResult Function(_EmptyConfig value)? emptyConfig,
-    TResult Function(_onNewProject value)? onNewProject,
-    TResult Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ProcedureSelectionScreenSRCopyWith<$Res> {
-  factory $ProcedureSelectionScreenSRCopyWith(ProcedureSelectionScreenSR value,
-          $Res Function(ProcedureSelectionScreenSR) then) =
-      _$ProcedureSelectionScreenSRCopyWithImpl<$Res,
-          ProcedureSelectionScreenSR>;
-}
-
-/// @nodoc
-class _$ProcedureSelectionScreenSRCopyWithImpl<$Res,
-        $Val extends ProcedureSelectionScreenSR>
-    implements $ProcedureSelectionScreenSRCopyWith<$Res> {
-  _$ProcedureSelectionScreenSRCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ProcedureSelectionScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$LoadFinishedImplCopyWith<$Res> {
-  factory _$$LoadFinishedImplCopyWith(
-          _$LoadFinishedImpl value, $Res Function(_$LoadFinishedImpl) then) =
-      __$$LoadFinishedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadFinishedImplCopyWithImpl<$Res>
-    extends _$ProcedureSelectionScreenSRCopyWithImpl<$Res, _$LoadFinishedImpl>
-    implements _$$LoadFinishedImplCopyWith<$Res> {
-  __$$LoadFinishedImplCopyWithImpl(
-      _$LoadFinishedImpl _value, $Res Function(_$LoadFinishedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ProcedureSelectionScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$LoadFinishedImpl implements _LoadFinished {
-  const _$LoadFinishedImpl();
-
-  @override
-  String toString() {
-    return 'ProcedureSelectionScreenSR.loadFinished()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadFinishedImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loadFinished,
-    required TResult Function() emptyConfig,
-    required TResult Function() onNewProject,
-    required TResult Function(List<Fingerprint> fingerprints)
-        onAndroidSigningCreated,
-  }) {
-    return loadFinished();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadFinished,
-    TResult? Function()? emptyConfig,
-    TResult? Function()? onNewProject,
-    TResult? Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
-  }) {
-    return loadFinished?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadFinished,
-    TResult Function()? emptyConfig,
-    TResult Function()? onNewProject,
-    TResult Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
-    required TResult orElse(),
-  }) {
-    if (loadFinished != null) {
-      return loadFinished();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_LoadFinished value) loadFinished,
-    required TResult Function(_EmptyConfig value) emptyConfig,
-    required TResult Function(_onNewProject value) onNewProject,
-    required TResult Function(_onAndroidSigningCreated value)
-        onAndroidSigningCreated,
-  }) {
-    return loadFinished(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadFinished value)? loadFinished,
-    TResult? Function(_EmptyConfig value)? emptyConfig,
-    TResult? Function(_onNewProject value)? onNewProject,
-    TResult? Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
-  }) {
-    return loadFinished?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadFinished value)? loadFinished,
-    TResult Function(_EmptyConfig value)? emptyConfig,
-    TResult Function(_onNewProject value)? onNewProject,
-    TResult Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
-    required TResult orElse(),
-  }) {
-    if (loadFinished != null) {
-      return loadFinished(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _LoadFinished implements ProcedureSelectionScreenSR {
-  const factory _LoadFinished() = _$LoadFinishedImpl;
-}
-
-/// @nodoc
-abstract class _$$EmptyConfigImplCopyWith<$Res> {
-  factory _$$EmptyConfigImplCopyWith(
-          _$EmptyConfigImpl value, $Res Function(_$EmptyConfigImpl) then) =
-      __$$EmptyConfigImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$EmptyConfigImplCopyWithImpl<$Res>
-    extends _$ProcedureSelectionScreenSRCopyWithImpl<$Res, _$EmptyConfigImpl>
-    implements _$$EmptyConfigImplCopyWith<$Res> {
-  __$$EmptyConfigImplCopyWithImpl(
-      _$EmptyConfigImpl _value, $Res Function(_$EmptyConfigImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ProcedureSelectionScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$EmptyConfigImpl implements _EmptyConfig {
-  const _$EmptyConfigImpl();
-
-  @override
-  String toString() {
-    return 'ProcedureSelectionScreenSR.emptyConfig()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$EmptyConfigImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loadFinished,
-    required TResult Function() emptyConfig,
-    required TResult Function() onNewProject,
-    required TResult Function(List<Fingerprint> fingerprints)
-        onAndroidSigningCreated,
-  }) {
-    return emptyConfig();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadFinished,
-    TResult? Function()? emptyConfig,
-    TResult? Function()? onNewProject,
-    TResult? Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
-  }) {
-    return emptyConfig?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadFinished,
-    TResult Function()? emptyConfig,
-    TResult Function()? onNewProject,
-    TResult Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
-    required TResult orElse(),
-  }) {
-    if (emptyConfig != null) {
-      return emptyConfig();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_LoadFinished value) loadFinished,
-    required TResult Function(_EmptyConfig value) emptyConfig,
-    required TResult Function(_onNewProject value) onNewProject,
-    required TResult Function(_onAndroidSigningCreated value)
-        onAndroidSigningCreated,
-  }) {
-    return emptyConfig(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadFinished value)? loadFinished,
-    TResult? Function(_EmptyConfig value)? emptyConfig,
-    TResult? Function(_onNewProject value)? onNewProject,
-    TResult? Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
-  }) {
-    return emptyConfig?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadFinished value)? loadFinished,
-    TResult Function(_EmptyConfig value)? emptyConfig,
-    TResult Function(_onNewProject value)? onNewProject,
-    TResult Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
-    required TResult orElse(),
-  }) {
-    if (emptyConfig != null) {
-      return emptyConfig(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _EmptyConfig implements ProcedureSelectionScreenSR {
-  const factory _EmptyConfig() = _$EmptyConfigImpl;
-}
-
-/// @nodoc
-abstract class _$$onNewProjectImplCopyWith<$Res> {
-  factory _$$onNewProjectImplCopyWith(
-          _$onNewProjectImpl value, $Res Function(_$onNewProjectImpl) then) =
-      __$$onNewProjectImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$onNewProjectImplCopyWithImpl<$Res>
-    extends _$ProcedureSelectionScreenSRCopyWithImpl<$Res, _$onNewProjectImpl>
-    implements _$$onNewProjectImplCopyWith<$Res> {
-  __$$onNewProjectImplCopyWithImpl(
-      _$onNewProjectImpl _value, $Res Function(_$onNewProjectImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ProcedureSelectionScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$onNewProjectImpl implements _onNewProject {
-  const _$onNewProjectImpl();
-
-  @override
-  String toString() {
-    return 'ProcedureSelectionScreenSR.onNewProject()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$onNewProjectImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loadFinished,
-    required TResult Function() emptyConfig,
-    required TResult Function() onNewProject,
-    required TResult Function(List<Fingerprint> fingerprints)
-        onAndroidSigningCreated,
-  }) {
-    return onNewProject();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadFinished,
-    TResult? Function()? emptyConfig,
-    TResult? Function()? onNewProject,
-    TResult? Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
-  }) {
-    return onNewProject?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadFinished,
-    TResult Function()? emptyConfig,
-    TResult Function()? onNewProject,
-    TResult Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
-    required TResult orElse(),
-  }) {
-    if (onNewProject != null) {
-      return onNewProject();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_LoadFinished value) loadFinished,
-    required TResult Function(_EmptyConfig value) emptyConfig,
-    required TResult Function(_onNewProject value) onNewProject,
-    required TResult Function(_onAndroidSigningCreated value)
-        onAndroidSigningCreated,
-  }) {
-    return onNewProject(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadFinished value)? loadFinished,
-    TResult? Function(_EmptyConfig value)? emptyConfig,
-    TResult? Function(_onNewProject value)? onNewProject,
-    TResult? Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
-  }) {
-    return onNewProject?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadFinished value)? loadFinished,
-    TResult Function(_EmptyConfig value)? emptyConfig,
-    TResult Function(_onNewProject value)? onNewProject,
-    TResult Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
-    required TResult orElse(),
-  }) {
-    if (onNewProject != null) {
-      return onNewProject(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _onNewProject implements ProcedureSelectionScreenSR {
-  const factory _onNewProject() = _$onNewProjectImpl;
-}
-
-/// @nodoc
-abstract class _$$onAndroidSigningCreatedImplCopyWith<$Res> {
-  factory _$$onAndroidSigningCreatedImplCopyWith(
-          _$onAndroidSigningCreatedImpl value,
-          $Res Function(_$onAndroidSigningCreatedImpl) then) =
-      __$$onAndroidSigningCreatedImplCopyWithImpl<$Res>;
+abstract mixin class $ProcedureSelectionScreenEventOnGenerateFlavorsCopyWith<
+    $Res> implements $ProcedureSelectionScreenEventCopyWith<$Res> {
+  factory $ProcedureSelectionScreenEventOnGenerateFlavorsCopyWith(
+          ProcedureSelectionScreenEventOnGenerateFlavors value,
+          $Res Function(ProcedureSelectionScreenEventOnGenerateFlavors) _then) =
+      _$ProcedureSelectionScreenEventOnGenerateFlavorsCopyWithImpl;
   @useResult
-  $Res call({List<Fingerprint> fingerprints});
+  $Res call({Directory directory, Set<String> flavors});
 }
 
 /// @nodoc
-class __$$onAndroidSigningCreatedImplCopyWithImpl<$Res>
-    extends _$ProcedureSelectionScreenSRCopyWithImpl<$Res,
-        _$onAndroidSigningCreatedImpl>
-    implements _$$onAndroidSigningCreatedImplCopyWith<$Res> {
-  __$$onAndroidSigningCreatedImplCopyWithImpl(
-      _$onAndroidSigningCreatedImpl _value,
-      $Res Function(_$onAndroidSigningCreatedImpl) _then)
-      : super(_value, _then);
+class _$ProcedureSelectionScreenEventOnGenerateFlavorsCopyWithImpl<$Res>
+    implements $ProcedureSelectionScreenEventOnGenerateFlavorsCopyWith<$Res> {
+  _$ProcedureSelectionScreenEventOnGenerateFlavorsCopyWithImpl(
+      this._self, this._then);
 
-  /// Create a copy of ProcedureSelectionScreenSR
+  final ProcedureSelectionScreenEventOnGenerateFlavors _self;
+  final $Res Function(ProcedureSelectionScreenEventOnGenerateFlavors) _then;
+
+  /// Create a copy of ProcedureSelectionScreenEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
-    Object? fingerprints = null,
+    Object? directory = null,
+    Object? flavors = null,
   }) {
-    return _then(_$onAndroidSigningCreatedImpl(
-      fingerprints: null == fingerprints
-          ? _value._fingerprints
-          : fingerprints // ignore: cast_nullable_to_non_nullable
-              as List<Fingerprint>,
+    return _then(ProcedureSelectionScreenEventOnGenerateFlavors(
+      directory: null == directory
+          ? _self.directory
+          : directory // ignore: cast_nullable_to_non_nullable
+              as Directory,
+      flavors: null == flavors
+          ? _self._flavors
+          : flavors // ignore: cast_nullable_to_non_nullable
+              as Set<String>,
     ));
   }
 }
 
 /// @nodoc
 
-class _$onAndroidSigningCreatedImpl implements _onAndroidSigningCreated {
-  const _$onAndroidSigningCreatedImpl(
+class ProcedureSelectionScreenEventOpenProjectInStudio
+    implements ProcedureSelectionScreenEvent {
+  const ProcedureSelectionScreenEventOpenProjectInStudio();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ProcedureSelectionScreenEventOpenProjectInStudio);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'ProcedureSelectionScreenEvent.onOpenInStudio()';
+  }
+}
+
+/// @nodoc
+
+class ProcedureSelectionScreenEventOnFlavorizrOutputClose
+    implements ProcedureSelectionScreenEvent {
+  const ProcedureSelectionScreenEventOnFlavorizrOutputClose();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ProcedureSelectionScreenEventOnFlavorizrOutputClose);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'ProcedureSelectionScreenEvent.onFlavorizrOutputClose()';
+  }
+}
+
+/// @nodoc
+mixin _$ProcedureSelectionScreenSR {
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ProcedureSelectionScreenSR);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'ProcedureSelectionScreenSR()';
+  }
+}
+
+/// @nodoc
+class $ProcedureSelectionScreenSRCopyWith<$Res> {
+  $ProcedureSelectionScreenSRCopyWith(ProcedureSelectionScreenSR _,
+      $Res Function(ProcedureSelectionScreenSR) __);
+}
+
+/// Adds pattern-matching-related methods to [ProcedureSelectionScreenSR].
+extension ProcedureSelectionScreenSRPatterns on ProcedureSelectionScreenSR {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadFinished value)? loadFinished,
+    TResult Function(_EmptyConfig value)? emptyConfig,
+    TResult Function(_onNewProject value)? onNewProject,
+    TResult Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LoadFinished() when loadFinished != null:
+        return loadFinished(_that);
+      case _EmptyConfig() when emptyConfig != null:
+        return emptyConfig(_that);
+      case _onNewProject() when onNewProject != null:
+        return onNewProject(_that);
+      case _onAndroidSigningCreated() when onAndroidSigningCreated != null:
+        return onAndroidSigningCreated(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadFinished value) loadFinished,
+    required TResult Function(_EmptyConfig value) emptyConfig,
+    required TResult Function(_onNewProject value) onNewProject,
+    required TResult Function(_onAndroidSigningCreated value)
+        onAndroidSigningCreated,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LoadFinished():
+        return loadFinished(_that);
+      case _EmptyConfig():
+        return emptyConfig(_that);
+      case _onNewProject():
+        return onNewProject(_that);
+      case _onAndroidSigningCreated():
+        return onAndroidSigningCreated(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadFinished value)? loadFinished,
+    TResult? Function(_EmptyConfig value)? emptyConfig,
+    TResult? Function(_onNewProject value)? onNewProject,
+    TResult? Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LoadFinished() when loadFinished != null:
+        return loadFinished(_that);
+      case _EmptyConfig() when emptyConfig != null:
+        return emptyConfig(_that);
+      case _onNewProject() when onNewProject != null:
+        return onNewProject(_that);
+      case _onAndroidSigningCreated() when onAndroidSigningCreated != null:
+        return onAndroidSigningCreated(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadFinished,
+    TResult Function()? emptyConfig,
+    TResult Function()? onNewProject,
+    TResult Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LoadFinished() when loadFinished != null:
+        return loadFinished();
+      case _EmptyConfig() when emptyConfig != null:
+        return emptyConfig();
+      case _onNewProject() when onNewProject != null:
+        return onNewProject();
+      case _onAndroidSigningCreated() when onAndroidSigningCreated != null:
+        return onAndroidSigningCreated(_that.fingerprints);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadFinished,
+    required TResult Function() emptyConfig,
+    required TResult Function() onNewProject,
+    required TResult Function(List<Fingerprint> fingerprints)
+        onAndroidSigningCreated,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LoadFinished():
+        return loadFinished();
+      case _EmptyConfig():
+        return emptyConfig();
+      case _onNewProject():
+        return onNewProject();
+      case _onAndroidSigningCreated():
+        return onAndroidSigningCreated(_that.fingerprints);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadFinished,
+    TResult? Function()? emptyConfig,
+    TResult? Function()? onNewProject,
+    TResult? Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LoadFinished() when loadFinished != null:
+        return loadFinished();
+      case _EmptyConfig() when emptyConfig != null:
+        return emptyConfig();
+      case _onNewProject() when onNewProject != null:
+        return onNewProject();
+      case _onAndroidSigningCreated() when onAndroidSigningCreated != null:
+        return onAndroidSigningCreated(_that.fingerprints);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+
+class _LoadFinished implements ProcedureSelectionScreenSR {
+  const _LoadFinished();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _LoadFinished);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'ProcedureSelectionScreenSR.loadFinished()';
+  }
+}
+
+/// @nodoc
+
+class _EmptyConfig implements ProcedureSelectionScreenSR {
+  const _EmptyConfig();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _EmptyConfig);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'ProcedureSelectionScreenSR.emptyConfig()';
+  }
+}
+
+/// @nodoc
+
+class _onNewProject implements ProcedureSelectionScreenSR {
+  const _onNewProject();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _onNewProject);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'ProcedureSelectionScreenSR.onNewProject()';
+  }
+}
+
+/// @nodoc
+
+class _onAndroidSigningCreated implements ProcedureSelectionScreenSR {
+  const _onAndroidSigningCreated(
       {required final List<Fingerprint> fingerprints})
       : _fingerprints = fingerprints;
 
   final List<Fingerprint> _fingerprints;
-  @override
   List<Fingerprint> get fingerprints {
     if (_fingerprints is EqualUnmodifiableListView) return _fingerprints;
     // ignore: implicit_dynamic_type
     return EqualUnmodifiableListView(_fingerprints);
   }
 
-  @override
-  String toString() {
-    return 'ProcedureSelectionScreenSR.onAndroidSigningCreated(fingerprints: $fingerprints)';
-  }
+  /// Create a copy of ProcedureSelectionScreenSR
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$onAndroidSigningCreatedCopyWith<_onAndroidSigningCreated> get copyWith =>
+      __$onAndroidSigningCreatedCopyWithImpl<_onAndroidSigningCreated>(
+          this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$onAndroidSigningCreatedImpl &&
+            other is _onAndroidSigningCreated &&
             const DeepCollectionEquality()
                 .equals(other._fingerprints, _fingerprints));
   }
@@ -2402,364 +1178,68 @@ class _$onAndroidSigningCreatedImpl implements _onAndroidSigningCreated {
   int get hashCode => Object.hash(
       runtimeType, const DeepCollectionEquality().hash(_fingerprints));
 
-  /// Create a copy of ProcedureSelectionScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$onAndroidSigningCreatedImplCopyWith<_$onAndroidSigningCreatedImpl>
-      get copyWith => __$$onAndroidSigningCreatedImplCopyWithImpl<
-          _$onAndroidSigningCreatedImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loadFinished,
-    required TResult Function() emptyConfig,
-    required TResult Function() onNewProject,
-    required TResult Function(List<Fingerprint> fingerprints)
-        onAndroidSigningCreated,
-  }) {
-    return onAndroidSigningCreated(fingerprints);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadFinished,
-    TResult? Function()? emptyConfig,
-    TResult? Function()? onNewProject,
-    TResult? Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
-  }) {
-    return onAndroidSigningCreated?.call(fingerprints);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadFinished,
-    TResult Function()? emptyConfig,
-    TResult Function()? onNewProject,
-    TResult Function(List<Fingerprint> fingerprints)? onAndroidSigningCreated,
-    required TResult orElse(),
-  }) {
-    if (onAndroidSigningCreated != null) {
-      return onAndroidSigningCreated(fingerprints);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_LoadFinished value) loadFinished,
-    required TResult Function(_EmptyConfig value) emptyConfig,
-    required TResult Function(_onNewProject value) onNewProject,
-    required TResult Function(_onAndroidSigningCreated value)
-        onAndroidSigningCreated,
-  }) {
-    return onAndroidSigningCreated(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadFinished value)? loadFinished,
-    TResult? Function(_EmptyConfig value)? emptyConfig,
-    TResult? Function(_onNewProject value)? onNewProject,
-    TResult? Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
-  }) {
-    return onAndroidSigningCreated?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadFinished value)? loadFinished,
-    TResult Function(_EmptyConfig value)? emptyConfig,
-    TResult Function(_onNewProject value)? onNewProject,
-    TResult Function(_onAndroidSigningCreated value)? onAndroidSigningCreated,
-    required TResult orElse(),
-  }) {
-    if (onAndroidSigningCreated != null) {
-      return onAndroidSigningCreated(this);
-    }
-    return orElse();
+  String toString() {
+    return 'ProcedureSelectionScreenSR.onAndroidSigningCreated(fingerprints: $fingerprints)';
   }
 }
 
-abstract class _onAndroidSigningCreated implements ProcedureSelectionScreenSR {
-  const factory _onAndroidSigningCreated(
-          {required final List<Fingerprint> fingerprints}) =
-      _$onAndroidSigningCreatedImpl;
+/// @nodoc
+abstract mixin class _$onAndroidSigningCreatedCopyWith<$Res>
+    implements $ProcedureSelectionScreenSRCopyWith<$Res> {
+  factory _$onAndroidSigningCreatedCopyWith(_onAndroidSigningCreated value,
+          $Res Function(_onAndroidSigningCreated) _then) =
+      __$onAndroidSigningCreatedCopyWithImpl;
+  @useResult
+  $Res call({List<Fingerprint> fingerprints});
+}
 
-  List<Fingerprint> get fingerprints;
+/// @nodoc
+class __$onAndroidSigningCreatedCopyWithImpl<$Res>
+    implements _$onAndroidSigningCreatedCopyWith<$Res> {
+  __$onAndroidSigningCreatedCopyWithImpl(this._self, this._then);
+
+  final _onAndroidSigningCreated _self;
+  final $Res Function(_onAndroidSigningCreated) _then;
 
   /// Create a copy of ProcedureSelectionScreenSR
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$onAndroidSigningCreatedImplCopyWith<_$onAndroidSigningCreatedImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-mixin _$ProcedureSelectionScreenState {
-  BranchConfig get branchConfig => throw _privateConstructorUsedError;
-  dynamic get language => throw _privateConstructorUsedError;
-  Directory? get flavorizingDirectory => throw _privateConstructorUsedError;
-  Stream<List<OutputLine>>? get outputStream =>
-      throw _privateConstructorUsedError;
-  bool get flavorizrOutputVisible => throw _privateConstructorUsedError;
-  bool get isGenerating => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            BranchConfig branchConfig,
-            dynamic language,
-            Directory? flavorizingDirectory,
-            Stream<List<OutputLine>>? outputStream,
-            bool flavorizrOutputVisible,
-            bool isGenerating)
-        data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            BranchConfig branchConfig,
-            dynamic language,
-            Directory? flavorizingDirectory,
-            Stream<List<OutputLine>>? outputStream,
-            bool flavorizrOutputVisible,
-            bool isGenerating)?
-        data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            BranchConfig branchConfig,
-            dynamic language,
-            Directory? flavorizingDirectory,
-            Stream<List<OutputLine>>? outputStream,
-            bool flavorizrOutputVisible,
-            bool isGenerating)?
-        data,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProcedureSelectionScreenStateData value) data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProcedureSelectionScreenStateData value)? data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProcedureSelectionScreenStateData value)? data,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of ProcedureSelectionScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $ProcedureSelectionScreenStateCopyWith<ProcedureSelectionScreenState>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ProcedureSelectionScreenStateCopyWith<$Res> {
-  factory $ProcedureSelectionScreenStateCopyWith(
-          ProcedureSelectionScreenState value,
-          $Res Function(ProcedureSelectionScreenState) then) =
-      _$ProcedureSelectionScreenStateCopyWithImpl<$Res,
-          ProcedureSelectionScreenState>;
-  @useResult
-  $Res call(
-      {BranchConfig branchConfig,
-      dynamic language,
-      Directory? flavorizingDirectory,
-      Stream<List<OutputLine>>? outputStream,
-      bool flavorizrOutputVisible,
-      bool isGenerating});
-
-  $BranchConfigCopyWith<$Res> get branchConfig;
-}
-
-/// @nodoc
-class _$ProcedureSelectionScreenStateCopyWithImpl<$Res,
-        $Val extends ProcedureSelectionScreenState>
-    implements $ProcedureSelectionScreenStateCopyWith<$Res> {
-  _$ProcedureSelectionScreenStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ProcedureSelectionScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
-    Object? branchConfig = null,
-    Object? language = freezed,
-    Object? flavorizingDirectory = freezed,
-    Object? outputStream = freezed,
-    Object? flavorizrOutputVisible = null,
-    Object? isGenerating = null,
+    Object? fingerprints = null,
   }) {
-    return _then(_value.copyWith(
-      branchConfig: null == branchConfig
-          ? _value.branchConfig
-          : branchConfig // ignore: cast_nullable_to_non_nullable
-              as BranchConfig,
-      language: freezed == language
-          ? _value.language
-          : language // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-      flavorizingDirectory: freezed == flavorizingDirectory
-          ? _value.flavorizingDirectory
-          : flavorizingDirectory // ignore: cast_nullable_to_non_nullable
-              as Directory?,
-      outputStream: freezed == outputStream
-          ? _value.outputStream
-          : outputStream // ignore: cast_nullable_to_non_nullable
-              as Stream<List<OutputLine>>?,
-      flavorizrOutputVisible: null == flavorizrOutputVisible
-          ? _value.flavorizrOutputVisible
-          : flavorizrOutputVisible // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isGenerating: null == isGenerating
-          ? _value.isGenerating
-          : isGenerating // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
-  }
-
-  /// Create a copy of ProcedureSelectionScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $BranchConfigCopyWith<$Res> get branchConfig {
-    return $BranchConfigCopyWith<$Res>(_value.branchConfig, (value) {
-      return _then(_value.copyWith(branchConfig: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$ProcedureSelectionScreenStateDataImplCopyWith<$Res>
-    implements $ProcedureSelectionScreenStateCopyWith<$Res> {
-  factory _$$ProcedureSelectionScreenStateDataImplCopyWith(
-          _$ProcedureSelectionScreenStateDataImpl value,
-          $Res Function(_$ProcedureSelectionScreenStateDataImpl) then) =
-      __$$ProcedureSelectionScreenStateDataImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {BranchConfig branchConfig,
-      dynamic language,
-      Directory? flavorizingDirectory,
-      Stream<List<OutputLine>>? outputStream,
-      bool flavorizrOutputVisible,
-      bool isGenerating});
-
-  @override
-  $BranchConfigCopyWith<$Res> get branchConfig;
-}
-
-/// @nodoc
-class __$$ProcedureSelectionScreenStateDataImplCopyWithImpl<$Res>
-    extends _$ProcedureSelectionScreenStateCopyWithImpl<$Res,
-        _$ProcedureSelectionScreenStateDataImpl>
-    implements _$$ProcedureSelectionScreenStateDataImplCopyWith<$Res> {
-  __$$ProcedureSelectionScreenStateDataImplCopyWithImpl(
-      _$ProcedureSelectionScreenStateDataImpl _value,
-      $Res Function(_$ProcedureSelectionScreenStateDataImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ProcedureSelectionScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? branchConfig = null,
-    Object? language = freezed,
-    Object? flavorizingDirectory = freezed,
-    Object? outputStream = freezed,
-    Object? flavorizrOutputVisible = null,
-    Object? isGenerating = null,
-  }) {
-    return _then(_$ProcedureSelectionScreenStateDataImpl(
-      branchConfig: null == branchConfig
-          ? _value.branchConfig
-          : branchConfig // ignore: cast_nullable_to_non_nullable
-              as BranchConfig,
-      language: freezed == language ? _value.language! : language,
-      flavorizingDirectory: freezed == flavorizingDirectory
-          ? _value.flavorizingDirectory
-          : flavorizingDirectory // ignore: cast_nullable_to_non_nullable
-              as Directory?,
-      outputStream: freezed == outputStream
-          ? _value.outputStream
-          : outputStream // ignore: cast_nullable_to_non_nullable
-              as Stream<List<OutputLine>>?,
-      flavorizrOutputVisible: null == flavorizrOutputVisible
-          ? _value.flavorizrOutputVisible
-          : flavorizrOutputVisible // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isGenerating: null == isGenerating
-          ? _value.isGenerating
-          : isGenerating // ignore: cast_nullable_to_non_nullable
-              as bool,
+    return _then(_onAndroidSigningCreated(
+      fingerprints: null == fingerprints
+          ? _self._fingerprints
+          : fingerprints // ignore: cast_nullable_to_non_nullable
+              as List<Fingerprint>,
     ));
   }
 }
 
 /// @nodoc
+mixin _$ProcedureSelectionScreenState {
+  BranchConfig get branchConfig;
+  dynamic get language;
+  Directory? get flavorizingDirectory;
+  Stream<List<OutputLine>>? get outputStream;
+  bool get flavorizrOutputVisible;
+  bool get isGenerating;
 
-class _$ProcedureSelectionScreenStateDataImpl
-    implements ProcedureSelectionScreenStateData {
-  const _$ProcedureSelectionScreenStateDataImpl(
-      {required this.branchConfig,
-      this.language = 'en',
-      this.flavorizingDirectory,
-      this.outputStream,
-      this.flavorizrOutputVisible = false,
-      this.isGenerating = false});
-
-  @override
-  final BranchConfig branchConfig;
-  @override
-  @JsonKey()
-  final dynamic language;
-  @override
-  final Directory? flavorizingDirectory;
-  @override
-  final Stream<List<OutputLine>>? outputStream;
-  @override
-  @JsonKey()
-  final bool flavorizrOutputVisible;
-  @override
-  @JsonKey()
-  final bool isGenerating;
-
-  @override
-  String toString() {
-    return 'ProcedureSelectionScreenState.data(branchConfig: $branchConfig, language: $language, flavorizingDirectory: $flavorizingDirectory, outputStream: $outputStream, flavorizrOutputVisible: $flavorizrOutputVisible, isGenerating: $isGenerating)';
-  }
+  /// Create a copy of ProcedureSelectionScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ProcedureSelectionScreenStateCopyWith<ProcedureSelectionScreenState>
+      get copyWith => _$ProcedureSelectionScreenStateCopyWithImpl<
+              ProcedureSelectionScreenState>(
+          this as ProcedureSelectionScreenState, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProcedureSelectionScreenStateDataImpl &&
+            other is ProcedureSelectionScreenState &&
             (identical(other.branchConfig, branchConfig) ||
                 other.branchConfig == branchConfig) &&
             const DeepCollectionEquality().equals(other.language, language) &&
@@ -2783,49 +1263,181 @@ class _$ProcedureSelectionScreenStateDataImpl
       flavorizrOutputVisible,
       isGenerating);
 
+  @override
+  String toString() {
+    return 'ProcedureSelectionScreenState(branchConfig: $branchConfig, language: $language, flavorizingDirectory: $flavorizingDirectory, outputStream: $outputStream, flavorizrOutputVisible: $flavorizrOutputVisible, isGenerating: $isGenerating)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ProcedureSelectionScreenStateCopyWith<$Res> {
+  factory $ProcedureSelectionScreenStateCopyWith(
+          ProcedureSelectionScreenState value,
+          $Res Function(ProcedureSelectionScreenState) _then) =
+      _$ProcedureSelectionScreenStateCopyWithImpl;
+  @useResult
+  $Res call(
+      {BranchConfig branchConfig,
+      dynamic language,
+      Directory? flavorizingDirectory,
+      Stream<List<OutputLine>>? outputStream,
+      bool flavorizrOutputVisible,
+      bool isGenerating});
+
+  $BranchConfigCopyWith<$Res> get branchConfig;
+}
+
+/// @nodoc
+class _$ProcedureSelectionScreenStateCopyWithImpl<$Res>
+    implements $ProcedureSelectionScreenStateCopyWith<$Res> {
+  _$ProcedureSelectionScreenStateCopyWithImpl(this._self, this._then);
+
+  final ProcedureSelectionScreenState _self;
+  final $Res Function(ProcedureSelectionScreenState) _then;
+
   /// Create a copy of ProcedureSelectionScreenState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? branchConfig = null,
+    Object? language = freezed,
+    Object? flavorizingDirectory = freezed,
+    Object? outputStream = freezed,
+    Object? flavorizrOutputVisible = null,
+    Object? isGenerating = null,
+  }) {
+    return _then(_self.copyWith(
+      branchConfig: null == branchConfig
+          ? _self.branchConfig
+          : branchConfig // ignore: cast_nullable_to_non_nullable
+              as BranchConfig,
+      language: freezed == language
+          ? _self.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      flavorizingDirectory: freezed == flavorizingDirectory
+          ? _self.flavorizingDirectory
+          : flavorizingDirectory // ignore: cast_nullable_to_non_nullable
+              as Directory?,
+      outputStream: freezed == outputStream
+          ? _self.outputStream
+          : outputStream // ignore: cast_nullable_to_non_nullable
+              as Stream<List<OutputLine>>?,
+      flavorizrOutputVisible: null == flavorizrOutputVisible
+          ? _self.flavorizrOutputVisible
+          : flavorizrOutputVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isGenerating: null == isGenerating
+          ? _self.isGenerating
+          : isGenerating // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+
+  /// Create a copy of ProcedureSelectionScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  _$$ProcedureSelectionScreenStateDataImplCopyWith<
-          _$ProcedureSelectionScreenStateDataImpl>
-      get copyWith => __$$ProcedureSelectionScreenStateDataImplCopyWithImpl<
-          _$ProcedureSelectionScreenStateDataImpl>(this, _$identity);
+  $BranchConfigCopyWith<$Res> get branchConfig {
+    return $BranchConfigCopyWith<$Res>(_self.branchConfig, (value) {
+      return _then(_self.copyWith(branchConfig: value));
+    });
+  }
+}
 
-  @override
+/// Adds pattern-matching-related methods to [ProcedureSelectionScreenState].
+extension ProcedureSelectionScreenStatePatterns
+    on ProcedureSelectionScreenState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            BranchConfig branchConfig,
-            dynamic language,
-            Directory? flavorizingDirectory,
-            Stream<List<OutputLine>>? outputStream,
-            bool flavorizrOutputVisible,
-            bool isGenerating)
-        data,
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProcedureSelectionScreenStateData value)? data,
+    required TResult orElse(),
   }) {
-    return data(branchConfig, language, flavorizingDirectory, outputStream,
-        flavorizrOutputVisible, isGenerating);
+    final _that = this;
+    switch (_that) {
+      case ProcedureSelectionScreenStateData() when data != null:
+        return data(_that);
+      case _:
+        return orElse();
+    }
   }
 
-  @override
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
   @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            BranchConfig branchConfig,
-            dynamic language,
-            Directory? flavorizingDirectory,
-            Stream<List<OutputLine>>? outputStream,
-            bool flavorizrOutputVisible,
-            bool isGenerating)?
-        data,
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProcedureSelectionScreenStateData value) data,
   }) {
-    return data?.call(branchConfig, language, flavorizingDirectory,
-        outputStream, flavorizrOutputVisible, isGenerating);
+    final _that = this;
+    switch (_that) {
+      case ProcedureSelectionScreenStateData():
+        return data(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
   }
 
-  @override
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProcedureSelectionScreenStateData value)? data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ProcedureSelectionScreenStateData() when data != null:
+        return data(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(
@@ -2838,70 +1450,248 @@ class _$ProcedureSelectionScreenStateDataImpl
         data,
     required TResult orElse(),
   }) {
-    if (data != null) {
-      return data(branchConfig, language, flavorizingDirectory, outputStream,
-          flavorizrOutputVisible, isGenerating);
+    final _that = this;
+    switch (_that) {
+      case ProcedureSelectionScreenStateData() when data != null:
+        return data(
+            _that.branchConfig,
+            _that.language,
+            _that.flavorizingDirectory,
+            _that.outputStream,
+            _that.flavorizrOutputVisible,
+            _that.isGenerating);
+      case _:
+        return orElse();
     }
-    return orElse();
   }
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProcedureSelectionScreenStateData value) data,
-  }) {
-    return data(this);
-  }
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
 
-  @override
   @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProcedureSelectionScreenStateData value)? data,
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            BranchConfig branchConfig,
+            dynamic language,
+            Directory? flavorizingDirectory,
+            Stream<List<OutputLine>>? outputStream,
+            bool flavorizrOutputVisible,
+            bool isGenerating)
+        data,
   }) {
-    return data?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProcedureSelectionScreenStateData value)? data,
-    required TResult orElse(),
-  }) {
-    if (data != null) {
-      return data(this);
+    final _that = this;
+    switch (_that) {
+      case ProcedureSelectionScreenStateData():
+        return data(
+            _that.branchConfig,
+            _that.language,
+            _that.flavorizingDirectory,
+            _that.outputStream,
+            _that.flavorizrOutputVisible,
+            _that.isGenerating);
+      case _:
+        throw StateError('Unexpected subclass');
     }
-    return orElse();
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            BranchConfig branchConfig,
+            dynamic language,
+            Directory? flavorizingDirectory,
+            Stream<List<OutputLine>>? outputStream,
+            bool flavorizrOutputVisible,
+            bool isGenerating)?
+        data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ProcedureSelectionScreenStateData() when data != null:
+        return data(
+            _that.branchConfig,
+            _that.language,
+            _that.flavorizingDirectory,
+            _that.outputStream,
+            _that.flavorizrOutputVisible,
+            _that.isGenerating);
+      case _:
+        return null;
+    }
   }
 }
 
-abstract class ProcedureSelectionScreenStateData
+/// @nodoc
+
+class ProcedureSelectionScreenStateData
     implements ProcedureSelectionScreenState {
-  const factory ProcedureSelectionScreenStateData(
-      {required final BranchConfig branchConfig,
-      final dynamic language,
-      final Directory? flavorizingDirectory,
-      final Stream<List<OutputLine>>? outputStream,
-      final bool flavorizrOutputVisible,
-      final bool isGenerating}) = _$ProcedureSelectionScreenStateDataImpl;
+  const ProcedureSelectionScreenStateData(
+      {required this.branchConfig,
+      this.language = 'en',
+      this.flavorizingDirectory,
+      this.outputStream,
+      this.flavorizrOutputVisible = false,
+      this.isGenerating = false});
 
   @override
-  BranchConfig get branchConfig;
+  final BranchConfig branchConfig;
   @override
-  dynamic get language;
+  @JsonKey()
+  final dynamic language;
   @override
-  Directory? get flavorizingDirectory;
+  final Directory? flavorizingDirectory;
   @override
-  Stream<List<OutputLine>>? get outputStream;
+  final Stream<List<OutputLine>>? outputStream;
   @override
-  bool get flavorizrOutputVisible;
+  @JsonKey()
+  final bool flavorizrOutputVisible;
   @override
-  bool get isGenerating;
+  @JsonKey()
+  final bool isGenerating;
 
   /// Create a copy of ProcedureSelectionScreenState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProcedureSelectionScreenStateDataImplCopyWith<
-          _$ProcedureSelectionScreenStateDataImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $ProcedureSelectionScreenStateDataCopyWith<ProcedureSelectionScreenStateData>
+      get copyWith => _$ProcedureSelectionScreenStateDataCopyWithImpl<
+          ProcedureSelectionScreenStateData>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ProcedureSelectionScreenStateData &&
+            (identical(other.branchConfig, branchConfig) ||
+                other.branchConfig == branchConfig) &&
+            const DeepCollectionEquality().equals(other.language, language) &&
+            (identical(other.flavorizingDirectory, flavorizingDirectory) ||
+                other.flavorizingDirectory == flavorizingDirectory) &&
+            (identical(other.outputStream, outputStream) ||
+                other.outputStream == outputStream) &&
+            (identical(other.flavorizrOutputVisible, flavorizrOutputVisible) ||
+                other.flavorizrOutputVisible == flavorizrOutputVisible) &&
+            (identical(other.isGenerating, isGenerating) ||
+                other.isGenerating == isGenerating));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      branchConfig,
+      const DeepCollectionEquality().hash(language),
+      flavorizingDirectory,
+      outputStream,
+      flavorizrOutputVisible,
+      isGenerating);
+
+  @override
+  String toString() {
+    return 'ProcedureSelectionScreenState.data(branchConfig: $branchConfig, language: $language, flavorizingDirectory: $flavorizingDirectory, outputStream: $outputStream, flavorizrOutputVisible: $flavorizrOutputVisible, isGenerating: $isGenerating)';
+  }
 }
+
+/// @nodoc
+abstract mixin class $ProcedureSelectionScreenStateDataCopyWith<$Res>
+    implements $ProcedureSelectionScreenStateCopyWith<$Res> {
+  factory $ProcedureSelectionScreenStateDataCopyWith(
+          ProcedureSelectionScreenStateData value,
+          $Res Function(ProcedureSelectionScreenStateData) _then) =
+      _$ProcedureSelectionScreenStateDataCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {BranchConfig branchConfig,
+      dynamic language,
+      Directory? flavorizingDirectory,
+      Stream<List<OutputLine>>? outputStream,
+      bool flavorizrOutputVisible,
+      bool isGenerating});
+
+  @override
+  $BranchConfigCopyWith<$Res> get branchConfig;
+}
+
+/// @nodoc
+class _$ProcedureSelectionScreenStateDataCopyWithImpl<$Res>
+    implements $ProcedureSelectionScreenStateDataCopyWith<$Res> {
+  _$ProcedureSelectionScreenStateDataCopyWithImpl(this._self, this._then);
+
+  final ProcedureSelectionScreenStateData _self;
+  final $Res Function(ProcedureSelectionScreenStateData) _then;
+
+  /// Create a copy of ProcedureSelectionScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? branchConfig = null,
+    Object? language = freezed,
+    Object? flavorizingDirectory = freezed,
+    Object? outputStream = freezed,
+    Object? flavorizrOutputVisible = null,
+    Object? isGenerating = null,
+  }) {
+    return _then(ProcedureSelectionScreenStateData(
+      branchConfig: null == branchConfig
+          ? _self.branchConfig
+          : branchConfig // ignore: cast_nullable_to_non_nullable
+              as BranchConfig,
+      language: freezed == language
+          ? _self.language
+          : language // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      flavorizingDirectory: freezed == flavorizingDirectory
+          ? _self.flavorizingDirectory
+          : flavorizingDirectory // ignore: cast_nullable_to_non_nullable
+              as Directory?,
+      outputStream: freezed == outputStream
+          ? _self.outputStream
+          : outputStream // ignore: cast_nullable_to_non_nullable
+              as Stream<List<OutputLine>>?,
+      flavorizrOutputVisible: null == flavorizrOutputVisible
+          ? _self.flavorizrOutputVisible
+          : flavorizrOutputVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isGenerating: null == isGenerating
+          ? _self.isGenerating
+          : isGenerating // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+
+  /// Create a copy of ProcedureSelectionScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $BranchConfigCopyWith<$Res> get branchConfig {
+    return $BranchConfigCopyWith<$Res>(_self.branchConfig, (value) {
+      return _then(_self.copyWith(branchConfig: value));
+    });
+  }
+}
+
+// dart format on

@@ -4,7 +4,7 @@ part 'type_style_metadata.freezed.dart';
 
 // https://www.figma.com/developers/api#style-type
 @freezed
-class TypeStyleMetadata with _$TypeStyleMetadata {
+sealed class TypeStyleMetadata with _$TypeStyleMetadata {
   const factory TypeStyleMetadata({
     required String fontFamily,
     required num fontWeight,

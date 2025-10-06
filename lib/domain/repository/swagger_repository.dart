@@ -3,6 +3,7 @@ import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/request_component.dart';
 import 'package:onix_flutter_core/onix_flutter_core.dart';
+import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 abstract interface class SwaggerRepository {
   Components get components;

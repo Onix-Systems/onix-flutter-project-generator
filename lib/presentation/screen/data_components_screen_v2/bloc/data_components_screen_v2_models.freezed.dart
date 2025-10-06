@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,207 +9,91 @@ part of 'data_components_screen_v2_models.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$DataComponentsScreenV2Event {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String sourceName) addSource,
-    required TResult Function(String sourceName, String newName) editSourceName,
-    required TResult Function(String sourceName) deleteSource,
-    required TResult Function(Component component) deleteComponent,
-    required TResult Function(String sourceName, RequestComponent request,
-            bool deleteRequestBodyComponent, bool deleteResponseComponent)
-        deleteRequest,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String sourceName)? addSource,
-    TResult? Function(String sourceName, String newName)? editSourceName,
-    TResult? Function(String sourceName)? deleteSource,
-    TResult? Function(Component component)? deleteComponent,
-    TResult? Function(String sourceName, RequestComponent request,
-            bool deleteRequestBodyComponent, bool deleteResponseComponent)?
-        deleteRequest,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String sourceName)? addSource,
-    TResult Function(String sourceName, String newName)? editSourceName,
-    TResult Function(String sourceName)? deleteSource,
-    TResult Function(Component component)? deleteComponent,
-    TResult Function(String sourceName, RequestComponent request,
-            bool deleteRequestBodyComponent, bool deleteResponseComponent)?
-        deleteRequest,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(DataComponentsScreenV2IInit value) init,
-    required TResult Function(DataComponentsScreenV2AddSource value) addSource,
-    required TResult Function(DataComponentsScreenV2EditSourceName value)
-        editSourceName,
-    required TResult Function(DataComponentsScreenV2DeleteSource value)
-        deleteSource,
-    required TResult Function(DataComponentsScreenV2DeleteComponent value)
-        deleteComponent,
-    required TResult Function(DataComponentsScreenV2DeleteRequest value)
-        deleteRequest,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DataComponentsScreenV2IInit value)? init,
-    TResult? Function(DataComponentsScreenV2AddSource value)? addSource,
-    TResult? Function(DataComponentsScreenV2EditSourceName value)?
-        editSourceName,
-    TResult? Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
-    TResult? Function(DataComponentsScreenV2DeleteComponent value)?
-        deleteComponent,
-    TResult? Function(DataComponentsScreenV2DeleteRequest value)? deleteRequest,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(DataComponentsScreenV2IInit value)? init,
-    TResult Function(DataComponentsScreenV2AddSource value)? addSource,
-    TResult Function(DataComponentsScreenV2EditSourceName value)?
-        editSourceName,
-    TResult Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
-    TResult Function(DataComponentsScreenV2DeleteComponent value)?
-        deleteComponent,
-    TResult Function(DataComponentsScreenV2DeleteRequest value)? deleteRequest,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $DataComponentsScreenV2EventCopyWith<$Res> {
-  factory $DataComponentsScreenV2EventCopyWith(
-          DataComponentsScreenV2Event value,
-          $Res Function(DataComponentsScreenV2Event) then) =
-      _$DataComponentsScreenV2EventCopyWithImpl<$Res,
-          DataComponentsScreenV2Event>;
-}
-
-/// @nodoc
-class _$DataComponentsScreenV2EventCopyWithImpl<$Res,
-        $Val extends DataComponentsScreenV2Event>
-    implements $DataComponentsScreenV2EventCopyWith<$Res> {
-  _$DataComponentsScreenV2EventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of DataComponentsScreenV2Event
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$DataComponentsScreenV2IInitImplCopyWith<$Res> {
-  factory _$$DataComponentsScreenV2IInitImplCopyWith(
-          _$DataComponentsScreenV2IInitImpl value,
-          $Res Function(_$DataComponentsScreenV2IInitImpl) then) =
-      __$$DataComponentsScreenV2IInitImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$DataComponentsScreenV2IInitImplCopyWithImpl<$Res>
-    extends _$DataComponentsScreenV2EventCopyWithImpl<$Res,
-        _$DataComponentsScreenV2IInitImpl>
-    implements _$$DataComponentsScreenV2IInitImplCopyWith<$Res> {
-  __$$DataComponentsScreenV2IInitImplCopyWithImpl(
-      _$DataComponentsScreenV2IInitImpl _value,
-      $Res Function(_$DataComponentsScreenV2IInitImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of DataComponentsScreenV2Event
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$DataComponentsScreenV2IInitImpl implements DataComponentsScreenV2IInit {
-  const _$DataComponentsScreenV2IInitImpl();
-
-  @override
-  String toString() {
-    return 'DataComponentsScreenV2Event.init()';
-  }
-
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DataComponentsScreenV2IInitImpl);
+            other is DataComponentsScreenV2Event);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String sourceName) addSource,
-    required TResult Function(String sourceName, String newName) editSourceName,
-    required TResult Function(String sourceName) deleteSource,
-    required TResult Function(Component component) deleteComponent,
-    required TResult Function(String sourceName, RequestComponent request,
-            bool deleteRequestBodyComponent, bool deleteResponseComponent)
-        deleteRequest,
-  }) {
-    return init();
+  String toString() {
+    return 'DataComponentsScreenV2Event()';
   }
+}
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String sourceName)? addSource,
-    TResult? Function(String sourceName, String newName)? editSourceName,
-    TResult? Function(String sourceName)? deleteSource,
-    TResult? Function(Component component)? deleteComponent,
-    TResult? Function(String sourceName, RequestComponent request,
-            bool deleteRequestBodyComponent, bool deleteResponseComponent)?
-        deleteRequest,
-  }) {
-    return init?.call();
-  }
+/// @nodoc
+class $DataComponentsScreenV2EventCopyWith<$Res> {
+  $DataComponentsScreenV2EventCopyWith(DataComponentsScreenV2Event _,
+      $Res Function(DataComponentsScreenV2Event) __);
+}
 
-  @override
+/// Adds pattern-matching-related methods to [DataComponentsScreenV2Event].
+extension DataComponentsScreenV2EventPatterns on DataComponentsScreenV2Event {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String sourceName)? addSource,
-    TResult Function(String sourceName, String newName)? editSourceName,
-    TResult Function(String sourceName)? deleteSource,
-    TResult Function(Component component)? deleteComponent,
-    TResult Function(String sourceName, RequestComponent request,
-            bool deleteRequestBodyComponent, bool deleteResponseComponent)?
-        deleteRequest,
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DataComponentsScreenV2IInit value)? init,
+    TResult Function(DataComponentsScreenV2AddSource value)? addSource,
+    TResult Function(DataComponentsScreenV2EditSourceName value)?
+        editSourceName,
+    TResult Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
+    TResult Function(DataComponentsScreenV2DeleteComponent value)?
+        deleteComponent,
+    TResult Function(DataComponentsScreenV2DeleteRequest value)? deleteRequest,
     required TResult orElse(),
   }) {
-    if (init != null) {
-      return init();
+    final _that = this;
+    switch (_that) {
+      case DataComponentsScreenV2IInit() when init != null:
+        return init(_that);
+      case DataComponentsScreenV2AddSource() when addSource != null:
+        return addSource(_that);
+      case DataComponentsScreenV2EditSourceName() when editSourceName != null:
+        return editSourceName(_that);
+      case DataComponentsScreenV2DeleteSource() when deleteSource != null:
+        return deleteSource(_that);
+      case DataComponentsScreenV2DeleteComponent() when deleteComponent != null:
+        return deleteComponent(_that);
+      case DataComponentsScreenV2DeleteRequest() when deleteRequest != null:
+        return deleteRequest(_that);
+      case _:
+        return orElse();
     }
-    return orElse();
   }
 
-  @override
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(DataComponentsScreenV2IInit value) init,
@@ -223,10 +107,37 @@ class _$DataComponentsScreenV2IInitImpl implements DataComponentsScreenV2IInit {
     required TResult Function(DataComponentsScreenV2DeleteRequest value)
         deleteRequest,
   }) {
-    return init(this);
+    final _that = this;
+    switch (_that) {
+      case DataComponentsScreenV2IInit():
+        return init(_that);
+      case DataComponentsScreenV2AddSource():
+        return addSource(_that);
+      case DataComponentsScreenV2EditSourceName():
+        return editSourceName(_that);
+      case DataComponentsScreenV2DeleteSource():
+        return deleteSource(_that);
+      case DataComponentsScreenV2DeleteComponent():
+        return deleteComponent(_that);
+      case DataComponentsScreenV2DeleteRequest():
+        return deleteRequest(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
   }
 
-  @override
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(DataComponentsScreenV2IInit value)? init,
@@ -238,90 +149,198 @@ class _$DataComponentsScreenV2IInitImpl implements DataComponentsScreenV2IInit {
         deleteComponent,
     TResult? Function(DataComponentsScreenV2DeleteRequest value)? deleteRequest,
   }) {
-    return init?.call(this);
+    final _that = this;
+    switch (_that) {
+      case DataComponentsScreenV2IInit() when init != null:
+        return init(_that);
+      case DataComponentsScreenV2AddSource() when addSource != null:
+        return addSource(_that);
+      case DataComponentsScreenV2EditSourceName() when editSourceName != null:
+        return editSourceName(_that);
+      case DataComponentsScreenV2DeleteSource() when deleteSource != null:
+        return deleteSource(_that);
+      case DataComponentsScreenV2DeleteComponent() when deleteComponent != null:
+        return deleteComponent(_that);
+      case DataComponentsScreenV2DeleteRequest() when deleteRequest != null:
+        return deleteRequest(_that);
+      case _:
+        return null;
+    }
   }
 
-  @override
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(DataComponentsScreenV2IInit value)? init,
-    TResult Function(DataComponentsScreenV2AddSource value)? addSource,
-    TResult Function(DataComponentsScreenV2EditSourceName value)?
-        editSourceName,
-    TResult Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
-    TResult Function(DataComponentsScreenV2DeleteComponent value)?
-        deleteComponent,
-    TResult Function(DataComponentsScreenV2DeleteRequest value)? deleteRequest,
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(String sourceName)? addSource,
+    TResult Function(String sourceName, String newName)? editSourceName,
+    TResult Function(String sourceName)? deleteSource,
+    TResult Function(Component component)? deleteComponent,
+    TResult Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent, bool deleteResponseComponent)?
+        deleteRequest,
     required TResult orElse(),
   }) {
-    if (init != null) {
-      return init(this);
+    final _that = this;
+    switch (_that) {
+      case DataComponentsScreenV2IInit() when init != null:
+        return init();
+      case DataComponentsScreenV2AddSource() when addSource != null:
+        return addSource(_that.sourceName);
+      case DataComponentsScreenV2EditSourceName() when editSourceName != null:
+        return editSourceName(_that.sourceName, _that.newName);
+      case DataComponentsScreenV2DeleteSource() when deleteSource != null:
+        return deleteSource(_that.sourceName);
+      case DataComponentsScreenV2DeleteComponent() when deleteComponent != null:
+        return deleteComponent(_that.component);
+      case DataComponentsScreenV2DeleteRequest() when deleteRequest != null:
+        return deleteRequest(_that.sourceName, _that.request,
+            _that.deleteRequestBodyComponent, _that.deleteResponseComponent);
+      case _:
+        return orElse();
     }
-    return orElse();
   }
-}
 
-abstract class DataComponentsScreenV2IInit
-    implements DataComponentsScreenV2Event {
-  const factory DataComponentsScreenV2IInit() =
-      _$DataComponentsScreenV2IInitImpl;
-}
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
 
-/// @nodoc
-abstract class _$$DataComponentsScreenV2AddSourceImplCopyWith<$Res> {
-  factory _$$DataComponentsScreenV2AddSourceImplCopyWith(
-          _$DataComponentsScreenV2AddSourceImpl value,
-          $Res Function(_$DataComponentsScreenV2AddSourceImpl) then) =
-      __$$DataComponentsScreenV2AddSourceImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String sourceName});
-}
-
-/// @nodoc
-class __$$DataComponentsScreenV2AddSourceImplCopyWithImpl<$Res>
-    extends _$DataComponentsScreenV2EventCopyWithImpl<$Res,
-        _$DataComponentsScreenV2AddSourceImpl>
-    implements _$$DataComponentsScreenV2AddSourceImplCopyWith<$Res> {
-  __$$DataComponentsScreenV2AddSourceImplCopyWithImpl(
-      _$DataComponentsScreenV2AddSourceImpl _value,
-      $Res Function(_$DataComponentsScreenV2AddSourceImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of DataComponentsScreenV2Event
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? sourceName = null,
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(String sourceName) addSource,
+    required TResult Function(String sourceName, String newName) editSourceName,
+    required TResult Function(String sourceName) deleteSource,
+    required TResult Function(Component component) deleteComponent,
+    required TResult Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent, bool deleteResponseComponent)
+        deleteRequest,
   }) {
-    return _then(_$DataComponentsScreenV2AddSourceImpl(
-      sourceName: null == sourceName
-          ? _value.sourceName
-          : sourceName // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
+    final _that = this;
+    switch (_that) {
+      case DataComponentsScreenV2IInit():
+        return init();
+      case DataComponentsScreenV2AddSource():
+        return addSource(_that.sourceName);
+      case DataComponentsScreenV2EditSourceName():
+        return editSourceName(_that.sourceName, _that.newName);
+      case DataComponentsScreenV2DeleteSource():
+        return deleteSource(_that.sourceName);
+      case DataComponentsScreenV2DeleteComponent():
+        return deleteComponent(_that.component);
+      case DataComponentsScreenV2DeleteRequest():
+        return deleteRequest(_that.sourceName, _that.request,
+            _that.deleteRequestBodyComponent, _that.deleteResponseComponent);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(String sourceName)? addSource,
+    TResult? Function(String sourceName, String newName)? editSourceName,
+    TResult? Function(String sourceName)? deleteSource,
+    TResult? Function(Component component)? deleteComponent,
+    TResult? Function(String sourceName, RequestComponent request,
+            bool deleteRequestBodyComponent, bool deleteResponseComponent)?
+        deleteRequest,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case DataComponentsScreenV2IInit() when init != null:
+        return init();
+      case DataComponentsScreenV2AddSource() when addSource != null:
+        return addSource(_that.sourceName);
+      case DataComponentsScreenV2EditSourceName() when editSourceName != null:
+        return editSourceName(_that.sourceName, _that.newName);
+      case DataComponentsScreenV2DeleteSource() when deleteSource != null:
+        return deleteSource(_that.sourceName);
+      case DataComponentsScreenV2DeleteComponent() when deleteComponent != null:
+        return deleteComponent(_that.component);
+      case DataComponentsScreenV2DeleteRequest() when deleteRequest != null:
+        return deleteRequest(_that.sourceName, _that.request,
+            _that.deleteRequestBodyComponent, _that.deleteResponseComponent);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 
-class _$DataComponentsScreenV2AddSourceImpl
-    implements DataComponentsScreenV2AddSource {
-  const _$DataComponentsScreenV2AddSourceImpl({required this.sourceName});
-
-  @override
-  final String sourceName;
-
-  @override
-  String toString() {
-    return 'DataComponentsScreenV2Event.addSource(sourceName: $sourceName)';
-  }
+class DataComponentsScreenV2IInit implements DataComponentsScreenV2Event {
+  const DataComponentsScreenV2IInit();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DataComponentsScreenV2AddSourceImpl &&
+            other is DataComponentsScreenV2IInit);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'DataComponentsScreenV2Event.init()';
+  }
+}
+
+/// @nodoc
+
+class DataComponentsScreenV2AddSource implements DataComponentsScreenV2Event {
+  const DataComponentsScreenV2AddSource({required this.sourceName});
+
+  final String sourceName;
+
+  /// Create a copy of DataComponentsScreenV2Event
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DataComponentsScreenV2AddSourceCopyWith<DataComponentsScreenV2AddSource>
+      get copyWith => _$DataComponentsScreenV2AddSourceCopyWithImpl<
+          DataComponentsScreenV2AddSource>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is DataComponentsScreenV2AddSource &&
             (identical(other.sourceName, sourceName) ||
                 other.sourceName == sourceName));
   }
@@ -329,169 +348,41 @@ class _$DataComponentsScreenV2AddSourceImpl
   @override
   int get hashCode => Object.hash(runtimeType, sourceName);
 
-  /// Create a copy of DataComponentsScreenV2Event
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$DataComponentsScreenV2AddSourceImplCopyWith<
-          _$DataComponentsScreenV2AddSourceImpl>
-      get copyWith => __$$DataComponentsScreenV2AddSourceImplCopyWithImpl<
-          _$DataComponentsScreenV2AddSourceImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String sourceName) addSource,
-    required TResult Function(String sourceName, String newName) editSourceName,
-    required TResult Function(String sourceName) deleteSource,
-    required TResult Function(Component component) deleteComponent,
-    required TResult Function(String sourceName, RequestComponent request,
-            bool deleteRequestBodyComponent, bool deleteResponseComponent)
-        deleteRequest,
-  }) {
-    return addSource(sourceName);
+  String toString() {
+    return 'DataComponentsScreenV2Event.addSource(sourceName: $sourceName)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String sourceName)? addSource,
-    TResult? Function(String sourceName, String newName)? editSourceName,
-    TResult? Function(String sourceName)? deleteSource,
-    TResult? Function(Component component)? deleteComponent,
-    TResult? Function(String sourceName, RequestComponent request,
-            bool deleteRequestBodyComponent, bool deleteResponseComponent)?
-        deleteRequest,
-  }) {
-    return addSource?.call(sourceName);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String sourceName)? addSource,
-    TResult Function(String sourceName, String newName)? editSourceName,
-    TResult Function(String sourceName)? deleteSource,
-    TResult Function(Component component)? deleteComponent,
-    TResult Function(String sourceName, RequestComponent request,
-            bool deleteRequestBodyComponent, bool deleteResponseComponent)?
-        deleteRequest,
-    required TResult orElse(),
-  }) {
-    if (addSource != null) {
-      return addSource(sourceName);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(DataComponentsScreenV2IInit value) init,
-    required TResult Function(DataComponentsScreenV2AddSource value) addSource,
-    required TResult Function(DataComponentsScreenV2EditSourceName value)
-        editSourceName,
-    required TResult Function(DataComponentsScreenV2DeleteSource value)
-        deleteSource,
-    required TResult Function(DataComponentsScreenV2DeleteComponent value)
-        deleteComponent,
-    required TResult Function(DataComponentsScreenV2DeleteRequest value)
-        deleteRequest,
-  }) {
-    return addSource(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DataComponentsScreenV2IInit value)? init,
-    TResult? Function(DataComponentsScreenV2AddSource value)? addSource,
-    TResult? Function(DataComponentsScreenV2EditSourceName value)?
-        editSourceName,
-    TResult? Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
-    TResult? Function(DataComponentsScreenV2DeleteComponent value)?
-        deleteComponent,
-    TResult? Function(DataComponentsScreenV2DeleteRequest value)? deleteRequest,
-  }) {
-    return addSource?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(DataComponentsScreenV2IInit value)? init,
-    TResult Function(DataComponentsScreenV2AddSource value)? addSource,
-    TResult Function(DataComponentsScreenV2EditSourceName value)?
-        editSourceName,
-    TResult Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
-    TResult Function(DataComponentsScreenV2DeleteComponent value)?
-        deleteComponent,
-    TResult Function(DataComponentsScreenV2DeleteRequest value)? deleteRequest,
-    required TResult orElse(),
-  }) {
-    if (addSource != null) {
-      return addSource(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class DataComponentsScreenV2AddSource
-    implements DataComponentsScreenV2Event {
-  const factory DataComponentsScreenV2AddSource(
-          {required final String sourceName}) =
-      _$DataComponentsScreenV2AddSourceImpl;
-
-  String get sourceName;
-
-  /// Create a copy of DataComponentsScreenV2Event
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DataComponentsScreenV2AddSourceImplCopyWith<
-          _$DataComponentsScreenV2AddSourceImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DataComponentsScreenV2EditSourceNameImplCopyWith<$Res> {
-  factory _$$DataComponentsScreenV2EditSourceNameImplCopyWith(
-          _$DataComponentsScreenV2EditSourceNameImpl value,
-          $Res Function(_$DataComponentsScreenV2EditSourceNameImpl) then) =
-      __$$DataComponentsScreenV2EditSourceNameImplCopyWithImpl<$Res>;
+abstract mixin class $DataComponentsScreenV2AddSourceCopyWith<$Res>
+    implements $DataComponentsScreenV2EventCopyWith<$Res> {
+  factory $DataComponentsScreenV2AddSourceCopyWith(
+          DataComponentsScreenV2AddSource value,
+          $Res Function(DataComponentsScreenV2AddSource) _then) =
+      _$DataComponentsScreenV2AddSourceCopyWithImpl;
   @useResult
-  $Res call({String sourceName, String newName});
+  $Res call({String sourceName});
 }
 
 /// @nodoc
-class __$$DataComponentsScreenV2EditSourceNameImplCopyWithImpl<$Res>
-    extends _$DataComponentsScreenV2EventCopyWithImpl<$Res,
-        _$DataComponentsScreenV2EditSourceNameImpl>
-    implements _$$DataComponentsScreenV2EditSourceNameImplCopyWith<$Res> {
-  __$$DataComponentsScreenV2EditSourceNameImplCopyWithImpl(
-      _$DataComponentsScreenV2EditSourceNameImpl _value,
-      $Res Function(_$DataComponentsScreenV2EditSourceNameImpl) _then)
-      : super(_value, _then);
+class _$DataComponentsScreenV2AddSourceCopyWithImpl<$Res>
+    implements $DataComponentsScreenV2AddSourceCopyWith<$Res> {
+  _$DataComponentsScreenV2AddSourceCopyWithImpl(this._self, this._then);
+
+  final DataComponentsScreenV2AddSource _self;
+  final $Res Function(DataComponentsScreenV2AddSource) _then;
 
   /// Create a copy of DataComponentsScreenV2Event
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? sourceName = null,
-    Object? newName = null,
   }) {
-    return _then(_$DataComponentsScreenV2EditSourceNameImpl(
+    return _then(DataComponentsScreenV2AddSource(
       sourceName: null == sourceName
-          ? _value.sourceName
+          ? _self.sourceName
           : sourceName // ignore: cast_nullable_to_non_nullable
-              as String,
-      newName: null == newName
-          ? _value.newName
-          : newName // ignore: cast_nullable_to_non_nullable
               as String,
     ));
   }
@@ -499,26 +390,28 @@ class __$$DataComponentsScreenV2EditSourceNameImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DataComponentsScreenV2EditSourceNameImpl
-    implements DataComponentsScreenV2EditSourceName {
-  const _$DataComponentsScreenV2EditSourceNameImpl(
+class DataComponentsScreenV2EditSourceName
+    implements DataComponentsScreenV2Event {
+  const DataComponentsScreenV2EditSourceName(
       {required this.sourceName, required this.newName});
 
-  @override
   final String sourceName;
-  @override
   final String newName;
 
-  @override
-  String toString() {
-    return 'DataComponentsScreenV2Event.editSourceName(sourceName: $sourceName, newName: $newName)';
-  }
+  /// Create a copy of DataComponentsScreenV2Event
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DataComponentsScreenV2EditSourceNameCopyWith<
+          DataComponentsScreenV2EditSourceName>
+      get copyWith => _$DataComponentsScreenV2EditSourceNameCopyWithImpl<
+          DataComponentsScreenV2EditSourceName>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DataComponentsScreenV2EditSourceNameImpl &&
+            other is DataComponentsScreenV2EditSourceName &&
             (identical(other.sourceName, sourceName) ||
                 other.sourceName == sourceName) &&
             (identical(other.newName, newName) || other.newName == newName));
@@ -527,164 +420,114 @@ class _$DataComponentsScreenV2EditSourceNameImpl
   @override
   int get hashCode => Object.hash(runtimeType, sourceName, newName);
 
-  /// Create a copy of DataComponentsScreenV2Event
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$DataComponentsScreenV2EditSourceNameImplCopyWith<
-          _$DataComponentsScreenV2EditSourceNameImpl>
-      get copyWith => __$$DataComponentsScreenV2EditSourceNameImplCopyWithImpl<
-          _$DataComponentsScreenV2EditSourceNameImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String sourceName) addSource,
-    required TResult Function(String sourceName, String newName) editSourceName,
-    required TResult Function(String sourceName) deleteSource,
-    required TResult Function(Component component) deleteComponent,
-    required TResult Function(String sourceName, RequestComponent request,
-            bool deleteRequestBodyComponent, bool deleteResponseComponent)
-        deleteRequest,
-  }) {
-    return editSourceName(sourceName, newName);
+  String toString() {
+    return 'DataComponentsScreenV2Event.editSourceName(sourceName: $sourceName, newName: $newName)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String sourceName)? addSource,
-    TResult? Function(String sourceName, String newName)? editSourceName,
-    TResult? Function(String sourceName)? deleteSource,
-    TResult? Function(Component component)? deleteComponent,
-    TResult? Function(String sourceName, RequestComponent request,
-            bool deleteRequestBodyComponent, bool deleteResponseComponent)?
-        deleteRequest,
-  }) {
-    return editSourceName?.call(sourceName, newName);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String sourceName)? addSource,
-    TResult Function(String sourceName, String newName)? editSourceName,
-    TResult Function(String sourceName)? deleteSource,
-    TResult Function(Component component)? deleteComponent,
-    TResult Function(String sourceName, RequestComponent request,
-            bool deleteRequestBodyComponent, bool deleteResponseComponent)?
-        deleteRequest,
-    required TResult orElse(),
-  }) {
-    if (editSourceName != null) {
-      return editSourceName(sourceName, newName);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(DataComponentsScreenV2IInit value) init,
-    required TResult Function(DataComponentsScreenV2AddSource value) addSource,
-    required TResult Function(DataComponentsScreenV2EditSourceName value)
-        editSourceName,
-    required TResult Function(DataComponentsScreenV2DeleteSource value)
-        deleteSource,
-    required TResult Function(DataComponentsScreenV2DeleteComponent value)
-        deleteComponent,
-    required TResult Function(DataComponentsScreenV2DeleteRequest value)
-        deleteRequest,
-  }) {
-    return editSourceName(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DataComponentsScreenV2IInit value)? init,
-    TResult? Function(DataComponentsScreenV2AddSource value)? addSource,
-    TResult? Function(DataComponentsScreenV2EditSourceName value)?
-        editSourceName,
-    TResult? Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
-    TResult? Function(DataComponentsScreenV2DeleteComponent value)?
-        deleteComponent,
-    TResult? Function(DataComponentsScreenV2DeleteRequest value)? deleteRequest,
-  }) {
-    return editSourceName?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(DataComponentsScreenV2IInit value)? init,
-    TResult Function(DataComponentsScreenV2AddSource value)? addSource,
-    TResult Function(DataComponentsScreenV2EditSourceName value)?
-        editSourceName,
-    TResult Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
-    TResult Function(DataComponentsScreenV2DeleteComponent value)?
-        deleteComponent,
-    TResult Function(DataComponentsScreenV2DeleteRequest value)? deleteRequest,
-    required TResult orElse(),
-  }) {
-    if (editSourceName != null) {
-      return editSourceName(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class DataComponentsScreenV2EditSourceName
-    implements DataComponentsScreenV2Event {
-  const factory DataComponentsScreenV2EditSourceName(
-          {required final String sourceName, required final String newName}) =
-      _$DataComponentsScreenV2EditSourceNameImpl;
-
-  String get sourceName;
-  String get newName;
-
-  /// Create a copy of DataComponentsScreenV2Event
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DataComponentsScreenV2EditSourceNameImplCopyWith<
-          _$DataComponentsScreenV2EditSourceNameImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DataComponentsScreenV2DeleteSourceImplCopyWith<$Res> {
-  factory _$$DataComponentsScreenV2DeleteSourceImplCopyWith(
-          _$DataComponentsScreenV2DeleteSourceImpl value,
-          $Res Function(_$DataComponentsScreenV2DeleteSourceImpl) then) =
-      __$$DataComponentsScreenV2DeleteSourceImplCopyWithImpl<$Res>;
+abstract mixin class $DataComponentsScreenV2EditSourceNameCopyWith<$Res>
+    implements $DataComponentsScreenV2EventCopyWith<$Res> {
+  factory $DataComponentsScreenV2EditSourceNameCopyWith(
+          DataComponentsScreenV2EditSourceName value,
+          $Res Function(DataComponentsScreenV2EditSourceName) _then) =
+      _$DataComponentsScreenV2EditSourceNameCopyWithImpl;
+  @useResult
+  $Res call({String sourceName, String newName});
+}
+
+/// @nodoc
+class _$DataComponentsScreenV2EditSourceNameCopyWithImpl<$Res>
+    implements $DataComponentsScreenV2EditSourceNameCopyWith<$Res> {
+  _$DataComponentsScreenV2EditSourceNameCopyWithImpl(this._self, this._then);
+
+  final DataComponentsScreenV2EditSourceName _self;
+  final $Res Function(DataComponentsScreenV2EditSourceName) _then;
+
+  /// Create a copy of DataComponentsScreenV2Event
+  /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? sourceName = null,
+    Object? newName = null,
+  }) {
+    return _then(DataComponentsScreenV2EditSourceName(
+      sourceName: null == sourceName
+          ? _self.sourceName
+          : sourceName // ignore: cast_nullable_to_non_nullable
+              as String,
+      newName: null == newName
+          ? _self.newName
+          : newName // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class DataComponentsScreenV2DeleteSource
+    implements DataComponentsScreenV2Event {
+  const DataComponentsScreenV2DeleteSource({required this.sourceName});
+
+  final String sourceName;
+
+  /// Create a copy of DataComponentsScreenV2Event
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DataComponentsScreenV2DeleteSourceCopyWith<
+          DataComponentsScreenV2DeleteSource>
+      get copyWith => _$DataComponentsScreenV2DeleteSourceCopyWithImpl<
+          DataComponentsScreenV2DeleteSource>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is DataComponentsScreenV2DeleteSource &&
+            (identical(other.sourceName, sourceName) ||
+                other.sourceName == sourceName));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, sourceName);
+
+  @override
+  String toString() {
+    return 'DataComponentsScreenV2Event.deleteSource(sourceName: $sourceName)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $DataComponentsScreenV2DeleteSourceCopyWith<$Res>
+    implements $DataComponentsScreenV2EventCopyWith<$Res> {
+  factory $DataComponentsScreenV2DeleteSourceCopyWith(
+          DataComponentsScreenV2DeleteSource value,
+          $Res Function(DataComponentsScreenV2DeleteSource) _then) =
+      _$DataComponentsScreenV2DeleteSourceCopyWithImpl;
   @useResult
   $Res call({String sourceName});
 }
 
 /// @nodoc
-class __$$DataComponentsScreenV2DeleteSourceImplCopyWithImpl<$Res>
-    extends _$DataComponentsScreenV2EventCopyWithImpl<$Res,
-        _$DataComponentsScreenV2DeleteSourceImpl>
-    implements _$$DataComponentsScreenV2DeleteSourceImplCopyWith<$Res> {
-  __$$DataComponentsScreenV2DeleteSourceImplCopyWithImpl(
-      _$DataComponentsScreenV2DeleteSourceImpl _value,
-      $Res Function(_$DataComponentsScreenV2DeleteSourceImpl) _then)
-      : super(_value, _then);
+class _$DataComponentsScreenV2DeleteSourceCopyWithImpl<$Res>
+    implements $DataComponentsScreenV2DeleteSourceCopyWith<$Res> {
+  _$DataComponentsScreenV2DeleteSourceCopyWithImpl(this._self, this._then);
+
+  final DataComponentsScreenV2DeleteSource _self;
+  final $Res Function(DataComponentsScreenV2DeleteSource) _then;
 
   /// Create a copy of DataComponentsScreenV2Event
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? sourceName = null,
   }) {
-    return _then(_$DataComponentsScreenV2DeleteSourceImpl(
+    return _then(DataComponentsScreenV2DeleteSource(
       sourceName: null == sourceName
-          ? _value.sourceName
+          ? _self.sourceName
           : sourceName // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -693,187 +536,67 @@ class __$$DataComponentsScreenV2DeleteSourceImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DataComponentsScreenV2DeleteSourceImpl
-    implements DataComponentsScreenV2DeleteSource {
-  const _$DataComponentsScreenV2DeleteSourceImpl({required this.sourceName});
+class DataComponentsScreenV2DeleteComponent
+    implements DataComponentsScreenV2Event {
+  const DataComponentsScreenV2DeleteComponent({required this.component});
 
-  @override
-  final String sourceName;
+  final Component component;
 
-  @override
-  String toString() {
-    return 'DataComponentsScreenV2Event.deleteSource(sourceName: $sourceName)';
-  }
+  /// Create a copy of DataComponentsScreenV2Event
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DataComponentsScreenV2DeleteComponentCopyWith<
+          DataComponentsScreenV2DeleteComponent>
+      get copyWith => _$DataComponentsScreenV2DeleteComponentCopyWithImpl<
+          DataComponentsScreenV2DeleteComponent>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DataComponentsScreenV2DeleteSourceImpl &&
-            (identical(other.sourceName, sourceName) ||
-                other.sourceName == sourceName));
+            other is DataComponentsScreenV2DeleteComponent &&
+            (identical(other.component, component) ||
+                other.component == component));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, sourceName);
-
-  /// Create a copy of DataComponentsScreenV2Event
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$DataComponentsScreenV2DeleteSourceImplCopyWith<
-          _$DataComponentsScreenV2DeleteSourceImpl>
-      get copyWith => __$$DataComponentsScreenV2DeleteSourceImplCopyWithImpl<
-          _$DataComponentsScreenV2DeleteSourceImpl>(this, _$identity);
+  int get hashCode => Object.hash(runtimeType, component);
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String sourceName) addSource,
-    required TResult Function(String sourceName, String newName) editSourceName,
-    required TResult Function(String sourceName) deleteSource,
-    required TResult Function(Component component) deleteComponent,
-    required TResult Function(String sourceName, RequestComponent request,
-            bool deleteRequestBodyComponent, bool deleteResponseComponent)
-        deleteRequest,
-  }) {
-    return deleteSource(sourceName);
+  String toString() {
+    return 'DataComponentsScreenV2Event.deleteComponent(component: $component)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String sourceName)? addSource,
-    TResult? Function(String sourceName, String newName)? editSourceName,
-    TResult? Function(String sourceName)? deleteSource,
-    TResult? Function(Component component)? deleteComponent,
-    TResult? Function(String sourceName, RequestComponent request,
-            bool deleteRequestBodyComponent, bool deleteResponseComponent)?
-        deleteRequest,
-  }) {
-    return deleteSource?.call(sourceName);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String sourceName)? addSource,
-    TResult Function(String sourceName, String newName)? editSourceName,
-    TResult Function(String sourceName)? deleteSource,
-    TResult Function(Component component)? deleteComponent,
-    TResult Function(String sourceName, RequestComponent request,
-            bool deleteRequestBodyComponent, bool deleteResponseComponent)?
-        deleteRequest,
-    required TResult orElse(),
-  }) {
-    if (deleteSource != null) {
-      return deleteSource(sourceName);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(DataComponentsScreenV2IInit value) init,
-    required TResult Function(DataComponentsScreenV2AddSource value) addSource,
-    required TResult Function(DataComponentsScreenV2EditSourceName value)
-        editSourceName,
-    required TResult Function(DataComponentsScreenV2DeleteSource value)
-        deleteSource,
-    required TResult Function(DataComponentsScreenV2DeleteComponent value)
-        deleteComponent,
-    required TResult Function(DataComponentsScreenV2DeleteRequest value)
-        deleteRequest,
-  }) {
-    return deleteSource(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DataComponentsScreenV2IInit value)? init,
-    TResult? Function(DataComponentsScreenV2AddSource value)? addSource,
-    TResult? Function(DataComponentsScreenV2EditSourceName value)?
-        editSourceName,
-    TResult? Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
-    TResult? Function(DataComponentsScreenV2DeleteComponent value)?
-        deleteComponent,
-    TResult? Function(DataComponentsScreenV2DeleteRequest value)? deleteRequest,
-  }) {
-    return deleteSource?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(DataComponentsScreenV2IInit value)? init,
-    TResult Function(DataComponentsScreenV2AddSource value)? addSource,
-    TResult Function(DataComponentsScreenV2EditSourceName value)?
-        editSourceName,
-    TResult Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
-    TResult Function(DataComponentsScreenV2DeleteComponent value)?
-        deleteComponent,
-    TResult Function(DataComponentsScreenV2DeleteRequest value)? deleteRequest,
-    required TResult orElse(),
-  }) {
-    if (deleteSource != null) {
-      return deleteSource(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class DataComponentsScreenV2DeleteSource
-    implements DataComponentsScreenV2Event {
-  const factory DataComponentsScreenV2DeleteSource(
-          {required final String sourceName}) =
-      _$DataComponentsScreenV2DeleteSourceImpl;
-
-  String get sourceName;
-
-  /// Create a copy of DataComponentsScreenV2Event
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DataComponentsScreenV2DeleteSourceImplCopyWith<
-          _$DataComponentsScreenV2DeleteSourceImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$DataComponentsScreenV2DeleteComponentImplCopyWith<$Res> {
-  factory _$$DataComponentsScreenV2DeleteComponentImplCopyWith(
-          _$DataComponentsScreenV2DeleteComponentImpl value,
-          $Res Function(_$DataComponentsScreenV2DeleteComponentImpl) then) =
-      __$$DataComponentsScreenV2DeleteComponentImplCopyWithImpl<$Res>;
+abstract mixin class $DataComponentsScreenV2DeleteComponentCopyWith<$Res>
+    implements $DataComponentsScreenV2EventCopyWith<$Res> {
+  factory $DataComponentsScreenV2DeleteComponentCopyWith(
+          DataComponentsScreenV2DeleteComponent value,
+          $Res Function(DataComponentsScreenV2DeleteComponent) _then) =
+      _$DataComponentsScreenV2DeleteComponentCopyWithImpl;
   @useResult
   $Res call({Component component});
 }
 
 /// @nodoc
-class __$$DataComponentsScreenV2DeleteComponentImplCopyWithImpl<$Res>
-    extends _$DataComponentsScreenV2EventCopyWithImpl<$Res,
-        _$DataComponentsScreenV2DeleteComponentImpl>
-    implements _$$DataComponentsScreenV2DeleteComponentImplCopyWith<$Res> {
-  __$$DataComponentsScreenV2DeleteComponentImplCopyWithImpl(
-      _$DataComponentsScreenV2DeleteComponentImpl _value,
-      $Res Function(_$DataComponentsScreenV2DeleteComponentImpl) _then)
-      : super(_value, _then);
+class _$DataComponentsScreenV2DeleteComponentCopyWithImpl<$Res>
+    implements $DataComponentsScreenV2DeleteComponentCopyWith<$Res> {
+  _$DataComponentsScreenV2DeleteComponentCopyWithImpl(this._self, this._then);
+
+  final DataComponentsScreenV2DeleteComponent _self;
+  final $Res Function(DataComponentsScreenV2DeleteComponent) _then;
 
   /// Create a copy of DataComponentsScreenV2Event
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? component = null,
   }) {
-    return _then(_$DataComponentsScreenV2DeleteComponentImpl(
+    return _then(DataComponentsScreenV2DeleteComponent(
       component: null == component
-          ? _value.component
+          ? _self.component
           : component // ignore: cast_nullable_to_non_nullable
               as Component,
     ));
@@ -882,255 +605,35 @@ class __$$DataComponentsScreenV2DeleteComponentImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$DataComponentsScreenV2DeleteComponentImpl
-    implements DataComponentsScreenV2DeleteComponent {
-  const _$DataComponentsScreenV2DeleteComponentImpl({required this.component});
-
-  @override
-  final Component component;
-
-  @override
-  String toString() {
-    return 'DataComponentsScreenV2Event.deleteComponent(component: $component)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$DataComponentsScreenV2DeleteComponentImpl &&
-            (identical(other.component, component) ||
-                other.component == component));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, component);
-
-  /// Create a copy of DataComponentsScreenV2Event
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$DataComponentsScreenV2DeleteComponentImplCopyWith<
-          _$DataComponentsScreenV2DeleteComponentImpl>
-      get copyWith => __$$DataComponentsScreenV2DeleteComponentImplCopyWithImpl<
-          _$DataComponentsScreenV2DeleteComponentImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String sourceName) addSource,
-    required TResult Function(String sourceName, String newName) editSourceName,
-    required TResult Function(String sourceName) deleteSource,
-    required TResult Function(Component component) deleteComponent,
-    required TResult Function(String sourceName, RequestComponent request,
-            bool deleteRequestBodyComponent, bool deleteResponseComponent)
-        deleteRequest,
-  }) {
-    return deleteComponent(component);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String sourceName)? addSource,
-    TResult? Function(String sourceName, String newName)? editSourceName,
-    TResult? Function(String sourceName)? deleteSource,
-    TResult? Function(Component component)? deleteComponent,
-    TResult? Function(String sourceName, RequestComponent request,
-            bool deleteRequestBodyComponent, bool deleteResponseComponent)?
-        deleteRequest,
-  }) {
-    return deleteComponent?.call(component);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String sourceName)? addSource,
-    TResult Function(String sourceName, String newName)? editSourceName,
-    TResult Function(String sourceName)? deleteSource,
-    TResult Function(Component component)? deleteComponent,
-    TResult Function(String sourceName, RequestComponent request,
-            bool deleteRequestBodyComponent, bool deleteResponseComponent)?
-        deleteRequest,
-    required TResult orElse(),
-  }) {
-    if (deleteComponent != null) {
-      return deleteComponent(component);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(DataComponentsScreenV2IInit value) init,
-    required TResult Function(DataComponentsScreenV2AddSource value) addSource,
-    required TResult Function(DataComponentsScreenV2EditSourceName value)
-        editSourceName,
-    required TResult Function(DataComponentsScreenV2DeleteSource value)
-        deleteSource,
-    required TResult Function(DataComponentsScreenV2DeleteComponent value)
-        deleteComponent,
-    required TResult Function(DataComponentsScreenV2DeleteRequest value)
-        deleteRequest,
-  }) {
-    return deleteComponent(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DataComponentsScreenV2IInit value)? init,
-    TResult? Function(DataComponentsScreenV2AddSource value)? addSource,
-    TResult? Function(DataComponentsScreenV2EditSourceName value)?
-        editSourceName,
-    TResult? Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
-    TResult? Function(DataComponentsScreenV2DeleteComponent value)?
-        deleteComponent,
-    TResult? Function(DataComponentsScreenV2DeleteRequest value)? deleteRequest,
-  }) {
-    return deleteComponent?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(DataComponentsScreenV2IInit value)? init,
-    TResult Function(DataComponentsScreenV2AddSource value)? addSource,
-    TResult Function(DataComponentsScreenV2EditSourceName value)?
-        editSourceName,
-    TResult Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
-    TResult Function(DataComponentsScreenV2DeleteComponent value)?
-        deleteComponent,
-    TResult Function(DataComponentsScreenV2DeleteRequest value)? deleteRequest,
-    required TResult orElse(),
-  }) {
-    if (deleteComponent != null) {
-      return deleteComponent(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class DataComponentsScreenV2DeleteComponent
+class DataComponentsScreenV2DeleteRequest
     implements DataComponentsScreenV2Event {
-  const factory DataComponentsScreenV2DeleteComponent(
-          {required final Component component}) =
-      _$DataComponentsScreenV2DeleteComponentImpl;
-
-  Component get component;
-
-  /// Create a copy of DataComponentsScreenV2Event
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DataComponentsScreenV2DeleteComponentImplCopyWith<
-          _$DataComponentsScreenV2DeleteComponentImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$DataComponentsScreenV2DeleteRequestImplCopyWith<$Res> {
-  factory _$$DataComponentsScreenV2DeleteRequestImplCopyWith(
-          _$DataComponentsScreenV2DeleteRequestImpl value,
-          $Res Function(_$DataComponentsScreenV2DeleteRequestImpl) then) =
-      __$$DataComponentsScreenV2DeleteRequestImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call(
-      {String sourceName,
-      RequestComponent request,
-      bool deleteRequestBodyComponent,
-      bool deleteResponseComponent});
-
-  $RequestComponentCopyWith<$Res> get request;
-}
-
-/// @nodoc
-class __$$DataComponentsScreenV2DeleteRequestImplCopyWithImpl<$Res>
-    extends _$DataComponentsScreenV2EventCopyWithImpl<$Res,
-        _$DataComponentsScreenV2DeleteRequestImpl>
-    implements _$$DataComponentsScreenV2DeleteRequestImplCopyWith<$Res> {
-  __$$DataComponentsScreenV2DeleteRequestImplCopyWithImpl(
-      _$DataComponentsScreenV2DeleteRequestImpl _value,
-      $Res Function(_$DataComponentsScreenV2DeleteRequestImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of DataComponentsScreenV2Event
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? sourceName = null,
-    Object? request = null,
-    Object? deleteRequestBodyComponent = null,
-    Object? deleteResponseComponent = null,
-  }) {
-    return _then(_$DataComponentsScreenV2DeleteRequestImpl(
-      sourceName: null == sourceName
-          ? _value.sourceName
-          : sourceName // ignore: cast_nullable_to_non_nullable
-              as String,
-      request: null == request
-          ? _value.request
-          : request // ignore: cast_nullable_to_non_nullable
-              as RequestComponent,
-      deleteRequestBodyComponent: null == deleteRequestBodyComponent
-          ? _value.deleteRequestBodyComponent
-          : deleteRequestBodyComponent // ignore: cast_nullable_to_non_nullable
-              as bool,
-      deleteResponseComponent: null == deleteResponseComponent
-          ? _value.deleteResponseComponent
-          : deleteResponseComponent // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
-  }
-
-  /// Create a copy of DataComponentsScreenV2Event
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $RequestComponentCopyWith<$Res> get request {
-    return $RequestComponentCopyWith<$Res>(_value.request, (value) {
-      return _then(_value.copyWith(request: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$DataComponentsScreenV2DeleteRequestImpl
-    implements DataComponentsScreenV2DeleteRequest {
-  const _$DataComponentsScreenV2DeleteRequestImpl(
+  const DataComponentsScreenV2DeleteRequest(
       {required this.sourceName,
       required this.request,
       this.deleteRequestBodyComponent = false,
       this.deleteResponseComponent = false});
 
-  @override
   final String sourceName;
-  @override
   final RequestComponent request;
-  @override
   @JsonKey()
   final bool deleteRequestBodyComponent;
-  @override
   @JsonKey()
   final bool deleteResponseComponent;
 
-  @override
-  String toString() {
-    return 'DataComponentsScreenV2Event.deleteRequest(sourceName: $sourceName, request: $request, deleteRequestBodyComponent: $deleteRequestBodyComponent, deleteResponseComponent: $deleteResponseComponent)';
-  }
+  /// Create a copy of DataComponentsScreenV2Event
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DataComponentsScreenV2DeleteRequestCopyWith<
+          DataComponentsScreenV2DeleteRequest>
+      get copyWith => _$DataComponentsScreenV2DeleteRequestCopyWithImpl<
+          DataComponentsScreenV2DeleteRequest>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DataComponentsScreenV2DeleteRequestImpl &&
+            other is DataComponentsScreenV2DeleteRequest &&
             (identical(other.sourceName, sourceName) ||
                 other.sourceName == sourceName) &&
             (identical(other.request, request) || other.request == request) &&
@@ -1147,239 +650,122 @@ class _$DataComponentsScreenV2DeleteRequestImpl
   int get hashCode => Object.hash(runtimeType, sourceName, request,
       deleteRequestBodyComponent, deleteResponseComponent);
 
-  /// Create a copy of DataComponentsScreenV2Event
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$DataComponentsScreenV2DeleteRequestImplCopyWith<
-          _$DataComponentsScreenV2DeleteRequestImpl>
-      get copyWith => __$$DataComponentsScreenV2DeleteRequestImplCopyWithImpl<
-          _$DataComponentsScreenV2DeleteRequestImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String sourceName) addSource,
-    required TResult Function(String sourceName, String newName) editSourceName,
-    required TResult Function(String sourceName) deleteSource,
-    required TResult Function(Component component) deleteComponent,
-    required TResult Function(String sourceName, RequestComponent request,
-            bool deleteRequestBodyComponent, bool deleteResponseComponent)
-        deleteRequest,
-  }) {
-    return deleteRequest(sourceName, request, deleteRequestBodyComponent,
-        deleteResponseComponent);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String sourceName)? addSource,
-    TResult? Function(String sourceName, String newName)? editSourceName,
-    TResult? Function(String sourceName)? deleteSource,
-    TResult? Function(Component component)? deleteComponent,
-    TResult? Function(String sourceName, RequestComponent request,
-            bool deleteRequestBodyComponent, bool deleteResponseComponent)?
-        deleteRequest,
-  }) {
-    return deleteRequest?.call(sourceName, request, deleteRequestBodyComponent,
-        deleteResponseComponent);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String sourceName)? addSource,
-    TResult Function(String sourceName, String newName)? editSourceName,
-    TResult Function(String sourceName)? deleteSource,
-    TResult Function(Component component)? deleteComponent,
-    TResult Function(String sourceName, RequestComponent request,
-            bool deleteRequestBodyComponent, bool deleteResponseComponent)?
-        deleteRequest,
-    required TResult orElse(),
-  }) {
-    if (deleteRequest != null) {
-      return deleteRequest(sourceName, request, deleteRequestBodyComponent,
-          deleteResponseComponent);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(DataComponentsScreenV2IInit value) init,
-    required TResult Function(DataComponentsScreenV2AddSource value) addSource,
-    required TResult Function(DataComponentsScreenV2EditSourceName value)
-        editSourceName,
-    required TResult Function(DataComponentsScreenV2DeleteSource value)
-        deleteSource,
-    required TResult Function(DataComponentsScreenV2DeleteComponent value)
-        deleteComponent,
-    required TResult Function(DataComponentsScreenV2DeleteRequest value)
-        deleteRequest,
-  }) {
-    return deleteRequest(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DataComponentsScreenV2IInit value)? init,
-    TResult? Function(DataComponentsScreenV2AddSource value)? addSource,
-    TResult? Function(DataComponentsScreenV2EditSourceName value)?
-        editSourceName,
-    TResult? Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
-    TResult? Function(DataComponentsScreenV2DeleteComponent value)?
-        deleteComponent,
-    TResult? Function(DataComponentsScreenV2DeleteRequest value)? deleteRequest,
-  }) {
-    return deleteRequest?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(DataComponentsScreenV2IInit value)? init,
-    TResult Function(DataComponentsScreenV2AddSource value)? addSource,
-    TResult Function(DataComponentsScreenV2EditSourceName value)?
-        editSourceName,
-    TResult Function(DataComponentsScreenV2DeleteSource value)? deleteSource,
-    TResult Function(DataComponentsScreenV2DeleteComponent value)?
-        deleteComponent,
-    TResult Function(DataComponentsScreenV2DeleteRequest value)? deleteRequest,
-    required TResult orElse(),
-  }) {
-    if (deleteRequest != null) {
-      return deleteRequest(this);
-    }
-    return orElse();
+  String toString() {
+    return 'DataComponentsScreenV2Event.deleteRequest(sourceName: $sourceName, request: $request, deleteRequestBodyComponent: $deleteRequestBodyComponent, deleteResponseComponent: $deleteResponseComponent)';
   }
 }
 
-abstract class DataComponentsScreenV2DeleteRequest
-    implements DataComponentsScreenV2Event {
-  const factory DataComponentsScreenV2DeleteRequest(
-          {required final String sourceName,
-          required final RequestComponent request,
-          final bool deleteRequestBodyComponent,
-          final bool deleteResponseComponent}) =
-      _$DataComponentsScreenV2DeleteRequestImpl;
+/// @nodoc
+abstract mixin class $DataComponentsScreenV2DeleteRequestCopyWith<$Res>
+    implements $DataComponentsScreenV2EventCopyWith<$Res> {
+  factory $DataComponentsScreenV2DeleteRequestCopyWith(
+          DataComponentsScreenV2DeleteRequest value,
+          $Res Function(DataComponentsScreenV2DeleteRequest) _then) =
+      _$DataComponentsScreenV2DeleteRequestCopyWithImpl;
+  @useResult
+  $Res call(
+      {String sourceName,
+      RequestComponent request,
+      bool deleteRequestBodyComponent,
+      bool deleteResponseComponent});
 
-  String get sourceName;
-  RequestComponent get request;
-  bool get deleteRequestBodyComponent;
-  bool get deleteResponseComponent;
+  $RequestComponentCopyWith<$Res> get request;
+}
+
+/// @nodoc
+class _$DataComponentsScreenV2DeleteRequestCopyWithImpl<$Res>
+    implements $DataComponentsScreenV2DeleteRequestCopyWith<$Res> {
+  _$DataComponentsScreenV2DeleteRequestCopyWithImpl(this._self, this._then);
+
+  final DataComponentsScreenV2DeleteRequest _self;
+  final $Res Function(DataComponentsScreenV2DeleteRequest) _then;
 
   /// Create a copy of DataComponentsScreenV2Event
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DataComponentsScreenV2DeleteRequestImplCopyWith<
-          _$DataComponentsScreenV2DeleteRequestImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? sourceName = null,
+    Object? request = null,
+    Object? deleteRequestBodyComponent = null,
+    Object? deleteResponseComponent = null,
+  }) {
+    return _then(DataComponentsScreenV2DeleteRequest(
+      sourceName: null == sourceName
+          ? _self.sourceName
+          : sourceName // ignore: cast_nullable_to_non_nullable
+              as String,
+      request: null == request
+          ? _self.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as RequestComponent,
+      deleteRequestBodyComponent: null == deleteRequestBodyComponent
+          ? _self.deleteRequestBodyComponent
+          : deleteRequestBodyComponent // ignore: cast_nullable_to_non_nullable
+              as bool,
+      deleteResponseComponent: null == deleteResponseComponent
+          ? _self.deleteResponseComponent
+          : deleteResponseComponent // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
+  }
+
+  /// Create a copy of DataComponentsScreenV2Event
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $RequestComponentCopyWith<$Res> get request {
+    return $RequestComponentCopyWith<$Res>(_self.request, (value) {
+      return _then(_self.copyWith(request: value));
+    });
+  }
 }
 
 /// @nodoc
 mixin _$DataComponentsScreenV2SR {
-  String get message => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String message) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String message)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Error value) error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Error value)? error,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  String get message;
 
   /// Create a copy of DataComponentsScreenV2SR
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $DataComponentsScreenV2SRCopyWith<DataComponentsScreenV2SR> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $DataComponentsScreenV2SRCopyWith<$Res> {
-  factory $DataComponentsScreenV2SRCopyWith(DataComponentsScreenV2SR value,
-          $Res Function(DataComponentsScreenV2SR) then) =
-      _$DataComponentsScreenV2SRCopyWithImpl<$Res, DataComponentsScreenV2SR>;
-  @useResult
-  $Res call({String message});
-}
-
-/// @nodoc
-class _$DataComponentsScreenV2SRCopyWithImpl<$Res,
-        $Val extends DataComponentsScreenV2SR>
-    implements $DataComponentsScreenV2SRCopyWith<$Res> {
-  _$DataComponentsScreenV2SRCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of DataComponentsScreenV2SR
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $DataComponentsScreenV2SRCopyWith<DataComponentsScreenV2SR> get copyWith =>
+      _$DataComponentsScreenV2SRCopyWithImpl<DataComponentsScreenV2SR>(
+          this as DataComponentsScreenV2SR, _$identity);
+
   @override
-  $Res call({
-    Object? message = null,
-  }) {
-    return _then(_value.copyWith(
-      message: null == message
-          ? _value.message
-          : message // ignore: cast_nullable_to_non_nullable
-              as String,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is DataComponentsScreenV2SR &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @override
+  String toString() {
+    return 'DataComponentsScreenV2SR(message: $message)';
   }
 }
 
 /// @nodoc
-abstract class _$$ErrorImplCopyWith<$Res>
-    implements $DataComponentsScreenV2SRCopyWith<$Res> {
-  factory _$$ErrorImplCopyWith(
-          _$ErrorImpl value, $Res Function(_$ErrorImpl) then) =
-      __$$ErrorImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $DataComponentsScreenV2SRCopyWith<$Res> {
+  factory $DataComponentsScreenV2SRCopyWith(DataComponentsScreenV2SR value,
+          $Res Function(DataComponentsScreenV2SR) _then) =
+      _$DataComponentsScreenV2SRCopyWithImpl;
   @useResult
   $Res call({String message});
 }
 
 /// @nodoc
-class __$$ErrorImplCopyWithImpl<$Res>
-    extends _$DataComponentsScreenV2SRCopyWithImpl<$Res, _$ErrorImpl>
-    implements _$$ErrorImplCopyWith<$Res> {
-  __$$ErrorImplCopyWithImpl(
-      _$ErrorImpl _value, $Res Function(_$ErrorImpl) _then)
-      : super(_value, _then);
+class _$DataComponentsScreenV2SRCopyWithImpl<$Res>
+    implements $DataComponentsScreenV2SRCopyWith<$Res> {
+  _$DataComponentsScreenV2SRCopyWithImpl(this._self, this._then);
+
+  final DataComponentsScreenV2SR _self;
+  final $Res Function(DataComponentsScreenV2SR) _then;
 
   /// Create a copy of DataComponentsScreenV2SR
   /// with the given fields replaced by the non-null parameter values.
@@ -1388,9 +774,232 @@ class __$$ErrorImplCopyWithImpl<$Res>
   $Res call({
     Object? message = null,
   }) {
-    return _then(_$ErrorImpl(
+    return _then(_self.copyWith(
       message: null == message
-          ? _value.message
+          ? _self.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [DataComponentsScreenV2SR].
+extension DataComponentsScreenV2SRPatterns on DataComponentsScreenV2SR {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_Error value)? error,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Error() when error != null:
+        return error(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_Error value) error,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Error():
+        return error(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_Error value)? error,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Error() when error != null:
+        return error(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String message)? error,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Error() when error != null:
+        return error(_that.message);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String message) error,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Error():
+        return error(_that.message);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String message)? error,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _Error() when error != null:
+        return error(_that.message);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+
+class _Error implements DataComponentsScreenV2SR {
+  const _Error({required this.message});
+
+  @override
+  final String message;
+
+  /// Create a copy of DataComponentsScreenV2SR
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$ErrorCopyWith<_Error> get copyWith =>
+      __$ErrorCopyWithImpl<_Error>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _Error &&
+            (identical(other.message, message) || other.message == message));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, message);
+
+  @override
+  String toString() {
+    return 'DataComponentsScreenV2SR.error(message: $message)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$ErrorCopyWith<$Res>
+    implements $DataComponentsScreenV2SRCopyWith<$Res> {
+  factory _$ErrorCopyWith(_Error value, $Res Function(_Error) _then) =
+      __$ErrorCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String message});
+}
+
+/// @nodoc
+class __$ErrorCopyWithImpl<$Res> implements _$ErrorCopyWith<$Res> {
+  __$ErrorCopyWithImpl(this._self, this._then);
+
+  final _Error _self;
+  final $Res Function(_Error) _then;
+
+  /// Create a copy of DataComponentsScreenV2SR
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? message = null,
+  }) {
+    return _then(_Error(
+      message: null == message
+          ? _self.message
           : message // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -1398,166 +1007,49 @@ class __$$ErrorImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
+mixin _$DataComponentsScreenV2State {
+  Components get components;
+  bool get projectExists;
+  bool get swaggerUrlExists;
 
-class _$ErrorImpl implements _Error {
-  const _$ErrorImpl({required this.message});
-
-  @override
-  final String message;
-
-  @override
-  String toString() {
-    return 'DataComponentsScreenV2SR.error(message: $message)';
-  }
+  /// Create a copy of DataComponentsScreenV2State
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DataComponentsScreenV2StateCopyWith<DataComponentsScreenV2State>
+      get copyWith => _$DataComponentsScreenV2StateCopyWithImpl<
+              DataComponentsScreenV2State>(
+          this as DataComponentsScreenV2State, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ErrorImpl &&
-            (identical(other.message, message) || other.message == message));
+            other is DataComponentsScreenV2State &&
+            (identical(other.components, components) ||
+                other.components == components) &&
+            (identical(other.projectExists, projectExists) ||
+                other.projectExists == projectExists) &&
+            (identical(other.swaggerUrlExists, swaggerUrlExists) ||
+                other.swaggerUrlExists == swaggerUrlExists));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, message);
-
-  /// Create a copy of DataComponentsScreenV2SR
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      __$$ErrorImplCopyWithImpl<_$ErrorImpl>(this, _$identity);
+  int get hashCode =>
+      Object.hash(runtimeType, components, projectExists, swaggerUrlExists);
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String message) error,
-  }) {
-    return error(message);
+  String toString() {
+    return 'DataComponentsScreenV2State(components: $components, projectExists: $projectExists, swaggerUrlExists: $swaggerUrlExists)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String message)? error,
-  }) {
-    return error?.call(message);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String message)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(message);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_Error value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_Error value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_Error value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _Error implements DataComponentsScreenV2SR {
-  const factory _Error({required final String message}) = _$ErrorImpl;
-
-  @override
-  String get message;
-
-  /// Create a copy of DataComponentsScreenV2SR
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ErrorImplCopyWith<_$ErrorImpl> get copyWith =>
-      throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$DataComponentsScreenV2State {
-  Components get components => throw _privateConstructorUsedError;
-  bool get projectExists => throw _privateConstructorUsedError;
-  bool get swaggerUrlExists => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            Components components, bool projectExists, bool swaggerUrlExists)
-        data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            Components components, bool projectExists, bool swaggerUrlExists)?
-        data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            Components components, bool projectExists, bool swaggerUrlExists)?
-        data,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(DataComponentsScreenV2StateData value) data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DataComponentsScreenV2StateData value)? data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(DataComponentsScreenV2StateData value)? data,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-
-  /// Create a copy of DataComponentsScreenV2State
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  $DataComponentsScreenV2StateCopyWith<DataComponentsScreenV2State>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $DataComponentsScreenV2StateCopyWith<$Res> {
+abstract mixin class $DataComponentsScreenV2StateCopyWith<$Res> {
   factory $DataComponentsScreenV2StateCopyWith(
           DataComponentsScreenV2State value,
-          $Res Function(DataComponentsScreenV2State) then) =
-      _$DataComponentsScreenV2StateCopyWithImpl<$Res,
-          DataComponentsScreenV2State>;
+          $Res Function(DataComponentsScreenV2State) _then) =
+      _$DataComponentsScreenV2StateCopyWithImpl;
   @useResult
   $Res call({Components components, bool projectExists, bool swaggerUrlExists});
 
@@ -1565,15 +1057,12 @@ abstract class $DataComponentsScreenV2StateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$DataComponentsScreenV2StateCopyWithImpl<$Res,
-        $Val extends DataComponentsScreenV2State>
+class _$DataComponentsScreenV2StateCopyWithImpl<$Res>
     implements $DataComponentsScreenV2StateCopyWith<$Res> {
-  _$DataComponentsScreenV2StateCopyWithImpl(this._value, this._then);
+  _$DataComponentsScreenV2StateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final DataComponentsScreenV2State _self;
+  final $Res Function(DataComponentsScreenV2State) _then;
 
   /// Create a copy of DataComponentsScreenV2State
   /// with the given fields replaced by the non-null parameter values.
@@ -1584,20 +1073,20 @@ class _$DataComponentsScreenV2StateCopyWithImpl<$Res,
     Object? projectExists = null,
     Object? swaggerUrlExists = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       components: null == components
-          ? _value.components
+          ? _self.components
           : components // ignore: cast_nullable_to_non_nullable
               as Components,
       projectExists: null == projectExists
-          ? _value.projectExists
+          ? _self.projectExists
           : projectExists // ignore: cast_nullable_to_non_nullable
               as bool,
       swaggerUrlExists: null == swaggerUrlExists
-          ? _value.swaggerUrlExists
+          ? _self.swaggerUrlExists
           : swaggerUrlExists // ignore: cast_nullable_to_non_nullable
               as bool,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of DataComponentsScreenV2State
@@ -1605,68 +1094,182 @@ class _$DataComponentsScreenV2StateCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $ComponentsCopyWith<$Res> get components {
-    return $ComponentsCopyWith<$Res>(_value.components, (value) {
-      return _then(_value.copyWith(components: value) as $Val);
+    return $ComponentsCopyWith<$Res>(_self.components, (value) {
+      return _then(_self.copyWith(components: value));
     });
   }
 }
 
-/// @nodoc
-abstract class _$$DataComponentsScreenV2StateDataImplCopyWith<$Res>
-    implements $DataComponentsScreenV2StateCopyWith<$Res> {
-  factory _$$DataComponentsScreenV2StateDataImplCopyWith(
-          _$DataComponentsScreenV2StateDataImpl value,
-          $Res Function(_$DataComponentsScreenV2StateDataImpl) then) =
-      __$$DataComponentsScreenV2StateDataImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({Components components, bool projectExists, bool swaggerUrlExists});
+/// Adds pattern-matching-related methods to [DataComponentsScreenV2State].
+extension DataComponentsScreenV2StatePatterns on DataComponentsScreenV2State {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  @override
-  $ComponentsCopyWith<$Res> get components;
-}
-
-/// @nodoc
-class __$$DataComponentsScreenV2StateDataImplCopyWithImpl<$Res>
-    extends _$DataComponentsScreenV2StateCopyWithImpl<$Res,
-        _$DataComponentsScreenV2StateDataImpl>
-    implements _$$DataComponentsScreenV2StateDataImplCopyWith<$Res> {
-  __$$DataComponentsScreenV2StateDataImplCopyWithImpl(
-      _$DataComponentsScreenV2StateDataImpl _value,
-      $Res Function(_$DataComponentsScreenV2StateDataImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of DataComponentsScreenV2State
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? components = null,
-    Object? projectExists = null,
-    Object? swaggerUrlExists = null,
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(DataComponentsScreenV2StateData value)? data,
+    required TResult orElse(),
   }) {
-    return _then(_$DataComponentsScreenV2StateDataImpl(
-      components: null == components
-          ? _value.components
-          : components // ignore: cast_nullable_to_non_nullable
-              as Components,
-      projectExists: null == projectExists
-          ? _value.projectExists
-          : projectExists // ignore: cast_nullable_to_non_nullable
-              as bool,
-      swaggerUrlExists: null == swaggerUrlExists
-          ? _value.swaggerUrlExists
-          : swaggerUrlExists // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ));
+    final _that = this;
+    switch (_that) {
+      case DataComponentsScreenV2StateData() when data != null:
+        return data(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(DataComponentsScreenV2StateData value) data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case DataComponentsScreenV2StateData():
+        return data(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(DataComponentsScreenV2StateData value)? data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case DataComponentsScreenV2StateData() when data != null:
+        return data(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            Components components, bool projectExists, bool swaggerUrlExists)?
+        data,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case DataComponentsScreenV2StateData() when data != null:
+        return data(
+            _that.components, _that.projectExists, _that.swaggerUrlExists);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            Components components, bool projectExists, bool swaggerUrlExists)
+        data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case DataComponentsScreenV2StateData():
+        return data(
+            _that.components, _that.projectExists, _that.swaggerUrlExists);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            Components components, bool projectExists, bool swaggerUrlExists)?
+        data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case DataComponentsScreenV2StateData() when data != null:
+        return data(
+            _that.components, _that.projectExists, _that.swaggerUrlExists);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 
-class _$DataComponentsScreenV2StateDataImpl
-    implements DataComponentsScreenV2StateData {
-  const _$DataComponentsScreenV2StateDataImpl(
+class DataComponentsScreenV2StateData implements DataComponentsScreenV2State {
+  const DataComponentsScreenV2StateData(
       {required this.components,
       this.projectExists = false,
       this.swaggerUrlExists = false});
@@ -1680,16 +1283,20 @@ class _$DataComponentsScreenV2StateDataImpl
   @JsonKey()
   final bool swaggerUrlExists;
 
+  /// Create a copy of DataComponentsScreenV2State
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'DataComponentsScreenV2State.data(components: $components, projectExists: $projectExists, swaggerUrlExists: $swaggerUrlExists)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DataComponentsScreenV2StateDataCopyWith<DataComponentsScreenV2StateData>
+      get copyWith => _$DataComponentsScreenV2StateDataCopyWithImpl<
+          DataComponentsScreenV2StateData>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DataComponentsScreenV2StateDataImpl &&
+            other is DataComponentsScreenV2StateData &&
             (identical(other.components, components) ||
                 other.components == components) &&
             (identical(other.projectExists, projectExists) ||
@@ -1702,98 +1309,69 @@ class _$DataComponentsScreenV2StateDataImpl
   int get hashCode =>
       Object.hash(runtimeType, components, projectExists, swaggerUrlExists);
 
+  @override
+  String toString() {
+    return 'DataComponentsScreenV2State.data(components: $components, projectExists: $projectExists, swaggerUrlExists: $swaggerUrlExists)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $DataComponentsScreenV2StateDataCopyWith<$Res>
+    implements $DataComponentsScreenV2StateCopyWith<$Res> {
+  factory $DataComponentsScreenV2StateDataCopyWith(
+          DataComponentsScreenV2StateData value,
+          $Res Function(DataComponentsScreenV2StateData) _then) =
+      _$DataComponentsScreenV2StateDataCopyWithImpl;
+  @override
+  @useResult
+  $Res call({Components components, bool projectExists, bool swaggerUrlExists});
+
+  @override
+  $ComponentsCopyWith<$Res> get components;
+}
+
+/// @nodoc
+class _$DataComponentsScreenV2StateDataCopyWithImpl<$Res>
+    implements $DataComponentsScreenV2StateDataCopyWith<$Res> {
+  _$DataComponentsScreenV2StateDataCopyWithImpl(this._self, this._then);
+
+  final DataComponentsScreenV2StateData _self;
+  final $Res Function(DataComponentsScreenV2StateData) _then;
+
   /// Create a copy of DataComponentsScreenV2State
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DataComponentsScreenV2StateDataImplCopyWith<
-          _$DataComponentsScreenV2StateDataImpl>
-      get copyWith => __$$DataComponentsScreenV2StateDataImplCopyWithImpl<
-          _$DataComponentsScreenV2StateDataImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            Components components, bool projectExists, bool swaggerUrlExists)
-        data,
+  $Res call({
+    Object? components = null,
+    Object? projectExists = null,
+    Object? swaggerUrlExists = null,
   }) {
-    return data(components, projectExists, swaggerUrlExists);
+    return _then(DataComponentsScreenV2StateData(
+      components: null == components
+          ? _self.components
+          : components // ignore: cast_nullable_to_non_nullable
+              as Components,
+      projectExists: null == projectExists
+          ? _self.projectExists
+          : projectExists // ignore: cast_nullable_to_non_nullable
+              as bool,
+      swaggerUrlExists: null == swaggerUrlExists
+          ? _self.swaggerUrlExists
+          : swaggerUrlExists // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            Components components, bool projectExists, bool swaggerUrlExists)?
-        data,
-  }) {
-    return data?.call(components, projectExists, swaggerUrlExists);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            Components components, bool projectExists, bool swaggerUrlExists)?
-        data,
-    required TResult orElse(),
-  }) {
-    if (data != null) {
-      return data(components, projectExists, swaggerUrlExists);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(DataComponentsScreenV2StateData value) data,
-  }) {
-    return data(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(DataComponentsScreenV2StateData value)? data,
-  }) {
-    return data?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(DataComponentsScreenV2StateData value)? data,
-    required TResult orElse(),
-  }) {
-    if (data != null) {
-      return data(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class DataComponentsScreenV2StateData
-    implements DataComponentsScreenV2State {
-  const factory DataComponentsScreenV2StateData(
-      {required final Components components,
-      final bool projectExists,
-      final bool swaggerUrlExists}) = _$DataComponentsScreenV2StateDataImpl;
-
-  @override
-  Components get components;
-  @override
-  bool get projectExists;
-  @override
-  bool get swaggerUrlExists;
 
   /// Create a copy of DataComponentsScreenV2State
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DataComponentsScreenV2StateDataImplCopyWith<
-          _$DataComponentsScreenV2StateDataImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $ComponentsCopyWith<$Res> get components {
+    return $ComponentsCopyWith<$Res>(_self.components, (value) {
+      return _then(_self.copyWith(components: value));
+    });
+  }
 }
+
+// dart format on

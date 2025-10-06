@@ -13,7 +13,6 @@ import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_butto
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/text_field_with_label.dart';
 import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
-import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class SwaggerParserScreen extends StatefulWidget {
   final bool modal;
@@ -27,8 +26,10 @@ class SwaggerParserScreen extends StatefulWidget {
   State<SwaggerParserScreen> createState() => _SwaggerParserScreenState();
 }
 
-class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
-    SwaggerParserScreenBloc, SwaggerParserScreenSR, SwaggerParserScreen> {
+class _SwaggerParserScreenState extends State<SwaggerParserScreen>
+    with
+        BaseBlocState<SwaggerParserScreenState, SwaggerParserScreenBloc,
+            SwaggerParserScreenSR, SwaggerParserScreen> {
   final TextEditingController _urlController = TextEditingController();
 
   @override
@@ -36,13 +37,13 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
       GetIt.I.get<SwaggerParserScreenBloc>();
 
   @override
-  void onBlocCreated(BuildContext context, SwaggerParserScreenBloc bloc) {
+  void onBlocReady(BuildContext context, SwaggerParserScreenBloc bloc) {
     bloc.add(const SwaggerParserScreenEvent.init());
-    super.onBlocCreated(context, bloc);
+    super.onBlocReady(context, bloc);
   }
 
   @override
-  void onFailure(BuildContext context, Failure failure) {
+  void onFailure(BuildContext context, Exception failure) {
     super.onFailure(context, failure);
 
     if (failure is SwaggerParserFailureDuplicatesFound) {
@@ -50,6 +51,7 @@ class _SwaggerParserScreenState extends BaseState<SwaggerParserScreenState,
         context: context,
         title: S.of(context).error,
         content: Text(
+          //ignore: lines_longer_than_80_chars
           '${failure.getTranslatedMessage(context)}\n${S.of(context).overwrite}?',
           style: context.appTextStyles.fs18,
         ),

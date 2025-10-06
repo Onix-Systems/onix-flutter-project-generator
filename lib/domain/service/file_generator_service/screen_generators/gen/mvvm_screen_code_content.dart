@@ -36,15 +36,18 @@ class MvvmScreenCodeContent extends ScreenCodeContent {
       ..addNewLine()
       ..add('@override')
       ..add(
+        //ignore: lines_longer_than_80_chars
         'State<${screenClassName}Screen> createState() => _${screenClassName}State();',
       )
       ..add('}')
       ..add(
+        //ignore: lines_longer_than_80_chars
         'class _${screenClassName}State extends ViewModelWidget<${screenClassName}Screen, ${screenClassName}ViewModel> {',
       )
       ..addNewLine()
       ..add('@override')
       ..add(
+        //ignore: lines_longer_than_80_chars
         '${screenClassName}ViewModel createVm() => ${screenClassName}ViewModel();',
       )
       ..addNewLine()

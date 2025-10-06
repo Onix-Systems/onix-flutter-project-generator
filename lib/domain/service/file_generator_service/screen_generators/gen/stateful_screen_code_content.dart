@@ -36,6 +36,7 @@ class StatefulScreenCodeContent extends ScreenCodeContent {
       )
       ..add('}')
       ..add(
+        //ignore: lines_longer_than_80_chars
         'class _${screenClassName}State extends State<${screenClassName}Screen> {',
       )
       ..add('@override')

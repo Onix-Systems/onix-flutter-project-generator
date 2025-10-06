@@ -208,7 +208,9 @@ class DataObjectComponent extends Component {
       final classModifier = objects.isEmpty ? 'const ' : '';
 
       codeLines
+        //ignore: lines_longer_than_80_chars
         ..add(
+          //ignore: lines_longer_than_80_chars
           'class _Map${classNamePrefix}EntityToRequest implements Mapper<$entityName, $requestName> {',
         )
         ..addNewLine()
@@ -237,11 +239,13 @@ class DataObjectComponent extends Component {
       ..add('class ${classNamePrefix}Mappers {');
     if (createResponseToEntityMapper) {
       codeLines.add(
+        //ignore: lines_longer_than_80_chars
         'final _mapResponseToEntity = const _Map${classNamePrefix}ResponseToEntity();',
       );
     }
     if (createEntityToRequestMapper) {
       codeLines.add(
+        //ignore: lines_longer_than_80_chars
         'final _mapEntityToRequest = const _Map${classNamePrefix}EntityToRequest();',
       );
     }
@@ -309,6 +313,7 @@ class DataObjectComponent extends Component {
           switch (type) {
             case MapperType.mapResponseToEntity:
               codeLines.add(
+                //ignore: lines_longer_than_80_chars
                 '$variableName: (from.$variableName != null) ? ${enumRef.name}.values.firstWhere((value) => value.name == from.$variableName) : ${enumRef.name}.values.first,',
               );
 
@@ -323,6 +328,7 @@ class DataObjectComponent extends Component {
               .getTypeDeclaration(DataFileType.none);
 
           codeLines.add(
+            //ignore: lines_longer_than_80_chars
             '$variableName: ${name.camelCase}Mappers.${type.name}(from.$variableName),',
           );
         } else {
@@ -330,6 +336,7 @@ class DataObjectComponent extends Component {
               .getTypeDeclaration(DataFileType.none);
 
           codeLines.add(
+            //ignore: lines_longer_than_80_chars
             '$variableName: (from.$variableName != null) ? ${name.camelCase}Mappers.${type.name}(from.$variableName!) : ${variable.type.getDefaultReturnType(DataFileType.entity)},',
           );
         }
@@ -347,11 +354,13 @@ class DataObjectComponent extends Component {
             switch (type) {
               case MapperType.mapResponseToEntity:
                 codeLines.add(
+                  //ignore: lines_longer_than_80_chars
                   '$variableName: from.$variableName != null ? from.$variableName!.map((e) => ${enumRef.type.getName()}.values.firstWhere((value) => value.name == e),).toList() : [],',
                 );
 
               case MapperType.mapEntityToRequest:
                 codeLines.add(
+                  //ignore: lines_longer_than_80_chars
                   '$variableName: from.$variableName.map((e) => e.name).toList(),',
                 );
             }
@@ -360,10 +369,12 @@ class DataObjectComponent extends Component {
             final className = reference.getTypeDeclaration(DataFileType.none);
             if (variable.isRequired || type == MapperType.mapEntityToRequest) {
               codeLines.add(
+                //ignore: lines_longer_than_80_chars
                 '$variableName: from.$variableName.map(${className.camelCase}Mappers.${type.name},).toList(),',
               );
             } else {
               codeLines.add(
+                //ignore: lines_longer_than_80_chars
                 '$variableName: (from.$variableName != null) ? from.$variableName!.map(${className.camelCase}Mappers.${type.name},).toList() : [],',
               );
             }
@@ -373,6 +384,7 @@ class DataObjectComponent extends Component {
             codeLines.add('$variableName: from.$variableName,');
           } else {
             codeLines.add(
+              //ignore: lines_longer_than_80_chars
               '$variableName: from.$variableName ?? ${variable.type.getDefaultReturnType(DataFileType.entity)},',
             );
           }
@@ -382,6 +394,7 @@ class DataObjectComponent extends Component {
           codeLines.add('$variableName: from.$variableName,');
         } else {
           codeLines.add(
+            //ignore: lines_longer_than_80_chars
             '$variableName: from.$variableName ?? ${variable.type.getDefaultReturnType(DataFileType.entity)},',
           );
         }
@@ -447,6 +460,7 @@ class DataObjectComponent extends Component {
       final name =
           ReservedWordProcessor.checkAndReplaceReservedWord(e.name).camelCase;
       if (e.isEnum) {
+        //ignore: lines_longer_than_80_chars
         return '$name: ${e.type.getTypeDeclaration(DataFileType.none)}.values.first,';
       }
       return '$name: ${e.type.getDefaultReturnType(type)} ,';
@@ -479,6 +493,7 @@ class DataObjectComponent extends Component {
           ? 'String'
           : e.type.getTypeDeclaration(type);
 
+      //ignore: lines_longer_than_80_chars
       return "@JsonKey(name: '${e.name}')\nfinal $typeDeclaration$requiredSuffix ${name.camelCase};";
     }).toList();
   }
@@ -536,6 +551,7 @@ class DataObjectComponent extends Component {
           );
         } else if (itemType is SwaggerReference) {
           result.add(
+            //ignore: lines_longer_than_80_chars
             "${_tabs(2)}'${variable.name}': ${variable.name}.map((e) => e.toJson()).toList(),",
           );
         }
@@ -557,11 +573,13 @@ class DataObjectComponent extends Component {
         final type = (variable.type as SwaggerVariable).type;
 
         result.add(
+          //ignore: lines_longer_than_80_chars
           "${_tabs(2)}${variable.name}: json['${variable.name}'] as ${type.toSwaggerDartType()},",
         );
       } else if (variable.type is SwaggerReference) {
         final reference = variable.type as SwaggerReference;
         result.add(
+          //ignore: lines_longer_than_80_chars
           "${_tabs(2)}${variable.name}: $reference.fromJson(json['${variable.name}'] as Map<String, dynamic>),",
         );
       } else if (variable.type is SwaggerArray) {
@@ -569,10 +587,12 @@ class DataObjectComponent extends Component {
 
         if (itemType is SwaggerVariable) {
           result.add(
+            //ignore: lines_longer_than_80_chars
             "${_tabs(2)}${variable.name}: json['${variable.name}'] as List<${itemType.type.toSwaggerDartType()}>,",
           );
         } else if (itemType is SwaggerReference) {
           result.add(
+            //ignore: lines_longer_than_80_chars
             "${_tabs(2)}${variable.name}: (json['${variable.name}'] as List<Map<String, dynamic>>).map($itemType.fromJson).toList(),",
           );
         }

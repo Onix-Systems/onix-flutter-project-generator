@@ -4,13 +4,13 @@ import 'package:onix_flutter_bricks/domain/entity/component/request_param_compon
 part 'add_request_params_dialog_models.freezed.dart';
 
 @freezed
-class AddRequestParamsDialogSR with _$AddRequestParamsDialogSR {
+sealed class AddRequestParamsDialogSR with _$AddRequestParamsDialogSR {
   const factory AddRequestParamsDialogSR.success() =
       _AddRequestParamsDialogSRSuccess;
 }
 
 @freezed
-class AddRequestParamsDialogState with _$AddRequestParamsDialogState {
+sealed class AddRequestParamsDialogState with _$AddRequestParamsDialogState {
   const factory AddRequestParamsDialogState({
     @Default([]) List<RequestParamComponent> params,
     @Default([]) List<String> types,

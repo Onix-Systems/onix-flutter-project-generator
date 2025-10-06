@@ -8,7 +8,8 @@ import 'package:onix_flutter_bricks/domain/entity/config/output_line.dart';
 part 'procedure_selection_screen_models.freezed.dart';
 
 @freezed
-class ProcedureSelectionScreenEvent with _$ProcedureSelectionScreenEvent {
+sealed class ProcedureSelectionScreenEvent
+    with _$ProcedureSelectionScreenEvent {
   const factory ProcedureSelectionScreenEvent.init() =
       ProcedureSelectionScreenEventInit;
 
@@ -43,7 +44,7 @@ class ProcedureSelectionScreenEvent with _$ProcedureSelectionScreenEvent {
 }
 
 @freezed
-class ProcedureSelectionScreenSR with _$ProcedureSelectionScreenSR {
+sealed class ProcedureSelectionScreenSR with _$ProcedureSelectionScreenSR {
   const factory ProcedureSelectionScreenSR.loadFinished() = _LoadFinished;
 
   const factory ProcedureSelectionScreenSR.emptyConfig() = _EmptyConfig;
@@ -56,7 +57,8 @@ class ProcedureSelectionScreenSR with _$ProcedureSelectionScreenSR {
 }
 
 @freezed
-class ProcedureSelectionScreenState with _$ProcedureSelectionScreenState {
+sealed class ProcedureSelectionScreenState
+    with _$ProcedureSelectionScreenState {
   const factory ProcedureSelectionScreenState.data({
     required BranchConfig branchConfig,
     @Default('en') language,

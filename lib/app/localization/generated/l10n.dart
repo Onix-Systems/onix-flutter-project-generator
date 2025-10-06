@@ -18,8 +18,10 @@ class S {
   static S? _current;
 
   static S get current {
-    assert(_current != null,
-        'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.');
+    assert(
+      _current != null,
+      'No instance of S was loaded. Try to initialize the S delegate before accessing S.current.',
+    );
     return _current!;
   }
 
@@ -41,8 +43,10 @@ class S {
 
   static S of(BuildContext context) {
     final instance = S.maybeOf(context);
-    assert(instance != null,
-        'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?');
+    assert(
+      instance != null,
+      'No instance of S present in the widget tree. Did you add S.delegate in localizationsDelegates?',
+    );
     return instance!;
   }
 
@@ -102,122 +106,62 @@ class S {
 
   /// `OK`
   String get ok {
-    return Intl.message(
-      'OK',
-      name: 'ok',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('OK', name: 'ok', desc: '', args: []);
   }
 
   /// `Cancel`
   String get cancel {
-    return Intl.message(
-      'Cancel',
-      name: 'cancel',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Cancel', name: 'cancel', desc: '', args: []);
   }
 
   /// `Yes`
   String get yes {
-    return Intl.message(
-      'Yes',
-      name: 'yes',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Yes', name: 'yes', desc: '', args: []);
   }
 
   /// `No`
   String get no {
-    return Intl.message(
-      'No',
-      name: 'no',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('No', name: 'no', desc: '', args: []);
   }
 
   /// `Continue`
   String get continueLabel {
-    return Intl.message(
-      'Continue',
-      name: 'continueLabel',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Continue', name: 'continueLabel', desc: '', args: []);
   }
 
   /// `Modify`
   String get modify {
-    return Intl.message(
-      'Modify',
-      name: 'modify',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Modify', name: 'modify', desc: '', args: []);
   }
 
   /// `Delete`
   String get delete {
-    return Intl.message(
-      'Delete',
-      name: 'delete',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Delete', name: 'delete', desc: '', args: []);
   }
 
   /// `Error`
   String get error {
-    return Intl.message(
-      'Error',
-      name: 'error',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Error', name: 'error', desc: '', args: []);
   }
 
   /// `Replace`
   String get replace {
-    return Intl.message(
-      'Replace',
-      name: 'replace',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Replace', name: 'replace', desc: '', args: []);
   }
 
   /// `Ignore`
   String get ignore {
-    return Intl.message(
-      'Ignore',
-      name: 'ignore',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Ignore', name: 'ignore', desc: '', args: []);
   }
 
   /// `Retry`
   String get retry {
-    return Intl.message(
-      'Retry',
-      name: 'retry',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Retry', name: 'retry', desc: '', args: []);
   }
 
   /// `Exit`
   String get exitLabel {
-    return Intl.message(
-      'Exit',
-      name: 'exitLabel',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Exit', name: 'exitLabel', desc: '', args: []);
   }
 
   /// `Swagger file contains components conflicting with existing. Replace with parsed components or ignore conflicting parsed data?`
@@ -392,12 +336,7 @@ class S {
 
   /// `Add screen`
   String get addScreen {
-    return Intl.message(
-      'Add screen',
-      name: 'addScreen',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Add screen', name: 'addScreen', desc: '', args: []);
   }
 
   /// `Modify screen`
@@ -432,22 +371,12 @@ class S {
 
   /// `Screen name`
   String get screenName {
-    return Intl.message(
-      'Screen name',
-      name: 'screenName',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Screen name', name: 'screenName', desc: '', args: []);
   }
 
   /// `Screens`
   String get screens {
-    return Intl.message(
-      'Screens',
-      name: 'screens',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Screens', name: 'screens', desc: '', args: []);
   }
 
   /// `State manager`
@@ -462,42 +391,22 @@ class S {
 
   /// `Using BLoC`
   String get usingBloc {
-    return Intl.message(
-      'Using BLoC',
-      name: 'usingBloc',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Using BLoC', name: 'usingBloc', desc: '', args: []);
   }
 
   /// `Using Cubit`
   String get usingCubit {
-    return Intl.message(
-      'Using Cubit',
-      name: 'usingCubit',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Using Cubit', name: 'usingCubit', desc: '', args: []);
   }
 
   /// `Actions`
   String get actions {
-    return Intl.message(
-      'Actions',
-      name: 'actions',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Actions', name: 'actions', desc: '', args: []);
   }
 
   /// `Theming`
   String get theming {
-    return Intl.message(
-      'Theming',
-      name: 'theming',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Theming', name: 'theming', desc: '', args: []);
   }
 
   /// `Localization`
@@ -512,12 +421,7 @@ class S {
 
   /// `Router`
   String get router {
-    return Intl.message(
-      'Router',
-      name: 'router',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Router', name: 'router', desc: '', args: []);
   }
 
   /// `Will you use Sonar?`
@@ -622,22 +526,12 @@ class S {
 
   /// `Add flavors:`
   String get addFlavors {
-    return Intl.message(
-      'Add flavors:',
-      name: 'addFlavors',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Add flavors:', name: 'addFlavors', desc: '', args: []);
   }
 
   /// `Flavorize?`
   String get flavorize {
-    return Intl.message(
-      'Flavorize?',
-      name: 'flavorize',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Flavorize?', name: 'flavorize', desc: '', args: []);
   }
 
   /// `DEV & PROD flavors will be added automatically`
@@ -722,12 +616,7 @@ class S {
 
   /// `URL`
   String get url {
-    return Intl.message(
-      'URL',
-      name: 'url',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('URL', name: 'url', desc: '', args: []);
   }
 
   /// `Paste swagger config json file URL here to get data components from API\nor leave it empty to use default config`
@@ -742,32 +631,17 @@ class S {
 
   /// `Generate`
   String get generate {
-    return Intl.message(
-      'Generate',
-      name: 'generate',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Generate', name: 'generate', desc: '', args: []);
   }
 
   /// `Request`
   String get request {
-    return Intl.message(
-      'Request',
-      name: 'request',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Request', name: 'request', desc: '', args: []);
   }
 
   /// `Response`
   String get response {
-    return Intl.message(
-      'Response',
-      name: 'response',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Response', name: 'response', desc: '', args: []);
   }
 
   /// `Data component`
@@ -802,12 +676,7 @@ class S {
 
   /// `Add source`
   String get addSource {
-    return Intl.message(
-      'Add source',
-      name: 'addSource',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Add source', name: 'addSource', desc: '', args: []);
   }
 
   /// `Modify source`
@@ -822,12 +691,7 @@ class S {
 
   /// `Back`
   String get goBack {
-    return Intl.message(
-      'Back',
-      name: 'goBack',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Back', name: 'goBack', desc: '', args: []);
   }
 
   /// `Modify component`
@@ -902,22 +766,12 @@ class S {
 
   /// `Platforms`
   String get platforms {
-    return Intl.message(
-      'Platforms',
-      name: 'platforms',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Platforms', name: 'platforms', desc: '', args: []);
   }
 
   /// `Flavors`
   String get flavors {
-    return Intl.message(
-      'Flavors',
-      name: 'flavors',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Flavors', name: 'flavors', desc: '', args: []);
   }
 
   /// `Navigation router`
@@ -952,22 +806,12 @@ class S {
 
   /// `Swagger URL`
   String get swaggerURL {
-    return Intl.message(
-      'Swagger URL',
-      name: 'swaggerURL',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Swagger URL', name: 'swaggerURL', desc: '', args: []);
   }
 
   /// `Sources`
   String get sources {
-    return Intl.message(
-      'Sources',
-      name: 'sources',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Sources', name: 'sources', desc: '', args: []);
   }
 
   /// `Config file load error!`
@@ -1052,52 +896,27 @@ class S {
 
   /// `Nullable`
   String get nullable {
-    return Intl.message(
-      'Nullable',
-      name: 'nullable',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Nullable', name: 'nullable', desc: '', args: []);
   }
 
   /// `List`
   String get list {
-    return Intl.message(
-      'List',
-      name: 'list',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('List', name: 'list', desc: '', args: []);
   }
 
   /// `Fields`
   String get fields {
-    return Intl.message(
-      'Fields',
-      name: 'fields',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Fields', name: 'fields', desc: '', args: []);
   }
 
   /// `Add field`
   String get addField {
-    return Intl.message(
-      'Add field',
-      name: 'addField',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Add field', name: 'addField', desc: '', args: []);
   }
 
   /// `Preview`
   String get preview {
-    return Intl.message(
-      'Preview',
-      name: 'preview',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Preview', name: 'preview', desc: '', args: []);
   }
 
   /// `{componentName} component preview`
@@ -1202,12 +1021,7 @@ class S {
 
   /// `Figma token`
   String get figmaToken {
-    return Intl.message(
-      'Figma token',
-      name: 'figmaToken',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Figma token', name: 'figmaToken', desc: '', args: []);
   }
 
   /// `Error loading styles: check internet connection, figma file id and token`
@@ -1262,12 +1076,7 @@ class S {
 
   /// `Text Styles`
   String get textStyles {
-    return Intl.message(
-      'Text Styles',
-      name: 'textStyles',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Text Styles', name: 'textStyles', desc: '', args: []);
   }
 
   /// `Color Styles`
@@ -1282,12 +1091,7 @@ class S {
 
   /// `Tools`
   String get tools {
-    return Intl.message(
-      'Tools',
-      name: 'tools',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Tools', name: 'tools', desc: '', args: []);
   }
 
   /// `Not a Flutter Project`
@@ -1352,12 +1156,7 @@ class S {
 
   /// `Flavor name`
   String get flavorName {
-    return Intl.message(
-      'Flavor name',
-      name: 'flavorName',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Flavor name', name: 'flavorName', desc: '', args: []);
   }
 
   /// `Failed to create signing config. Internal error happened, please contact a developer.`
@@ -1472,42 +1271,22 @@ class S {
 
   /// `Summary`
   String get summary {
-    return Intl.message(
-      'Summary',
-      name: 'summary',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Summary', name: 'summary', desc: '', args: []);
   }
 
   /// `Initial screen?`
   String get initial {
-    return Intl.message(
-      'Initial screen?',
-      name: 'initial',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Initial screen?', name: 'initial', desc: '', args: []);
   }
 
   /// `Get Styles`
   String get getStyles {
-    return Intl.message(
-      'Get Styles',
-      name: 'getStyles',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Get Styles', name: 'getStyles', desc: '', args: []);
   }
 
   /// `Clear`
   String get clear {
-    return Intl.message(
-      'Clear',
-      name: 'clear',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Clear', name: 'clear', desc: '', args: []);
   }
 
   /// `Failed to Parse Swagger Components. Please try again or contact support if issue not resolved.`
@@ -1592,12 +1371,7 @@ class S {
 
   /// `Overwrite`
   String get overwrite {
-    return Intl.message(
-      'Overwrite',
-      name: 'overwrite',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Overwrite', name: 'overwrite', desc: '', args: []);
   }
 
   /// `Wrong screen name`
@@ -1622,12 +1396,7 @@ class S {
 
   /// `No requests`
   String get noRequests {
-    return Intl.message(
-      'No requests',
-      name: 'noRequests',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('No requests', name: 'noRequests', desc: '', args: []);
   }
 
   /// `Source not found`
@@ -1672,22 +1441,12 @@ class S {
 
   /// `Path`
   String get path {
-    return Intl.message(
-      'Path',
-      name: 'path',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Path', name: 'path', desc: '', args: []);
   }
 
   /// `Add request`
   String get addRequest {
-    return Intl.message(
-      'Add request',
-      name: 'addRequest',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Add request', name: 'addRequest', desc: '', args: []);
   }
 
   /// `Modify request`
@@ -1722,12 +1481,7 @@ class S {
 
   /// `Add param`
   String get addParam {
-    return Intl.message(
-      'Add param',
-      name: 'addParam',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Add param', name: 'addParam', desc: '', args: []);
   }
 
   /// `Failed to add param`
@@ -1792,12 +1546,7 @@ class S {
 
   /// `Warning`
   String get warning {
-    return Intl.message(
-      'Warning',
-      name: 'warning',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Warning', name: 'warning', desc: '', args: []);
   }
 
   /// `Search for an item...`
@@ -1812,52 +1561,27 @@ class S {
 
   /// `Add`
   String get add {
-    return Intl.message(
-      'Add',
-      name: 'add',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Add', name: 'add', desc: '', args: []);
   }
 
   /// `Edit`
   String get edit {
-    return Intl.message(
-      'Edit',
-      name: 'edit',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Edit', name: 'edit', desc: '', args: []);
   }
 
   /// `Empty`
   String get empty {
-    return Intl.message(
-      'Empty',
-      name: 'empty',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Empty', name: 'empty', desc: '', args: []);
   }
 
   /// `or`
   String get or {
-    return Intl.message(
-      'or',
-      name: 'or',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('or', name: 'or', desc: '', args: []);
   }
 
   /// `Unused`
   String get unUsed {
-    return Intl.message(
-      'Unused',
-      name: 'unUsed',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Unused', name: 'unUsed', desc: '', args: []);
   }
 
   /// `No input parameters`
@@ -1872,12 +1596,7 @@ class S {
 
   /// `Objects`
   String get objects {
-    return Intl.message(
-      'Objects',
-      name: 'objects',
-      desc: '',
-      args: [],
-    );
+    return Intl.message('Objects', name: 'objects', desc: '', args: []);
   }
 
   /// `Add from JSON`

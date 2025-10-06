@@ -36,10 +36,12 @@ class RiverpodStatefulScreenCodeContent extends ScreenCodeContent {
       ..addNewLine()
       ..add('@override')
       ..add(
+        //ignore: lines_longer_than_80_chars
         'ConsumerState<${screenClassName}Screen> createState() => _${screenClassName}State();',
       )
       ..add('}')
       ..add(
+        //ignore: lines_longer_than_80_chars
         'class _${screenClassName}State extends ConsumerState<${screenClassName}Screen> {',
       )
       ..add('@override')

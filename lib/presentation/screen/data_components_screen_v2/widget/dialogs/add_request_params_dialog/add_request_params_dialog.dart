@@ -13,7 +13,6 @@ import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext
 import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_button.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog_action_buttons.dart';
-import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class AddRequestParamsDialog<T extends RequestParamComponent>
     extends StatefulWidget {
@@ -32,23 +31,22 @@ class AddRequestParamsDialog<T extends RequestParamComponent>
 }
 
 class _AddRequestParamsDialogState<T extends RequestParamComponent>
-    extends BaseCubitState<
-        AddRequestParamsDialogState,
-        AddRequestParamsDialogCubit,
-        AddRequestParamsDialogSR,
-        AddRequestParamsDialog> {
+    extends State<AddRequestParamsDialog>
+    with
+        BaseCubitState<AddRequestParamsDialogState, AddRequestParamsDialogCubit,
+            AddRequestParamsDialogSR, AddRequestParamsDialog> {
   @override
   AddRequestParamsDialogCubit createCubit() =>
       GetIt.I.get<AddRequestParamsDialogCubit>();
 
   @override
   void onCubitCreated(BuildContext context, AddRequestParamsDialogCubit cubit) {
-    super.onCubitCreated(context, cubit);
+    super.onCubitReady(context, cubit);
     cubit.init<T>(params: widget.params);
   }
 
   @override
-  void onFailure(BuildContext context, Failure failure) {
+  void onFailure(BuildContext context, Exception failure) {
     super.onFailure(context, failure);
     if (failure is SwaggerParserFailure) {
       Dialogs.showOkDialog(
@@ -103,7 +101,11 @@ class _AddRequestParamsDialogState<T extends RequestParamComponent>
                               context: context,
                               builder: (ctx) => AddParamDialog<T>(
                                 types: state.types,
-                                process: (type, name, isList) {
+                                process: ({
+                                  required type,
+                                  required name,
+                                  required isList,
+                                }) {
                                   cubitOf(context).addParam<T>(
                                     name: name,
                                     type: type,
@@ -125,7 +127,11 @@ class _AddRequestParamsDialogState<T extends RequestParamComponent>
                             builder: (ctx) => AddParamDialog(
                               param: param,
                               types: state.types,
-                              process: (type, name, isList) {
+                              process: ({
+                                required type,
+                                required name,
+                                required isList,
+                              }) {
                                 cubitOf(context).editParam<T>(
                                   name: name,
                                   type: type,

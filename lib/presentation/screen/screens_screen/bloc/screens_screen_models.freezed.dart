@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,179 +9,87 @@ part of 'screens_screen_models.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ScreensScreenEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(Screen screen) onScreenAdd,
-    required TResult Function(String screenName) onScreenDelete,
-    required TResult Function(Screen screen, String oldName) onScreenModify,
-    required TResult Function(Screen screen) onScreenChangeInitial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(Screen screen)? onScreenAdd,
-    TResult? Function(String screenName)? onScreenDelete,
-    TResult? Function(Screen screen, String oldName)? onScreenModify,
-    TResult? Function(Screen screen)? onScreenChangeInitial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(Screen screen)? onScreenAdd,
-    TResult Function(String screenName)? onScreenDelete,
-    TResult Function(Screen screen, String oldName)? onScreenModify,
-    TResult Function(Screen screen)? onScreenChangeInitial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ScreensScreenEventInit value) init,
-    required TResult Function(ScreensScreenEventOnScreenAdd value) onScreenAdd,
-    required TResult Function(ScreensScreenEventOnScreenDelete value)
-        onScreenDelete,
-    required TResult Function(ScreensScreenEventOnScreenModify value)
-        onScreenModify,
-    required TResult Function(ScreensScreenEventOnScreenChangeInitial value)
-        onScreenChangeInitial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ScreensScreenEventInit value)? init,
-    TResult? Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
-    TResult? Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
-    TResult? Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
-    TResult? Function(ScreensScreenEventOnScreenChangeInitial value)?
-        onScreenChangeInitial,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ScreensScreenEventInit value)? init,
-    TResult Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
-    TResult Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
-    TResult Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
-    TResult Function(ScreensScreenEventOnScreenChangeInitial value)?
-        onScreenChangeInitial,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ScreensScreenEventCopyWith<$Res> {
-  factory $ScreensScreenEventCopyWith(
-          ScreensScreenEvent value, $Res Function(ScreensScreenEvent) then) =
-      _$ScreensScreenEventCopyWithImpl<$Res, ScreensScreenEvent>;
-}
-
-/// @nodoc
-class _$ScreensScreenEventCopyWithImpl<$Res, $Val extends ScreensScreenEvent>
-    implements $ScreensScreenEventCopyWith<$Res> {
-  _$ScreensScreenEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$ScreensScreenEventInitImplCopyWith<$Res> {
-  factory _$$ScreensScreenEventInitImplCopyWith(
-          _$ScreensScreenEventInitImpl value,
-          $Res Function(_$ScreensScreenEventInitImpl) then) =
-      __$$ScreensScreenEventInitImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ScreensScreenEventInitImplCopyWithImpl<$Res>
-    extends _$ScreensScreenEventCopyWithImpl<$Res, _$ScreensScreenEventInitImpl>
-    implements _$$ScreensScreenEventInitImplCopyWith<$Res> {
-  __$$ScreensScreenEventInitImplCopyWithImpl(
-      _$ScreensScreenEventInitImpl _value,
-      $Res Function(_$ScreensScreenEventInitImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$ScreensScreenEventInitImpl implements ScreensScreenEventInit {
-  const _$ScreensScreenEventInitImpl();
-
-  @override
-  String toString() {
-    return 'ScreensScreenEvent.init()';
-  }
-
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ScreensScreenEventInitImpl);
+        (other.runtimeType == runtimeType && other is ScreensScreenEvent);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(Screen screen) onScreenAdd,
-    required TResult Function(String screenName) onScreenDelete,
-    required TResult Function(Screen screen, String oldName) onScreenModify,
-    required TResult Function(Screen screen) onScreenChangeInitial,
-  }) {
-    return init();
+  String toString() {
+    return 'ScreensScreenEvent()';
   }
+}
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(Screen screen)? onScreenAdd,
-    TResult? Function(String screenName)? onScreenDelete,
-    TResult? Function(Screen screen, String oldName)? onScreenModify,
-    TResult? Function(Screen screen)? onScreenChangeInitial,
-  }) {
-    return init?.call();
-  }
+/// @nodoc
+class $ScreensScreenEventCopyWith<$Res> {
+  $ScreensScreenEventCopyWith(
+      ScreensScreenEvent _, $Res Function(ScreensScreenEvent) __);
+}
 
-  @override
+/// Adds pattern-matching-related methods to [ScreensScreenEvent].
+extension ScreensScreenEventPatterns on ScreensScreenEvent {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(Screen screen)? onScreenAdd,
-    TResult Function(String screenName)? onScreenDelete,
-    TResult Function(Screen screen, String oldName)? onScreenModify,
-    TResult Function(Screen screen)? onScreenChangeInitial,
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ScreensScreenEventInit value)? init,
+    TResult Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
+    TResult Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
+    TResult Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
+    TResult Function(ScreensScreenEventOnScreenChangeInitial value)?
+        onScreenChangeInitial,
     required TResult orElse(),
   }) {
-    if (init != null) {
-      return init();
+    final _that = this;
+    switch (_that) {
+      case ScreensScreenEventInit() when init != null:
+        return init(_that);
+      case ScreensScreenEventOnScreenAdd() when onScreenAdd != null:
+        return onScreenAdd(_that);
+      case ScreensScreenEventOnScreenDelete() when onScreenDelete != null:
+        return onScreenDelete(_that);
+      case ScreensScreenEventOnScreenModify() when onScreenModify != null:
+        return onScreenModify(_that);
+      case ScreensScreenEventOnScreenChangeInitial()
+          when onScreenChangeInitial != null:
+        return onScreenChangeInitial(_that);
+      case _:
+        return orElse();
     }
-    return orElse();
   }
 
-  @override
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(ScreensScreenEventInit value) init,
@@ -193,10 +101,35 @@ class _$ScreensScreenEventInitImpl implements ScreensScreenEventInit {
     required TResult Function(ScreensScreenEventOnScreenChangeInitial value)
         onScreenChangeInitial,
   }) {
-    return init(this);
+    final _that = this;
+    switch (_that) {
+      case ScreensScreenEventInit():
+        return init(_that);
+      case ScreensScreenEventOnScreenAdd():
+        return onScreenAdd(_that);
+      case ScreensScreenEventOnScreenDelete():
+        return onScreenDelete(_that);
+      case ScreensScreenEventOnScreenModify():
+        return onScreenModify(_that);
+      case ScreensScreenEventOnScreenChangeInitial():
+        return onScreenChangeInitial(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
   }
 
-  @override
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(ScreensScreenEventInit value)? init,
@@ -206,61 +139,220 @@ class _$ScreensScreenEventInitImpl implements ScreensScreenEventInit {
     TResult? Function(ScreensScreenEventOnScreenChangeInitial value)?
         onScreenChangeInitial,
   }) {
-    return init?.call(this);
+    final _that = this;
+    switch (_that) {
+      case ScreensScreenEventInit() when init != null:
+        return init(_that);
+      case ScreensScreenEventOnScreenAdd() when onScreenAdd != null:
+        return onScreenAdd(_that);
+      case ScreensScreenEventOnScreenDelete() when onScreenDelete != null:
+        return onScreenDelete(_that);
+      case ScreensScreenEventOnScreenModify() when onScreenModify != null:
+        return onScreenModify(_that);
+      case ScreensScreenEventOnScreenChangeInitial()
+          when onScreenChangeInitial != null:
+        return onScreenChangeInitial(_that);
+      case _:
+        return null;
+    }
   }
 
-  @override
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ScreensScreenEventInit value)? init,
-    TResult Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
-    TResult Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
-    TResult Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
-    TResult Function(ScreensScreenEventOnScreenChangeInitial value)?
-        onScreenChangeInitial,
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(Screen screen)? onScreenAdd,
+    TResult Function(String screenName)? onScreenDelete,
+    TResult Function(Screen screen, String oldName)? onScreenModify,
+    TResult Function(Screen screen)? onScreenChangeInitial,
     required TResult orElse(),
   }) {
-    if (init != null) {
-      return init(this);
+    final _that = this;
+    switch (_that) {
+      case ScreensScreenEventInit() when init != null:
+        return init();
+      case ScreensScreenEventOnScreenAdd() when onScreenAdd != null:
+        return onScreenAdd(_that.screen);
+      case ScreensScreenEventOnScreenDelete() when onScreenDelete != null:
+        return onScreenDelete(_that.screenName);
+      case ScreensScreenEventOnScreenModify() when onScreenModify != null:
+        return onScreenModify(_that.screen, _that.oldName);
+      case ScreensScreenEventOnScreenChangeInitial()
+          when onScreenChangeInitial != null:
+        return onScreenChangeInitial(_that.screen);
+      case _:
+        return orElse();
     }
-    return orElse();
   }
-}
 
-abstract class ScreensScreenEventInit implements ScreensScreenEvent {
-  const factory ScreensScreenEventInit() = _$ScreensScreenEventInitImpl;
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(Screen screen) onScreenAdd,
+    required TResult Function(String screenName) onScreenDelete,
+    required TResult Function(Screen screen, String oldName) onScreenModify,
+    required TResult Function(Screen screen) onScreenChangeInitial,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ScreensScreenEventInit():
+        return init();
+      case ScreensScreenEventOnScreenAdd():
+        return onScreenAdd(_that.screen);
+      case ScreensScreenEventOnScreenDelete():
+        return onScreenDelete(_that.screenName);
+      case ScreensScreenEventOnScreenModify():
+        return onScreenModify(_that.screen, _that.oldName);
+      case ScreensScreenEventOnScreenChangeInitial():
+        return onScreenChangeInitial(_that.screen);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(Screen screen)? onScreenAdd,
+    TResult? Function(String screenName)? onScreenDelete,
+    TResult? Function(Screen screen, String oldName)? onScreenModify,
+    TResult? Function(Screen screen)? onScreenChangeInitial,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ScreensScreenEventInit() when init != null:
+        return init();
+      case ScreensScreenEventOnScreenAdd() when onScreenAdd != null:
+        return onScreenAdd(_that.screen);
+      case ScreensScreenEventOnScreenDelete() when onScreenDelete != null:
+        return onScreenDelete(_that.screenName);
+      case ScreensScreenEventOnScreenModify() when onScreenModify != null:
+        return onScreenModify(_that.screen, _that.oldName);
+      case ScreensScreenEventOnScreenChangeInitial()
+          when onScreenChangeInitial != null:
+        return onScreenChangeInitial(_that.screen);
+      case _:
+        return null;
+    }
+  }
 }
 
 /// @nodoc
-abstract class _$$ScreensScreenEventOnScreenAddImplCopyWith<$Res> {
-  factory _$$ScreensScreenEventOnScreenAddImplCopyWith(
-          _$ScreensScreenEventOnScreenAddImpl value,
-          $Res Function(_$ScreensScreenEventOnScreenAddImpl) then) =
-      __$$ScreensScreenEventOnScreenAddImplCopyWithImpl<$Res>;
+
+class ScreensScreenEventInit implements ScreensScreenEvent {
+  const ScreensScreenEventInit();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ScreensScreenEventInit);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'ScreensScreenEvent.init()';
+  }
+}
+
+/// @nodoc
+
+class ScreensScreenEventOnScreenAdd implements ScreensScreenEvent {
+  const ScreensScreenEventOnScreenAdd({required this.screen});
+
+  final Screen screen;
+
+  /// Create a copy of ScreensScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ScreensScreenEventOnScreenAddCopyWith<ScreensScreenEventOnScreenAdd>
+      get copyWith => _$ScreensScreenEventOnScreenAddCopyWithImpl<
+          ScreensScreenEventOnScreenAdd>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ScreensScreenEventOnScreenAdd &&
+            (identical(other.screen, screen) || other.screen == screen));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, screen);
+
+  @override
+  String toString() {
+    return 'ScreensScreenEvent.onScreenAdd(screen: $screen)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ScreensScreenEventOnScreenAddCopyWith<$Res>
+    implements $ScreensScreenEventCopyWith<$Res> {
+  factory $ScreensScreenEventOnScreenAddCopyWith(
+          ScreensScreenEventOnScreenAdd value,
+          $Res Function(ScreensScreenEventOnScreenAdd) _then) =
+      _$ScreensScreenEventOnScreenAddCopyWithImpl;
   @useResult
   $Res call({Screen screen});
 }
 
 /// @nodoc
-class __$$ScreensScreenEventOnScreenAddImplCopyWithImpl<$Res>
-    extends _$ScreensScreenEventCopyWithImpl<$Res,
-        _$ScreensScreenEventOnScreenAddImpl>
-    implements _$$ScreensScreenEventOnScreenAddImplCopyWith<$Res> {
-  __$$ScreensScreenEventOnScreenAddImplCopyWithImpl(
-      _$ScreensScreenEventOnScreenAddImpl _value,
-      $Res Function(_$ScreensScreenEventOnScreenAddImpl) _then)
-      : super(_value, _then);
+class _$ScreensScreenEventOnScreenAddCopyWithImpl<$Res>
+    implements $ScreensScreenEventOnScreenAddCopyWith<$Res> {
+  _$ScreensScreenEventOnScreenAddCopyWithImpl(this._self, this._then);
+
+  final ScreensScreenEventOnScreenAdd _self;
+  final $Res Function(ScreensScreenEventOnScreenAdd) _then;
 
   /// Create a copy of ScreensScreenEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? screen = null,
   }) {
-    return _then(_$ScreensScreenEventOnScreenAddImpl(
+    return _then(ScreensScreenEventOnScreenAdd(
       screen: null == screen
-          ? _value.screen
+          ? _self.screen
           : screen // ignore: cast_nullable_to_non_nullable
               as Screen,
     ));
@@ -269,169 +361,65 @@ class __$$ScreensScreenEventOnScreenAddImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ScreensScreenEventOnScreenAddImpl
-    implements ScreensScreenEventOnScreenAdd {
-  const _$ScreensScreenEventOnScreenAddImpl({required this.screen});
+class ScreensScreenEventOnScreenDelete implements ScreensScreenEvent {
+  const ScreensScreenEventOnScreenDelete({required this.screenName});
 
-  @override
-  final Screen screen;
+  final String screenName;
 
-  @override
-  String toString() {
-    return 'ScreensScreenEvent.onScreenAdd(screen: $screen)';
-  }
+  /// Create a copy of ScreensScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ScreensScreenEventOnScreenDeleteCopyWith<ScreensScreenEventOnScreenDelete>
+      get copyWith => _$ScreensScreenEventOnScreenDeleteCopyWithImpl<
+          ScreensScreenEventOnScreenDelete>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ScreensScreenEventOnScreenAddImpl &&
-            (identical(other.screen, screen) || other.screen == screen));
+            other is ScreensScreenEventOnScreenDelete &&
+            (identical(other.screenName, screenName) ||
+                other.screenName == screenName));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, screen);
-
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ScreensScreenEventOnScreenAddImplCopyWith<
-          _$ScreensScreenEventOnScreenAddImpl>
-      get copyWith => __$$ScreensScreenEventOnScreenAddImplCopyWithImpl<
-          _$ScreensScreenEventOnScreenAddImpl>(this, _$identity);
+  int get hashCode => Object.hash(runtimeType, screenName);
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(Screen screen) onScreenAdd,
-    required TResult Function(String screenName) onScreenDelete,
-    required TResult Function(Screen screen, String oldName) onScreenModify,
-    required TResult Function(Screen screen) onScreenChangeInitial,
-  }) {
-    return onScreenAdd(screen);
+  String toString() {
+    return 'ScreensScreenEvent.onScreenDelete(screenName: $screenName)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(Screen screen)? onScreenAdd,
-    TResult? Function(String screenName)? onScreenDelete,
-    TResult? Function(Screen screen, String oldName)? onScreenModify,
-    TResult? Function(Screen screen)? onScreenChangeInitial,
-  }) {
-    return onScreenAdd?.call(screen);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(Screen screen)? onScreenAdd,
-    TResult Function(String screenName)? onScreenDelete,
-    TResult Function(Screen screen, String oldName)? onScreenModify,
-    TResult Function(Screen screen)? onScreenChangeInitial,
-    required TResult orElse(),
-  }) {
-    if (onScreenAdd != null) {
-      return onScreenAdd(screen);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ScreensScreenEventInit value) init,
-    required TResult Function(ScreensScreenEventOnScreenAdd value) onScreenAdd,
-    required TResult Function(ScreensScreenEventOnScreenDelete value)
-        onScreenDelete,
-    required TResult Function(ScreensScreenEventOnScreenModify value)
-        onScreenModify,
-    required TResult Function(ScreensScreenEventOnScreenChangeInitial value)
-        onScreenChangeInitial,
-  }) {
-    return onScreenAdd(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ScreensScreenEventInit value)? init,
-    TResult? Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
-    TResult? Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
-    TResult? Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
-    TResult? Function(ScreensScreenEventOnScreenChangeInitial value)?
-        onScreenChangeInitial,
-  }) {
-    return onScreenAdd?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ScreensScreenEventInit value)? init,
-    TResult Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
-    TResult Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
-    TResult Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
-    TResult Function(ScreensScreenEventOnScreenChangeInitial value)?
-        onScreenChangeInitial,
-    required TResult orElse(),
-  }) {
-    if (onScreenAdd != null) {
-      return onScreenAdd(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ScreensScreenEventOnScreenAdd implements ScreensScreenEvent {
-  const factory ScreensScreenEventOnScreenAdd({required final Screen screen}) =
-      _$ScreensScreenEventOnScreenAddImpl;
-
-  Screen get screen;
-
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ScreensScreenEventOnScreenAddImplCopyWith<
-          _$ScreensScreenEventOnScreenAddImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ScreensScreenEventOnScreenDeleteImplCopyWith<$Res> {
-  factory _$$ScreensScreenEventOnScreenDeleteImplCopyWith(
-          _$ScreensScreenEventOnScreenDeleteImpl value,
-          $Res Function(_$ScreensScreenEventOnScreenDeleteImpl) then) =
-      __$$ScreensScreenEventOnScreenDeleteImplCopyWithImpl<$Res>;
+abstract mixin class $ScreensScreenEventOnScreenDeleteCopyWith<$Res>
+    implements $ScreensScreenEventCopyWith<$Res> {
+  factory $ScreensScreenEventOnScreenDeleteCopyWith(
+          ScreensScreenEventOnScreenDelete value,
+          $Res Function(ScreensScreenEventOnScreenDelete) _then) =
+      _$ScreensScreenEventOnScreenDeleteCopyWithImpl;
   @useResult
   $Res call({String screenName});
 }
 
 /// @nodoc
-class __$$ScreensScreenEventOnScreenDeleteImplCopyWithImpl<$Res>
-    extends _$ScreensScreenEventCopyWithImpl<$Res,
-        _$ScreensScreenEventOnScreenDeleteImpl>
-    implements _$$ScreensScreenEventOnScreenDeleteImplCopyWith<$Res> {
-  __$$ScreensScreenEventOnScreenDeleteImplCopyWithImpl(
-      _$ScreensScreenEventOnScreenDeleteImpl _value,
-      $Res Function(_$ScreensScreenEventOnScreenDeleteImpl) _then)
-      : super(_value, _then);
+class _$ScreensScreenEventOnScreenDeleteCopyWithImpl<$Res>
+    implements $ScreensScreenEventOnScreenDeleteCopyWith<$Res> {
+  _$ScreensScreenEventOnScreenDeleteCopyWithImpl(this._self, this._then);
+
+  final ScreensScreenEventOnScreenDelete _self;
+  final $Res Function(ScreensScreenEventOnScreenDelete) _then;
 
   /// Create a copy of ScreensScreenEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? screenName = null,
   }) {
-    return _then(_$ScreensScreenEventOnScreenDeleteImpl(
+    return _then(ScreensScreenEventOnScreenDelete(
       screenName: null == screenName
-          ? _value.screenName
+          ? _self.screenName
           : screenName // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -440,176 +428,72 @@ class __$$ScreensScreenEventOnScreenDeleteImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ScreensScreenEventOnScreenDeleteImpl
-    implements ScreensScreenEventOnScreenDelete {
-  const _$ScreensScreenEventOnScreenDeleteImpl({required this.screenName});
+class ScreensScreenEventOnScreenModify implements ScreensScreenEvent {
+  const ScreensScreenEventOnScreenModify(
+      {required this.screen, required this.oldName});
 
-  @override
-  final String screenName;
+  final Screen screen;
+  final String oldName;
 
-  @override
-  String toString() {
-    return 'ScreensScreenEvent.onScreenDelete(screenName: $screenName)';
-  }
+  /// Create a copy of ScreensScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ScreensScreenEventOnScreenModifyCopyWith<ScreensScreenEventOnScreenModify>
+      get copyWith => _$ScreensScreenEventOnScreenModifyCopyWithImpl<
+          ScreensScreenEventOnScreenModify>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ScreensScreenEventOnScreenDeleteImpl &&
-            (identical(other.screenName, screenName) ||
-                other.screenName == screenName));
+            other is ScreensScreenEventOnScreenModify &&
+            (identical(other.screen, screen) || other.screen == screen) &&
+            (identical(other.oldName, oldName) || other.oldName == oldName));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, screenName);
-
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ScreensScreenEventOnScreenDeleteImplCopyWith<
-          _$ScreensScreenEventOnScreenDeleteImpl>
-      get copyWith => __$$ScreensScreenEventOnScreenDeleteImplCopyWithImpl<
-          _$ScreensScreenEventOnScreenDeleteImpl>(this, _$identity);
+  int get hashCode => Object.hash(runtimeType, screen, oldName);
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(Screen screen) onScreenAdd,
-    required TResult Function(String screenName) onScreenDelete,
-    required TResult Function(Screen screen, String oldName) onScreenModify,
-    required TResult Function(Screen screen) onScreenChangeInitial,
-  }) {
-    return onScreenDelete(screenName);
+  String toString() {
+    return 'ScreensScreenEvent.onScreenModify(screen: $screen, oldName: $oldName)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(Screen screen)? onScreenAdd,
-    TResult? Function(String screenName)? onScreenDelete,
-    TResult? Function(Screen screen, String oldName)? onScreenModify,
-    TResult? Function(Screen screen)? onScreenChangeInitial,
-  }) {
-    return onScreenDelete?.call(screenName);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(Screen screen)? onScreenAdd,
-    TResult Function(String screenName)? onScreenDelete,
-    TResult Function(Screen screen, String oldName)? onScreenModify,
-    TResult Function(Screen screen)? onScreenChangeInitial,
-    required TResult orElse(),
-  }) {
-    if (onScreenDelete != null) {
-      return onScreenDelete(screenName);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ScreensScreenEventInit value) init,
-    required TResult Function(ScreensScreenEventOnScreenAdd value) onScreenAdd,
-    required TResult Function(ScreensScreenEventOnScreenDelete value)
-        onScreenDelete,
-    required TResult Function(ScreensScreenEventOnScreenModify value)
-        onScreenModify,
-    required TResult Function(ScreensScreenEventOnScreenChangeInitial value)
-        onScreenChangeInitial,
-  }) {
-    return onScreenDelete(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ScreensScreenEventInit value)? init,
-    TResult? Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
-    TResult? Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
-    TResult? Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
-    TResult? Function(ScreensScreenEventOnScreenChangeInitial value)?
-        onScreenChangeInitial,
-  }) {
-    return onScreenDelete?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ScreensScreenEventInit value)? init,
-    TResult Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
-    TResult Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
-    TResult Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
-    TResult Function(ScreensScreenEventOnScreenChangeInitial value)?
-        onScreenChangeInitial,
-    required TResult orElse(),
-  }) {
-    if (onScreenDelete != null) {
-      return onScreenDelete(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ScreensScreenEventOnScreenDelete implements ScreensScreenEvent {
-  const factory ScreensScreenEventOnScreenDelete(
-          {required final String screenName}) =
-      _$ScreensScreenEventOnScreenDeleteImpl;
-
-  String get screenName;
-
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ScreensScreenEventOnScreenDeleteImplCopyWith<
-          _$ScreensScreenEventOnScreenDeleteImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ScreensScreenEventOnScreenModifyImplCopyWith<$Res> {
-  factory _$$ScreensScreenEventOnScreenModifyImplCopyWith(
-          _$ScreensScreenEventOnScreenModifyImpl value,
-          $Res Function(_$ScreensScreenEventOnScreenModifyImpl) then) =
-      __$$ScreensScreenEventOnScreenModifyImplCopyWithImpl<$Res>;
+abstract mixin class $ScreensScreenEventOnScreenModifyCopyWith<$Res>
+    implements $ScreensScreenEventCopyWith<$Res> {
+  factory $ScreensScreenEventOnScreenModifyCopyWith(
+          ScreensScreenEventOnScreenModify value,
+          $Res Function(ScreensScreenEventOnScreenModify) _then) =
+      _$ScreensScreenEventOnScreenModifyCopyWithImpl;
   @useResult
   $Res call({Screen screen, String oldName});
 }
 
 /// @nodoc
-class __$$ScreensScreenEventOnScreenModifyImplCopyWithImpl<$Res>
-    extends _$ScreensScreenEventCopyWithImpl<$Res,
-        _$ScreensScreenEventOnScreenModifyImpl>
-    implements _$$ScreensScreenEventOnScreenModifyImplCopyWith<$Res> {
-  __$$ScreensScreenEventOnScreenModifyImplCopyWithImpl(
-      _$ScreensScreenEventOnScreenModifyImpl _value,
-      $Res Function(_$ScreensScreenEventOnScreenModifyImpl) _then)
-      : super(_value, _then);
+class _$ScreensScreenEventOnScreenModifyCopyWithImpl<$Res>
+    implements $ScreensScreenEventOnScreenModifyCopyWith<$Res> {
+  _$ScreensScreenEventOnScreenModifyCopyWithImpl(this._self, this._then);
+
+  final ScreensScreenEventOnScreenModify _self;
+  final $Res Function(ScreensScreenEventOnScreenModify) _then;
 
   /// Create a copy of ScreensScreenEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? screen = null,
     Object? oldName = null,
   }) {
-    return _then(_$ScreensScreenEventOnScreenModifyImpl(
+    return _then(ScreensScreenEventOnScreenModify(
       screen: null == screen
-          ? _value.screen
+          ? _self.screen
           : screen // ignore: cast_nullable_to_non_nullable
               as Screen,
       oldName: null == oldName
-          ? _value.oldName
+          ? _self.oldName
           : oldName // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -618,175 +502,65 @@ class __$$ScreensScreenEventOnScreenModifyImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ScreensScreenEventOnScreenModifyImpl
-    implements ScreensScreenEventOnScreenModify {
-  const _$ScreensScreenEventOnScreenModifyImpl(
-      {required this.screen, required this.oldName});
+class ScreensScreenEventOnScreenChangeInitial implements ScreensScreenEvent {
+  const ScreensScreenEventOnScreenChangeInitial({required this.screen});
 
-  @override
   final Screen screen;
-  @override
-  final String oldName;
 
-  @override
-  String toString() {
-    return 'ScreensScreenEvent.onScreenModify(screen: $screen, oldName: $oldName)';
-  }
+  /// Create a copy of ScreensScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ScreensScreenEventOnScreenChangeInitialCopyWith<
+          ScreensScreenEventOnScreenChangeInitial>
+      get copyWith => _$ScreensScreenEventOnScreenChangeInitialCopyWithImpl<
+          ScreensScreenEventOnScreenChangeInitial>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ScreensScreenEventOnScreenModifyImpl &&
-            (identical(other.screen, screen) || other.screen == screen) &&
-            (identical(other.oldName, oldName) || other.oldName == oldName));
+            other is ScreensScreenEventOnScreenChangeInitial &&
+            (identical(other.screen, screen) || other.screen == screen));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, screen, oldName);
-
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ScreensScreenEventOnScreenModifyImplCopyWith<
-          _$ScreensScreenEventOnScreenModifyImpl>
-      get copyWith => __$$ScreensScreenEventOnScreenModifyImplCopyWithImpl<
-          _$ScreensScreenEventOnScreenModifyImpl>(this, _$identity);
+  int get hashCode => Object.hash(runtimeType, screen);
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(Screen screen) onScreenAdd,
-    required TResult Function(String screenName) onScreenDelete,
-    required TResult Function(Screen screen, String oldName) onScreenModify,
-    required TResult Function(Screen screen) onScreenChangeInitial,
-  }) {
-    return onScreenModify(screen, oldName);
+  String toString() {
+    return 'ScreensScreenEvent.onScreenChangeInitial(screen: $screen)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(Screen screen)? onScreenAdd,
-    TResult? Function(String screenName)? onScreenDelete,
-    TResult? Function(Screen screen, String oldName)? onScreenModify,
-    TResult? Function(Screen screen)? onScreenChangeInitial,
-  }) {
-    return onScreenModify?.call(screen, oldName);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(Screen screen)? onScreenAdd,
-    TResult Function(String screenName)? onScreenDelete,
-    TResult Function(Screen screen, String oldName)? onScreenModify,
-    TResult Function(Screen screen)? onScreenChangeInitial,
-    required TResult orElse(),
-  }) {
-    if (onScreenModify != null) {
-      return onScreenModify(screen, oldName);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ScreensScreenEventInit value) init,
-    required TResult Function(ScreensScreenEventOnScreenAdd value) onScreenAdd,
-    required TResult Function(ScreensScreenEventOnScreenDelete value)
-        onScreenDelete,
-    required TResult Function(ScreensScreenEventOnScreenModify value)
-        onScreenModify,
-    required TResult Function(ScreensScreenEventOnScreenChangeInitial value)
-        onScreenChangeInitial,
-  }) {
-    return onScreenModify(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ScreensScreenEventInit value)? init,
-    TResult? Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
-    TResult? Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
-    TResult? Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
-    TResult? Function(ScreensScreenEventOnScreenChangeInitial value)?
-        onScreenChangeInitial,
-  }) {
-    return onScreenModify?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ScreensScreenEventInit value)? init,
-    TResult Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
-    TResult Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
-    TResult Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
-    TResult Function(ScreensScreenEventOnScreenChangeInitial value)?
-        onScreenChangeInitial,
-    required TResult orElse(),
-  }) {
-    if (onScreenModify != null) {
-      return onScreenModify(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ScreensScreenEventOnScreenModify implements ScreensScreenEvent {
-  const factory ScreensScreenEventOnScreenModify(
-      {required final Screen screen,
-      required final String oldName}) = _$ScreensScreenEventOnScreenModifyImpl;
-
-  Screen get screen;
-  String get oldName;
-
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ScreensScreenEventOnScreenModifyImplCopyWith<
-          _$ScreensScreenEventOnScreenModifyImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ScreensScreenEventOnScreenChangeInitialImplCopyWith<$Res> {
-  factory _$$ScreensScreenEventOnScreenChangeInitialImplCopyWith(
-          _$ScreensScreenEventOnScreenChangeInitialImpl value,
-          $Res Function(_$ScreensScreenEventOnScreenChangeInitialImpl) then) =
-      __$$ScreensScreenEventOnScreenChangeInitialImplCopyWithImpl<$Res>;
+abstract mixin class $ScreensScreenEventOnScreenChangeInitialCopyWith<$Res>
+    implements $ScreensScreenEventCopyWith<$Res> {
+  factory $ScreensScreenEventOnScreenChangeInitialCopyWith(
+          ScreensScreenEventOnScreenChangeInitial value,
+          $Res Function(ScreensScreenEventOnScreenChangeInitial) _then) =
+      _$ScreensScreenEventOnScreenChangeInitialCopyWithImpl;
   @useResult
   $Res call({Screen screen});
 }
 
 /// @nodoc
-class __$$ScreensScreenEventOnScreenChangeInitialImplCopyWithImpl<$Res>
-    extends _$ScreensScreenEventCopyWithImpl<$Res,
-        _$ScreensScreenEventOnScreenChangeInitialImpl>
-    implements _$$ScreensScreenEventOnScreenChangeInitialImplCopyWith<$Res> {
-  __$$ScreensScreenEventOnScreenChangeInitialImplCopyWithImpl(
-      _$ScreensScreenEventOnScreenChangeInitialImpl _value,
-      $Res Function(_$ScreensScreenEventOnScreenChangeInitialImpl) _then)
-      : super(_value, _then);
+class _$ScreensScreenEventOnScreenChangeInitialCopyWithImpl<$Res>
+    implements $ScreensScreenEventOnScreenChangeInitialCopyWith<$Res> {
+  _$ScreensScreenEventOnScreenChangeInitialCopyWithImpl(this._self, this._then);
+
+  final ScreensScreenEventOnScreenChangeInitial _self;
+  final $Res Function(ScreensScreenEventOnScreenChangeInitial) _then;
 
   /// Create a copy of ScreensScreenEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? screen = null,
   }) {
-    return _then(_$ScreensScreenEventOnScreenChangeInitialImpl(
+    return _then(ScreensScreenEventOnScreenChangeInitial(
       screen: null == screen
-          ? _value.screen
+          ? _self.screen
           : screen // ignore: cast_nullable_to_non_nullable
               as Screen,
     ));
@@ -794,579 +568,261 @@ class __$$ScreensScreenEventOnScreenChangeInitialImplCopyWithImpl<$Res>
 }
 
 /// @nodoc
-
-class _$ScreensScreenEventOnScreenChangeInitialImpl
-    implements ScreensScreenEventOnScreenChangeInitial {
-  const _$ScreensScreenEventOnScreenChangeInitialImpl({required this.screen});
-
-  @override
-  final Screen screen;
-
-  @override
-  String toString() {
-    return 'ScreensScreenEvent.onScreenChangeInitial(screen: $screen)';
-  }
-
+mixin _$ScreensScreenSR {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ScreensScreenEventOnScreenChangeInitialImpl &&
-            (identical(other.screen, screen) || other.screen == screen));
+        (other.runtimeType == runtimeType && other is ScreensScreenSR);
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, screen);
-
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ScreensScreenEventOnScreenChangeInitialImplCopyWith<
-          _$ScreensScreenEventOnScreenChangeInitialImpl>
-      get copyWith =>
-          __$$ScreensScreenEventOnScreenChangeInitialImplCopyWithImpl<
-              _$ScreensScreenEventOnScreenChangeInitialImpl>(this, _$identity);
+  int get hashCode => runtimeType.hashCode;
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(Screen screen) onScreenAdd,
-    required TResult Function(String screenName) onScreenDelete,
-    required TResult Function(Screen screen, String oldName) onScreenModify,
-    required TResult Function(Screen screen) onScreenChangeInitial,
-  }) {
-    return onScreenChangeInitial(screen);
+  String toString() {
+    return 'ScreensScreenSR()';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(Screen screen)? onScreenAdd,
-    TResult? Function(String screenName)? onScreenDelete,
-    TResult? Function(Screen screen, String oldName)? onScreenModify,
-    TResult? Function(Screen screen)? onScreenChangeInitial,
-  }) {
-    return onScreenChangeInitial?.call(screen);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(Screen screen)? onScreenAdd,
-    TResult Function(String screenName)? onScreenDelete,
-    TResult Function(Screen screen, String oldName)? onScreenModify,
-    TResult Function(Screen screen)? onScreenChangeInitial,
-    required TResult orElse(),
-  }) {
-    if (onScreenChangeInitial != null) {
-      return onScreenChangeInitial(screen);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ScreensScreenEventInit value) init,
-    required TResult Function(ScreensScreenEventOnScreenAdd value) onScreenAdd,
-    required TResult Function(ScreensScreenEventOnScreenDelete value)
-        onScreenDelete,
-    required TResult Function(ScreensScreenEventOnScreenModify value)
-        onScreenModify,
-    required TResult Function(ScreensScreenEventOnScreenChangeInitial value)
-        onScreenChangeInitial,
-  }) {
-    return onScreenChangeInitial(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ScreensScreenEventInit value)? init,
-    TResult? Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
-    TResult? Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
-    TResult? Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
-    TResult? Function(ScreensScreenEventOnScreenChangeInitial value)?
-        onScreenChangeInitial,
-  }) {
-    return onScreenChangeInitial?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ScreensScreenEventInit value)? init,
-    TResult Function(ScreensScreenEventOnScreenAdd value)? onScreenAdd,
-    TResult Function(ScreensScreenEventOnScreenDelete value)? onScreenDelete,
-    TResult Function(ScreensScreenEventOnScreenModify value)? onScreenModify,
-    TResult Function(ScreensScreenEventOnScreenChangeInitial value)?
-        onScreenChangeInitial,
-    required TResult orElse(),
-  }) {
-    if (onScreenChangeInitial != null) {
-      return onScreenChangeInitial(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ScreensScreenEventOnScreenChangeInitial
-    implements ScreensScreenEvent {
-  const factory ScreensScreenEventOnScreenChangeInitial(
-          {required final Screen screen}) =
-      _$ScreensScreenEventOnScreenChangeInitialImpl;
-
-  Screen get screen;
-
-  /// Create a copy of ScreensScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ScreensScreenEventOnScreenChangeInitialImplCopyWith<
-          _$ScreensScreenEventOnScreenChangeInitialImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-mixin _$ScreensScreenSR {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() existsError,
-    required TResult Function() wrongNameError,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? existsError,
-    TResult? Function()? wrongNameError,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? existsError,
-    TResult Function()? wrongNameError,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ExistsError value) existsError,
-    required TResult Function(_WrongNameError value) wrongNameError,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ExistsError value)? existsError,
-    TResult? Function(_WrongNameError value)? wrongNameError,
-  }) =>
-      throw _privateConstructorUsedError;
+class $ScreensScreenSRCopyWith<$Res> {
+  $ScreensScreenSRCopyWith(
+      ScreensScreenSR _, $Res Function(ScreensScreenSR) __);
+}
+
+/// Adds pattern-matching-related methods to [ScreensScreenSR].
+extension ScreensScreenSRPatterns on ScreensScreenSR {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ExistsError value)? existsError,
     TResult Function(_WrongNameError value)? wrongNameError,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ExistsError() when existsError != null:
+        return existsError(_that);
+      case _WrongNameError() when wrongNameError != null:
+        return wrongNameError(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_ExistsError value) existsError,
+    required TResult Function(_WrongNameError value) wrongNameError,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ExistsError():
+        return existsError(_that);
+      case _WrongNameError():
+        return wrongNameError(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_ExistsError value)? existsError,
+    TResult? Function(_WrongNameError value)? wrongNameError,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ExistsError() when existsError != null:
+        return existsError(_that);
+      case _WrongNameError() when wrongNameError != null:
+        return wrongNameError(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? existsError,
+    TResult Function()? wrongNameError,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ExistsError() when existsError != null:
+        return existsError();
+      case _WrongNameError() when wrongNameError != null:
+        return wrongNameError();
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() existsError,
+    required TResult Function() wrongNameError,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ExistsError():
+        return existsError();
+      case _WrongNameError():
+        return wrongNameError();
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? existsError,
+    TResult? Function()? wrongNameError,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _ExistsError() when existsError != null:
+        return existsError();
+      case _WrongNameError() when wrongNameError != null:
+        return wrongNameError();
+      case _:
+        return null;
+    }
+  }
 }
 
 /// @nodoc
-abstract class $ScreensScreenSRCopyWith<$Res> {
-  factory $ScreensScreenSRCopyWith(
-          ScreensScreenSR value, $Res Function(ScreensScreenSR) then) =
-      _$ScreensScreenSRCopyWithImpl<$Res, ScreensScreenSR>;
-}
 
-/// @nodoc
-class _$ScreensScreenSRCopyWithImpl<$Res, $Val extends ScreensScreenSR>
-    implements $ScreensScreenSRCopyWith<$Res> {
-  _$ScreensScreenSRCopyWithImpl(this._value, this._then);
+class _ExistsError implements ScreensScreenSR {
+  const _ExistsError();
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _ExistsError);
+  }
 
-  /// Create a copy of ScreensScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$ExistsErrorImplCopyWith<$Res> {
-  factory _$$ExistsErrorImplCopyWith(
-          _$ExistsErrorImpl value, $Res Function(_$ExistsErrorImpl) then) =
-      __$$ExistsErrorImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ExistsErrorImplCopyWithImpl<$Res>
-    extends _$ScreensScreenSRCopyWithImpl<$Res, _$ExistsErrorImpl>
-    implements _$$ExistsErrorImplCopyWith<$Res> {
-  __$$ExistsErrorImplCopyWithImpl(
-      _$ExistsErrorImpl _value, $Res Function(_$ExistsErrorImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ScreensScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$ExistsErrorImpl implements _ExistsError {
-  const _$ExistsErrorImpl();
+  @override
+  int get hashCode => runtimeType.hashCode;
 
   @override
   String toString() {
     return 'ScreensScreenSR.existsError()';
   }
+}
+
+/// @nodoc
+
+class _WrongNameError implements ScreensScreenSR {
+  const _WrongNameError();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$ExistsErrorImpl);
+        (other.runtimeType == runtimeType && other is _WrongNameError);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() existsError,
-    required TResult Function() wrongNameError,
-  }) {
-    return existsError();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? existsError,
-    TResult? Function()? wrongNameError,
-  }) {
-    return existsError?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? existsError,
-    TResult Function()? wrongNameError,
-    required TResult orElse(),
-  }) {
-    if (existsError != null) {
-      return existsError();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ExistsError value) existsError,
-    required TResult Function(_WrongNameError value) wrongNameError,
-  }) {
-    return existsError(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ExistsError value)? existsError,
-    TResult? Function(_WrongNameError value)? wrongNameError,
-  }) {
-    return existsError?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ExistsError value)? existsError,
-    TResult Function(_WrongNameError value)? wrongNameError,
-    required TResult orElse(),
-  }) {
-    if (existsError != null) {
-      return existsError(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _ExistsError implements ScreensScreenSR {
-  const factory _ExistsError() = _$ExistsErrorImpl;
-}
-
-/// @nodoc
-abstract class _$$WrongNameErrorImplCopyWith<$Res> {
-  factory _$$WrongNameErrorImplCopyWith(_$WrongNameErrorImpl value,
-          $Res Function(_$WrongNameErrorImpl) then) =
-      __$$WrongNameErrorImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$WrongNameErrorImplCopyWithImpl<$Res>
-    extends _$ScreensScreenSRCopyWithImpl<$Res, _$WrongNameErrorImpl>
-    implements _$$WrongNameErrorImplCopyWith<$Res> {
-  __$$WrongNameErrorImplCopyWithImpl(
-      _$WrongNameErrorImpl _value, $Res Function(_$WrongNameErrorImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ScreensScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$WrongNameErrorImpl implements _WrongNameError {
-  const _$WrongNameErrorImpl();
 
   @override
   String toString() {
     return 'ScreensScreenSR.wrongNameError()';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$WrongNameErrorImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() existsError,
-    required TResult Function() wrongNameError,
-  }) {
-    return wrongNameError();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? existsError,
-    TResult? Function()? wrongNameError,
-  }) {
-    return wrongNameError?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? existsError,
-    TResult Function()? wrongNameError,
-    required TResult orElse(),
-  }) {
-    if (wrongNameError != null) {
-      return wrongNameError();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_ExistsError value) existsError,
-    required TResult Function(_WrongNameError value) wrongNameError,
-  }) {
-    return wrongNameError(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_ExistsError value)? existsError,
-    TResult? Function(_WrongNameError value)? wrongNameError,
-  }) {
-    return wrongNameError?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_ExistsError value)? existsError,
-    TResult Function(_WrongNameError value)? wrongNameError,
-    required TResult orElse(),
-  }) {
-    if (wrongNameError != null) {
-      return wrongNameError(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _WrongNameError implements ScreensScreenSR {
-  const factory _WrongNameError() = _$WrongNameErrorImpl;
 }
 
 /// @nodoc
 mixin _$ScreensScreenState {
-  Config get config => throw _privateConstructorUsedError;
-  int get stateUpdate => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Config config, int stateUpdate) data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config, int stateUpdate)? data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config, int stateUpdate)? data,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ScreensScreenStateData value) data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ScreensScreenStateData value)? data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ScreensScreenStateData value)? data,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  Config get config;
+  int get stateUpdate;
 
   /// Create a copy of ScreensScreenState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $ScreensScreenStateCopyWith<ScreensScreenState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ScreensScreenStateCopyWith<$Res> {
-  factory $ScreensScreenStateCopyWith(
-          ScreensScreenState value, $Res Function(ScreensScreenState) then) =
-      _$ScreensScreenStateCopyWithImpl<$Res, ScreensScreenState>;
-  @useResult
-  $Res call({Config config, int stateUpdate});
-
-  $ConfigCopyWith<$Res> get config;
-}
-
-/// @nodoc
-class _$ScreensScreenStateCopyWithImpl<$Res, $Val extends ScreensScreenState>
-    implements $ScreensScreenStateCopyWith<$Res> {
-  _$ScreensScreenStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ScreensScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? config = null,
-    Object? stateUpdate = null,
-  }) {
-    return _then(_value.copyWith(
-      config: null == config
-          ? _value.config
-          : config // ignore: cast_nullable_to_non_nullable
-              as Config,
-      stateUpdate: null == stateUpdate
-          ? _value.stateUpdate
-          : stateUpdate // ignore: cast_nullable_to_non_nullable
-              as int,
-    ) as $Val);
-  }
-
-  /// Create a copy of ScreensScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @pragma('vm:prefer-inline')
-  $ConfigCopyWith<$Res> get config {
-    return $ConfigCopyWith<$Res>(_value.config, (value) {
-      return _then(_value.copyWith(config: value) as $Val);
-    });
-  }
-}
-
-/// @nodoc
-abstract class _$$ScreensScreenStateDataImplCopyWith<$Res>
-    implements $ScreensScreenStateCopyWith<$Res> {
-  factory _$$ScreensScreenStateDataImplCopyWith(
-          _$ScreensScreenStateDataImpl value,
-          $Res Function(_$ScreensScreenStateDataImpl) then) =
-      __$$ScreensScreenStateDataImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call({Config config, int stateUpdate});
-
-  @override
-  $ConfigCopyWith<$Res> get config;
-}
-
-/// @nodoc
-class __$$ScreensScreenStateDataImplCopyWithImpl<$Res>
-    extends _$ScreensScreenStateCopyWithImpl<$Res, _$ScreensScreenStateDataImpl>
-    implements _$$ScreensScreenStateDataImplCopyWith<$Res> {
-  __$$ScreensScreenStateDataImplCopyWithImpl(
-      _$ScreensScreenStateDataImpl _value,
-      $Res Function(_$ScreensScreenStateDataImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ScreensScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? config = null,
-    Object? stateUpdate = null,
-  }) {
-    return _then(_$ScreensScreenStateDataImpl(
-      config: null == config
-          ? _value.config
-          : config // ignore: cast_nullable_to_non_nullable
-              as Config,
-      stateUpdate: null == stateUpdate
-          ? _value.stateUpdate
-          : stateUpdate // ignore: cast_nullable_to_non_nullable
-              as int,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ScreensScreenStateDataImpl implements ScreensScreenStateData {
-  const _$ScreensScreenStateDataImpl(
-      {required this.config, this.stateUpdate = 0});
-
-  @override
-  final Config config;
-  @override
-  @JsonKey()
-  final int stateUpdate;
-
-  @override
-  String toString() {
-    return 'ScreensScreenState.data(config: $config, stateUpdate: $stateUpdate)';
-  }
+      _$ScreensScreenStateCopyWithImpl<ScreensScreenState>(
+          this as ScreensScreenState, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ScreensScreenStateDataImpl &&
+            other is ScreensScreenState &&
             (identical(other.config, config) || other.config == config) &&
             (identical(other.stateUpdate, stateUpdate) ||
                 other.stateUpdate == stateUpdate));
@@ -1375,86 +831,309 @@ class _$ScreensScreenStateDataImpl implements ScreensScreenStateData {
   @override
   int get hashCode => Object.hash(runtimeType, config, stateUpdate);
 
+  @override
+  String toString() {
+    return 'ScreensScreenState(config: $config, stateUpdate: $stateUpdate)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ScreensScreenStateCopyWith<$Res> {
+  factory $ScreensScreenStateCopyWith(
+          ScreensScreenState value, $Res Function(ScreensScreenState) _then) =
+      _$ScreensScreenStateCopyWithImpl;
+  @useResult
+  $Res call({Config config, int stateUpdate});
+
+  $ConfigCopyWith<$Res> get config;
+}
+
+/// @nodoc
+class _$ScreensScreenStateCopyWithImpl<$Res>
+    implements $ScreensScreenStateCopyWith<$Res> {
+  _$ScreensScreenStateCopyWithImpl(this._self, this._then);
+
+  final ScreensScreenState _self;
+  final $Res Function(ScreensScreenState) _then;
+
   /// Create a copy of ScreensScreenState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? config = null,
+    Object? stateUpdate = null,
+  }) {
+    return _then(_self.copyWith(
+      config: null == config
+          ? _self.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as Config,
+      stateUpdate: null == stateUpdate
+          ? _self.stateUpdate
+          : stateUpdate // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+
+  /// Create a copy of ScreensScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  _$$ScreensScreenStateDataImplCopyWith<_$ScreensScreenStateDataImpl>
-      get copyWith => __$$ScreensScreenStateDataImplCopyWithImpl<
-          _$ScreensScreenStateDataImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Config config, int stateUpdate) data,
-  }) {
-    return data(config, stateUpdate);
+  $ConfigCopyWith<$Res> get config {
+    return $ConfigCopyWith<$Res>(_self.config, (value) {
+      return _then(_self.copyWith(config: value));
+    });
   }
+}
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config, int stateUpdate)? data,
-  }) {
-    return data?.call(config, stateUpdate);
-  }
+/// Adds pattern-matching-related methods to [ScreensScreenState].
+extension ScreensScreenStatePatterns on ScreensScreenState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config, int stateUpdate)? data,
-    required TResult orElse(),
-  }) {
-    if (data != null) {
-      return data(config, stateUpdate);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ScreensScreenStateData value) data,
-  }) {
-    return data(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ScreensScreenStateData value)? data,
-  }) {
-    return data?.call(this);
-  }
-
-  @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ScreensScreenStateData value)? data,
     required TResult orElse(),
   }) {
-    if (data != null) {
-      return data(this);
+    final _that = this;
+    switch (_that) {
+      case ScreensScreenStateData() when data != null:
+        return data(_that);
+      case _:
+        return orElse();
     }
-    return orElse();
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ScreensScreenStateData value) data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ScreensScreenStateData():
+        return data(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ScreensScreenStateData value)? data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ScreensScreenStateData() when data != null:
+        return data(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config, int stateUpdate)? data,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ScreensScreenStateData() when data != null:
+        return data(_that.config, _that.stateUpdate);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config, int stateUpdate) data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ScreensScreenStateData():
+        return data(_that.config, _that.stateUpdate);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config, int stateUpdate)? data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ScreensScreenStateData() when data != null:
+        return data(_that.config, _that.stateUpdate);
+      case _:
+        return null;
+    }
   }
 }
 
-abstract class ScreensScreenStateData implements ScreensScreenState {
-  const factory ScreensScreenStateData(
-      {required final Config config,
-      final int stateUpdate}) = _$ScreensScreenStateDataImpl;
+/// @nodoc
+
+class ScreensScreenStateData implements ScreensScreenState {
+  const ScreensScreenStateData({required this.config, this.stateUpdate = 0});
 
   @override
-  Config get config;
+  final Config config;
   @override
-  int get stateUpdate;
+  @JsonKey()
+  final int stateUpdate;
 
   /// Create a copy of ScreensScreenState
   /// with the given fields replaced by the non-null parameter values.
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ScreensScreenStateDataImplCopyWith<_$ScreensScreenStateDataImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $ScreensScreenStateDataCopyWith<ScreensScreenStateData> get copyWith =>
+      _$ScreensScreenStateDataCopyWithImpl<ScreensScreenStateData>(
+          this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ScreensScreenStateData &&
+            (identical(other.config, config) || other.config == config) &&
+            (identical(other.stateUpdate, stateUpdate) ||
+                other.stateUpdate == stateUpdate));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, config, stateUpdate);
+
+  @override
+  String toString() {
+    return 'ScreensScreenState.data(config: $config, stateUpdate: $stateUpdate)';
+  }
 }
+
+/// @nodoc
+abstract mixin class $ScreensScreenStateDataCopyWith<$Res>
+    implements $ScreensScreenStateCopyWith<$Res> {
+  factory $ScreensScreenStateDataCopyWith(ScreensScreenStateData value,
+          $Res Function(ScreensScreenStateData) _then) =
+      _$ScreensScreenStateDataCopyWithImpl;
+  @override
+  @useResult
+  $Res call({Config config, int stateUpdate});
+
+  @override
+  $ConfigCopyWith<$Res> get config;
+}
+
+/// @nodoc
+class _$ScreensScreenStateDataCopyWithImpl<$Res>
+    implements $ScreensScreenStateDataCopyWith<$Res> {
+  _$ScreensScreenStateDataCopyWithImpl(this._self, this._then);
+
+  final ScreensScreenStateData _self;
+  final $Res Function(ScreensScreenStateData) _then;
+
+  /// Create a copy of ScreensScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? config = null,
+    Object? stateUpdate = null,
+  }) {
+    return _then(ScreensScreenStateData(
+      config: null == config
+          ? _self.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as Config,
+      stateUpdate: null == stateUpdate
+          ? _self.stateUpdate
+          : stateUpdate // ignore: cast_nullable_to_non_nullable
+              as int,
+    ));
+  }
+
+  /// Create a copy of ScreensScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @pragma('vm:prefer-inline')
+  $ConfigCopyWith<$Res> get config {
+    return $ConfigCopyWith<$Res>(_self.config, (value) {
+      return _then(_self.copyWith(config: value));
+    });
+  }
+}
+
+// dart format on

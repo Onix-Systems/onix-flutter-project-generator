@@ -13,7 +13,6 @@ import 'package:onix_flutter_bricks/presentation/screen/procedure_selection_scre
 import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog_action_buttons.dart';
-import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class ClassesFromJsonDialog extends StatefulWidget {
   const ClassesFromJsonDialog({super.key});
@@ -22,11 +21,10 @@ class ClassesFromJsonDialog extends StatefulWidget {
   State<ClassesFromJsonDialog> createState() => _ClassesFromJsonDialogState();
 }
 
-class _ClassesFromJsonDialogState extends BaseCubitState<
-    ClassFromJsonDialogState,
-    ClassFromJsonDialogCubit,
-    ClassFromJsonDialogSR,
-    ClassesFromJsonDialog> {
+class _ClassesFromJsonDialogState extends State<ClassesFromJsonDialog>
+    with
+        BaseCubitState<ClassFromJsonDialogState, ClassFromJsonDialogCubit,
+            ClassFromJsonDialogSR, ClassesFromJsonDialog> {
   final _inputController = TextEditingController();
   final _generatedCodeController = TextEditingController();
   final FocusNode _mainFocusNode = FocusNode();
@@ -39,7 +37,7 @@ class _ClassesFromJsonDialogState extends BaseCubitState<
       GetIt.I.get<ClassFromJsonDialogCubit>();
 
   @override
-  Future<void> onFailure(BuildContext context, Failure failure) async {
+  Future<void> onFailure(BuildContext context, Exception failure) async {
     super.onFailure(context, failure);
     if (failure is JsonParserFailure) {
       final message = failure.getMessage(context);

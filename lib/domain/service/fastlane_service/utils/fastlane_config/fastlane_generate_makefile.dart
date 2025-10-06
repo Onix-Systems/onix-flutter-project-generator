@@ -56,6 +56,7 @@ abstract final class FastlaneGenerateMakefile {
                 dependencies: 'build_android${lineName}apk',
                 commands: [
                   '@echo "Distributing"',
+                  //ignore: lines_longer_than_80_chars
                   '@cd android && bundle exec fastlane build ${lineFlavor}firebase:true artifact_type:apk $env',
                 ],
               ),
@@ -64,6 +65,7 @@ abstract final class FastlaneGenerateMakefile {
                 dependencies: 'build_android${lineName}aab',
                 commands: [
                   '@echo "Distributing"',
+                  //ignore: lines_longer_than_80_chars
                   '@cd android && bundle exec fastlane build ${lineFlavor}store:true artifact_type:aab $env',
                 ],
               ),
@@ -112,6 +114,7 @@ abstract final class FastlaneGenerateMakefile {
                 name: 'build_ios${lineName}with_distribution',
                 dependencies: 'build${lineName}ios',
                 commands: [
+                  //ignore: lines_longer_than_80_chars
                   '@cd ios && bundle exec fastlane build ${lineFlavor}firebase:true test_flight:true $env',
                 ],
               ),
@@ -120,6 +123,7 @@ abstract final class FastlaneGenerateMakefile {
                 dependencies: 'build${lineName}ios',
                 commands: [
                   '@echo "Distributing to the Firebase App Distribution"',
+                  //ignore: lines_longer_than_80_chars
                   '@cd ios && bundle exec fastlane build ${lineFlavor}firebase:true $env',
                 ],
               ),
@@ -128,6 +132,7 @@ abstract final class FastlaneGenerateMakefile {
                 dependencies: 'build${lineName}ios',
                 commands: [
                   '@echo "Distributing to the TestFlight"',
+                  //ignore: lines_longer_than_80_chars
                   '@cd ios && bundle exec fastlane build ${lineFlavor}test_flight:true',
                 ],
               ),

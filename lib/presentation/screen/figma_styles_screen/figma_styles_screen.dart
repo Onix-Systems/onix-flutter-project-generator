@@ -22,8 +22,10 @@ class FigmaStylesScreen extends StatefulWidget {
   State<FigmaStylesScreen> createState() => _FigmaStylesScreenState();
 }
 
-class _FigmaStylesScreenState extends BaseState<FigmaStylesScreenState,
-    FigmaStylesScreenBloc, FigmaStylesScreenSR, FigmaStylesScreen> {
+class _FigmaStylesScreenState extends State<FigmaStylesScreen>
+    with
+        BaseBlocState<FigmaStylesScreenState, FigmaStylesScreenBloc,
+            FigmaStylesScreenSR, FigmaStylesScreen> {
   final TextEditingController _figmaFileController = TextEditingController();
   final TextEditingController _figmaTokenController = TextEditingController();
 
@@ -45,9 +47,9 @@ class _FigmaStylesScreenState extends BaseState<FigmaStylesScreenState,
   }
 
   @override
-  void onBlocCreated(BuildContext context, FigmaStylesScreenBloc bloc) {
+  void onBlocReady(BuildContext context, FigmaStylesScreenBloc bloc) {
     bloc.add(const FigmaStylesScreenEventInit());
-    super.onBlocCreated(context, bloc);
+    super.onBlocReady(context, bloc);
   }
 
   Widget _buildMainContainer(

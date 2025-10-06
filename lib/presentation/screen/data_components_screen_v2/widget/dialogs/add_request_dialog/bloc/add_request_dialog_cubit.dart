@@ -16,7 +16,7 @@ import 'package:onix_flutter_bricks/domain/usecase/swagger/get_component_by_name
 import 'package:onix_flutter_bricks/domain/usecase/swagger/get_swagger_components_usecase.dart';
 import 'package:onix_flutter_bricks/domain/usecase/swagger/is_component_exists_use_case.dart';
 import 'package:onix_flutter_bricks/presentation/screen/data_components_screen_v2/widget/dialogs/add_request_dialog/bloc/add_request_dialog_models.dart';
-import 'package:onix_flutter_core/onix_flutter_core.dart';
+import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class AddRequestDialogCubit
     extends BaseCubit<AddRequestDialogState, AddRequestDialogSR> {
@@ -123,7 +123,7 @@ class AddRequestDialogCubit
         );
 
         if (addComponentResult.isError) {
-          onFailure(addComponentResult.error.failure);
+          onFailure(addComponentResult.asError.error);
           return;
         }
       }
@@ -145,7 +145,7 @@ class AddRequestDialogCubit
     }
 
     if (result.isError) {
-      onFailure(result.error.failure);
+      onFailure(result.asError.error);
       return;
     }
 
@@ -345,7 +345,7 @@ class AddRequestDialogCubit
       final componentResult = _getComponentByNameUseCase(name);
 
       if (componentResult.isError) {
-        onFailure(componentResult.error.failure);
+        onFailure(componentResult.asError.error);
         return null;
       }
 

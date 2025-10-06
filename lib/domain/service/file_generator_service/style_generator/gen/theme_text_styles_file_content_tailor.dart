@@ -94,6 +94,7 @@ class ThemeTextStylesFileContentTailor
 
   List<String> _classPrefix() => [
         '@TailorMixin(themeGetter: ThemeGetter.onBuildContext)',
+        //ignore: lines_longer_than_80_chars
         r'class ThemeTextStyles extends ThemeExtension<ThemeTextStyles> with _$ThemeTextStylesTailorMixin {',
       ];
 

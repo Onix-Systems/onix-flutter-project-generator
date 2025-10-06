@@ -8,7 +8,7 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/signin
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
 import 'package:onix_flutter_bricks/util/extension/output/output_message_extension.dart';
 import 'package:onix_flutter_bricks/util/process_runner.dart';
-import 'package:onix_flutter_core/onix_flutter_core.dart';
+import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 ///This class Generates Android keystore with given credentials
 ///and fix Gradle signing configuration
@@ -61,6 +61,7 @@ class SigningGenerator
       final processRunner = ProcessRunner(_outputService);
       await processRunner.newProcess(workingDirectory: workDirectory);
       processRunner.execCommand(
+        //ignore: lines_longer_than_80_chars
         'keytool -genkey -v -keystore upload-keystore.jks -alias upload -keyalg RSA -keysize 2048 -validity 10000 -keypass ${params.signingVars.last} -storepass ${params.signingVars.last} -dname "CN=${params.signingVars[0]}, OU=${params.signingVars[1]}, O=${params.signingVars[2]}, L=${params.signingVars[3]}, S=${params.signingVars[4]}, C=${params.signingVars[5]}"',
       );
       await processRunner.waitForExit();
@@ -139,11 +140,11 @@ signingConfigs {
     }''',
         ),
       );
-      return const Result.success(0);
+      return Result.ok(0);
     } catch (e, trace) {
       logger.e(e, stackTrace: trace);
       return Result.error(
-        failure: SigningFailure(SigningFailureType.exception),
+        error: SigningFailure(SigningFailureType.exception),
       );
     }
   }

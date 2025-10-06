@@ -12,7 +12,7 @@ import 'package:onix_flutter_bricks/domain/service/file_generator_service/flavor
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/flavor_generator/mixins/flavor_injector_mixin.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/flavor_generator/params/flavor_generator_params.dart';
 import 'package:onix_flutter_bricks/domain/service/output_service/output_service.dart';
-import 'package:onix_flutter_core/onix_flutter_core.dart';
+import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 ///This class generates flavors for the project
 class FlavorGenerator
@@ -37,7 +37,7 @@ class FlavorGenerator
         _outputService.add('{#info}Already flavorized');
         await Future.delayed(const Duration(seconds: 1));
         return Result.error(
-          failure: FlavorizingFailure(FlavorizingFailureType.alreadyFlavorized),
+          error: FlavorizingFailure(FlavorizingFailureType.alreadyFlavorized),
         );
       }
 
@@ -63,7 +63,7 @@ class FlavorGenerator
 
       if (org.isEmpty) {
         return Result.error(
-          failure: FlavorizingFailure(FlavorizingFailureType.cannotGetOrg),
+          error: FlavorizingFailure(FlavorizingFailureType.cannotGetOrg),
         );
       }
 
@@ -229,12 +229,12 @@ class FlavorGenerator
         );
       }
 
-      return const Result.success(0);
+      return Result.ok(0);
     } catch (e, trace) {
       logger.e(e, stackTrace: trace);
       _outputService.add('{#error}$e');
       return Result.error(
-        failure: FlavorizingFailure(FlavorizingFailureType.exception),
+        error: FlavorizingFailure(FlavorizingFailureType.exception),
       );
     }
   }

@@ -4,7 +4,7 @@ part 'branch_config.freezed.dart';
 part 'branch_config.g.dart';
 
 @freezed
-class BranchConfig with _$BranchConfig {
+sealed class BranchConfig with _$BranchConfig {
   const factory BranchConfig({
     @Default('main') String branch,
     @Default('') String localVersion,

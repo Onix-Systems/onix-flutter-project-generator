@@ -15,11 +15,11 @@ import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_checkbox.
 class AddParamDialog<T extends RequestParamComponent> extends StatefulWidget {
   final T? param;
   final List<String> types;
-  final Function(
-    String type,
-    String name,
-    bool isList,
-  ) process;
+  final Function({
+    required String type,
+    required String name,
+    required bool isList,
+  }) process;
 
   const AddParamDialog({
     required this.types,
@@ -239,9 +239,9 @@ class _AddParamDialogState<T extends RequestParamComponent>
 
   void _onOk(BuildContext context) {
     widget.process(
-      _selectedType,
-      _controller.text,
-      isList,
+      type: _selectedType,
+      name: _controller.text,
+      isList: isList,
     );
     _pop(context);
   }

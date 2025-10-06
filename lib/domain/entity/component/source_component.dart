@@ -218,6 +218,7 @@ class SourceComponent {
     codeLines
       ..addAll(mapperImports)
       ..add(
+        //ignore: lines_longer_than_80_chars
         'class ${name.pascalCase}RepositoryImpl implements ${name.pascalCase}Repository {',
       )
       ..add('final ${name.pascalCase}Source _${name.camelCase}Source;')
@@ -571,6 +572,7 @@ class SourceComponent {
 
   @override
   String toString() {
+    //ignore: lines_longer_than_80_chars
     return 'SourceComponent(name: $name, requests: $requests, arch: $arch, fromSwagger: $fromSwagger)';
   }
 }

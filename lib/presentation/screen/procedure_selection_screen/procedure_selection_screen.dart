@@ -28,7 +28,6 @@ import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
 import 'package:onix_flutter_bricks/util/enum/tool_type.dart';
 import 'package:onix_flutter_bricks/util/extension/directory_extension.dart';
 import 'package:onix_flutter_bricks/util/extension/failure_dialog_extension.dart';
-import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class ProcedureSelectionScreen extends StatefulWidget {
   const ProcedureSelectionScreen({
@@ -40,18 +39,20 @@ class ProcedureSelectionScreen extends StatefulWidget {
       _ProcedureSelectionScreenState();
 }
 
-class _ProcedureSelectionScreenState extends BaseState<
-    ProcedureSelectionScreenState,
-    ProcedureSelectionScreenBloc,
-    ProcedureSelectionScreenSR,
-    ProcedureSelectionScreen> {
+class _ProcedureSelectionScreenState extends State<ProcedureSelectionScreen>
+    with
+        BaseBlocState<
+            ProcedureSelectionScreenState,
+            ProcedureSelectionScreenBloc,
+            ProcedureSelectionScreenSR,
+            ProcedureSelectionScreen> {
   @override
   ProcedureSelectionScreenBloc createBloc() =>
       GetIt.I.get<ProcedureSelectionScreenBloc>();
 
   @override
-  void onBlocCreated(BuildContext context, ProcedureSelectionScreenBloc bloc) {
-    super.onBlocCreated(context, bloc);
+  void onBlocReady(BuildContext context, ProcedureSelectionScreenBloc bloc) {
+    super.onBlocReady(context, bloc);
     bloc.add(const ProcedureSelectionScreenEventInit());
   }
 
@@ -115,6 +116,7 @@ class _ProcedureSelectionScreenState extends BaseState<
                   },
                   onClose: () {
                     blocOf(context).add(
+                      //ignore: lines_longer_than_80_chars
                       const ProcedureSelectionScreenEventOnFlavorizrOutputClose(),
                     );
                   },
@@ -128,7 +130,7 @@ class _ProcedureSelectionScreenState extends BaseState<
   }
 
   @override
-  Future<void> onFailure(BuildContext context, Failure failure) async {
+  Future<void> onFailure(BuildContext context, Exception failure) async {
     if (failure is SigningFailure) {
       context.onSigningFailure(failure);
     } else if (failure is JsonParserFailure) {

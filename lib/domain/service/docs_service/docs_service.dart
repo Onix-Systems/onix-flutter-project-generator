@@ -12,6 +12,7 @@ import 'package:recase/recase.dart';
 class DocsService
     implements BaseGenerationService<String, DocsGenerationParams> {
   final flavorsTitle =
+      //ignore: lines_longer_than_80_chars
       '* **Flavor** - type of application configuration. Flavored 2 supports following flavors:';
   final _appNamePattern = '{app_name}';
   final _flavorsPattern = '{app_flavors}';
@@ -83,12 +84,15 @@ class DocsService
           ..add('## Flavorizr')
           ..addNewLine()
           ..add(
+            //ignore: lines_longer_than_80_chars
             'Project uses [Flavorizr](https://pub.dev/packages/flutter_flavorizr) package to create flavors configuration in native mobile projects.',
           )
           ..add(
+            //ignore: lines_longer_than_80_chars
             'Flavorizr configuration declared in `pubspec.yaml` file in `flavorizr` section.',
           )
           ..add(
+            //ignore: lines_longer_than_80_chars
             'When you changing something in `flavorizr` configuration make sure to regenerate configurations to apply changes using command:',
           )
           ..add('```')
@@ -162,25 +166,33 @@ class DocsService
   String _getEnvFileForFlavor(String flavor) => '.env_$flavor';
 
   String _getExplanationText(Set<String> flavors) {
-    var envExplanation =
-        'This file should contain all project required public API and services keys and other sensitive information. ';
+    final envExplanation = [
+      //ignore: lines_longer_than_80_chars
+      'This file should contain all project required public API and services keys and other sensitive information. ',
+    ];
     if (flavors.isEmpty) {
-      return envExplanation +=
-          '`.env` file contains environment variables for a application configuration. ';
+      envExplanation.add(
+        //ignore: lines_longer_than_80_chars
+        '`.env` file contains environment variables for a application configuration. ',
+      );
+      return envExplanation.join();
     }
 
     for (final flavor in flavors) {
       final flavorExplanation =
+          //ignore: lines_longer_than_80_chars
           '`.env_$flavor` file contains environment variables for a `$flavor` configuration (flavor). ';
-      envExplanation += flavorExplanation;
+      envExplanation.add(flavorExplanation);
     }
-    return envExplanation;
+    return envExplanation.join();
   }
 
   String _getMainCountText(Set<String> flavors) {
     if (flavors.isEmpty) {
+      //ignore: lines_longer_than_80_chars
       return "This applications don't have any flavors, so there only one entry point `main.dart` file";
     }
+    //ignore: lines_longer_than_80_chars
     return 'This applications have ${flavors.length} flavors, so it have ${flavors.length} different entry points and `main.dart` files';
   }
 
@@ -192,13 +204,14 @@ class DocsService
     if (flavors.isEmpty) {
       return '`$org.$name`';
     }
-    var output = '';
+    final output = [''];
     for (final e in flavors) {
       final packageNamePrefix = '* ${e.titleCase} `';
       final packageNameSuffix = e == 'prod' ? '' : '.$e';
-      output += packageNamePrefix;
-      output += '$org.$name$packageNameSuffix`\n';
+      output
+        ..add(packageNamePrefix)
+        ..add('$org.$name$packageNameSuffix`\n');
     }
-    return output;
+    return output.join();
   }
 }

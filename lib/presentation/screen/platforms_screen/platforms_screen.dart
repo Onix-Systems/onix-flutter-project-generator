@@ -18,15 +18,17 @@ class PlatformsScreen extends StatefulWidget {
   State<PlatformsScreen> createState() => _PlatformsScreenState();
 }
 
-class _PlatformsScreenState extends BaseState<PlatformsScreenState,
-    PlatformsScreenBloc, PlatformsScreenSR, PlatformsScreen> {
+class _PlatformsScreenState extends State<PlatformsScreen>
+    with
+        BaseBlocState<PlatformsScreenState, PlatformsScreenBloc,
+            PlatformsScreenSR, PlatformsScreen> {
   @override
   PlatformsScreenBloc createBloc() => GetIt.I.get<PlatformsScreenBloc>();
 
   @override
-  void onBlocCreated(BuildContext context, PlatformsScreenBloc bloc) {
+  void onBlocReady(BuildContext context, PlatformsScreenBloc bloc) {
     bloc.add(const PlatformsScreenEvent.init());
-    super.onBlocCreated(context, bloc);
+    super.onBlocReady(context, bloc);
   }
 
   @override

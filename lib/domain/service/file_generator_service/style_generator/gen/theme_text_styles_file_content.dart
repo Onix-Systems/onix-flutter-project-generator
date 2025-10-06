@@ -42,6 +42,7 @@ class ThemeTextStylesFileContent
 
       ///Light constructor
       ..add(
+        //ignore: lines_longer_than_80_chars
         'factory ThemeTextStyles.light() => ${useScreenUtil ? '' : 'const'} ThemeTextStyles(',
       );
     final lightColorsDeclarations = styles.map(
@@ -61,6 +62,7 @@ class ThemeTextStylesFileContent
 
       ///Dark constructor
       ..add(
+        //ignore: lines_longer_than_80_chars
         ' factory ThemeTextStyles.dark() => ${useScreenUtil ? '' : 'const'} ThemeTextStyles(',
       );
     final darkColorsDeclarations = styles.map(
@@ -125,6 +127,7 @@ class ThemeTextStylesFileContent
       ///Lerp function
       ..add('@override')
       ..add(
+        //ignore: lines_longer_than_80_chars
         'ThemeExtension<ThemeTextStyles> lerp(ThemeExtension<ThemeTextStyles>? other,double t,) {',
       )
       ..add('if (other is! ThemeTextStyles) {')

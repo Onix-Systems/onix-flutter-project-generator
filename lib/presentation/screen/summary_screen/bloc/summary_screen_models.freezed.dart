@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,374 +9,443 @@ part of 'summary_screen_models.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$SummaryScreenEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SummaryScreenEventInit value) init,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SummaryScreenEventInit value)? init,
-  }) =>
-      throw _privateConstructorUsedError;
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SummaryScreenEvent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'SummaryScreenEvent()';
+  }
+}
+
+/// @nodoc
+class $SummaryScreenEventCopyWith<$Res> {
+  $SummaryScreenEventCopyWith(
+      SummaryScreenEvent _, $Res Function(SummaryScreenEvent) __);
+}
+
+/// Adds pattern-matching-related methods to [SummaryScreenEvent].
+extension SummaryScreenEventPatterns on SummaryScreenEvent {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SummaryScreenEventInit value)? init,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) {
+    final _that = this;
+    switch (_that) {
+      case SummaryScreenEventInit() when init != null:
+        return init(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SummaryScreenEventInit value) init,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case SummaryScreenEventInit():
+        return init(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SummaryScreenEventInit value)? init,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case SummaryScreenEventInit() when init != null:
+        return init(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case SummaryScreenEventInit() when init != null:
+        return init();
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case SummaryScreenEventInit():
+        return init();
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case SummaryScreenEventInit() when init != null:
+        return init();
+      case _:
+        return null;
+    }
+  }
 }
 
 /// @nodoc
-abstract class $SummaryScreenEventCopyWith<$Res> {
-  factory $SummaryScreenEventCopyWith(
-          SummaryScreenEvent value, $Res Function(SummaryScreenEvent) then) =
-      _$SummaryScreenEventCopyWithImpl<$Res, SummaryScreenEvent>;
-}
 
-/// @nodoc
-class _$SummaryScreenEventCopyWithImpl<$Res, $Val extends SummaryScreenEvent>
-    implements $SummaryScreenEventCopyWith<$Res> {
-  _$SummaryScreenEventCopyWithImpl(this._value, this._then);
+class SummaryScreenEventInit implements SummaryScreenEvent {
+  const SummaryScreenEventInit();
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SummaryScreenEventInit);
+  }
 
-  /// Create a copy of SummaryScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$SummaryScreenEventInitImplCopyWith<$Res> {
-  factory _$$SummaryScreenEventInitImplCopyWith(
-          _$SummaryScreenEventInitImpl value,
-          $Res Function(_$SummaryScreenEventInitImpl) then) =
-      __$$SummaryScreenEventInitImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SummaryScreenEventInitImplCopyWithImpl<$Res>
-    extends _$SummaryScreenEventCopyWithImpl<$Res, _$SummaryScreenEventInitImpl>
-    implements _$$SummaryScreenEventInitImplCopyWith<$Res> {
-  __$$SummaryScreenEventInitImplCopyWithImpl(
-      _$SummaryScreenEventInitImpl _value,
-      $Res Function(_$SummaryScreenEventInitImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SummaryScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$SummaryScreenEventInitImpl implements SummaryScreenEventInit {
-  const _$SummaryScreenEventInitImpl();
+  @override
+  int get hashCode => runtimeType.hashCode;
 
   @override
   String toString() {
     return 'SummaryScreenEvent.init()';
   }
+}
 
+/// @nodoc
+mixin _$SummaryScreenSR {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SummaryScreenEventInitImpl);
+        (other.runtimeType == runtimeType && other is SummaryScreenSR);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-  }) {
-    return init();
+  String toString() {
+    return 'SummaryScreenSR()';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-  }) {
-    return init?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    required TResult orElse(),
-  }) {
-    if (init != null) {
-      return init();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SummaryScreenEventInit value) init,
-  }) {
-    return init(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SummaryScreenEventInit value)? init,
-  }) {
-    return init?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SummaryScreenEventInit value)? init,
-    required TResult orElse(),
-  }) {
-    if (init != null) {
-      return init(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SummaryScreenEventInit implements SummaryScreenEvent {
-  const factory SummaryScreenEventInit() = _$SummaryScreenEventInitImpl;
 }
 
 /// @nodoc
-mixin _$SummaryScreenSR {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loadFinished,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadFinished,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadFinished,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_LoadFinished value) loadFinished,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadFinished value)? loadFinished,
-  }) =>
-      throw _privateConstructorUsedError;
+class $SummaryScreenSRCopyWith<$Res> {
+  $SummaryScreenSRCopyWith(
+      SummaryScreenSR _, $Res Function(SummaryScreenSR) __);
+}
+
+/// Adds pattern-matching-related methods to [SummaryScreenSR].
+extension SummaryScreenSRPatterns on SummaryScreenSR {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadFinished value)? loadFinished,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LoadFinished() when loadFinished != null:
+        return loadFinished(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadFinished value) loadFinished,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LoadFinished():
+        return loadFinished(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_LoadFinished value)? loadFinished,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LoadFinished() when loadFinished != null:
+        return loadFinished(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? loadFinished,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LoadFinished() when loadFinished != null:
+        return loadFinished();
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() loadFinished,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LoadFinished():
+        return loadFinished();
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? loadFinished,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _LoadFinished() when loadFinished != null:
+        return loadFinished();
+      case _:
+        return null;
+    }
+  }
 }
 
 /// @nodoc
-abstract class $SummaryScreenSRCopyWith<$Res> {
-  factory $SummaryScreenSRCopyWith(
-          SummaryScreenSR value, $Res Function(SummaryScreenSR) then) =
-      _$SummaryScreenSRCopyWithImpl<$Res, SummaryScreenSR>;
-}
 
-/// @nodoc
-class _$SummaryScreenSRCopyWithImpl<$Res, $Val extends SummaryScreenSR>
-    implements $SummaryScreenSRCopyWith<$Res> {
-  _$SummaryScreenSRCopyWithImpl(this._value, this._then);
+class _LoadFinished implements SummaryScreenSR {
+  const _LoadFinished();
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _LoadFinished);
+  }
 
-  /// Create a copy of SummaryScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$LoadFinishedImplCopyWith<$Res> {
-  factory _$$LoadFinishedImplCopyWith(
-          _$LoadFinishedImpl value, $Res Function(_$LoadFinishedImpl) then) =
-      __$$LoadFinishedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$LoadFinishedImplCopyWithImpl<$Res>
-    extends _$SummaryScreenSRCopyWithImpl<$Res, _$LoadFinishedImpl>
-    implements _$$LoadFinishedImplCopyWith<$Res> {
-  __$$LoadFinishedImplCopyWithImpl(
-      _$LoadFinishedImpl _value, $Res Function(_$LoadFinishedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SummaryScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$LoadFinishedImpl implements _LoadFinished {
-  const _$LoadFinishedImpl();
+  @override
+  int get hashCode => runtimeType.hashCode;
 
   @override
   String toString() {
     return 'SummaryScreenSR.loadFinished()';
   }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$LoadFinishedImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() loadFinished,
-  }) {
-    return loadFinished();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? loadFinished,
-  }) {
-    return loadFinished?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? loadFinished,
-    required TResult orElse(),
-  }) {
-    if (loadFinished != null) {
-      return loadFinished();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_LoadFinished value) loadFinished,
-  }) {
-    return loadFinished(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_LoadFinished value)? loadFinished,
-  }) {
-    return loadFinished?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_LoadFinished value)? loadFinished,
-    required TResult orElse(),
-  }) {
-    if (loadFinished != null) {
-      return loadFinished(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _LoadFinished implements SummaryScreenSR {
-  const factory _LoadFinished() = _$LoadFinishedImpl;
 }
 
 /// @nodoc
 mixin _$SummaryScreenState {
-  Config get config => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Config config) data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? data,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SummaryScreenStateData value) data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SummaryScreenStateData value)? data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SummaryScreenStateData value)? data,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  Config get config;
 
   /// Create a copy of SummaryScreenState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $SummaryScreenStateCopyWith<SummaryScreenState> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$SummaryScreenStateCopyWithImpl<SummaryScreenState>(
+          this as SummaryScreenState, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SummaryScreenState &&
+            (identical(other.config, config) || other.config == config));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, config);
+
+  @override
+  String toString() {
+    return 'SummaryScreenState(config: $config)';
+  }
 }
 
 /// @nodoc
-abstract class $SummaryScreenStateCopyWith<$Res> {
+abstract mixin class $SummaryScreenStateCopyWith<$Res> {
   factory $SummaryScreenStateCopyWith(
-          SummaryScreenState value, $Res Function(SummaryScreenState) then) =
-      _$SummaryScreenStateCopyWithImpl<$Res, SummaryScreenState>;
+          SummaryScreenState value, $Res Function(SummaryScreenState) _then) =
+      _$SummaryScreenStateCopyWithImpl;
   @useResult
   $Res call({Config config});
 
@@ -384,14 +453,12 @@ abstract class $SummaryScreenStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$SummaryScreenStateCopyWithImpl<$Res, $Val extends SummaryScreenState>
+class _$SummaryScreenStateCopyWithImpl<$Res>
     implements $SummaryScreenStateCopyWith<$Res> {
-  _$SummaryScreenStateCopyWithImpl(this._value, this._then);
+  _$SummaryScreenStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final SummaryScreenState _self;
+  final $Res Function(SummaryScreenState) _then;
 
   /// Create a copy of SummaryScreenState
   /// with the given fields replaced by the non-null parameter values.
@@ -400,12 +467,12 @@ class _$SummaryScreenStateCopyWithImpl<$Res, $Val extends SummaryScreenState>
   $Res call({
     Object? config = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       config: null == config
-          ? _value.config
+          ? _self.config
           : config // ignore: cast_nullable_to_non_nullable
               as Config,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of SummaryScreenState
@@ -413,19 +480,209 @@ class _$SummaryScreenStateCopyWithImpl<$Res, $Val extends SummaryScreenState>
   @override
   @pragma('vm:prefer-inline')
   $ConfigCopyWith<$Res> get config {
-    return $ConfigCopyWith<$Res>(_value.config, (value) {
-      return _then(_value.copyWith(config: value) as $Val);
+    return $ConfigCopyWith<$Res>(_self.config, (value) {
+      return _then(_self.copyWith(config: value));
     });
   }
 }
 
+/// Adds pattern-matching-related methods to [SummaryScreenState].
+extension SummaryScreenStatePatterns on SummaryScreenState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(SummaryScreenStateData value)? data,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case SummaryScreenStateData() when data != null:
+        return data(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SummaryScreenStateData value) data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case SummaryScreenStateData():
+        return data(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SummaryScreenStateData value)? data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case SummaryScreenStateData() when data != null:
+        return data(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config)? data,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case SummaryScreenStateData() when data != null:
+        return data(_that.config);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config) data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case SummaryScreenStateData():
+        return data(_that.config);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config)? data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case SummaryScreenStateData() when data != null:
+        return data(_that.config);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
-abstract class _$$SummaryScreenStateDataImplCopyWith<$Res>
+
+class SummaryScreenStateData implements SummaryScreenState {
+  const SummaryScreenStateData({required this.config});
+
+  @override
+  final Config config;
+
+  /// Create a copy of SummaryScreenState
+  /// with the given fields replaced by the non-null parameter values.
+  @override
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $SummaryScreenStateDataCopyWith<SummaryScreenStateData> get copyWith =>
+      _$SummaryScreenStateDataCopyWithImpl<SummaryScreenStateData>(
+          this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SummaryScreenStateData &&
+            (identical(other.config, config) || other.config == config));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, config);
+
+  @override
+  String toString() {
+    return 'SummaryScreenState.data(config: $config)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $SummaryScreenStateDataCopyWith<$Res>
     implements $SummaryScreenStateCopyWith<$Res> {
-  factory _$$SummaryScreenStateDataImplCopyWith(
-          _$SummaryScreenStateDataImpl value,
-          $Res Function(_$SummaryScreenStateDataImpl) then) =
-      __$$SummaryScreenStateDataImplCopyWithImpl<$Res>;
+  factory $SummaryScreenStateDataCopyWith(SummaryScreenStateData value,
+          $Res Function(SummaryScreenStateData) _then) =
+      _$SummaryScreenStateDataCopyWithImpl;
   @override
   @useResult
   $Res call({Config config});
@@ -435,131 +692,37 @@ abstract class _$$SummaryScreenStateDataImplCopyWith<$Res>
 }
 
 /// @nodoc
-class __$$SummaryScreenStateDataImplCopyWithImpl<$Res>
-    extends _$SummaryScreenStateCopyWithImpl<$Res, _$SummaryScreenStateDataImpl>
-    implements _$$SummaryScreenStateDataImplCopyWith<$Res> {
-  __$$SummaryScreenStateDataImplCopyWithImpl(
-      _$SummaryScreenStateDataImpl _value,
-      $Res Function(_$SummaryScreenStateDataImpl) _then)
-      : super(_value, _then);
+class _$SummaryScreenStateDataCopyWithImpl<$Res>
+    implements $SummaryScreenStateDataCopyWith<$Res> {
+  _$SummaryScreenStateDataCopyWithImpl(this._self, this._then);
+
+  final SummaryScreenStateData _self;
+  final $Res Function(SummaryScreenStateData) _then;
 
   /// Create a copy of SummaryScreenState
   /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
   @override
+  @pragma('vm:prefer-inline')
   $Res call({
     Object? config = null,
   }) {
-    return _then(_$SummaryScreenStateDataImpl(
+    return _then(SummaryScreenStateData(
       config: null == config
-          ? _value.config
+          ? _self.config
           : config // ignore: cast_nullable_to_non_nullable
               as Config,
     ));
   }
-}
-
-/// @nodoc
-
-class _$SummaryScreenStateDataImpl implements SummaryScreenStateData {
-  const _$SummaryScreenStateDataImpl({required this.config});
-
-  @override
-  final Config config;
-
-  @override
-  String toString() {
-    return 'SummaryScreenState.data(config: $config)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SummaryScreenStateDataImpl &&
-            (identical(other.config, config) || other.config == config));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, config);
 
   /// Create a copy of SummaryScreenState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$SummaryScreenStateDataImplCopyWith<_$SummaryScreenStateDataImpl>
-      get copyWith => __$$SummaryScreenStateDataImplCopyWithImpl<
-          _$SummaryScreenStateDataImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Config config) data,
-  }) {
-    return data(config);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config)? data,
-  }) {
-    return data?.call(config);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config)? data,
-    required TResult orElse(),
-  }) {
-    if (data != null) {
-      return data(config);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SummaryScreenStateData value) data,
-  }) {
-    return data(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SummaryScreenStateData value)? data,
-  }) {
-    return data?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SummaryScreenStateData value)? data,
-    required TResult orElse(),
-  }) {
-    if (data != null) {
-      return data(this);
-    }
-    return orElse();
+  $ConfigCopyWith<$Res> get config {
+    return $ConfigCopyWith<$Res>(_self.config, (value) {
+      return _then(_self.copyWith(config: value));
+    });
   }
 }
 
-abstract class SummaryScreenStateData implements SummaryScreenState {
-  const factory SummaryScreenStateData({required final Config config}) =
-      _$SummaryScreenStateDataImpl;
-
-  @override
-  Config get config;
-
-  /// Create a copy of SummaryScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$SummaryScreenStateDataImplCopyWith<_$SummaryScreenStateDataImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
+// dart format on

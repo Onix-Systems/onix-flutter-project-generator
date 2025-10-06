@@ -64,6 +64,7 @@ void register${stateManagement.titleCase}(GetIt getIt) {
           )
           .replaceFirst(
             diSuffix,
+            //ignore: lines_longer_than_80_chars
             'getIt.registerSingleton<StateNotifierProvider<${screenName.pascalCase}ScreenProvider, ${screenName.pascalCase}ScreenState>>(StateNotifierProvider<${screenName.pascalCase}ScreenProvider, ${screenName.pascalCase}ScreenState>((ref) => ${screenName.pascalCase}ScreenProvider(),),);\n$diSuffix',
           );
 
@@ -81,6 +82,7 @@ $output
           )
           .replaceFirst(
             diSuffix,
+            //ignore: lines_longer_than_80_chars
             'getIt.registerFactory<${screenName.pascalCase}Screen${stateVariant.pascalCase}>(${screenName.pascalCase}Screen${stateVariant.pascalCase}.new);\n$diSuffix',
           );
     }

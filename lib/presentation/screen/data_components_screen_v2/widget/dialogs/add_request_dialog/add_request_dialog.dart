@@ -23,7 +23,6 @@ import 'package:onix_flutter_bricks/presentation/style/theme/theme_extension/ext
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog_action_buttons.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_checkbox.dart';
-import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 import 'package:recase/recase.dart';
 
 class AddEditRequestDialog extends StatefulWidget {
@@ -40,8 +39,10 @@ class AddEditRequestDialog extends StatefulWidget {
   State<AddEditRequestDialog> createState() => _AddEditRequestDialogState();
 }
 
-class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
-    AddRequestDialogCubit, AddRequestDialogSR, AddEditRequestDialog> {
+class _AddEditRequestDialogState extends State<AddEditRequestDialog>
+    with
+        BaseCubitState<AddRequestDialogState, AddRequestDialogCubit,
+            AddRequestDialogSR, AddEditRequestDialog> {
   final TextEditingController _pathController = TextEditingController();
   final TextEditingController _idController = TextEditingController();
   final FocusNode _mainFocusNode = FocusNode();
@@ -58,11 +59,11 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
   @override
   void onCubitCreated(BuildContext context, AddRequestDialogCubit cubit) {
     cubit.init(request: widget.request, sourceName: widget.sourceName);
-    super.onCubitCreated(context, cubit);
+    super.onCubitReady(context, cubit);
   }
 
   @override
-  void onFailure(BuildContext context, Failure failure) {
+  void onFailure(BuildContext context, Exception failure) {
     super.onFailure(context, failure);
     if (failure is SwaggerParserFailure) {
       Dialogs.showOkDialog(
@@ -368,6 +369,7 @@ class _AddEditRequestDialogState extends BaseCubitState<AddRequestDialogState,
   }
 
   String _getComponentName(String suffix) {
+    //ignore: lines_longer_than_80_chars
     return '${_idController.text.isNotEmpty ? _idController.text : '${_requestType.name}_${_pathController.text.clearPathToName()}'.camelCase}$suffix';
   }
 

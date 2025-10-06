@@ -6,7 +6,7 @@ part 'frame_node_entity.freezed.dart';
 
 // https://www.figma.com/developers/api#frame-props
 @freezed
-class FrameNodeEntity with _$FrameNodeEntity implements FillPaintsNode {
+sealed class FrameNodeEntity with _$FrameNodeEntity implements FillPaintsNode {
   const factory FrameNodeEntity({
     required List<PaintProperty> fills,
     required String id,

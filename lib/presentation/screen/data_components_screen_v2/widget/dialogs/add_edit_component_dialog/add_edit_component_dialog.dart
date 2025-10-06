@@ -23,7 +23,6 @@ import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_butto
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog_action_buttons.dart';
 import 'package:onix_flutter_bricks/presentation/widget/inputs/switch_with_label.dart';
-import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class AddEditComponentDialog extends StatefulWidget {
   final Component? component;
@@ -43,8 +42,10 @@ class AddEditComponentDialog extends StatefulWidget {
   State<AddEditComponentDialog> createState() => _AddEditComponentDialogState();
 }
 
-class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
-    ComponentDialogCubit, ComponentDialogSR, AddEditComponentDialog> {
+class _AddEditComponentDialogState extends State<AddEditComponentDialog>
+    with
+        BaseCubitState<ComponentDialogState, ComponentDialogCubit,
+            ComponentDialogSR, AddEditComponentDialog> {
   final TextEditingController _controller = TextEditingController();
   final FocusNode _mainFocusNode = FocusNode();
   bool isEnum = false;
@@ -59,11 +60,11 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
     cubit.init(
       component: widget.component,
     );
-    super.onCubitCreated(context, cubit);
+    super.onCubitReady(context, cubit);
   }
 
   @override
-  Future<void> onFailure(BuildContext context, Failure failure) async {
+  Future<void> onFailure(BuildContext context, Exception failure) async {
     super.onFailure(context, failure);
     if (failure is SwaggerParserFailure || failure is JsonParserFailure) {
       final swaggerParserFailure = failure is SwaggerParserFailure;
@@ -173,7 +174,11 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                                         ? ['String']
                                         : cubitOf(context).state.componentNames,
                                     parentIsEnum: isEnum,
-                                    process: (type, name, isList) {
+                                    process: ({
+                                      required type,
+                                      required name,
+                                      required isList,
+                                    }) {
                                       cubitOf(context).addVariable(
                                         name: name,
                                         type: type,
@@ -230,7 +235,11 @@ class _AddEditComponentDialogState extends BaseCubitState<ComponentDialogState,
                                     ? ['String']
                                     : cubitOf(context).state.componentNames,
                                 parentIsEnum: isEnum,
-                                process: (type, name, isList) {
+                                process: ({
+                                  required type,
+                                  required name,
+                                  required isList,
+                                }) {
                                   cubitOf(context).editVariable(
                                     name: name,
                                     type: type,

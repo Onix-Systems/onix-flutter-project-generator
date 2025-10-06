@@ -20,7 +20,6 @@ import 'package:onix_flutter_bricks/presentation/widget/buttons/app_filled_butto
 import 'package:onix_flutter_bricks/presentation/widget/buttons/navigation_button_bar.dart';
 import 'package:onix_flutter_bricks/presentation/widget/dialogs/dialog.dart';
 import 'package:onix_flutter_bricks/presentation/widget/title_bar.dart';
-import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class DataComponentsScreenV2 extends StatefulWidget {
   const DataComponentsScreenV2({
@@ -31,23 +30,22 @@ class DataComponentsScreenV2 extends StatefulWidget {
   State<DataComponentsScreenV2> createState() => _DataComponentsScreenState();
 }
 
-class _DataComponentsScreenState extends BaseState<
-    DataComponentsScreenV2State,
-    DataComponentsScreenV2Bloc,
-    DataComponentsScreenV2SR,
-    DataComponentsScreenV2> {
+class _DataComponentsScreenState extends State<DataComponentsScreenV2>
+    with
+        BaseBlocState<DataComponentsScreenV2State, DataComponentsScreenV2Bloc,
+            DataComponentsScreenV2SR, DataComponentsScreenV2> {
   @override
   DataComponentsScreenV2Bloc createBloc() =>
       GetIt.I.get<DataComponentsScreenV2Bloc>();
 
   @override
-  void onBlocCreated(BuildContext context, DataComponentsScreenV2Bloc bloc) {
+  void onBlocReady(BuildContext context, DataComponentsScreenV2Bloc bloc) {
     bloc.add(const DataComponentsScreenV2Event.init());
-    super.onBlocCreated(context, bloc);
+    super.onBlocReady(context, bloc);
   }
 
   @override
-  void onFailure(BuildContext context, Failure failure) {
+  void onFailure(BuildContext context, Exception failure) {
     if (failure is SwaggerParserFailure) {
       final message = failure.getTranslatedMessage(context);
       onSR(context, DataComponentsScreenV2SR.error(message: message));
@@ -202,7 +200,10 @@ class _DataComponentsScreenState extends BaseState<
                                     request.response.fromSwagger
                                         ? null
                                         : request.response.type.getName(),
-                                onDelete: (deleteBody, deleteResponse) =>
+                                onDelete: ({
+                                  required deleteBody,
+                                  required deleteResponse,
+                                }) =>
                                     blocOf(context).add(
                                   DataComponentsScreenV2Event.deleteRequest(
                                     sourceName: sourceName,
@@ -293,8 +294,9 @@ class _DataComponentsScreenState extends BaseState<
             height: 250,
             width: 600,
             child: ClipRRect(
-                borderRadius: BorderRadius.circular(16),
-                child: const SwaggerParserScreen(modal: true)),
+              borderRadius: BorderRadius.circular(16),
+              child: const SwaggerParserScreen(modal: true),
+            ),
           ),
         );
       },

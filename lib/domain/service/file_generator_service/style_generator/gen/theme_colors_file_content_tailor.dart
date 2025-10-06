@@ -42,6 +42,7 @@ class ThemeColorsFileContentTailor
       ..add(' factory ThemeColors.light() => ThemeColors(');
     for (final color in tailorColors) {
       lines.add(
+        //ignore: lines_longer_than_80_chars
         '${color.name}Color: ${(color.colorNames.isNotEmpty) ? 'AppColors.${color.colorNames[0]}' : 'Color(0xFFFFFFFF)'},',
       );
     }
@@ -52,6 +53,7 @@ class ThemeColorsFileContentTailor
       ..add(' factory ThemeColors.dark() => ThemeColors(');
     for (final color in tailorColors) {
       lines.add(
+        //ignore: lines_longer_than_80_chars
         '${color.name}Color: ${(color.colorNames.length > 1) ? 'AppColors.${color.colorNames[1]}' : 'Color(0xFFFFFFFF)'},',
       );
     }
@@ -72,6 +74,7 @@ class ThemeColorsFileContentTailor
 
   List<String> _classPrefix() => [
         '@TailorMixin(themeGetter: ThemeGetter.onBuildContext)',
+        //ignore: lines_longer_than_80_chars
         r'class ThemeColors extends ThemeExtension<ThemeColors> with _$ThemeColorsTailorMixin {',
       ];
 

@@ -50,16 +50,17 @@ class TextStylesParser {
           continue;
         }
 
-        var styleContent = '';
+        final styleContent = [''];
 
         var lineIndex = lines.indexOf(startLine) + 1;
 
         while (lines[lineIndex].trim() != '];') {
-          styleContent += lines[lineIndex].trim();
+          styleContent.add(lines[lineIndex].trim());
           lineIndex++;
         }
 
         final stylesLines = styleContent
+            .join()
             .split(',),')
             .where((element) => element != '')
             .toList();
@@ -114,16 +115,17 @@ class TextStylesParser {
           continue;
         }
 
-        var styleContent = '';
+        final styleContent = [''];
 
         var lineIndex = lines.indexOf(startLine) + 1;
 
         while (lines[lineIndex].trim() != '),') {
-          styleContent += lines[lineIndex].trim();
+          styleContent.add(lines[lineIndex].trim());
           lineIndex++;
         }
 
         final stylesLines = styleContent
+            .join()
             .split(',),')
             .where((element) => element != '')
             .toList();

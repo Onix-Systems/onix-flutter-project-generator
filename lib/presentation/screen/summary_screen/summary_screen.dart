@@ -24,8 +24,10 @@ class SummaryScreen extends StatefulWidget {
   State<SummaryScreen> createState() => _SummaryScreenState();
 }
 
-class _SummaryScreenState extends BaseState<SummaryScreenState,
-    SummaryScreenBloc, SummaryScreenSR, SummaryScreen> {
+class _SummaryScreenState extends State<SummaryScreen>
+    with
+        BaseBlocState<SummaryScreenState, SummaryScreenBloc, SummaryScreenSR,
+            SummaryScreen> {
   @override
   SummaryScreenBloc createBloc() => GetIt.I.get<SummaryScreenBloc>();
 
@@ -42,9 +44,9 @@ class _SummaryScreenState extends BaseState<SummaryScreenState,
   }
 
   @override
-  void onBlocCreated(BuildContext context, SummaryScreenBloc bloc) {
+  void onBlocReady(BuildContext context, SummaryScreenBloc bloc) {
     bloc.add(const SummaryScreenEventInit());
-    super.onBlocCreated(context, bloc);
+    super.onBlocReady(context, bloc);
   }
 
   Widget _buildMainContainer(

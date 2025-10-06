@@ -2,13 +2,13 @@ extension VersionExtension on String {
   int asIntVersion() {
     final versionClear = replaceAll('.', '');
     final versionMissedSymbols = 4 - versionClear.length;
-    var addition = '';
+    final addition = [''];
     if (versionMissedSymbols > 0) {
       for (var i = 0; i < versionMissedSymbols; i++) {
-        addition += '0';
+        addition.add('0');
       }
     }
-    final fixedVersion = '$versionClear$addition';
+    final fixedVersion = '$versionClear${addition.join()}';
     return int.parse(fixedVersion);
   }
 }

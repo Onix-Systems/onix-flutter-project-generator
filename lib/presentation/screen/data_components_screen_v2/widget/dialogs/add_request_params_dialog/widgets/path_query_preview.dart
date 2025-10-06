@@ -27,6 +27,7 @@ class ClassPreview extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
+          //ignore: lines_longer_than_80_chars
           '${isEnum ? 'enum' : 'class'} ${className.pascalCase} {${variables.isNotEmpty ? '' : '}'}',
           style: context.appTextStyles.fs18,
         ),
@@ -40,6 +41,7 @@ class ClassPreview extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 15),
                     child: Text(
+                      //ignore: lines_longer_than_80_chars
                       '${isEnum ? '' : '${variable.type} '}${variable.name}${isEnum ? ',' : ';'}',
                       style: context.appTextStyles.fs18,
                     ),

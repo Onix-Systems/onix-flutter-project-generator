@@ -27,8 +27,10 @@ class ProjectNameScreen extends StatefulWidget {
   State<ProjectNameScreen> createState() => _ProjectNameScreenState();
 }
 
-class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
-    ProjectNameScreenBloc, ProjectNameScreenSR, ProjectNameScreen> {
+class _ProjectNameScreenState extends State<ProjectNameScreen>
+    with
+        BaseBlocState<ProjectNameScreenState, ProjectNameScreenBloc,
+            ProjectNameScreenSR, ProjectNameScreen> {
   final TextEditingController projectNameController = TextEditingController();
   final TextEditingController organizationController = TextEditingController();
   final FocusNode projectNameFocusNode = FocusNode();
@@ -39,9 +41,9 @@ class _ProjectNameScreenState extends BaseState<ProjectNameScreenState,
   ProjectNameScreenBloc createBloc() => GetIt.I.get<ProjectNameScreenBloc>();
 
   @override
-  void onBlocCreated(BuildContext context, ProjectNameScreenBloc bloc) {
+  void onBlocReady(BuildContext context, ProjectNameScreenBloc bloc) {
     bloc.add(const ProjectNameScreenEvent.init());
-    super.onBlocCreated(context, bloc);
+    super.onBlocReady(context, bloc);
   }
 
   @override

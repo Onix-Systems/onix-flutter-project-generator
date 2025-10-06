@@ -4,7 +4,7 @@ import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 part 'data_variable_component.freezed.dart';
 
 @Freezed(toJson: false, fromJson: false)
-class DataVariableComponent with _$DataVariableComponent {
+sealed class DataVariableComponent with _$DataVariableComponent {
   const DataVariableComponent._();
 
   const factory DataVariableComponent({

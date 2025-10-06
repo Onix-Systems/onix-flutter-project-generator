@@ -6,7 +6,7 @@ import 'package:onix_flutter_bricks/domain/entity/state_management/project_state
 part 'project_settings_screen_models.freezed.dart';
 
 @freezed
-class ProjectSettingsScreenEvent with _$ProjectSettingsScreenEvent {
+sealed class ProjectSettingsScreenEvent with _$ProjectSettingsScreenEvent {
   const factory ProjectSettingsScreenEvent.init() =
       ProjectSettingsScreenEventInit;
 
@@ -59,12 +59,12 @@ class ProjectSettingsScreenEvent with _$ProjectSettingsScreenEvent {
 }
 
 @freezed
-class ProjectSettingsScreenSR with _$ProjectSettingsScreenSR {
+sealed class ProjectSettingsScreenSR with _$ProjectSettingsScreenSR {
   const factory ProjectSettingsScreenSR.loadFinished() = _LoadFinished;
 }
 
 @freezed
-class ProjectSettingsScreenState with _$ProjectSettingsScreenState {
+sealed class ProjectSettingsScreenState with _$ProjectSettingsScreenState {
   const factory ProjectSettingsScreenState.data({
     required Config config,
   }) = ProjectSettingsScreenStateData;

@@ -5,7 +5,7 @@ part 'paint_property.freezed.dart';
 
 // https://www.figma.com/developers/api#paint-type
 @freezed
-class PaintProperty with _$PaintProperty {
+sealed class PaintProperty with _$PaintProperty {
   const factory PaintProperty({
     required ColorProperty color,
     required PaintPropertyType type,

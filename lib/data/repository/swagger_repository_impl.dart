@@ -21,6 +21,7 @@ import 'package:onix_flutter_bricks/domain/entity/component/source_component.dar
 import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
 import 'package:onix_flutter_bricks/domain/repository/swagger_repository.dart';
 import 'package:onix_flutter_core/onix_flutter_core.dart';
+import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class SwaggerRepositoryImpl implements SwaggerRepository {
   Components _components = Components.empty();
@@ -71,7 +72,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
 
       if (duplicates.isNotEmpty) {
         return Result.error(
-          failure: SwaggerParserFailureDuplicatesFound(
+          error: SwaggerParserFailureDuplicatesFound(
             duplicates.map((e) => e).toList().join(', '),
           ),
         );
@@ -105,11 +106,11 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
         ],
       );
 
-      return Result.success(components);
+      return Result.ok(components);
     } catch (e, s) {
       logger.crash(error: e, stackTrace: s, reason: 'fetchSwaggerData');
-      return const Result.error(
-        failure: SwaggerParserFailureFailedToParse(),
+      return Result.error(
+        error: const SwaggerParserFailureFailedToParse(),
       );
     }
   }
@@ -124,8 +125,8 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       final componentsFile = File('$projectPath/data_components.json');
 
       if (!componentsFile.existsSync()) {
-        return const Result.error(
-          failure: SwaggerParserFailureNotFound(
+        return Result.error(
+          error: const SwaggerParserFailureNotFound(
             'data_components.json',
           ),
         );
@@ -137,15 +138,15 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
 
       _components = Components.fromJson(componentsJson);
 
-      return Result.success(components);
+      return Result.ok(components);
     } catch (e, s) {
       logger.crash(
         error: e,
         stackTrace: s,
         reason: 'fetchComponentsFromConfig',
       );
-      return const Result.error(
-        failure: SwaggerParserFailureFailedToParse(),
+      return Result.error(
+        error: const SwaggerParserFailureFailedToParse(),
       );
     }
   }
@@ -185,7 +186,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
   }) {
     if (_isSourceExists(sourceName)) {
       return Result.error(
-        failure: SwaggerParserFailureAlreadyExists(
+        error: SwaggerParserFailureAlreadyExists(
           sourceName,
         ),
       );
@@ -203,14 +204,14 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       ],
     );
 
-    return const Result.success(OperationStatus.success);
+    return Result.ok(OperationStatus.success);
   }
 
   @override
   Result<OperationStatus> removeSource(String sourceName) {
     if (!_isSourceExists(sourceName)) {
       return Result.error(
-        failure: SwaggerParserFailureNotFound(
+        error: SwaggerParserFailureNotFound(
           sourceName,
         ),
       );
@@ -222,7 +223,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
           .toList(),
     );
 
-    return const Result.success(OperationStatus.success);
+    return Result.ok(OperationStatus.success);
   }
 
   @override
@@ -232,7 +233,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
   }) {
     if (!_isSourceExists(sourceName)) {
       return Result.error(
-        failure: SwaggerParserFailureNotFound(
+        error: SwaggerParserFailureNotFound(
           sourceName,
         ),
       );
@@ -240,7 +241,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
 
     if (_isSourceExists(newName)) {
       return Result.error(
-        failure: SwaggerParserFailureAlreadyExists(
+        error: SwaggerParserFailureAlreadyExists(
           newName,
         ),
       );
@@ -261,7 +262,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       ],
     );
 
-    return const Result.success(OperationStatus.success);
+    return Result.ok(OperationStatus.success);
   }
 
   @override
@@ -271,15 +272,15 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
   }) {
     if (!_isSourceExists(sourceName)) {
       return Result.error(
-        failure: SwaggerParserFailureNotFound(
+        error: SwaggerParserFailureNotFound(
           sourceName,
         ),
       );
     }
 
     if (_isSourceRequestExists(sourceName, requestComponent)) {
-      return const Result.error(
-        failure: SwaggerParserFailureRequestAlreadyExists(''),
+      return Result.error(
+        error: const SwaggerParserFailureRequestAlreadyExists(''),
       );
     }
 
@@ -291,7 +292,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
 
     if (source.requests.contains(requestComponent)) {
       return Result.error(
-        failure: SwaggerParserFailureAlreadyExists(
+        error: SwaggerParserFailureAlreadyExists(
           requestComponent.operationId,
         ),
       );
@@ -310,7 +311,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       ],
     );
 
-    return const Result.success(OperationStatus.success);
+    return Result.ok(OperationStatus.success);
   }
 
   @override
@@ -321,7 +322,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
   }) {
     if (!_isSourceExists(sourceName)) {
       return Result.error(
-        failure: SwaggerParserFailureNotFound(
+        error: SwaggerParserFailureNotFound(
           sourceName,
         ),
       );
@@ -334,8 +335,8 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
     final source = _components.sources[sourceIndex];
 
     if (source.requests.where((e) => e.equals(oldComponent)).isEmpty) {
-      return const Result.error(
-        failure: SwaggerParserFailureNotFound(
+      return Result.error(
+        error: const SwaggerParserFailureNotFound(
           'Request Component',
         ),
       );
@@ -356,7 +357,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       ],
     );
 
-    return const Result.success(OperationStatus.success);
+    return Result.ok(OperationStatus.success);
   }
 
   @override
@@ -366,7 +367,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
   }) {
     if (!_isSourceExists(sourceName)) {
       return Result.error(
-        failure: SwaggerParserFailureNotFound(
+        error: SwaggerParserFailureNotFound(
           sourceName,
         ),
       );
@@ -379,8 +380,8 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
     final source = _components.sources[sourceIndex];
 
     if (!source.requests.contains(requestComponent)) {
-      return const Result.error(
-        failure: SwaggerParserFailureNotFound(
+      return Result.error(
+        error: const SwaggerParserFailureNotFound(
           'Request Component',
         ),
       );
@@ -400,7 +401,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       ],
     );
 
-    return const Result.success(OperationStatus.success);
+    return Result.ok(OperationStatus.success);
   }
 
   @override
@@ -409,7 +410,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
   ) {
     if (isComponentExists(component.name)) {
       return Result.error(
-        failure: SwaggerParserFailureAlreadyExists(
+        error: SwaggerParserFailureAlreadyExists(
           component.name,
         ),
       );
@@ -431,7 +432,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       );
     }
 
-    return const Result.success(OperationStatus.success);
+    return Result.ok(OperationStatus.success);
   }
 
   @override
@@ -441,7 +442,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
   }) {
     if (!isComponentExists(oldName)) {
       return Result.error(
-        failure: SwaggerParserFailureNotFound(
+        error: SwaggerParserFailureNotFound(
           oldName,
         ),
       );
@@ -449,7 +450,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
 
     if (oldName != component.name && isComponentExists(component.name)) {
       return Result.error(
-        failure: SwaggerParserFailureAlreadyExists(
+        error: SwaggerParserFailureAlreadyExists(
           component.name,
         ),
       );
@@ -523,7 +524,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
 
     _updateRequests(oldName, component);
 
-    return const Result.success(OperationStatus.success);
+    return Result.ok(OperationStatus.success);
   }
 
   @override
@@ -532,7 +533,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
   ) {
     if (!isComponentExists(component.name)) {
       return Result.error(
-        failure: SwaggerParserFailureNotFound(
+        error: SwaggerParserFailureNotFound(
           component.name,
         ),
       );
@@ -566,7 +567,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
 
     _updateRequests(component.name, component);
 
-    return const Result.success(OperationStatus.success);
+    return Result.ok(OperationStatus.success);
   }
 
   void _editComponentObject(Component component, String oldName) {
@@ -725,12 +726,12 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
 
     if (component == null) {
       return Result.error(
-        failure: SwaggerParserFailureNotFound(
+        error: SwaggerParserFailureNotFound(
           componentName,
         ),
       );
     }
 
-    return Result.success(component);
+    return Result.ok(component);
   }
 }

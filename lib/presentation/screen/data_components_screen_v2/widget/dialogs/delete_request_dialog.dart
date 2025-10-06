@@ -9,7 +9,8 @@ import 'package:onix_flutter_bricks/presentation/widget/inputs/labeled_checkbox.
 class DeleteRequestDialog extends StatefulWidget {
   final String? requestBodyComponentName;
   final String? responseComponentName;
-  final void Function(bool deleteBody, bool deleteResponse) onDelete;
+  final void Function({required bool deleteBody, required bool deleteResponse})
+      onDelete;
 
   const DeleteRequestDialog({
     required this.onDelete,
@@ -105,8 +106,8 @@ class _DeleteRequestDialogState extends State<DeleteRequestDialog> {
 
   void _onOk(BuildContext context) {
     widget.onDelete(
-      _deleteRequestBodyComponent,
-      _deleteResponseComponent,
+      deleteBody: _deleteRequestBodyComponent,
+      deleteResponse: _deleteResponseComponent,
     );
     _pop(context);
   }

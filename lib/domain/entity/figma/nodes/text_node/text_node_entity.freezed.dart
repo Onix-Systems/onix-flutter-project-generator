@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,32 +9,54 @@ part of 'text_node_entity.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$TextNodeEntity {
-  TypeStyleMetadata get style => throw _privateConstructorUsedError;
-  String get id => throw _privateConstructorUsedError;
-  String get key => throw _privateConstructorUsedError;
-  String get name => throw _privateConstructorUsedError;
-  String get type => throw _privateConstructorUsedError;
-  List<PaintProperty> get fills => throw _privateConstructorUsedError;
+  TypeStyleMetadata get style;
+  String get id;
+  String get key;
+  String get name;
+  String get type;
+  List<PaintProperty> get fills;
 
   /// Create a copy of TextNodeEntity
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $TextNodeEntityCopyWith<TextNodeEntity> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$TextNodeEntityCopyWithImpl<TextNodeEntity>(
+          this as TextNodeEntity, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is TextNodeEntity &&
+            (identical(other.style, style) || other.style == style) &&
+            (identical(other.id, id) || other.id == id) &&
+            (identical(other.key, key) || other.key == key) &&
+            (identical(other.name, name) || other.name == name) &&
+            (identical(other.type, type) || other.type == type) &&
+            const DeepCollectionEquality().equals(other.fills, fills));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, style, id, key, name, type,
+      const DeepCollectionEquality().hash(fills));
+
+  @override
+  String toString() {
+    return 'TextNodeEntity(style: $style, id: $id, key: $key, name: $name, type: $type, fills: $fills)';
+  }
 }
 
 /// @nodoc
-abstract class $TextNodeEntityCopyWith<$Res> {
+abstract mixin class $TextNodeEntityCopyWith<$Res> {
   factory $TextNodeEntityCopyWith(
-          TextNodeEntity value, $Res Function(TextNodeEntity) then) =
-      _$TextNodeEntityCopyWithImpl<$Res, TextNodeEntity>;
+          TextNodeEntity value, $Res Function(TextNodeEntity) _then) =
+      _$TextNodeEntityCopyWithImpl;
   @useResult
   $Res call(
       {TypeStyleMetadata style,
@@ -48,14 +70,12 @@ abstract class $TextNodeEntityCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$TextNodeEntityCopyWithImpl<$Res, $Val extends TextNodeEntity>
+class _$TextNodeEntityCopyWithImpl<$Res>
     implements $TextNodeEntityCopyWith<$Res> {
-  _$TextNodeEntityCopyWithImpl(this._value, this._then);
+  _$TextNodeEntityCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final TextNodeEntity _self;
+  final $Res Function(TextNodeEntity) _then;
 
   /// Create a copy of TextNodeEntity
   /// with the given fields replaced by the non-null parameter values.
@@ -69,32 +89,32 @@ class _$TextNodeEntityCopyWithImpl<$Res, $Val extends TextNodeEntity>
     Object? type = null,
     Object? fills = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       style: null == style
-          ? _value.style
+          ? _self.style
           : style // ignore: cast_nullable_to_non_nullable
               as TypeStyleMetadata,
       id: null == id
-          ? _value.id
+          ? _self.id
           : id // ignore: cast_nullable_to_non_nullable
               as String,
       key: null == key
-          ? _value.key
+          ? _self.key
           : key // ignore: cast_nullable_to_non_nullable
               as String,
       name: null == name
-          ? _value.name
+          ? _self.name
           : name // ignore: cast_nullable_to_non_nullable
               as String,
       type: null == type
-          ? _value.type
+          ? _self.type
           : type // ignore: cast_nullable_to_non_nullable
               as String,
       fills: null == fills
-          ? _value.fills
+          ? _self.fills
           : fills // ignore: cast_nullable_to_non_nullable
               as List<PaintProperty>,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of TextNodeEntity
@@ -102,85 +122,182 @@ class _$TextNodeEntityCopyWithImpl<$Res, $Val extends TextNodeEntity>
   @override
   @pragma('vm:prefer-inline')
   $TypeStyleMetadataCopyWith<$Res> get style {
-    return $TypeStyleMetadataCopyWith<$Res>(_value.style, (value) {
-      return _then(_value.copyWith(style: value) as $Val);
+    return $TypeStyleMetadataCopyWith<$Res>(_self.style, (value) {
+      return _then(_self.copyWith(style: value));
     });
   }
 }
 
-/// @nodoc
-abstract class _$$TextNodeEntityImplCopyWith<$Res>
-    implements $TextNodeEntityCopyWith<$Res> {
-  factory _$$TextNodeEntityImplCopyWith(_$TextNodeEntityImpl value,
-          $Res Function(_$TextNodeEntityImpl) then) =
-      __$$TextNodeEntityImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {TypeStyleMetadata style,
-      String id,
-      String key,
-      String name,
-      String type,
-      List<PaintProperty> fills});
+/// Adds pattern-matching-related methods to [TextNodeEntity].
+extension TextNodeEntityPatterns on TextNodeEntity {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  @override
-  $TypeStyleMetadataCopyWith<$Res> get style;
-}
-
-/// @nodoc
-class __$$TextNodeEntityImplCopyWithImpl<$Res>
-    extends _$TextNodeEntityCopyWithImpl<$Res, _$TextNodeEntityImpl>
-    implements _$$TextNodeEntityImplCopyWith<$Res> {
-  __$$TextNodeEntityImplCopyWithImpl(
-      _$TextNodeEntityImpl _value, $Res Function(_$TextNodeEntityImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of TextNodeEntity
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? style = null,
-    Object? id = null,
-    Object? key = null,
-    Object? name = null,
-    Object? type = null,
-    Object? fills = null,
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_TextNodeEntity value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_$TextNodeEntityImpl(
-      style: null == style
-          ? _value.style
-          : style // ignore: cast_nullable_to_non_nullable
-              as TypeStyleMetadata,
-      id: null == id
-          ? _value.id
-          : id // ignore: cast_nullable_to_non_nullable
-              as String,
-      key: null == key
-          ? _value.key
-          : key // ignore: cast_nullable_to_non_nullable
-              as String,
-      name: null == name
-          ? _value.name
-          : name // ignore: cast_nullable_to_non_nullable
-              as String,
-      type: null == type
-          ? _value.type
-          : type // ignore: cast_nullable_to_non_nullable
-              as String,
-      fills: null == fills
-          ? _value._fills
-          : fills // ignore: cast_nullable_to_non_nullable
-              as List<PaintProperty>,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _TextNodeEntity() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_TextNodeEntity value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TextNodeEntity():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_TextNodeEntity value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TextNodeEntity() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(TypeStyleMetadata style, String id, String key,
+            String name, String type, List<PaintProperty> fills)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _TextNodeEntity() when $default != null:
+        return $default(_that.style, _that.id, _that.key, _that.name,
+            _that.type, _that.fills);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(TypeStyleMetadata style, String id, String key,
+            String name, String type, List<PaintProperty> fills)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TextNodeEntity():
+        return $default(_that.style, _that.id, _that.key, _that.name,
+            _that.type, _that.fills);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(TypeStyleMetadata style, String id, String key,
+            String name, String type, List<PaintProperty> fills)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TextNodeEntity() when $default != null:
+        return $default(_that.style, _that.id, _that.key, _that.name,
+            _that.type, _that.fills);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 
-class _$TextNodeEntityImpl implements _TextNodeEntity {
-  const _$TextNodeEntityImpl(
+class _TextNodeEntity implements TextNodeEntity {
+  const _TextNodeEntity(
       {required this.style,
       required this.id,
       required this.key,
@@ -207,16 +324,19 @@ class _$TextNodeEntityImpl implements _TextNodeEntity {
     return EqualUnmodifiableListView(_fills);
   }
 
+  /// Create a copy of TextNodeEntity
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'TextNodeEntity(style: $style, id: $id, key: $key, name: $name, type: $type, fills: $fills)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$TextNodeEntityCopyWith<_TextNodeEntity> get copyWith =>
+      __$TextNodeEntityCopyWithImpl<_TextNodeEntity>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TextNodeEntityImpl &&
+            other is _TextNodeEntity &&
             (identical(other.style, style) || other.style == style) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.key, key) || other.key == key) &&
@@ -229,42 +349,89 @@ class _$TextNodeEntityImpl implements _TextNodeEntity {
   int get hashCode => Object.hash(runtimeType, style, id, key, name, type,
       const DeepCollectionEquality().hash(_fills));
 
+  @override
+  String toString() {
+    return 'TextNodeEntity(style: $style, id: $id, key: $key, name: $name, type: $type, fills: $fills)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$TextNodeEntityCopyWith<$Res>
+    implements $TextNodeEntityCopyWith<$Res> {
+  factory _$TextNodeEntityCopyWith(
+          _TextNodeEntity value, $Res Function(_TextNodeEntity) _then) =
+      __$TextNodeEntityCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {TypeStyleMetadata style,
+      String id,
+      String key,
+      String name,
+      String type,
+      List<PaintProperty> fills});
+
+  @override
+  $TypeStyleMetadataCopyWith<$Res> get style;
+}
+
+/// @nodoc
+class __$TextNodeEntityCopyWithImpl<$Res>
+    implements _$TextNodeEntityCopyWith<$Res> {
+  __$TextNodeEntityCopyWithImpl(this._self, this._then);
+
+  final _TextNodeEntity _self;
+  final $Res Function(_TextNodeEntity) _then;
+
   /// Create a copy of TextNodeEntity
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$TextNodeEntityImplCopyWith<_$TextNodeEntityImpl> get copyWith =>
-      __$$TextNodeEntityImplCopyWithImpl<_$TextNodeEntityImpl>(
-          this, _$identity);
-}
-
-abstract class _TextNodeEntity implements TextNodeEntity {
-  const factory _TextNodeEntity(
-      {required final TypeStyleMetadata style,
-      required final String id,
-      required final String key,
-      required final String name,
-      required final String type,
-      required final List<PaintProperty> fills}) = _$TextNodeEntityImpl;
-
-  @override
-  TypeStyleMetadata get style;
-  @override
-  String get id;
-  @override
-  String get key;
-  @override
-  String get name;
-  @override
-  String get type;
-  @override
-  List<PaintProperty> get fills;
+  $Res call({
+    Object? style = null,
+    Object? id = null,
+    Object? key = null,
+    Object? name = null,
+    Object? type = null,
+    Object? fills = null,
+  }) {
+    return _then(_TextNodeEntity(
+      style: null == style
+          ? _self.style
+          : style // ignore: cast_nullable_to_non_nullable
+              as TypeStyleMetadata,
+      id: null == id
+          ? _self.id
+          : id // ignore: cast_nullable_to_non_nullable
+              as String,
+      key: null == key
+          ? _self.key
+          : key // ignore: cast_nullable_to_non_nullable
+              as String,
+      name: null == name
+          ? _self.name
+          : name // ignore: cast_nullable_to_non_nullable
+              as String,
+      type: null == type
+          ? _self.type
+          : type // ignore: cast_nullable_to_non_nullable
+              as String,
+      fills: null == fills
+          ? _self._fills
+          : fills // ignore: cast_nullable_to_non_nullable
+              as List<PaintProperty>,
+    ));
+  }
 
   /// Create a copy of TextNodeEntity
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TextNodeEntityImplCopyWith<_$TextNodeEntityImpl> get copyWith =>
-      throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $TypeStyleMetadataCopyWith<$Res> get style {
+    return $TypeStyleMetadataCopyWith<$Res>(_self.style, (value) {
+      return _then(_self.copyWith(style: value));
+    });
+  }
 }
+
+// dart format on

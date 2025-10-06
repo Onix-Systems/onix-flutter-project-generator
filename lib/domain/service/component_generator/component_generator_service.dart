@@ -238,6 +238,7 @@ class ComponentGeneratorService
       final repoSLCodeLines = List<String>.empty(growable: true)
         ..add('getIt.registerLazySingleton<${repoClassName}Repository>(')
         ..add(
+          //ignore: lines_longer_than_80_chars
           '() => ${repoClassName}RepositoryImpl(getIt<${repoClassName}Source>(),),',
         )
         ..add(');')

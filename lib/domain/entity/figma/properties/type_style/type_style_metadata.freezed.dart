@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,155 +9,29 @@ part of 'type_style_metadata.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$TypeStyleMetadata {
-  String get fontFamily => throw _privateConstructorUsedError;
-  num get fontWeight => throw _privateConstructorUsedError;
-  num get fontSize => throw _privateConstructorUsedError;
-  num get letterSpacing => throw _privateConstructorUsedError;
+  String get fontFamily;
+  num get fontWeight;
+  num get fontSize;
+  num get letterSpacing;
 
   /// Create a copy of TypeStyleMetadata
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $TypeStyleMetadataCopyWith<TypeStyleMetadata> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $TypeStyleMetadataCopyWith<$Res> {
-  factory $TypeStyleMetadataCopyWith(
-          TypeStyleMetadata value, $Res Function(TypeStyleMetadata) then) =
-      _$TypeStyleMetadataCopyWithImpl<$Res, TypeStyleMetadata>;
-  @useResult
-  $Res call(
-      {String fontFamily, num fontWeight, num fontSize, num letterSpacing});
-}
-
-/// @nodoc
-class _$TypeStyleMetadataCopyWithImpl<$Res, $Val extends TypeStyleMetadata>
-    implements $TypeStyleMetadataCopyWith<$Res> {
-  _$TypeStyleMetadataCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of TypeStyleMetadata
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? fontFamily = null,
-    Object? fontWeight = null,
-    Object? fontSize = null,
-    Object? letterSpacing = null,
-  }) {
-    return _then(_value.copyWith(
-      fontFamily: null == fontFamily
-          ? _value.fontFamily
-          : fontFamily // ignore: cast_nullable_to_non_nullable
-              as String,
-      fontWeight: null == fontWeight
-          ? _value.fontWeight
-          : fontWeight // ignore: cast_nullable_to_non_nullable
-              as num,
-      fontSize: null == fontSize
-          ? _value.fontSize
-          : fontSize // ignore: cast_nullable_to_non_nullable
-              as num,
-      letterSpacing: null == letterSpacing
-          ? _value.letterSpacing
-          : letterSpacing // ignore: cast_nullable_to_non_nullable
-              as num,
-    ) as $Val);
-  }
-}
-
-/// @nodoc
-abstract class _$$TypeStyleMetadataImplCopyWith<$Res>
-    implements $TypeStyleMetadataCopyWith<$Res> {
-  factory _$$TypeStyleMetadataImplCopyWith(_$TypeStyleMetadataImpl value,
-          $Res Function(_$TypeStyleMetadataImpl) then) =
-      __$$TypeStyleMetadataImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {String fontFamily, num fontWeight, num fontSize, num letterSpacing});
-}
-
-/// @nodoc
-class __$$TypeStyleMetadataImplCopyWithImpl<$Res>
-    extends _$TypeStyleMetadataCopyWithImpl<$Res, _$TypeStyleMetadataImpl>
-    implements _$$TypeStyleMetadataImplCopyWith<$Res> {
-  __$$TypeStyleMetadataImplCopyWithImpl(_$TypeStyleMetadataImpl _value,
-      $Res Function(_$TypeStyleMetadataImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of TypeStyleMetadata
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? fontFamily = null,
-    Object? fontWeight = null,
-    Object? fontSize = null,
-    Object? letterSpacing = null,
-  }) {
-    return _then(_$TypeStyleMetadataImpl(
-      fontFamily: null == fontFamily
-          ? _value.fontFamily
-          : fontFamily // ignore: cast_nullable_to_non_nullable
-              as String,
-      fontWeight: null == fontWeight
-          ? _value.fontWeight
-          : fontWeight // ignore: cast_nullable_to_non_nullable
-              as num,
-      fontSize: null == fontSize
-          ? _value.fontSize
-          : fontSize // ignore: cast_nullable_to_non_nullable
-              as num,
-      letterSpacing: null == letterSpacing
-          ? _value.letterSpacing
-          : letterSpacing // ignore: cast_nullable_to_non_nullable
-              as num,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$TypeStyleMetadataImpl implements _TypeStyleMetadata {
-  const _$TypeStyleMetadataImpl(
-      {required this.fontFamily,
-      required this.fontWeight,
-      required this.fontSize,
-      required this.letterSpacing});
-
-  @override
-  final String fontFamily;
-  @override
-  final num fontWeight;
-  @override
-  final num fontSize;
-  @override
-  final num letterSpacing;
-
-  @override
-  String toString() {
-    return 'TypeStyleMetadata(fontFamily: $fontFamily, fontWeight: $fontWeight, fontSize: $fontSize, letterSpacing: $letterSpacing)';
-  }
+      _$TypeStyleMetadataCopyWithImpl<TypeStyleMetadata>(
+          this as TypeStyleMetadata, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$TypeStyleMetadataImpl &&
+            other is TypeStyleMetadata &&
             (identical(other.fontFamily, fontFamily) ||
                 other.fontFamily == fontFamily) &&
             (identical(other.fontWeight, fontWeight) ||
@@ -172,36 +46,327 @@ class _$TypeStyleMetadataImpl implements _TypeStyleMetadata {
   int get hashCode =>
       Object.hash(runtimeType, fontFamily, fontWeight, fontSize, letterSpacing);
 
+  @override
+  String toString() {
+    return 'TypeStyleMetadata(fontFamily: $fontFamily, fontWeight: $fontWeight, fontSize: $fontSize, letterSpacing: $letterSpacing)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $TypeStyleMetadataCopyWith<$Res> {
+  factory $TypeStyleMetadataCopyWith(
+          TypeStyleMetadata value, $Res Function(TypeStyleMetadata) _then) =
+      _$TypeStyleMetadataCopyWithImpl;
+  @useResult
+  $Res call(
+      {String fontFamily, num fontWeight, num fontSize, num letterSpacing});
+}
+
+/// @nodoc
+class _$TypeStyleMetadataCopyWithImpl<$Res>
+    implements $TypeStyleMetadataCopyWith<$Res> {
+  _$TypeStyleMetadataCopyWithImpl(this._self, this._then);
+
+  final TypeStyleMetadata _self;
+  final $Res Function(TypeStyleMetadata) _then;
+
   /// Create a copy of TypeStyleMetadata
   /// with the given fields replaced by the non-null parameter values.
+  @pragma('vm:prefer-inline')
+  @override
+  $Res call({
+    Object? fontFamily = null,
+    Object? fontWeight = null,
+    Object? fontSize = null,
+    Object? letterSpacing = null,
+  }) {
+    return _then(_self.copyWith(
+      fontFamily: null == fontFamily
+          ? _self.fontFamily
+          : fontFamily // ignore: cast_nullable_to_non_nullable
+              as String,
+      fontWeight: null == fontWeight
+          ? _self.fontWeight
+          : fontWeight // ignore: cast_nullable_to_non_nullable
+              as num,
+      fontSize: null == fontSize
+          ? _self.fontSize
+          : fontSize // ignore: cast_nullable_to_non_nullable
+              as num,
+      letterSpacing: null == letterSpacing
+          ? _self.letterSpacing
+          : letterSpacing // ignore: cast_nullable_to_non_nullable
+              as num,
+    ));
+  }
+}
+
+/// Adds pattern-matching-related methods to [TypeStyleMetadata].
+extension TypeStyleMetadataPatterns on TypeStyleMetadata {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_TypeStyleMetadata value)? $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _TypeStyleMetadata() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_TypeStyleMetadata value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TypeStyleMetadata():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_TypeStyleMetadata value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TypeStyleMetadata() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            String fontFamily, num fontWeight, num fontSize, num letterSpacing)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _TypeStyleMetadata() when $default != null:
+        return $default(_that.fontFamily, _that.fontWeight, _that.fontSize,
+            _that.letterSpacing);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            String fontFamily, num fontWeight, num fontSize, num letterSpacing)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TypeStyleMetadata():
+        return $default(_that.fontFamily, _that.fontWeight, _that.fontSize,
+            _that.letterSpacing);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            String fontFamily, num fontWeight, num fontSize, num letterSpacing)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _TypeStyleMetadata() when $default != null:
+        return $default(_that.fontFamily, _that.fontWeight, _that.fontSize,
+            _that.letterSpacing);
+      case _:
+        return null;
+    }
+  }
+}
+
+/// @nodoc
+
+class _TypeStyleMetadata implements TypeStyleMetadata {
+  const _TypeStyleMetadata(
+      {required this.fontFamily,
+      required this.fontWeight,
+      required this.fontSize,
+      required this.letterSpacing});
+
+  @override
+  final String fontFamily;
+  @override
+  final num fontWeight;
+  @override
+  final num fontSize;
+  @override
+  final num letterSpacing;
+
+  /// Create a copy of TypeStyleMetadata
+  /// with the given fields replaced by the non-null parameter values.
+  @override
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$TypeStyleMetadataCopyWith<_TypeStyleMetadata> get copyWith =>
+      __$TypeStyleMetadataCopyWithImpl<_TypeStyleMetadata>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _TypeStyleMetadata &&
+            (identical(other.fontFamily, fontFamily) ||
+                other.fontFamily == fontFamily) &&
+            (identical(other.fontWeight, fontWeight) ||
+                other.fontWeight == fontWeight) &&
+            (identical(other.fontSize, fontSize) ||
+                other.fontSize == fontSize) &&
+            (identical(other.letterSpacing, letterSpacing) ||
+                other.letterSpacing == letterSpacing));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, fontFamily, fontWeight, fontSize, letterSpacing);
+
+  @override
+  String toString() {
+    return 'TypeStyleMetadata(fontFamily: $fontFamily, fontWeight: $fontWeight, fontSize: $fontSize, letterSpacing: $letterSpacing)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$TypeStyleMetadataCopyWith<$Res>
+    implements $TypeStyleMetadataCopyWith<$Res> {
+  factory _$TypeStyleMetadataCopyWith(
+          _TypeStyleMetadata value, $Res Function(_TypeStyleMetadata) _then) =
+      __$TypeStyleMetadataCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {String fontFamily, num fontWeight, num fontSize, num letterSpacing});
+}
+
+/// @nodoc
+class __$TypeStyleMetadataCopyWithImpl<$Res>
+    implements _$TypeStyleMetadataCopyWith<$Res> {
+  __$TypeStyleMetadataCopyWithImpl(this._self, this._then);
+
+  final _TypeStyleMetadata _self;
+  final $Res Function(_TypeStyleMetadata) _then;
+
+  /// Create a copy of TypeStyleMetadata
+  /// with the given fields replaced by the non-null parameter values.
   @override
   @pragma('vm:prefer-inline')
-  _$$TypeStyleMetadataImplCopyWith<_$TypeStyleMetadataImpl> get copyWith =>
-      __$$TypeStyleMetadataImplCopyWithImpl<_$TypeStyleMetadataImpl>(
-          this, _$identity);
+  $Res call({
+    Object? fontFamily = null,
+    Object? fontWeight = null,
+    Object? fontSize = null,
+    Object? letterSpacing = null,
+  }) {
+    return _then(_TypeStyleMetadata(
+      fontFamily: null == fontFamily
+          ? _self.fontFamily
+          : fontFamily // ignore: cast_nullable_to_non_nullable
+              as String,
+      fontWeight: null == fontWeight
+          ? _self.fontWeight
+          : fontWeight // ignore: cast_nullable_to_non_nullable
+              as num,
+      fontSize: null == fontSize
+          ? _self.fontSize
+          : fontSize // ignore: cast_nullable_to_non_nullable
+              as num,
+      letterSpacing: null == letterSpacing
+          ? _self.letterSpacing
+          : letterSpacing // ignore: cast_nullable_to_non_nullable
+              as num,
+    ));
+  }
 }
 
-abstract class _TypeStyleMetadata implements TypeStyleMetadata {
-  const factory _TypeStyleMetadata(
-      {required final String fontFamily,
-      required final num fontWeight,
-      required final num fontSize,
-      required final num letterSpacing}) = _$TypeStyleMetadataImpl;
-
-  @override
-  String get fontFamily;
-  @override
-  num get fontWeight;
-  @override
-  num get fontSize;
-  @override
-  num get letterSpacing;
-
-  /// Create a copy of TypeStyleMetadata
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$TypeStyleMetadataImplCopyWith<_$TypeStyleMetadataImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on

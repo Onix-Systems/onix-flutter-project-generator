@@ -9,7 +9,7 @@ import 'package:onix_flutter_bricks/domain/entity/component/source_component.dar
 part 'components.freezed.dart';
 
 @Freezed(toJson: false, fromJson: false)
-class Components with _$Components {
+sealed class Components with _$Components {
   const Components._();
 
   const factory Components({

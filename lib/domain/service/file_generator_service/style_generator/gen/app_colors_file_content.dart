@@ -21,14 +21,14 @@ class AppColorsFileContent
     final lightColors = sortedColors[StyleGeneratorConst.lightColorsKey]
             ?.map(
               (e) => 'static const Color ${e.name} = '
-                  'Color(0x${e.color.value.toRadixString(16)});',
+                  'Color(0x${e.color.toARGB32().toRadixString(16)});',
             )
             .toList() ??
         List.empty();
     final darkColors = sortedColors[StyleGeneratorConst.darkColorsKey]
             ?.map(
               (e) => 'static const Color ${e.name} = '
-                  'Color(0x${e.color.value.toRadixString(16)});',
+                  'Color(0x${e.color.toARGB32().toRadixString(16)});',
             )
             .toList() ??
         List.empty();

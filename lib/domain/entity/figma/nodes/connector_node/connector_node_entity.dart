@@ -6,7 +6,9 @@ part 'connector_node_entity.freezed.dart';
 
 // https://www.figma.com/developers/api#connector-props
 @freezed
-class ConnectorNodeEntity with _$ConnectorNodeEntity implements FillPaintsNode {
+sealed class ConnectorNodeEntity
+    with _$ConnectorNodeEntity
+    implements FillPaintsNode {
   const factory ConnectorNodeEntity({
     required String id,
     required String key,

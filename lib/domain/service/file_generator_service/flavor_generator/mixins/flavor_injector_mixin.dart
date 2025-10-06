@@ -4,7 +4,7 @@ import 'package:onix_flutter_bricks/domain/entity/platforms_list/platforms_list.
 import 'package:onix_flutter_bricks/domain/service/base/base_generation_service.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/flavor_generator/flavor_generator.dart';
 import 'package:onix_flutter_bricks/domain/service/file_generator_service/flavor_generator/params/flavor_generator_params.dart';
-import 'package:onix_flutter_core/onix_flutter_core.dart';
+import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 import 'package:recase/recase.dart';
 
 mixin FlavorInjectorMixin
@@ -50,6 +50,7 @@ mixin FlavorInjectorMixin
           lines
             ..add('      $platform:')
             ..add(
+              //ignore: lines_longer_than_80_chars
               '        ${platform == 'android' ? 'applicationId' : 'bundleId'}: "$org.$projectName$packageSuffix"',
             )
             ..add(

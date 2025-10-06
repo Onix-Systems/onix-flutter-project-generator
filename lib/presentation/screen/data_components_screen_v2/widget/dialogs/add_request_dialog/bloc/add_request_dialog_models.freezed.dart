@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,194 +9,273 @@ part of 'add_request_dialog_models.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$AddRequestDialogSR {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() success,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? success,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? success,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_AddRequestDialogSRSuccess value) success,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AddRequestDialogSRSuccess value)? success,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_AddRequestDialogSRSuccess value)? success,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $AddRequestDialogSRCopyWith<$Res> {
-  factory $AddRequestDialogSRCopyWith(
-          AddRequestDialogSR value, $Res Function(AddRequestDialogSR) then) =
-      _$AddRequestDialogSRCopyWithImpl<$Res, AddRequestDialogSR>;
-}
-
-/// @nodoc
-class _$AddRequestDialogSRCopyWithImpl<$Res, $Val extends AddRequestDialogSR>
-    implements $AddRequestDialogSRCopyWith<$Res> {
-  _$AddRequestDialogSRCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of AddRequestDialogSR
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$AddRequestDialogSRSuccessImplCopyWith<$Res> {
-  factory _$$AddRequestDialogSRSuccessImplCopyWith(
-          _$AddRequestDialogSRSuccessImpl value,
-          $Res Function(_$AddRequestDialogSRSuccessImpl) then) =
-      __$$AddRequestDialogSRSuccessImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$AddRequestDialogSRSuccessImplCopyWithImpl<$Res>
-    extends _$AddRequestDialogSRCopyWithImpl<$Res,
-        _$AddRequestDialogSRSuccessImpl>
-    implements _$$AddRequestDialogSRSuccessImplCopyWith<$Res> {
-  __$$AddRequestDialogSRSuccessImplCopyWithImpl(
-      _$AddRequestDialogSRSuccessImpl _value,
-      $Res Function(_$AddRequestDialogSRSuccessImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of AddRequestDialogSR
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$AddRequestDialogSRSuccessImpl implements _AddRequestDialogSRSuccess {
-  const _$AddRequestDialogSRSuccessImpl();
-
-  @override
-  String toString() {
-    return 'AddRequestDialogSR.success()';
-  }
-
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$AddRequestDialogSRSuccessImpl);
+        (other.runtimeType == runtimeType && other is AddRequestDialogSR);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() success,
-  }) {
-    return success();
+  String toString() {
+    return 'AddRequestDialogSR()';
   }
+}
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? success,
-  }) {
-    return success?.call();
-  }
+/// @nodoc
+class $AddRequestDialogSRCopyWith<$Res> {
+  $AddRequestDialogSRCopyWith(
+      AddRequestDialogSR _, $Res Function(AddRequestDialogSR) __);
+}
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? success,
-    required TResult orElse(),
-  }) {
-    if (success != null) {
-      return success();
-    }
-    return orElse();
-  }
+/// Adds pattern-matching-related methods to [AddRequestDialogSR].
+extension AddRequestDialogSRPatterns on AddRequestDialogSR {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_AddRequestDialogSRSuccess value) success,
-  }) {
-    return success(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_AddRequestDialogSRSuccess value)? success,
-  }) {
-    return success?.call(this);
-  }
-
-  @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_AddRequestDialogSRSuccess value)? success,
     required TResult orElse(),
   }) {
-    if (success != null) {
-      return success(this);
+    final _that = this;
+    switch (_that) {
+      case _AddRequestDialogSRSuccess() when success != null:
+        return success(_that);
+      case _:
+        return orElse();
     }
-    return orElse();
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_AddRequestDialogSRSuccess value) success,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _AddRequestDialogSRSuccess():
+        return success(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_AddRequestDialogSRSuccess value)? success,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _AddRequestDialogSRSuccess() when success != null:
+        return success(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? success,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _AddRequestDialogSRSuccess() when success != null:
+        return success();
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() success,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _AddRequestDialogSRSuccess():
+        return success();
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? success,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _AddRequestDialogSRSuccess() when success != null:
+        return success();
+      case _:
+        return null;
+    }
   }
 }
 
-abstract class _AddRequestDialogSRSuccess implements AddRequestDialogSR {
-  const factory _AddRequestDialogSRSuccess() = _$AddRequestDialogSRSuccessImpl;
+/// @nodoc
+
+class _AddRequestDialogSRSuccess implements AddRequestDialogSR {
+  const _AddRequestDialogSRSuccess();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _AddRequestDialogSRSuccess);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'AddRequestDialogSR.success()';
+  }
 }
 
 /// @nodoc
 mixin _$AddRequestDialogState {
-  RequestComponent get request => throw _privateConstructorUsedError;
-  String get sourceName => throw _privateConstructorUsedError;
-  List<String> get components => throw _privateConstructorUsedError;
-  Set<DataObjectComponent> get children => throw _privateConstructorUsedError;
-  Component? get bodyComponent => throw _privateConstructorUsedError;
-  Component? get tempBodyComponent => throw _privateConstructorUsedError;
-  Component? get responseComponent => throw _privateConstructorUsedError;
-  Component? get tempResponseComponent => throw _privateConstructorUsedError;
+  RequestComponent get request;
+  String get sourceName;
+  List<String> get components;
+  Set<DataObjectComponent> get children;
+  Component? get bodyComponent;
+  Component? get tempBodyComponent;
+  Component? get responseComponent;
+  Component? get tempResponseComponent;
 
   /// Create a copy of AddRequestDialogState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $AddRequestDialogStateCopyWith<AddRequestDialogState> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$AddRequestDialogStateCopyWithImpl<AddRequestDialogState>(
+          this as AddRequestDialogState, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is AddRequestDialogState &&
+            (identical(other.request, request) || other.request == request) &&
+            (identical(other.sourceName, sourceName) ||
+                other.sourceName == sourceName) &&
+            const DeepCollectionEquality()
+                .equals(other.components, components) &&
+            const DeepCollectionEquality().equals(other.children, children) &&
+            (identical(other.bodyComponent, bodyComponent) ||
+                other.bodyComponent == bodyComponent) &&
+            (identical(other.tempBodyComponent, tempBodyComponent) ||
+                other.tempBodyComponent == tempBodyComponent) &&
+            (identical(other.responseComponent, responseComponent) ||
+                other.responseComponent == responseComponent) &&
+            (identical(other.tempResponseComponent, tempResponseComponent) ||
+                other.tempResponseComponent == tempResponseComponent));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      request,
+      sourceName,
+      const DeepCollectionEquality().hash(components),
+      const DeepCollectionEquality().hash(children),
+      bodyComponent,
+      tempBodyComponent,
+      responseComponent,
+      tempResponseComponent);
+
+  @override
+  String toString() {
+    return 'AddRequestDialogState(request: $request, sourceName: $sourceName, components: $components, children: $children, bodyComponent: $bodyComponent, tempBodyComponent: $tempBodyComponent, responseComponent: $responseComponent, tempResponseComponent: $tempResponseComponent)';
+  }
 }
 
 /// @nodoc
-abstract class $AddRequestDialogStateCopyWith<$Res> {
+abstract mixin class $AddRequestDialogStateCopyWith<$Res> {
   factory $AddRequestDialogStateCopyWith(AddRequestDialogState value,
-          $Res Function(AddRequestDialogState) then) =
-      _$AddRequestDialogStateCopyWithImpl<$Res, AddRequestDialogState>;
+          $Res Function(AddRequestDialogState) _then) =
+      _$AddRequestDialogStateCopyWithImpl;
   @useResult
   $Res call(
       {RequestComponent request,
@@ -212,15 +291,12 @@ abstract class $AddRequestDialogStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$AddRequestDialogStateCopyWithImpl<$Res,
-        $Val extends AddRequestDialogState>
+class _$AddRequestDialogStateCopyWithImpl<$Res>
     implements $AddRequestDialogStateCopyWith<$Res> {
-  _$AddRequestDialogStateCopyWithImpl(this._value, this._then);
+  _$AddRequestDialogStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final AddRequestDialogState _self;
+  final $Res Function(AddRequestDialogState) _then;
 
   /// Create a copy of AddRequestDialogState
   /// with the given fields replaced by the non-null parameter values.
@@ -236,40 +312,40 @@ class _$AddRequestDialogStateCopyWithImpl<$Res,
     Object? responseComponent = freezed,
     Object? tempResponseComponent = freezed,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       request: null == request
-          ? _value.request
+          ? _self.request
           : request // ignore: cast_nullable_to_non_nullable
               as RequestComponent,
       sourceName: null == sourceName
-          ? _value.sourceName
+          ? _self.sourceName
           : sourceName // ignore: cast_nullable_to_non_nullable
               as String,
       components: null == components
-          ? _value.components
+          ? _self.components
           : components // ignore: cast_nullable_to_non_nullable
               as List<String>,
       children: null == children
-          ? _value.children
+          ? _self.children
           : children // ignore: cast_nullable_to_non_nullable
               as Set<DataObjectComponent>,
       bodyComponent: freezed == bodyComponent
-          ? _value.bodyComponent
+          ? _self.bodyComponent
           : bodyComponent // ignore: cast_nullable_to_non_nullable
               as Component?,
       tempBodyComponent: freezed == tempBodyComponent
-          ? _value.tempBodyComponent
+          ? _self.tempBodyComponent
           : tempBodyComponent // ignore: cast_nullable_to_non_nullable
               as Component?,
       responseComponent: freezed == responseComponent
-          ? _value.responseComponent
+          ? _self.responseComponent
           : responseComponent // ignore: cast_nullable_to_non_nullable
               as Component?,
       tempResponseComponent: freezed == tempResponseComponent
-          ? _value.tempResponseComponent
+          ? _self.tempResponseComponent
           : tempResponseComponent // ignore: cast_nullable_to_non_nullable
               as Component?,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of AddRequestDialogState
@@ -277,99 +353,224 @@ class _$AddRequestDialogStateCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $RequestComponentCopyWith<$Res> get request {
-    return $RequestComponentCopyWith<$Res>(_value.request, (value) {
-      return _then(_value.copyWith(request: value) as $Val);
+    return $RequestComponentCopyWith<$Res>(_self.request, (value) {
+      return _then(_self.copyWith(request: value));
     });
   }
 }
 
-/// @nodoc
-abstract class _$$AddRequestDialogStateImplCopyWith<$Res>
-    implements $AddRequestDialogStateCopyWith<$Res> {
-  factory _$$AddRequestDialogStateImplCopyWith(
-          _$AddRequestDialogStateImpl value,
-          $Res Function(_$AddRequestDialogStateImpl) then) =
-      __$$AddRequestDialogStateImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {RequestComponent request,
-      String sourceName,
-      List<String> components,
-      Set<DataObjectComponent> children,
-      Component? bodyComponent,
-      Component? tempBodyComponent,
-      Component? responseComponent,
-      Component? tempResponseComponent});
+/// Adds pattern-matching-related methods to [AddRequestDialogState].
+extension AddRequestDialogStatePatterns on AddRequestDialogState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  @override
-  $RequestComponentCopyWith<$Res> get request;
-}
-
-/// @nodoc
-class __$$AddRequestDialogStateImplCopyWithImpl<$Res>
-    extends _$AddRequestDialogStateCopyWithImpl<$Res,
-        _$AddRequestDialogStateImpl>
-    implements _$$AddRequestDialogStateImplCopyWith<$Res> {
-  __$$AddRequestDialogStateImplCopyWithImpl(_$AddRequestDialogStateImpl _value,
-      $Res Function(_$AddRequestDialogStateImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of AddRequestDialogState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? request = null,
-    Object? sourceName = null,
-    Object? components = null,
-    Object? children = null,
-    Object? bodyComponent = freezed,
-    Object? tempBodyComponent = freezed,
-    Object? responseComponent = freezed,
-    Object? tempResponseComponent = freezed,
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>(
+    TResult Function(_AddRequestDialogState value)? $default, {
+    required TResult orElse(),
   }) {
-    return _then(_$AddRequestDialogStateImpl(
-      request: null == request
-          ? _value.request
-          : request // ignore: cast_nullable_to_non_nullable
-              as RequestComponent,
-      sourceName: null == sourceName
-          ? _value.sourceName
-          : sourceName // ignore: cast_nullable_to_non_nullable
-              as String,
-      components: null == components
-          ? _value._components
-          : components // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-      children: null == children
-          ? _value._children
-          : children // ignore: cast_nullable_to_non_nullable
-              as Set<DataObjectComponent>,
-      bodyComponent: freezed == bodyComponent
-          ? _value.bodyComponent
-          : bodyComponent // ignore: cast_nullable_to_non_nullable
-              as Component?,
-      tempBodyComponent: freezed == tempBodyComponent
-          ? _value.tempBodyComponent
-          : tempBodyComponent // ignore: cast_nullable_to_non_nullable
-              as Component?,
-      responseComponent: freezed == responseComponent
-          ? _value.responseComponent
-          : responseComponent // ignore: cast_nullable_to_non_nullable
-              as Component?,
-      tempResponseComponent: freezed == tempResponseComponent
-          ? _value.tempResponseComponent
-          : tempResponseComponent // ignore: cast_nullable_to_non_nullable
-              as Component?,
-    ));
+    final _that = this;
+    switch (_that) {
+      case _AddRequestDialogState() when $default != null:
+        return $default(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>(
+    TResult Function(_AddRequestDialogState value) $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AddRequestDialogState():
+        return $default(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>(
+    TResult? Function(_AddRequestDialogState value)? $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AddRequestDialogState() when $default != null:
+        return $default(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>(
+    TResult Function(
+            RequestComponent request,
+            String sourceName,
+            List<String> components,
+            Set<DataObjectComponent> children,
+            Component? bodyComponent,
+            Component? tempBodyComponent,
+            Component? responseComponent,
+            Component? tempResponseComponent)?
+        $default, {
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _AddRequestDialogState() when $default != null:
+        return $default(
+            _that.request,
+            _that.sourceName,
+            _that.components,
+            _that.children,
+            _that.bodyComponent,
+            _that.tempBodyComponent,
+            _that.responseComponent,
+            _that.tempResponseComponent);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>(
+    TResult Function(
+            RequestComponent request,
+            String sourceName,
+            List<String> components,
+            Set<DataObjectComponent> children,
+            Component? bodyComponent,
+            Component? tempBodyComponent,
+            Component? responseComponent,
+            Component? tempResponseComponent)
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AddRequestDialogState():
+        return $default(
+            _that.request,
+            _that.sourceName,
+            _that.components,
+            _that.children,
+            _that.bodyComponent,
+            _that.tempBodyComponent,
+            _that.responseComponent,
+            _that.tempResponseComponent);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>(
+    TResult? Function(
+            RequestComponent request,
+            String sourceName,
+            List<String> components,
+            Set<DataObjectComponent> children,
+            Component? bodyComponent,
+            Component? tempBodyComponent,
+            Component? responseComponent,
+            Component? tempResponseComponent)?
+        $default,
+  ) {
+    final _that = this;
+    switch (_that) {
+      case _AddRequestDialogState() when $default != null:
+        return $default(
+            _that.request,
+            _that.sourceName,
+            _that.components,
+            _that.children,
+            _that.bodyComponent,
+            _that.tempBodyComponent,
+            _that.responseComponent,
+            _that.tempResponseComponent);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 
-class _$AddRequestDialogStateImpl implements _AddRequestDialogState {
-  const _$AddRequestDialogStateImpl(
+class _AddRequestDialogState implements AddRequestDialogState {
+  const _AddRequestDialogState(
       {required this.request,
       this.sourceName = '',
       final List<String> components = const [],
@@ -413,16 +614,20 @@ class _$AddRequestDialogStateImpl implements _AddRequestDialogState {
   @override
   final Component? tempResponseComponent;
 
+  /// Create a copy of AddRequestDialogState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'AddRequestDialogState(request: $request, sourceName: $sourceName, components: $components, children: $children, bodyComponent: $bodyComponent, tempBodyComponent: $tempBodyComponent, responseComponent: $responseComponent, tempResponseComponent: $tempResponseComponent)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$AddRequestDialogStateCopyWith<_AddRequestDialogState> get copyWith =>
+      __$AddRequestDialogStateCopyWithImpl<_AddRequestDialogState>(
+          this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$AddRequestDialogStateImpl &&
+            other is _AddRequestDialogState &&
             (identical(other.request, request) || other.request == request) &&
             (identical(other.sourceName, sourceName) ||
                 other.sourceName == sourceName) &&
@@ -451,48 +656,101 @@ class _$AddRequestDialogStateImpl implements _AddRequestDialogState {
       responseComponent,
       tempResponseComponent);
 
+  @override
+  String toString() {
+    return 'AddRequestDialogState(request: $request, sourceName: $sourceName, components: $components, children: $children, bodyComponent: $bodyComponent, tempBodyComponent: $tempBodyComponent, responseComponent: $responseComponent, tempResponseComponent: $tempResponseComponent)';
+  }
+}
+
+/// @nodoc
+abstract mixin class _$AddRequestDialogStateCopyWith<$Res>
+    implements $AddRequestDialogStateCopyWith<$Res> {
+  factory _$AddRequestDialogStateCopyWith(_AddRequestDialogState value,
+          $Res Function(_AddRequestDialogState) _then) =
+      __$AddRequestDialogStateCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {RequestComponent request,
+      String sourceName,
+      List<String> components,
+      Set<DataObjectComponent> children,
+      Component? bodyComponent,
+      Component? tempBodyComponent,
+      Component? responseComponent,
+      Component? tempResponseComponent});
+
+  @override
+  $RequestComponentCopyWith<$Res> get request;
+}
+
+/// @nodoc
+class __$AddRequestDialogStateCopyWithImpl<$Res>
+    implements _$AddRequestDialogStateCopyWith<$Res> {
+  __$AddRequestDialogStateCopyWithImpl(this._self, this._then);
+
+  final _AddRequestDialogState _self;
+  final $Res Function(_AddRequestDialogState) _then;
+
   /// Create a copy of AddRequestDialogState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$AddRequestDialogStateImplCopyWith<_$AddRequestDialogStateImpl>
-      get copyWith => __$$AddRequestDialogStateImplCopyWithImpl<
-          _$AddRequestDialogStateImpl>(this, _$identity);
-}
-
-abstract class _AddRequestDialogState implements AddRequestDialogState {
-  const factory _AddRequestDialogState(
-      {required final RequestComponent request,
-      final String sourceName,
-      final List<String> components,
-      final Set<DataObjectComponent> children,
-      final Component? bodyComponent,
-      final Component? tempBodyComponent,
-      final Component? responseComponent,
-      final Component? tempResponseComponent}) = _$AddRequestDialogStateImpl;
-
-  @override
-  RequestComponent get request;
-  @override
-  String get sourceName;
-  @override
-  List<String> get components;
-  @override
-  Set<DataObjectComponent> get children;
-  @override
-  Component? get bodyComponent;
-  @override
-  Component? get tempBodyComponent;
-  @override
-  Component? get responseComponent;
-  @override
-  Component? get tempResponseComponent;
+  $Res call({
+    Object? request = null,
+    Object? sourceName = null,
+    Object? components = null,
+    Object? children = null,
+    Object? bodyComponent = freezed,
+    Object? tempBodyComponent = freezed,
+    Object? responseComponent = freezed,
+    Object? tempResponseComponent = freezed,
+  }) {
+    return _then(_AddRequestDialogState(
+      request: null == request
+          ? _self.request
+          : request // ignore: cast_nullable_to_non_nullable
+              as RequestComponent,
+      sourceName: null == sourceName
+          ? _self.sourceName
+          : sourceName // ignore: cast_nullable_to_non_nullable
+              as String,
+      components: null == components
+          ? _self._components
+          : components // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+      children: null == children
+          ? _self._children
+          : children // ignore: cast_nullable_to_non_nullable
+              as Set<DataObjectComponent>,
+      bodyComponent: freezed == bodyComponent
+          ? _self.bodyComponent
+          : bodyComponent // ignore: cast_nullable_to_non_nullable
+              as Component?,
+      tempBodyComponent: freezed == tempBodyComponent
+          ? _self.tempBodyComponent
+          : tempBodyComponent // ignore: cast_nullable_to_non_nullable
+              as Component?,
+      responseComponent: freezed == responseComponent
+          ? _self.responseComponent
+          : responseComponent // ignore: cast_nullable_to_non_nullable
+              as Component?,
+      tempResponseComponent: freezed == tempResponseComponent
+          ? _self.tempResponseComponent
+          : tempResponseComponent // ignore: cast_nullable_to_non_nullable
+              as Component?,
+    ));
+  }
 
   /// Create a copy of AddRequestDialogState
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$AddRequestDialogStateImplCopyWith<_$AddRequestDialogStateImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $RequestComponentCopyWith<$Res> get request {
+    return $RequestComponentCopyWith<$Res>(_self.request, (value) {
+      return _then(_self.copyWith(request: value));
+    });
+  }
 }
+
+// dart format on

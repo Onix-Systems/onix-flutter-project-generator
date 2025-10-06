@@ -11,6 +11,7 @@ mixin BlocContentMixin on ScreenGenerationService {
     final screenClassImport = screenName.snakeCase;
     final codeLines = List<String>.empty(growable: true)
       ..add(
+        //ignore: lines_longer_than_80_chars
         "export '${screenClassImport}_screen_${stateManagement.name.toLowerCase()}.dart';",
       )
       ..add("export '${screenClassImport}_screen_models.dart';")
@@ -47,10 +48,12 @@ mixin BlocContentMixin on ScreenGenerationService {
     }
     codeLines
       ..add(
+        //ignore: lines_longer_than_80_chars
         "import 'package:$projectName/presentation/screen/${screenClassImport}_screen/bloc/${screenClassImport}_screen_imports.dart';",
       )
       ..addNewLine()
       ..add(
+        //ignore: lines_longer_than_80_chars
         'class $className extends Base$stateManagementSuffix<$eventName$stateName, $srName> {',
       );
 
@@ -103,9 +106,11 @@ mixin BlocContentMixin on ScreenGenerationService {
       codeLines
         ..add('@freezed')
         ..add(
+          //ignore: lines_longer_than_80_chars
           'sealed class ${screenModelName}ScreenEvent with _\$${screenModelName}ScreenEvent {',
         )
         ..add(
+          //ignore: lines_longer_than_80_chars
           'const factory ${screenModelName}ScreenEvent.init() = ${screenModelName}ScreenEventInit;',
         )
         ..add('}');
@@ -116,9 +121,11 @@ mixin BlocContentMixin on ScreenGenerationService {
       ///Add SR events
       ..add('@freezed')
       ..add(
+        //ignore: lines_longer_than_80_chars
         'sealed class ${screenModelName}ScreenSR with _\$${screenModelName}ScreenSR {',
       )
       ..add(
+        //ignore: lines_longer_than_80_chars
         'const factory ${screenModelName}ScreenSR.loadFinished() = LoadFinished;',
       )
       ..add('}')
@@ -131,6 +138,7 @@ mixin BlocContentMixin on ScreenGenerationService {
       codeLines
         ..add('@freezed')
         ..add(
+          //ignore: lines_longer_than_80_chars
           'sealed class ${screenModelName}ScreenState with _\$${screenModelName}ScreenState{',
         )
         ..add('const factory ${screenModelName}ScreenState({')

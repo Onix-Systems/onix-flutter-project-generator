@@ -16,8 +16,10 @@ class GenerationScreen extends StatefulWidget {
   State<GenerationScreen> createState() => _GenerationScreenState();
 }
 
-class _GenerationScreenState extends BaseState<GenerationScreenState,
-    GenerationScreenBloc, GenerationScreenSR, GenerationScreen> {
+class _GenerationScreenState extends State<GenerationScreen>
+    with
+        BaseBlocState<GenerationScreenState, GenerationScreenBloc,
+            GenerationScreenSR, GenerationScreen> {
   @override
   GenerationScreenBloc createBloc() => GetIt.I.get<GenerationScreenBloc>();
 
@@ -33,9 +35,9 @@ class _GenerationScreenState extends BaseState<GenerationScreenState,
   }
 
   @override
-  void onBlocCreated(BuildContext context, GenerationScreenBloc bloc) {
+  void onBlocReady(BuildContext context, GenerationScreenBloc bloc) {
     bloc.add(const GenerationScreenEvent.init());
-    super.onBlocCreated(context, bloc);
+    super.onBlocReady(context, bloc);
   }
 
   Widget _buildMainContainer(

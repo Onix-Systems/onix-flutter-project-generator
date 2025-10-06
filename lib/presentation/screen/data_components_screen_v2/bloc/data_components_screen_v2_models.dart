@@ -6,7 +6,7 @@ import 'package:onix_flutter_bricks/domain/entity/component/request_component.da
 part 'data_components_screen_v2_models.freezed.dart';
 
 @freezed
-class DataComponentsScreenV2Event with _$DataComponentsScreenV2Event {
+sealed class DataComponentsScreenV2Event with _$DataComponentsScreenV2Event {
   const factory DataComponentsScreenV2Event.init() =
       DataComponentsScreenV2IInit;
 
@@ -36,14 +36,14 @@ class DataComponentsScreenV2Event with _$DataComponentsScreenV2Event {
 }
 
 @freezed
-class DataComponentsScreenV2SR with _$DataComponentsScreenV2SR {
+sealed class DataComponentsScreenV2SR with _$DataComponentsScreenV2SR {
   const factory DataComponentsScreenV2SR.error({
     required String message,
   }) = _Error;
 }
 
 @freezed
-class DataComponentsScreenV2State with _$DataComponentsScreenV2State {
+sealed class DataComponentsScreenV2State with _$DataComponentsScreenV2State {
   const factory DataComponentsScreenV2State.data({
     required Components components,
     @Default(false) bool projectExists,

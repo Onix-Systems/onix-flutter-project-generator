@@ -4,7 +4,7 @@ import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 part 'project_name_screen_models.freezed.dart';
 
 @freezed
-class ProjectNameScreenEvent with _$ProjectNameScreenEvent {
+sealed class ProjectNameScreenEvent with _$ProjectNameScreenEvent {
   const factory ProjectNameScreenEvent.init() = ProjectNameScreenEventInit;
 
   const factory ProjectNameScreenEvent.projectNameChanged({
@@ -21,12 +21,12 @@ class ProjectNameScreenEvent with _$ProjectNameScreenEvent {
 }
 
 @freezed
-class ProjectNameScreenSR with _$ProjectNameScreenSR {
+sealed class ProjectNameScreenSR with _$ProjectNameScreenSR {
   const factory ProjectNameScreenSR.init() = ProjectNameScreenSRStub;
 }
 
 @freezed
-class ProjectNameScreenState with _$ProjectNameScreenState {
+sealed class ProjectNameScreenState with _$ProjectNameScreenState {
   const ProjectNameScreenState._();
 
   const factory ProjectNameScreenState.data({

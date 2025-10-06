@@ -6,7 +6,7 @@ part of 'config.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-_$ConfigImpl _$$ConfigImplFromJson(Map<String, dynamic> json) => _$ConfigImpl(
+_Config _$ConfigFromJson(Map<String, dynamic> json) => _Config(
       branchConfig: json['branchConfig'] == null
           ? const BranchConfig()
           : BranchConfig.fromJson(json['branchConfig'] as Map<String, dynamic>),
@@ -49,8 +49,7 @@ _$ConfigImpl _$$ConfigImplFromJson(Map<String, dynamic> json) => _$ConfigImpl(
       sentry: json['sentry'] as bool? ?? false,
     );
 
-Map<String, dynamic> _$$ConfigImplToJson(_$ConfigImpl instance) =>
-    <String, dynamic>{
+Map<String, dynamic> _$ConfigToJson(_Config instance) => <String, dynamic>{
       'branchConfig': instance.branchConfig,
       'arch': _$ArchTypeEnumMap[instance.arch]!,
       'projectPath': instance.projectPath,

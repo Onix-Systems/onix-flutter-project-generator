@@ -4,7 +4,7 @@ part 'platforms_list.freezed.dart';
 part 'platforms_list.g.dart';
 
 @freezed
-class PlatformsList with _$PlatformsList {
+sealed class PlatformsList with _$PlatformsList {
   const PlatformsList._();
 
   const factory PlatformsList({

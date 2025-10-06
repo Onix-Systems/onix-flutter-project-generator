@@ -4,7 +4,7 @@ import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 part 'platforms_screen_models.freezed.dart';
 
 @freezed
-class PlatformsScreenEvent with _$PlatformsScreenEvent {
+sealed class PlatformsScreenEvent with _$PlatformsScreenEvent {
   const factory PlatformsScreenEvent.init() = PlatformsScreenEventInit;
 
   const factory PlatformsScreenEvent.onPlatformsChange({
@@ -15,7 +15,7 @@ class PlatformsScreenEvent with _$PlatformsScreenEvent {
 class PlatformsScreenSR {}
 
 @freezed
-class PlatformsScreenState with _$PlatformsScreenState {
+sealed class PlatformsScreenState with _$PlatformsScreenState {
   const factory PlatformsScreenState.data({
     required Config config,
   }) = PlatformsScreenStateData;

@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,392 +9,511 @@ part of 'splash_screen_models.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$SplashScreenEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function() onAnimationFinished,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function()? onAnimationFinished,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function()? onAnimationFinished,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SplashScreenEventInit value) init,
-    required TResult Function(SplashScreenEventOnAnimationFinished value)
-        onAnimationFinished,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SplashScreenEventInit value)? init,
-    TResult? Function(SplashScreenEventOnAnimationFinished value)?
-        onAnimationFinished,
-  }) =>
-      throw _privateConstructorUsedError;
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SplashScreenEvent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'SplashScreenEvent()';
+  }
+}
+
+/// @nodoc
+class $SplashScreenEventCopyWith<$Res> {
+  $SplashScreenEventCopyWith(
+      SplashScreenEvent _, $Res Function(SplashScreenEvent) __);
+}
+
+/// Adds pattern-matching-related methods to [SplashScreenEvent].
+extension SplashScreenEventPatterns on SplashScreenEvent {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(SplashScreenEventInit value)? init,
     TResult Function(SplashScreenEventOnAnimationFinished value)?
         onAnimationFinished,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) {
+    final _that = this;
+    switch (_that) {
+      case SplashScreenEventInit() when init != null:
+        return init(_that);
+      case SplashScreenEventOnAnimationFinished()
+          when onAnimationFinished != null:
+        return onAnimationFinished(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(SplashScreenEventInit value) init,
+    required TResult Function(SplashScreenEventOnAnimationFinished value)
+        onAnimationFinished,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case SplashScreenEventInit():
+        return init(_that);
+      case SplashScreenEventOnAnimationFinished():
+        return onAnimationFinished(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(SplashScreenEventInit value)? init,
+    TResult? Function(SplashScreenEventOnAnimationFinished value)?
+        onAnimationFinished,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case SplashScreenEventInit() when init != null:
+        return init(_that);
+      case SplashScreenEventOnAnimationFinished()
+          when onAnimationFinished != null:
+        return onAnimationFinished(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function()? onAnimationFinished,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case SplashScreenEventInit() when init != null:
+        return init();
+      case SplashScreenEventOnAnimationFinished()
+          when onAnimationFinished != null:
+        return onAnimationFinished();
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function() onAnimationFinished,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case SplashScreenEventInit():
+        return init();
+      case SplashScreenEventOnAnimationFinished():
+        return onAnimationFinished();
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function()? onAnimationFinished,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case SplashScreenEventInit() when init != null:
+        return init();
+      case SplashScreenEventOnAnimationFinished()
+          when onAnimationFinished != null:
+        return onAnimationFinished();
+      case _:
+        return null;
+    }
+  }
 }
 
 /// @nodoc
-abstract class $SplashScreenEventCopyWith<$Res> {
-  factory $SplashScreenEventCopyWith(
-          SplashScreenEvent value, $Res Function(SplashScreenEvent) then) =
-      _$SplashScreenEventCopyWithImpl<$Res, SplashScreenEvent>;
-}
 
-/// @nodoc
-class _$SplashScreenEventCopyWithImpl<$Res, $Val extends SplashScreenEvent>
-    implements $SplashScreenEventCopyWith<$Res> {
-  _$SplashScreenEventCopyWithImpl(this._value, this._then);
+class SplashScreenEventInit implements SplashScreenEvent {
+  const SplashScreenEventInit();
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is SplashScreenEventInit);
+  }
 
-  /// Create a copy of SplashScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$SplashScreenEventInitImplCopyWith<$Res> {
-  factory _$$SplashScreenEventInitImplCopyWith(
-          _$SplashScreenEventInitImpl value,
-          $Res Function(_$SplashScreenEventInitImpl) then) =
-      __$$SplashScreenEventInitImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SplashScreenEventInitImplCopyWithImpl<$Res>
-    extends _$SplashScreenEventCopyWithImpl<$Res, _$SplashScreenEventInitImpl>
-    implements _$$SplashScreenEventInitImplCopyWith<$Res> {
-  __$$SplashScreenEventInitImplCopyWithImpl(_$SplashScreenEventInitImpl _value,
-      $Res Function(_$SplashScreenEventInitImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SplashScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$SplashScreenEventInitImpl implements SplashScreenEventInit {
-  const _$SplashScreenEventInitImpl();
+  @override
+  int get hashCode => runtimeType.hashCode;
 
   @override
   String toString() {
     return 'SplashScreenEvent.init()';
   }
+}
+
+/// @nodoc
+
+class SplashScreenEventOnAnimationFinished implements SplashScreenEvent {
+  const SplashScreenEventOnAnimationFinished();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$SplashScreenEventInitImpl);
+            other is SplashScreenEventOnAnimationFinished);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function() onAnimationFinished,
-  }) {
-    return init();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function()? onAnimationFinished,
-  }) {
-    return init?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function()? onAnimationFinished,
-    required TResult orElse(),
-  }) {
-    if (init != null) {
-      return init();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SplashScreenEventInit value) init,
-    required TResult Function(SplashScreenEventOnAnimationFinished value)
-        onAnimationFinished,
-  }) {
-    return init(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SplashScreenEventInit value)? init,
-    TResult? Function(SplashScreenEventOnAnimationFinished value)?
-        onAnimationFinished,
-  }) {
-    return init?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SplashScreenEventInit value)? init,
-    TResult Function(SplashScreenEventOnAnimationFinished value)?
-        onAnimationFinished,
-    required TResult orElse(),
-  }) {
-    if (init != null) {
-      return init(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SplashScreenEventInit implements SplashScreenEvent {
-  const factory SplashScreenEventInit() = _$SplashScreenEventInitImpl;
-}
-
-/// @nodoc
-abstract class _$$SplashScreenEventOnAnimationFinishedImplCopyWith<$Res> {
-  factory _$$SplashScreenEventOnAnimationFinishedImplCopyWith(
-          _$SplashScreenEventOnAnimationFinishedImpl value,
-          $Res Function(_$SplashScreenEventOnAnimationFinishedImpl) then) =
-      __$$SplashScreenEventOnAnimationFinishedImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$SplashScreenEventOnAnimationFinishedImplCopyWithImpl<$Res>
-    extends _$SplashScreenEventCopyWithImpl<$Res,
-        _$SplashScreenEventOnAnimationFinishedImpl>
-    implements _$$SplashScreenEventOnAnimationFinishedImplCopyWith<$Res> {
-  __$$SplashScreenEventOnAnimationFinishedImplCopyWithImpl(
-      _$SplashScreenEventOnAnimationFinishedImpl _value,
-      $Res Function(_$SplashScreenEventOnAnimationFinishedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SplashScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$SplashScreenEventOnAnimationFinishedImpl
-    implements SplashScreenEventOnAnimationFinished {
-  const _$SplashScreenEventOnAnimationFinishedImpl();
 
   @override
   String toString() {
     return 'SplashScreenEvent.onAnimationFinished()';
   }
+}
 
+/// @nodoc
+mixin _$SplashScreenSR {
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$SplashScreenEventOnAnimationFinishedImpl);
+        (other.runtimeType == runtimeType && other is SplashScreenSR);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function() onAnimationFinished,
-  }) {
-    return onAnimationFinished();
+  String toString() {
+    return 'SplashScreenSR()';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function()? onAnimationFinished,
-  }) {
-    return onAnimationFinished?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function()? onAnimationFinished,
-    required TResult orElse(),
-  }) {
-    if (onAnimationFinished != null) {
-      return onAnimationFinished();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(SplashScreenEventInit value) init,
-    required TResult Function(SplashScreenEventOnAnimationFinished value)
-        onAnimationFinished,
-  }) {
-    return onAnimationFinished(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(SplashScreenEventInit value)? init,
-    TResult? Function(SplashScreenEventOnAnimationFinished value)?
-        onAnimationFinished,
-  }) {
-    return onAnimationFinished?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(SplashScreenEventInit value)? init,
-    TResult Function(SplashScreenEventOnAnimationFinished value)?
-        onAnimationFinished,
-    required TResult orElse(),
-  }) {
-    if (onAnimationFinished != null) {
-      return onAnimationFinished(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class SplashScreenEventOnAnimationFinished
-    implements SplashScreenEvent {
-  const factory SplashScreenEventOnAnimationFinished() =
-      _$SplashScreenEventOnAnimationFinishedImpl;
 }
 
 /// @nodoc
-mixin _$SplashScreenSR {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String latestReleaseUrl) onNeedUpdate,
-    required TResult Function() onContinue,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String latestReleaseUrl)? onNeedUpdate,
-    TResult? Function()? onContinue,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String latestReleaseUrl)? onNeedUpdate,
-    TResult Function()? onContinue,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_onNeedUpdate value) onNeedUpdate,
-    required TResult Function(_onContinue value) onContinue,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_onNeedUpdate value)? onNeedUpdate,
-    TResult? Function(_onContinue value)? onContinue,
-  }) =>
-      throw _privateConstructorUsedError;
+class $SplashScreenSRCopyWith<$Res> {
+  $SplashScreenSRCopyWith(SplashScreenSR _, $Res Function(SplashScreenSR) __);
+}
+
+/// Adds pattern-matching-related methods to [SplashScreenSR].
+extension SplashScreenSRPatterns on SplashScreenSR {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_onNeedUpdate value)? onNeedUpdate,
     TResult Function(_onContinue value)? onContinue,
     required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _onNeedUpdate() when onNeedUpdate != null:
+        return onNeedUpdate(_that);
+      case _onContinue() when onContinue != null:
+        return onContinue(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_onNeedUpdate value) onNeedUpdate,
+    required TResult Function(_onContinue value) onContinue,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _onNeedUpdate():
+        return onNeedUpdate(_that);
+      case _onContinue():
+        return onContinue(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(_onNeedUpdate value)? onNeedUpdate,
+    TResult? Function(_onContinue value)? onContinue,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _onNeedUpdate() when onNeedUpdate != null:
+        return onNeedUpdate(_that);
+      case _onContinue() when onContinue != null:
+        return onContinue(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String latestReleaseUrl)? onNeedUpdate,
+    TResult Function()? onContinue,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _onNeedUpdate() when onNeedUpdate != null:
+        return onNeedUpdate(_that.latestReleaseUrl);
+      case _onContinue() when onContinue != null:
+        return onContinue();
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String latestReleaseUrl) onNeedUpdate,
+    required TResult Function() onContinue,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _onNeedUpdate():
+        return onNeedUpdate(_that.latestReleaseUrl);
+      case _onContinue():
+        return onContinue();
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(String latestReleaseUrl)? onNeedUpdate,
+    TResult? Function()? onContinue,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case _onNeedUpdate() when onNeedUpdate != null:
+        return onNeedUpdate(_that.latestReleaseUrl);
+      case _onContinue() when onContinue != null:
+        return onContinue();
+      case _:
+        return null;
+    }
+  }
 }
 
 /// @nodoc
-abstract class $SplashScreenSRCopyWith<$Res> {
-  factory $SplashScreenSRCopyWith(
-          SplashScreenSR value, $Res Function(SplashScreenSR) then) =
-      _$SplashScreenSRCopyWithImpl<$Res, SplashScreenSR>;
-}
 
-/// @nodoc
-class _$SplashScreenSRCopyWithImpl<$Res, $Val extends SplashScreenSR>
-    implements $SplashScreenSRCopyWith<$Res> {
-  _$SplashScreenSRCopyWithImpl(this._value, this._then);
+class _onNeedUpdate implements SplashScreenSR {
+  const _onNeedUpdate({required this.latestReleaseUrl});
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final String latestReleaseUrl;
 
   /// Create a copy of SplashScreenSR
   /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  _$onNeedUpdateCopyWith<_onNeedUpdate> get copyWith =>
+      __$onNeedUpdateCopyWithImpl<_onNeedUpdate>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _onNeedUpdate &&
+            (identical(other.latestReleaseUrl, latestReleaseUrl) ||
+                other.latestReleaseUrl == latestReleaseUrl));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, latestReleaseUrl);
+
+  @override
+  String toString() {
+    return 'SplashScreenSR.onNeedUpdate(latestReleaseUrl: $latestReleaseUrl)';
+  }
 }
 
 /// @nodoc
-abstract class _$$onNeedUpdateImplCopyWith<$Res> {
-  factory _$$onNeedUpdateImplCopyWith(
-          _$onNeedUpdateImpl value, $Res Function(_$onNeedUpdateImpl) then) =
-      __$$onNeedUpdateImplCopyWithImpl<$Res>;
+abstract mixin class _$onNeedUpdateCopyWith<$Res>
+    implements $SplashScreenSRCopyWith<$Res> {
+  factory _$onNeedUpdateCopyWith(
+          _onNeedUpdate value, $Res Function(_onNeedUpdate) _then) =
+      __$onNeedUpdateCopyWithImpl;
   @useResult
   $Res call({String latestReleaseUrl});
 }
 
 /// @nodoc
-class __$$onNeedUpdateImplCopyWithImpl<$Res>
-    extends _$SplashScreenSRCopyWithImpl<$Res, _$onNeedUpdateImpl>
-    implements _$$onNeedUpdateImplCopyWith<$Res> {
-  __$$onNeedUpdateImplCopyWithImpl(
-      _$onNeedUpdateImpl _value, $Res Function(_$onNeedUpdateImpl) _then)
-      : super(_value, _then);
+class __$onNeedUpdateCopyWithImpl<$Res>
+    implements _$onNeedUpdateCopyWith<$Res> {
+  __$onNeedUpdateCopyWithImpl(this._self, this._then);
+
+  final _onNeedUpdate _self;
+  final $Res Function(_onNeedUpdate) _then;
 
   /// Create a copy of SplashScreenSR
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? latestReleaseUrl = null,
   }) {
-    return _then(_$onNeedUpdateImpl(
+    return _then(_onNeedUpdate(
       latestReleaseUrl: null == latestReleaseUrl
-          ? _value.latestReleaseUrl
+          ? _self.latestReleaseUrl
           : latestReleaseUrl // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -403,331 +522,77 @@ class __$$onNeedUpdateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$onNeedUpdateImpl implements _onNeedUpdate {
-  const _$onNeedUpdateImpl({required this.latestReleaseUrl});
-
-  @override
-  final String latestReleaseUrl;
-
-  @override
-  String toString() {
-    return 'SplashScreenSR.onNeedUpdate(latestReleaseUrl: $latestReleaseUrl)';
-  }
+class _onContinue implements SplashScreenSR {
+  const _onContinue();
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$onNeedUpdateImpl &&
-            (identical(other.latestReleaseUrl, latestReleaseUrl) ||
-                other.latestReleaseUrl == latestReleaseUrl));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, latestReleaseUrl);
-
-  /// Create a copy of SplashScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$onNeedUpdateImplCopyWith<_$onNeedUpdateImpl> get copyWith =>
-      __$$onNeedUpdateImplCopyWithImpl<_$onNeedUpdateImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String latestReleaseUrl) onNeedUpdate,
-    required TResult Function() onContinue,
-  }) {
-    return onNeedUpdate(latestReleaseUrl);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String latestReleaseUrl)? onNeedUpdate,
-    TResult? Function()? onContinue,
-  }) {
-    return onNeedUpdate?.call(latestReleaseUrl);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String latestReleaseUrl)? onNeedUpdate,
-    TResult Function()? onContinue,
-    required TResult orElse(),
-  }) {
-    if (onNeedUpdate != null) {
-      return onNeedUpdate(latestReleaseUrl);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_onNeedUpdate value) onNeedUpdate,
-    required TResult Function(_onContinue value) onContinue,
-  }) {
-    return onNeedUpdate(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_onNeedUpdate value)? onNeedUpdate,
-    TResult? Function(_onContinue value)? onContinue,
-  }) {
-    return onNeedUpdate?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_onNeedUpdate value)? onNeedUpdate,
-    TResult Function(_onContinue value)? onContinue,
-    required TResult orElse(),
-  }) {
-    if (onNeedUpdate != null) {
-      return onNeedUpdate(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _onNeedUpdate implements SplashScreenSR {
-  const factory _onNeedUpdate({required final String latestReleaseUrl}) =
-      _$onNeedUpdateImpl;
-
-  String get latestReleaseUrl;
-
-  /// Create a copy of SplashScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$onNeedUpdateImplCopyWith<_$onNeedUpdateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$onContinueImplCopyWith<$Res> {
-  factory _$$onContinueImplCopyWith(
-          _$onContinueImpl value, $Res Function(_$onContinueImpl) then) =
-      __$$onContinueImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$onContinueImplCopyWithImpl<$Res>
-    extends _$SplashScreenSRCopyWithImpl<$Res, _$onContinueImpl>
-    implements _$$onContinueImplCopyWith<$Res> {
-  __$$onContinueImplCopyWithImpl(
-      _$onContinueImpl _value, $Res Function(_$onContinueImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of SplashScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$onContinueImpl implements _onContinue {
-  const _$onContinueImpl();
-
-  @override
-  String toString() {
-    return 'SplashScreenSR.onContinue()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$onContinueImpl);
+        (other.runtimeType == runtimeType && other is _onContinue);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(String latestReleaseUrl) onNeedUpdate,
-    required TResult Function() onContinue,
-  }) {
-    return onContinue();
+  String toString() {
+    return 'SplashScreenSR.onContinue()';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(String latestReleaseUrl)? onNeedUpdate,
-    TResult? Function()? onContinue,
-  }) {
-    return onContinue?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(String latestReleaseUrl)? onNeedUpdate,
-    TResult Function()? onContinue,
-    required TResult orElse(),
-  }) {
-    if (onContinue != null) {
-      return onContinue();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(_onNeedUpdate value) onNeedUpdate,
-    required TResult Function(_onContinue value) onContinue,
-  }) {
-    return onContinue(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(_onNeedUpdate value)? onNeedUpdate,
-    TResult? Function(_onContinue value)? onContinue,
-  }) {
-    return onContinue?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(_onNeedUpdate value)? onNeedUpdate,
-    TResult Function(_onContinue value)? onContinue,
-    required TResult orElse(),
-  }) {
-    if (onContinue != null) {
-      return onContinue(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class _onContinue implements SplashScreenSR {
-  const factory _onContinue() = _$onContinueImpl;
 }
 
 /// @nodoc
 mixin _$SplashScreenState {
-  String get remoteVersion => throw _privateConstructorUsedError;
-  String get localVersion => throw _privateConstructorUsedError;
-  bool get logoVisible => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            String remoteVersion, String localVersion, bool logoVisible)
-        data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            String remoteVersion, String localVersion, bool logoVisible)?
-        data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            String remoteVersion, String localVersion, bool logoVisible)?
-        data,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Data value) data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Data value)? data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Data value)? data,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  String get remoteVersion;
+  String get localVersion;
+  bool get logoVisible;
 
   /// Create a copy of SplashScreenState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
-  $SplashScreenStateCopyWith<SplashScreenState> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $SplashScreenStateCopyWith<$Res> {
-  factory $SplashScreenStateCopyWith(
-          SplashScreenState value, $Res Function(SplashScreenState) then) =
-      _$SplashScreenStateCopyWithImpl<$Res, SplashScreenState>;
-  @useResult
-  $Res call({String remoteVersion, String localVersion, bool logoVisible});
-}
-
-/// @nodoc
-class _$SplashScreenStateCopyWithImpl<$Res, $Val extends SplashScreenState>
-    implements $SplashScreenStateCopyWith<$Res> {
-  _$SplashScreenStateCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of SplashScreenState
-  /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
+  $SplashScreenStateCopyWith<SplashScreenState> get copyWith =>
+      _$SplashScreenStateCopyWithImpl<SplashScreenState>(
+          this as SplashScreenState, _$identity);
+
   @override
-  $Res call({
-    Object? remoteVersion = null,
-    Object? localVersion = null,
-    Object? logoVisible = null,
-  }) {
-    return _then(_value.copyWith(
-      remoteVersion: null == remoteVersion
-          ? _value.remoteVersion
-          : remoteVersion // ignore: cast_nullable_to_non_nullable
-              as String,
-      localVersion: null == localVersion
-          ? _value.localVersion
-          : localVersion // ignore: cast_nullable_to_non_nullable
-              as String,
-      logoVisible: null == logoVisible
-          ? _value.logoVisible
-          : logoVisible // ignore: cast_nullable_to_non_nullable
-              as bool,
-    ) as $Val);
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is SplashScreenState &&
+            (identical(other.remoteVersion, remoteVersion) ||
+                other.remoteVersion == remoteVersion) &&
+            (identical(other.localVersion, localVersion) ||
+                other.localVersion == localVersion) &&
+            (identical(other.logoVisible, logoVisible) ||
+                other.logoVisible == logoVisible));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, remoteVersion, localVersion, logoVisible);
+
+  @override
+  String toString() {
+    return 'SplashScreenState(remoteVersion: $remoteVersion, localVersion: $localVersion, logoVisible: $logoVisible)';
   }
 }
 
 /// @nodoc
-abstract class _$$DataImplCopyWith<$Res>
-    implements $SplashScreenStateCopyWith<$Res> {
-  factory _$$DataImplCopyWith(
-          _$DataImpl value, $Res Function(_$DataImpl) then) =
-      __$$DataImplCopyWithImpl<$Res>;
-  @override
+abstract mixin class $SplashScreenStateCopyWith<$Res> {
+  factory $SplashScreenStateCopyWith(
+          SplashScreenState value, $Res Function(SplashScreenState) _then) =
+      _$SplashScreenStateCopyWithImpl;
   @useResult
   $Res call({String remoteVersion, String localVersion, bool logoVisible});
 }
 
 /// @nodoc
-class __$$DataImplCopyWithImpl<$Res>
-    extends _$SplashScreenStateCopyWithImpl<$Res, _$DataImpl>
-    implements _$$DataImplCopyWith<$Res> {
-  __$$DataImplCopyWithImpl(_$DataImpl _value, $Res Function(_$DataImpl) _then)
-      : super(_value, _then);
+class _$SplashScreenStateCopyWithImpl<$Res>
+    implements $SplashScreenStateCopyWith<$Res> {
+  _$SplashScreenStateCopyWithImpl(this._self, this._then);
+
+  final SplashScreenState _self;
+  final $Res Function(SplashScreenState) _then;
 
   /// Create a copy of SplashScreenState
   /// with the given fields replaced by the non-null parameter values.
@@ -738,27 +603,190 @@ class __$$DataImplCopyWithImpl<$Res>
     Object? localVersion = null,
     Object? logoVisible = null,
   }) {
-    return _then(_$DataImpl(
+    return _then(_self.copyWith(
       remoteVersion: null == remoteVersion
-          ? _value.remoteVersion
+          ? _self.remoteVersion
           : remoteVersion // ignore: cast_nullable_to_non_nullable
               as String,
       localVersion: null == localVersion
-          ? _value.localVersion
+          ? _self.localVersion
           : localVersion // ignore: cast_nullable_to_non_nullable
               as String,
       logoVisible: null == logoVisible
-          ? _value.logoVisible
+          ? _self.logoVisible
           : logoVisible // ignore: cast_nullable_to_non_nullable
               as bool,
     ));
   }
 }
 
+/// Adds pattern-matching-related methods to [SplashScreenState].
+extension SplashScreenStatePatterns on SplashScreenState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Data value)? data,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case Data() when data != null:
+        return data(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Data value) data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case Data():
+        return data(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(Data value)? data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case Data() when data != null:
+        return data(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(
+            String remoteVersion, String localVersion, bool logoVisible)?
+        data,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case Data() when data != null:
+        return data(_that.remoteVersion, _that.localVersion, _that.logoVisible);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(
+            String remoteVersion, String localVersion, bool logoVisible)
+        data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case Data():
+        return data(_that.remoteVersion, _that.localVersion, _that.logoVisible);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(
+            String remoteVersion, String localVersion, bool logoVisible)?
+        data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case Data() when data != null:
+        return data(_that.remoteVersion, _that.localVersion, _that.logoVisible);
+      case _:
+        return null;
+    }
+  }
+}
+
 /// @nodoc
 
-class _$DataImpl implements Data {
-  const _$DataImpl(
+class Data implements SplashScreenState {
+  const Data(
       {this.remoteVersion = '',
       this.localVersion = '',
       this.logoVisible = false});
@@ -773,16 +801,19 @@ class _$DataImpl implements Data {
   @JsonKey()
   final bool logoVisible;
 
+  /// Create a copy of SplashScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'SplashScreenState.data(remoteVersion: $remoteVersion, localVersion: $localVersion, logoVisible: $logoVisible)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $DataCopyWith<Data> get copyWith =>
+      _$DataCopyWithImpl<Data>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$DataImpl &&
+            other is Data &&
             (identical(other.remoteVersion, remoteVersion) ||
                 other.remoteVersion == remoteVersion) &&
             (identical(other.localVersion, localVersion) ||
@@ -795,94 +826,53 @@ class _$DataImpl implements Data {
   int get hashCode =>
       Object.hash(runtimeType, remoteVersion, localVersion, logoVisible);
 
+  @override
+  String toString() {
+    return 'SplashScreenState.data(remoteVersion: $remoteVersion, localVersion: $localVersion, logoVisible: $logoVisible)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $DataCopyWith<$Res>
+    implements $SplashScreenStateCopyWith<$Res> {
+  factory $DataCopyWith(Data value, $Res Function(Data) _then) =
+      _$DataCopyWithImpl;
+  @override
+  @useResult
+  $Res call({String remoteVersion, String localVersion, bool logoVisible});
+}
+
+/// @nodoc
+class _$DataCopyWithImpl<$Res> implements $DataCopyWith<$Res> {
+  _$DataCopyWithImpl(this._self, this._then);
+
+  final Data _self;
+  final $Res Function(Data) _then;
+
   /// Create a copy of SplashScreenState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$DataImplCopyWith<_$DataImpl> get copyWith =>
-      __$$DataImplCopyWithImpl<_$DataImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(
-            String remoteVersion, String localVersion, bool logoVisible)
-        data,
+  $Res call({
+    Object? remoteVersion = null,
+    Object? localVersion = null,
+    Object? logoVisible = null,
   }) {
-    return data(remoteVersion, localVersion, logoVisible);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(
-            String remoteVersion, String localVersion, bool logoVisible)?
-        data,
-  }) {
-    return data?.call(remoteVersion, localVersion, logoVisible);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(
-            String remoteVersion, String localVersion, bool logoVisible)?
-        data,
-    required TResult orElse(),
-  }) {
-    if (data != null) {
-      return data(remoteVersion, localVersion, logoVisible);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Data value) data,
-  }) {
-    return data(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(Data value)? data,
-  }) {
-    return data?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Data value)? data,
-    required TResult orElse(),
-  }) {
-    if (data != null) {
-      return data(this);
-    }
-    return orElse();
+    return _then(Data(
+      remoteVersion: null == remoteVersion
+          ? _self.remoteVersion
+          : remoteVersion // ignore: cast_nullable_to_non_nullable
+              as String,
+      localVersion: null == localVersion
+          ? _self.localVersion
+          : localVersion // ignore: cast_nullable_to_non_nullable
+              as String,
+      logoVisible: null == logoVisible
+          ? _self.logoVisible
+          : logoVisible // ignore: cast_nullable_to_non_nullable
+              as bool,
+    ));
   }
 }
 
-abstract class Data implements SplashScreenState {
-  const factory Data(
-      {final String remoteVersion,
-      final String localVersion,
-      final bool logoVisible}) = _$DataImpl;
-
-  @override
-  String get remoteVersion;
-  @override
-  String get localVersion;
-  @override
-  bool get logoVisible;
-
-  /// Create a copy of SplashScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$DataImplCopyWith<_$DataImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
+// dart format on

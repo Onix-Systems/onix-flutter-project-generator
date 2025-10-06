@@ -11,7 +11,7 @@ import 'package:recase/recase.dart';
 part 'request_component.freezed.dart';
 
 @Freezed(toJson: false, fromJson: false, toStringOverride: false)
-class RequestComponent with _$RequestComponent {
+sealed class RequestComponent with _$RequestComponent {
   const RequestComponent._();
 
   const factory RequestComponent({
@@ -115,6 +115,7 @@ class RequestComponent with _$RequestComponent {
       response.isEnum ? DataFileType.none : DataFileType.response,
     );
     final responseClosure = response.isEnum
+        //ignore: lines_longer_than_80_chars
         ? 'return ${response.type}.values.firstWhere((e) => e.name == response.data);'
         : response.type.getDefaultParserClosure(DataFileType.response);
     codeLines
@@ -146,6 +147,7 @@ class RequestComponent with _$RequestComponent {
       );
       for (final e in multipartFiles) {
         codeLines.add(
+          //ignore: lines_longer_than_80_chars
           'final ${e.getNameDeclaration()}MultipartFile = await MultipartFile.fromFile(${e.getNameDeclaration()});',
         );
       }
@@ -181,6 +183,7 @@ class RequestComponent with _$RequestComponent {
             final array = e.type as SwaggerArray;
             if (array.itemType.type is SwaggerReference) {
               codeLines.add(
+                //ignore: lines_longer_than_80_chars
                 "'${e.name}': ${e.getNameDeclaration()}?.map((e) => e.toJson()).toList(),",
               );
             } else {
@@ -210,7 +213,8 @@ class RequestComponent with _$RequestComponent {
 
     ///Get request URL path
     if (pathParams.isNotEmpty) {
-      ///f path params exist call request Url declaration as function with params
+      ///f path params exist call request Url declaration
+      ///as function with params
       final paramsDeclaration = pathParams
           .map((e) => '${e.getNameDeclaration()}: ${e.getNameDeclaration()},')
           .join('\n');
@@ -307,6 +311,7 @@ class RequestComponent with _$RequestComponent {
         final requestBodyType = body.getTypeDeclaration(DataFileType.none);
         final requestBodyName = requestBody!.getNameDeclaration();
         codeLines.add(
+          //ignore: lines_longer_than_80_chars
           'final ${requestBodyType.camelCase}RequestBody = _${requestBodyType.camelCase}Mappers.mapEntityToRequest($requestBodyName);',
         );
       } else if (requestBody!.type is SwaggerArray) {
@@ -316,6 +321,7 @@ class RequestComponent with _$RequestComponent {
           final requestBodyName = requestBody!.getNameDeclaration();
           final requestBodyType = ref.getTypeDeclaration(DataFileType.none);
           codeLines.add(
+            //ignore: lines_longer_than_80_chars
             'final ${requestBodyType.camelCase}RequestBody = $requestBodyName.map(_${requestBodyType.camelCase}Mappers.mapEntityToRequest,).toList();',
           );
         }
@@ -339,6 +345,7 @@ class RequestComponent with _$RequestComponent {
         );
       } else {
         codeLines.add(
+          //ignore: lines_longer_than_80_chars
           'final ${responseName}Object = _${responseName}Mappers.mapResponseToEntity(result.data);',
         );
       }
@@ -351,6 +358,7 @@ class RequestComponent with _$RequestComponent {
             ref.getTypeDeclaration(DataFileType.none).camelCase;
         codeLines
           ..add(
+            //ignore: lines_longer_than_80_chars
             'final ${responseName}Objects = result.data.map(_${responseName}Mappers.mapResponseToEntity,).toList();',
           )
           ..add('return Result.ok(${responseName}Objects);');
@@ -363,11 +371,13 @@ class RequestComponent with _$RequestComponent {
     codeLines
       ..add('} else {')
       ..add(
+        //ignore: lines_longer_than_80_chars
         'return Result.error(error: _dioServerErrorMapper.mapToFailure(result),);',
       )
       ..add('}')
       ..add('} catch (e, trace) {')
       ..add(
+        //ignore: lines_longer_than_80_chars
         "logger.crash(reason: '${operationId.camelCase}', error: e, stackTrace: trace,);",
       )
       ..add('return Result.error(')
@@ -461,12 +471,14 @@ class RequestComponent with _$RequestComponent {
           final ref = e.type.getSwaggerObjectReference();
           if (ref != null) {
             codeLines.add(
+              //ignore: lines_longer_than_80_chars
               '${e.getNameDeclaration()}: _${e.type.getTypeDeclaration(DataFileType.entity).camelCase}Mappers.mapEntityToRequest(${e.getNameDeclaration()}),',
             );
           }
         } else if (isEnum) {
           if (e.type is SwaggerArray) {
             codeLines.add(
+              //ignore: lines_longer_than_80_chars
               '${e.getNameDeclaration()}: ${e.getNameDeclaration()}.map((e) => e.name).toList(),',
             );
           } else {
@@ -491,16 +503,19 @@ class RequestComponent with _$RequestComponent {
           );
         } else if (e.type is SwaggerReference) {
           codeLines.add(
+            //ignore: lines_longer_than_80_chars
             '${e.getNameDeclaration()}: ${e.getNameDeclaration()} != null ?_${e.type.getTypeDeclaration(DataFileType.entity).camelCase}Mappers.mapEntityToRequest(${e.getNameDeclaration()}) : null,',
           );
         } else if (e.type is SwaggerArray) {
           final array = e.type as SwaggerArray;
           if (array.itemType.type is SwaggerReference) {
             codeLines.add(
+              //ignore: lines_longer_than_80_chars
               '$declaredName: $declaredName$nullable.map(_${array.itemType.type.toString().camelCase}Mappers.mapEntityToRequest).toList(),',
             );
           } else if (array.itemType.type is SwaggerEnum) {
             codeLines.add(
+              //ignore: lines_longer_than_80_chars
               '$declaredName: $declaredName$nullable.map((e) => e.name).toList(),',
             );
           } else {
@@ -593,6 +608,7 @@ class RequestComponent with _$RequestComponent {
 
   @override
   String toString() {
+    //ignore: lines_longer_than_80_chars
     return 'RequestComponent(operationId: $operationId, path: $path, type: $type, description: $description, requestBody: $requestBody, multipartBody: $multipartBody, queryParams: $queryParams, pathParams: $pathParams, response: $response, fromSwagger: $fromSwagger)';
   }
 }

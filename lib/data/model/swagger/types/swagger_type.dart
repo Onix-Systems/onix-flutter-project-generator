@@ -43,19 +43,19 @@ sealed class SwaggerType {
     var object = <String, dynamic>{};
 
     switch (runtimeType) {
-      case SwaggerVariable:
+      case const (SwaggerVariable):
         object = (this as SwaggerVariable).getJson();
-      case SwaggerReference:
+      case const (SwaggerReference):
         object = (this as SwaggerReference).getJson();
-      case SwaggerArray:
+      case const (SwaggerArray):
         object = (this as SwaggerArray).getJson();
-      case SwaggerEnum:
+      case const (SwaggerEnum):
         object = (this as SwaggerEnum).getJson();
-      case SwaggerFile:
+      case const (SwaggerFile):
         object = (this as SwaggerFile).getJson();
-      case SwaggerAllOf:
+      case const (SwaggerAllOf):
         object = (this as SwaggerAllOf).getJson();
-      case SwaggerOperationDefault:
+      case const (SwaggerOperationDefault):
       default:
         object = (this as SwaggerOperationDefault).getJson();
     }
@@ -310,6 +310,7 @@ class SwaggerEnum extends SwaggerType {
 
   @override
   String? getFileName(DataFileType fileType) {
+    //ignore: lines_longer_than_80_chars
     return '${from.isNotEmpty ? '${from.snakeCase}_' : ''}${name.snakeCase}.dart';
   }
 

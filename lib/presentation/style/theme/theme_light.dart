@@ -9,6 +9,7 @@ ThemeData createLightTheme() {
       ThemeColors.light,
       ThemeTextStyles.light,
     ],
-    dialogTheme: const DialogTheme(backgroundColor: AppThemeColors.darkColor),
+    dialogTheme:
+        const DialogThemeData(backgroundColor: AppThemeColors.darkColor),
   );
 }

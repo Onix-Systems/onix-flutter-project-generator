@@ -90,9 +90,11 @@ class ObjectItem extends StatelessWidget {
                         .map(
                           (e) => e.type is SwaggerEnum
                               ? Text(
+                                  //ignore: lines_longer_than_80_chars
                                   'enum: {${(e.type as SwaggerEnum).enumValues.join(', ')}}',
                                 )
                               : Text(
+                                  //ignore: lines_longer_than_80_chars
                                   '${e.type.getTypeDeclaration(DataFileType.none)} '
                                   '${e.name.camelCase}',
                                   style: TextStyle(

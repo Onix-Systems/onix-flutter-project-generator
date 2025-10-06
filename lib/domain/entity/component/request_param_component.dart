@@ -138,6 +138,7 @@ class RequestBodyComponent extends RequestParamComponent {
 
   @override
   String toString() {
+    //ignore: lines_longer_than_80_chars
     return 'RequestBodyComponent(name: $name, type: $type, isRequired: $isRequired, fromSwagger: $fromSwagger, isEnum: $isEnum)';
   }
 }
@@ -197,6 +198,7 @@ class RequestMultipartComponent extends RequestParamComponent {
 
   @override
   String toString() {
+    //ignore: lines_longer_than_80_chars
     return 'RequestMultipartComponent(name: $name, type: $type, isRequired: $isRequired, fromSwagger: $fromSwagger, isEnum: $isEnum)';
   }
 }
@@ -256,6 +258,7 @@ class RequestQueryComponent extends RequestParamComponent {
 
   @override
   String toString() {
+    //ignore: lines_longer_than_80_chars
     return 'RequestQueryComponent(name: $name, type: $type, isRequired: $isRequired, fromSwagger: $fromSwagger, isEnum: $isEnum)';
   }
 }
@@ -290,6 +293,7 @@ class RequestPathComponent extends RequestParamComponent {
 
   @override
   String toString() {
+    //ignore: lines_longer_than_80_chars
     return 'RequestPathComponent(name: $name, type: $type, isRequired: $isRequired, fromSwagger: $fromSwagger, isEnum: $isEnum)';
   }
 }

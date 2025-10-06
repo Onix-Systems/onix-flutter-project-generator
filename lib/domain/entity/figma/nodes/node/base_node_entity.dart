@@ -5,7 +5,7 @@ part 'base_node_entity.freezed.dart';
 
 // https://www.figma.com/developers/api#node-type
 @freezed
-class BaseNodeEntity with _$BaseNodeEntity implements BaseNode {
+sealed class BaseNodeEntity with _$BaseNodeEntity implements BaseNode {
   const factory BaseNodeEntity({
     required String id,
     required String key,

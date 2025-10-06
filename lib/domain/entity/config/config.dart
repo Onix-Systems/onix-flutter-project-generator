@@ -14,7 +14,7 @@ part 'config.freezed.dart';
 part 'config.g.dart';
 
 @freezed
-class Config with _$Config {
+sealed class Config with _$Config {
   const factory Config({
     @Default(BranchConfig()) BranchConfig branchConfig,
     @Default(ArchType.basic) ArchType arch,

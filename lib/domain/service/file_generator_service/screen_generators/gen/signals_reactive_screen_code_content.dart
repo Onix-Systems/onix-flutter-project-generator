@@ -38,15 +38,18 @@ class SignalsReactiveScreenCodeContent extends ScreenCodeContent {
       ..addNewLine()
       ..add('@override')
       ..add(
+        //ignore: lines_longer_than_80_chars
         'State<${screenClassName}Screen> createState() => _${screenClassName}State();',
       )
       ..add('}')
       ..addNewLine()
       ..add(
+        //ignore: lines_longer_than_80_chars
         'class _${screenClassName}State extends ReactiveSignalState<${screenClassName}ScreenSignals, ${screenClassName}Screen> {',
       )
       ..add('@override')
       ..add(
+        //ignore: lines_longer_than_80_chars
         '${screenClassName}ScreenSignals createModel() => GetIt.I.get<${screenClassName}ScreenSignals>();',
       )
       ..addNewLine()

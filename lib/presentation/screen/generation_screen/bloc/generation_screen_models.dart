@@ -4,7 +4,7 @@ import 'package:onix_flutter_bricks/domain/entity/config/output_line.dart';
 part 'generation_screen_models.freezed.dart';
 
 @freezed
-class GenerationScreenEvent with _$GenerationScreenEvent {
+sealed class GenerationScreenEvent with _$GenerationScreenEvent {
   const factory GenerationScreenEvent.init() = GenerationScreenEventInit;
 
   const factory GenerationScreenEvent.generateProject() =
@@ -14,12 +14,12 @@ class GenerationScreenEvent with _$GenerationScreenEvent {
 }
 
 @freezed
-class GenerationScreenSR with _$GenerationScreenSR {
+sealed class GenerationScreenSR with _$GenerationScreenSR {
   const factory GenerationScreenSR.stub() = _StubSR;
 }
 
 @freezed
-class GenerationScreenState with _$GenerationScreenState {
+sealed class GenerationScreenState with _$GenerationScreenState {
   const factory GenerationScreenState.data({
     @Default(GeneratingState.init) GeneratingState generatingState,
     Stream<List<OutputLine>>? outputStream,

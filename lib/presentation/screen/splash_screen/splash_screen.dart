@@ -22,8 +22,10 @@ class SplashScreen extends StatefulWidget {
   State<SplashScreen> createState() => _SplashScreenState();
 }
 
-class _SplashScreenState extends BaseState<SplashScreenState, SplashScreenBloc,
-    SplashScreenSR, SplashScreen> {
+class _SplashScreenState extends State<SplashScreen>
+    with
+        BaseBlocState<SplashScreenState, SplashScreenBloc, SplashScreenSR,
+            SplashScreen> {
   @override
   SplashScreenBloc createBloc() => GetIt.I.get<SplashScreenBloc>();
 

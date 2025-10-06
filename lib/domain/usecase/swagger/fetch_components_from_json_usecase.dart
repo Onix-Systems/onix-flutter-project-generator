@@ -1,6 +1,6 @@
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/repository/swagger_repository.dart';
-import 'package:onix_flutter_core/src/domain/entity/common/result.dart';
+import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 
 class FetchComponentsFromJsonUseCase {
   final SwaggerRepository _swaggerRepository;

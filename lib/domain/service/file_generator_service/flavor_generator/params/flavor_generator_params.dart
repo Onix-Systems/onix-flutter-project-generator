@@ -2,7 +2,8 @@ import 'package:onix_flutter_bricks/domain/service/base/params/base_generation_p
 
 ///[projectFolder] project root folder in
 ///[flavors] set of flavors to generate
-///[separateFromBrick] = true means that generation process run not as a part of a project generation
+///[separateFromBrick] = true means that generation process run not as a part
+///of a project generation
 class FlavorGeneratorParams implements BaseGenerationParams {
   final String projectFolder;
   final List<String> flavors;

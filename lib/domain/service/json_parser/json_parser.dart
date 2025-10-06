@@ -6,7 +6,7 @@ import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_variable_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/json_parser_failure.dart';
-import 'package:onix_flutter_core/onix_flutter_core.dart';
+import 'package:onix_flutter_core_models/onix_flutter_core_models.dart';
 import 'package:recase/recase.dart';
 
 class JsonParser {
@@ -55,7 +55,7 @@ class JsonParser {
           );
 
           if (newClassResult.isError) {
-            return Result.error(failure: newClassResult.error.failure);
+            return Result.error(error: newClassResult.asError.error);
           }
 
           for (final child in newClassResult.data) {
@@ -82,10 +82,10 @@ class JsonParser {
         fromSwagger: false,
       );
 
-      return Result.success([component, ...children]);
+      return Result.ok([component, ...children]);
     } catch (e) {
       return Result.error(
-        failure: JsonParserFailure(
+        error: JsonParserFailure(
           failureText: e.toString(),
         ),
       );

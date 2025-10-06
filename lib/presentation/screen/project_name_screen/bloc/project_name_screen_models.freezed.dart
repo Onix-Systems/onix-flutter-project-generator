@@ -1,5 +1,5 @@
-// coverage:ignore-file
 // GENERATED CODE - DO NOT MODIFY BY HAND
+// coverage:ignore-file
 // ignore_for_file: type=lint
 // ignore_for_file: unused_element, deprecated_member_use, deprecated_member_use_from_same_package, use_function_type_syntax_for_parameters, unnecessary_const, avoid_init_to_null, invalid_override_different_default_values_named, prefer_expression_function_bodies, annotate_overrides, invalid_annotation_target, unnecessary_question_mark
 
@@ -9,201 +9,46 @@ part of 'project_name_screen_models.dart';
 // FreezedGenerator
 // **************************************************************************
 
+// dart format off
 T _$identity<T>(T value) => value;
-
-final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#adding-getters-and-methods-to-our-models');
 
 /// @nodoc
 mixin _$ProjectNameScreenEvent {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String projectName) projectNameChanged,
-    required TResult Function(String organization) organizationChanged,
-    required TResult Function(String newBranch) branchChanged,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String projectName)? projectNameChanged,
-    TResult? Function(String organization)? organizationChanged,
-    TResult? Function(String newBranch)? branchChanged,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String projectName)? projectNameChanged,
-    TResult Function(String organization)? organizationChanged,
-    TResult Function(String newBranch)? branchChanged,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProjectNameScreenEventInit value) init,
-    required TResult Function(ProjectNameScreenEventProjectNameChanged value)
-        projectNameChanged,
-    required TResult Function(ProjectNameScreenEventOrganizationChanged value)
-        organizationChanged,
-    required TResult Function(ProjectNameScreenEventBranchChanged value)
-        branchChanged,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProjectNameScreenEventInit value)? init,
-    TResult? Function(ProjectNameScreenEventProjectNameChanged value)?
-        projectNameChanged,
-    TResult? Function(ProjectNameScreenEventOrganizationChanged value)?
-        organizationChanged,
-    TResult? Function(ProjectNameScreenEventBranchChanged value)? branchChanged,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProjectNameScreenEventInit value)? init,
-    TResult Function(ProjectNameScreenEventProjectNameChanged value)?
-        projectNameChanged,
-    TResult Function(ProjectNameScreenEventOrganizationChanged value)?
-        organizationChanged,
-    TResult Function(ProjectNameScreenEventBranchChanged value)? branchChanged,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ProjectNameScreenEventCopyWith<$Res> {
-  factory $ProjectNameScreenEventCopyWith(ProjectNameScreenEvent value,
-          $Res Function(ProjectNameScreenEvent) then) =
-      _$ProjectNameScreenEventCopyWithImpl<$Res, ProjectNameScreenEvent>;
-}
-
-/// @nodoc
-class _$ProjectNameScreenEventCopyWithImpl<$Res,
-        $Val extends ProjectNameScreenEvent>
-    implements $ProjectNameScreenEventCopyWith<$Res> {
-  _$ProjectNameScreenEventCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ProjectNameScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$ProjectNameScreenEventInitImplCopyWith<$Res> {
-  factory _$$ProjectNameScreenEventInitImplCopyWith(
-          _$ProjectNameScreenEventInitImpl value,
-          $Res Function(_$ProjectNameScreenEventInitImpl) then) =
-      __$$ProjectNameScreenEventInitImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ProjectNameScreenEventInitImplCopyWithImpl<$Res>
-    extends _$ProjectNameScreenEventCopyWithImpl<$Res,
-        _$ProjectNameScreenEventInitImpl>
-    implements _$$ProjectNameScreenEventInitImplCopyWith<$Res> {
-  __$$ProjectNameScreenEventInitImplCopyWithImpl(
-      _$ProjectNameScreenEventInitImpl _value,
-      $Res Function(_$ProjectNameScreenEventInitImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ProjectNameScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$ProjectNameScreenEventInitImpl implements ProjectNameScreenEventInit {
-  const _$ProjectNameScreenEventInitImpl();
-
-  @override
-  String toString() {
-    return 'ProjectNameScreenEvent.init()';
-  }
-
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ProjectNameScreenEventInitImpl);
+        (other.runtimeType == runtimeType && other is ProjectNameScreenEvent);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String projectName) projectNameChanged,
-    required TResult Function(String organization) organizationChanged,
-    required TResult Function(String newBranch) branchChanged,
-  }) {
-    return init();
+  String toString() {
+    return 'ProjectNameScreenEvent()';
   }
+}
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String projectName)? projectNameChanged,
-    TResult? Function(String organization)? organizationChanged,
-    TResult? Function(String newBranch)? branchChanged,
-  }) {
-    return init?.call();
-  }
+/// @nodoc
+class $ProjectNameScreenEventCopyWith<$Res> {
+  $ProjectNameScreenEventCopyWith(
+      ProjectNameScreenEvent _, $Res Function(ProjectNameScreenEvent) __);
+}
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String projectName)? projectNameChanged,
-    TResult Function(String organization)? organizationChanged,
-    TResult Function(String newBranch)? branchChanged,
-    required TResult orElse(),
-  }) {
-    if (init != null) {
-      return init();
-    }
-    return orElse();
-  }
+/// Adds pattern-matching-related methods to [ProjectNameScreenEvent].
+extension ProjectNameScreenEventPatterns on ProjectNameScreenEvent {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProjectNameScreenEventInit value) init,
-    required TResult Function(ProjectNameScreenEventProjectNameChanged value)
-        projectNameChanged,
-    required TResult Function(ProjectNameScreenEventOrganizationChanged value)
-        organizationChanged,
-    required TResult Function(ProjectNameScreenEventBranchChanged value)
-        branchChanged,
-  }) {
-    return init(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProjectNameScreenEventInit value)? init,
-    TResult? Function(ProjectNameScreenEventProjectNameChanged value)?
-        projectNameChanged,
-    TResult? Function(ProjectNameScreenEventOrganizationChanged value)?
-        organizationChanged,
-    TResult? Function(ProjectNameScreenEventBranchChanged value)? branchChanged,
-  }) {
-    return init?.call(this);
-  }
-
-  @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProjectNameScreenEventInit value)? init,
@@ -214,47 +59,293 @@ class _$ProjectNameScreenEventInitImpl implements ProjectNameScreenEventInit {
     TResult Function(ProjectNameScreenEventBranchChanged value)? branchChanged,
     required TResult orElse(),
   }) {
-    if (init != null) {
-      return init(this);
+    final _that = this;
+    switch (_that) {
+      case ProjectNameScreenEventInit() when init != null:
+        return init(_that);
+      case ProjectNameScreenEventProjectNameChanged()
+          when projectNameChanged != null:
+        return projectNameChanged(_that);
+      case ProjectNameScreenEventOrganizationChanged()
+          when organizationChanged != null:
+        return organizationChanged(_that);
+      case ProjectNameScreenEventBranchChanged() when branchChanged != null:
+        return branchChanged(_that);
+      case _:
+        return orElse();
     }
-    return orElse();
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProjectNameScreenEventInit value) init,
+    required TResult Function(ProjectNameScreenEventProjectNameChanged value)
+        projectNameChanged,
+    required TResult Function(ProjectNameScreenEventOrganizationChanged value)
+        organizationChanged,
+    required TResult Function(ProjectNameScreenEventBranchChanged value)
+        branchChanged,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ProjectNameScreenEventInit():
+        return init(_that);
+      case ProjectNameScreenEventProjectNameChanged():
+        return projectNameChanged(_that);
+      case ProjectNameScreenEventOrganizationChanged():
+        return organizationChanged(_that);
+      case ProjectNameScreenEventBranchChanged():
+        return branchChanged(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProjectNameScreenEventInit value)? init,
+    TResult? Function(ProjectNameScreenEventProjectNameChanged value)?
+        projectNameChanged,
+    TResult? Function(ProjectNameScreenEventOrganizationChanged value)?
+        organizationChanged,
+    TResult? Function(ProjectNameScreenEventBranchChanged value)? branchChanged,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ProjectNameScreenEventInit() when init != null:
+        return init(_that);
+      case ProjectNameScreenEventProjectNameChanged()
+          when projectNameChanged != null:
+        return projectNameChanged(_that);
+      case ProjectNameScreenEventOrganizationChanged()
+          when organizationChanged != null:
+        return organizationChanged(_that);
+      case ProjectNameScreenEventBranchChanged() when branchChanged != null:
+        return branchChanged(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    TResult Function(String projectName)? projectNameChanged,
+    TResult Function(String organization)? organizationChanged,
+    TResult Function(String newBranch)? branchChanged,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ProjectNameScreenEventInit() when init != null:
+        return init();
+      case ProjectNameScreenEventProjectNameChanged()
+          when projectNameChanged != null:
+        return projectNameChanged(_that.projectName);
+      case ProjectNameScreenEventOrganizationChanged()
+          when organizationChanged != null:
+        return organizationChanged(_that.organization);
+      case ProjectNameScreenEventBranchChanged() when branchChanged != null:
+        return branchChanged(_that.newBranch);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+    required TResult Function(String projectName) projectNameChanged,
+    required TResult Function(String organization) organizationChanged,
+    required TResult Function(String newBranch) branchChanged,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ProjectNameScreenEventInit():
+        return init();
+      case ProjectNameScreenEventProjectNameChanged():
+        return projectNameChanged(_that.projectName);
+      case ProjectNameScreenEventOrganizationChanged():
+        return organizationChanged(_that.organization);
+      case ProjectNameScreenEventBranchChanged():
+        return branchChanged(_that.newBranch);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+    TResult? Function(String projectName)? projectNameChanged,
+    TResult? Function(String organization)? organizationChanged,
+    TResult? Function(String newBranch)? branchChanged,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ProjectNameScreenEventInit() when init != null:
+        return init();
+      case ProjectNameScreenEventProjectNameChanged()
+          when projectNameChanged != null:
+        return projectNameChanged(_that.projectName);
+      case ProjectNameScreenEventOrganizationChanged()
+          when organizationChanged != null:
+        return organizationChanged(_that.organization);
+      case ProjectNameScreenEventBranchChanged() when branchChanged != null:
+        return branchChanged(_that.newBranch);
+      case _:
+        return null;
+    }
   }
 }
 
-abstract class ProjectNameScreenEventInit implements ProjectNameScreenEvent {
-  const factory ProjectNameScreenEventInit() = _$ProjectNameScreenEventInitImpl;
+/// @nodoc
+
+class ProjectNameScreenEventInit implements ProjectNameScreenEvent {
+  const ProjectNameScreenEventInit();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ProjectNameScreenEventInit);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'ProjectNameScreenEvent.init()';
+  }
 }
 
 /// @nodoc
-abstract class _$$ProjectNameScreenEventProjectNameChangedImplCopyWith<$Res> {
-  factory _$$ProjectNameScreenEventProjectNameChangedImplCopyWith(
-          _$ProjectNameScreenEventProjectNameChangedImpl value,
-          $Res Function(_$ProjectNameScreenEventProjectNameChangedImpl) then) =
-      __$$ProjectNameScreenEventProjectNameChangedImplCopyWithImpl<$Res>;
+
+class ProjectNameScreenEventProjectNameChanged
+    implements ProjectNameScreenEvent {
+  const ProjectNameScreenEventProjectNameChanged({required this.projectName});
+
+  final String projectName;
+
+  /// Create a copy of ProjectNameScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ProjectNameScreenEventProjectNameChangedCopyWith<
+          ProjectNameScreenEventProjectNameChanged>
+      get copyWith => _$ProjectNameScreenEventProjectNameChangedCopyWithImpl<
+          ProjectNameScreenEventProjectNameChanged>(this, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ProjectNameScreenEventProjectNameChanged &&
+            (identical(other.projectName, projectName) ||
+                other.projectName == projectName));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, projectName);
+
+  @override
+  String toString() {
+    return 'ProjectNameScreenEvent.projectNameChanged(projectName: $projectName)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ProjectNameScreenEventProjectNameChangedCopyWith<$Res>
+    implements $ProjectNameScreenEventCopyWith<$Res> {
+  factory $ProjectNameScreenEventProjectNameChangedCopyWith(
+          ProjectNameScreenEventProjectNameChanged value,
+          $Res Function(ProjectNameScreenEventProjectNameChanged) _then) =
+      _$ProjectNameScreenEventProjectNameChangedCopyWithImpl;
   @useResult
   $Res call({String projectName});
 }
 
 /// @nodoc
-class __$$ProjectNameScreenEventProjectNameChangedImplCopyWithImpl<$Res>
-    extends _$ProjectNameScreenEventCopyWithImpl<$Res,
-        _$ProjectNameScreenEventProjectNameChangedImpl>
-    implements _$$ProjectNameScreenEventProjectNameChangedImplCopyWith<$Res> {
-  __$$ProjectNameScreenEventProjectNameChangedImplCopyWithImpl(
-      _$ProjectNameScreenEventProjectNameChangedImpl _value,
-      $Res Function(_$ProjectNameScreenEventProjectNameChangedImpl) _then)
-      : super(_value, _then);
+class _$ProjectNameScreenEventProjectNameChangedCopyWithImpl<$Res>
+    implements $ProjectNameScreenEventProjectNameChangedCopyWith<$Res> {
+  _$ProjectNameScreenEventProjectNameChangedCopyWithImpl(
+      this._self, this._then);
+
+  final ProjectNameScreenEventProjectNameChanged _self;
+  final $Res Function(ProjectNameScreenEventProjectNameChanged) _then;
 
   /// Create a copy of ProjectNameScreenEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? projectName = null,
   }) {
-    return _then(_$ProjectNameScreenEventProjectNameChangedImpl(
+    return _then(ProjectNameScreenEventProjectNameChanged(
       projectName: null == projectName
-          ? _value.projectName
+          ? _self.projectName
           : projectName // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -263,170 +354,68 @@ class __$$ProjectNameScreenEventProjectNameChangedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProjectNameScreenEventProjectNameChangedImpl
-    implements ProjectNameScreenEventProjectNameChanged {
-  const _$ProjectNameScreenEventProjectNameChangedImpl(
-      {required this.projectName});
+class ProjectNameScreenEventOrganizationChanged
+    implements ProjectNameScreenEvent {
+  const ProjectNameScreenEventOrganizationChanged({required this.organization});
 
-  @override
-  final String projectName;
+  final String organization;
 
-  @override
-  String toString() {
-    return 'ProjectNameScreenEvent.projectNameChanged(projectName: $projectName)';
-  }
+  /// Create a copy of ProjectNameScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ProjectNameScreenEventOrganizationChangedCopyWith<
+          ProjectNameScreenEventOrganizationChanged>
+      get copyWith => _$ProjectNameScreenEventOrganizationChangedCopyWithImpl<
+          ProjectNameScreenEventOrganizationChanged>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectNameScreenEventProjectNameChangedImpl &&
-            (identical(other.projectName, projectName) ||
-                other.projectName == projectName));
+            other is ProjectNameScreenEventOrganizationChanged &&
+            (identical(other.organization, organization) ||
+                other.organization == organization));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, projectName);
-
-  /// Create a copy of ProjectNameScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ProjectNameScreenEventProjectNameChangedImplCopyWith<
-          _$ProjectNameScreenEventProjectNameChangedImpl>
-      get copyWith =>
-          __$$ProjectNameScreenEventProjectNameChangedImplCopyWithImpl<
-              _$ProjectNameScreenEventProjectNameChangedImpl>(this, _$identity);
+  int get hashCode => Object.hash(runtimeType, organization);
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String projectName) projectNameChanged,
-    required TResult Function(String organization) organizationChanged,
-    required TResult Function(String newBranch) branchChanged,
-  }) {
-    return projectNameChanged(projectName);
+  String toString() {
+    return 'ProjectNameScreenEvent.organizationChanged(organization: $organization)';
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String projectName)? projectNameChanged,
-    TResult? Function(String organization)? organizationChanged,
-    TResult? Function(String newBranch)? branchChanged,
-  }) {
-    return projectNameChanged?.call(projectName);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String projectName)? projectNameChanged,
-    TResult Function(String organization)? organizationChanged,
-    TResult Function(String newBranch)? branchChanged,
-    required TResult orElse(),
-  }) {
-    if (projectNameChanged != null) {
-      return projectNameChanged(projectName);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProjectNameScreenEventInit value) init,
-    required TResult Function(ProjectNameScreenEventProjectNameChanged value)
-        projectNameChanged,
-    required TResult Function(ProjectNameScreenEventOrganizationChanged value)
-        organizationChanged,
-    required TResult Function(ProjectNameScreenEventBranchChanged value)
-        branchChanged,
-  }) {
-    return projectNameChanged(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProjectNameScreenEventInit value)? init,
-    TResult? Function(ProjectNameScreenEventProjectNameChanged value)?
-        projectNameChanged,
-    TResult? Function(ProjectNameScreenEventOrganizationChanged value)?
-        organizationChanged,
-    TResult? Function(ProjectNameScreenEventBranchChanged value)? branchChanged,
-  }) {
-    return projectNameChanged?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProjectNameScreenEventInit value)? init,
-    TResult Function(ProjectNameScreenEventProjectNameChanged value)?
-        projectNameChanged,
-    TResult Function(ProjectNameScreenEventOrganizationChanged value)?
-        organizationChanged,
-    TResult Function(ProjectNameScreenEventBranchChanged value)? branchChanged,
-    required TResult orElse(),
-  }) {
-    if (projectNameChanged != null) {
-      return projectNameChanged(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ProjectNameScreenEventProjectNameChanged
-    implements ProjectNameScreenEvent {
-  const factory ProjectNameScreenEventProjectNameChanged(
-          {required final String projectName}) =
-      _$ProjectNameScreenEventProjectNameChangedImpl;
-
-  String get projectName;
-
-  /// Create a copy of ProjectNameScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProjectNameScreenEventProjectNameChangedImplCopyWith<
-          _$ProjectNameScreenEventProjectNameChangedImpl>
-      get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$$ProjectNameScreenEventOrganizationChangedImplCopyWith<$Res> {
-  factory _$$ProjectNameScreenEventOrganizationChangedImplCopyWith(
-          _$ProjectNameScreenEventOrganizationChangedImpl value,
-          $Res Function(_$ProjectNameScreenEventOrganizationChangedImpl) then) =
-      __$$ProjectNameScreenEventOrganizationChangedImplCopyWithImpl<$Res>;
+abstract mixin class $ProjectNameScreenEventOrganizationChangedCopyWith<$Res>
+    implements $ProjectNameScreenEventCopyWith<$Res> {
+  factory $ProjectNameScreenEventOrganizationChangedCopyWith(
+          ProjectNameScreenEventOrganizationChanged value,
+          $Res Function(ProjectNameScreenEventOrganizationChanged) _then) =
+      _$ProjectNameScreenEventOrganizationChangedCopyWithImpl;
   @useResult
   $Res call({String organization});
 }
 
 /// @nodoc
-class __$$ProjectNameScreenEventOrganizationChangedImplCopyWithImpl<$Res>
-    extends _$ProjectNameScreenEventCopyWithImpl<$Res,
-        _$ProjectNameScreenEventOrganizationChangedImpl>
-    implements _$$ProjectNameScreenEventOrganizationChangedImplCopyWith<$Res> {
-  __$$ProjectNameScreenEventOrganizationChangedImplCopyWithImpl(
-      _$ProjectNameScreenEventOrganizationChangedImpl _value,
-      $Res Function(_$ProjectNameScreenEventOrganizationChangedImpl) _then)
-      : super(_value, _then);
+class _$ProjectNameScreenEventOrganizationChangedCopyWithImpl<$Res>
+    implements $ProjectNameScreenEventOrganizationChangedCopyWith<$Res> {
+  _$ProjectNameScreenEventOrganizationChangedCopyWithImpl(
+      this._self, this._then);
+
+  final ProjectNameScreenEventOrganizationChanged _self;
+  final $Res Function(ProjectNameScreenEventOrganizationChanged) _then;
 
   /// Create a copy of ProjectNameScreenEvent
   /// with the given fields replaced by the non-null parameter values.
   @pragma('vm:prefer-inline')
-  @override
   $Res call({
     Object? organization = null,
   }) {
-    return _then(_$ProjectNameScreenEventOrganizationChangedImpl(
+    return _then(ProjectNameScreenEventOrganizationChanged(
       organization: null == organization
-          ? _value.organization
+          ? _self.organization
           : organization // ignore: cast_nullable_to_non_nullable
               as String,
     ));
@@ -435,196 +424,25 @@ class __$$ProjectNameScreenEventOrganizationChangedImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$ProjectNameScreenEventOrganizationChangedImpl
-    implements ProjectNameScreenEventOrganizationChanged {
-  const _$ProjectNameScreenEventOrganizationChangedImpl(
-      {required this.organization});
+class ProjectNameScreenEventBranchChanged implements ProjectNameScreenEvent {
+  const ProjectNameScreenEventBranchChanged({required this.newBranch});
 
-  @override
-  final String organization;
-
-  @override
-  String toString() {
-    return 'ProjectNameScreenEvent.organizationChanged(organization: $organization)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ProjectNameScreenEventOrganizationChangedImpl &&
-            (identical(other.organization, organization) ||
-                other.organization == organization));
-  }
-
-  @override
-  int get hashCode => Object.hash(runtimeType, organization);
-
-  /// Create a copy of ProjectNameScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$ProjectNameScreenEventOrganizationChangedImplCopyWith<
-          _$ProjectNameScreenEventOrganizationChangedImpl>
-      get copyWith =>
-          __$$ProjectNameScreenEventOrganizationChangedImplCopyWithImpl<
-                  _$ProjectNameScreenEventOrganizationChangedImpl>(
-              this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String projectName) projectNameChanged,
-    required TResult Function(String organization) organizationChanged,
-    required TResult Function(String newBranch) branchChanged,
-  }) {
-    return organizationChanged(organization);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String projectName)? projectNameChanged,
-    TResult? Function(String organization)? organizationChanged,
-    TResult? Function(String newBranch)? branchChanged,
-  }) {
-    return organizationChanged?.call(organization);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String projectName)? projectNameChanged,
-    TResult Function(String organization)? organizationChanged,
-    TResult Function(String newBranch)? branchChanged,
-    required TResult orElse(),
-  }) {
-    if (organizationChanged != null) {
-      return organizationChanged(organization);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProjectNameScreenEventInit value) init,
-    required TResult Function(ProjectNameScreenEventProjectNameChanged value)
-        projectNameChanged,
-    required TResult Function(ProjectNameScreenEventOrganizationChanged value)
-        organizationChanged,
-    required TResult Function(ProjectNameScreenEventBranchChanged value)
-        branchChanged,
-  }) {
-    return organizationChanged(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProjectNameScreenEventInit value)? init,
-    TResult? Function(ProjectNameScreenEventProjectNameChanged value)?
-        projectNameChanged,
-    TResult? Function(ProjectNameScreenEventOrganizationChanged value)?
-        organizationChanged,
-    TResult? Function(ProjectNameScreenEventBranchChanged value)? branchChanged,
-  }) {
-    return organizationChanged?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProjectNameScreenEventInit value)? init,
-    TResult Function(ProjectNameScreenEventProjectNameChanged value)?
-        projectNameChanged,
-    TResult Function(ProjectNameScreenEventOrganizationChanged value)?
-        organizationChanged,
-    TResult Function(ProjectNameScreenEventBranchChanged value)? branchChanged,
-    required TResult orElse(),
-  }) {
-    if (organizationChanged != null) {
-      return organizationChanged(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ProjectNameScreenEventOrganizationChanged
-    implements ProjectNameScreenEvent {
-  const factory ProjectNameScreenEventOrganizationChanged(
-          {required final String organization}) =
-      _$ProjectNameScreenEventOrganizationChangedImpl;
-
-  String get organization;
-
-  /// Create a copy of ProjectNameScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProjectNameScreenEventOrganizationChangedImplCopyWith<
-          _$ProjectNameScreenEventOrganizationChangedImpl>
-      get copyWith => throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$ProjectNameScreenEventBranchChangedImplCopyWith<$Res> {
-  factory _$$ProjectNameScreenEventBranchChangedImplCopyWith(
-          _$ProjectNameScreenEventBranchChangedImpl value,
-          $Res Function(_$ProjectNameScreenEventBranchChangedImpl) then) =
-      __$$ProjectNameScreenEventBranchChangedImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({String newBranch});
-}
-
-/// @nodoc
-class __$$ProjectNameScreenEventBranchChangedImplCopyWithImpl<$Res>
-    extends _$ProjectNameScreenEventCopyWithImpl<$Res,
-        _$ProjectNameScreenEventBranchChangedImpl>
-    implements _$$ProjectNameScreenEventBranchChangedImplCopyWith<$Res> {
-  __$$ProjectNameScreenEventBranchChangedImplCopyWithImpl(
-      _$ProjectNameScreenEventBranchChangedImpl _value,
-      $Res Function(_$ProjectNameScreenEventBranchChangedImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ProjectNameScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? newBranch = null,
-  }) {
-    return _then(_$ProjectNameScreenEventBranchChangedImpl(
-      newBranch: null == newBranch
-          ? _value.newBranch
-          : newBranch // ignore: cast_nullable_to_non_nullable
-              as String,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$ProjectNameScreenEventBranchChangedImpl
-    implements ProjectNameScreenEventBranchChanged {
-  const _$ProjectNameScreenEventBranchChangedImpl({required this.newBranch});
-
-  @override
   final String newBranch;
 
-  @override
-  String toString() {
-    return 'ProjectNameScreenEvent.branchChanged(newBranch: $newBranch)';
-  }
+  /// Create a copy of ProjectNameScreenEvent
+  /// with the given fields replaced by the non-null parameter values.
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ProjectNameScreenEventBranchChangedCopyWith<
+          ProjectNameScreenEventBranchChanged>
+      get copyWith => _$ProjectNameScreenEventBranchChangedCopyWithImpl<
+          ProjectNameScreenEventBranchChanged>(this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectNameScreenEventBranchChangedImpl &&
+            other is ProjectNameScreenEventBranchChanged &&
             (identical(other.newBranch, newBranch) ||
                 other.newBranch == newBranch));
   }
@@ -632,331 +450,290 @@ class _$ProjectNameScreenEventBranchChangedImpl
   @override
   int get hashCode => Object.hash(runtimeType, newBranch);
 
-  /// Create a copy of ProjectNameScreenEvent
-  /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
-  @pragma('vm:prefer-inline')
-  _$$ProjectNameScreenEventBranchChangedImplCopyWith<
-          _$ProjectNameScreenEventBranchChangedImpl>
-      get copyWith => __$$ProjectNameScreenEventBranchChangedImplCopyWithImpl<
-          _$ProjectNameScreenEventBranchChangedImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-    required TResult Function(String projectName) projectNameChanged,
-    required TResult Function(String organization) organizationChanged,
-    required TResult Function(String newBranch) branchChanged,
-  }) {
-    return branchChanged(newBranch);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-    TResult? Function(String projectName)? projectNameChanged,
-    TResult? Function(String organization)? organizationChanged,
-    TResult? Function(String newBranch)? branchChanged,
-  }) {
-    return branchChanged?.call(newBranch);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    TResult Function(String projectName)? projectNameChanged,
-    TResult Function(String organization)? organizationChanged,
-    TResult Function(String newBranch)? branchChanged,
-    required TResult orElse(),
-  }) {
-    if (branchChanged != null) {
-      return branchChanged(newBranch);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProjectNameScreenEventInit value) init,
-    required TResult Function(ProjectNameScreenEventProjectNameChanged value)
-        projectNameChanged,
-    required TResult Function(ProjectNameScreenEventOrganizationChanged value)
-        organizationChanged,
-    required TResult Function(ProjectNameScreenEventBranchChanged value)
-        branchChanged,
-  }) {
-    return branchChanged(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProjectNameScreenEventInit value)? init,
-    TResult? Function(ProjectNameScreenEventProjectNameChanged value)?
-        projectNameChanged,
-    TResult? Function(ProjectNameScreenEventOrganizationChanged value)?
-        organizationChanged,
-    TResult? Function(ProjectNameScreenEventBranchChanged value)? branchChanged,
-  }) {
-    return branchChanged?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProjectNameScreenEventInit value)? init,
-    TResult Function(ProjectNameScreenEventProjectNameChanged value)?
-        projectNameChanged,
-    TResult Function(ProjectNameScreenEventOrganizationChanged value)?
-        organizationChanged,
-    TResult Function(ProjectNameScreenEventBranchChanged value)? branchChanged,
-    required TResult orElse(),
-  }) {
-    if (branchChanged != null) {
-      return branchChanged(this);
-    }
-    return orElse();
+  String toString() {
+    return 'ProjectNameScreenEvent.branchChanged(newBranch: $newBranch)';
   }
 }
 
-abstract class ProjectNameScreenEventBranchChanged
-    implements ProjectNameScreenEvent {
-  const factory ProjectNameScreenEventBranchChanged(
-          {required final String newBranch}) =
-      _$ProjectNameScreenEventBranchChangedImpl;
+/// @nodoc
+abstract mixin class $ProjectNameScreenEventBranchChangedCopyWith<$Res>
+    implements $ProjectNameScreenEventCopyWith<$Res> {
+  factory $ProjectNameScreenEventBranchChangedCopyWith(
+          ProjectNameScreenEventBranchChanged value,
+          $Res Function(ProjectNameScreenEventBranchChanged) _then) =
+      _$ProjectNameScreenEventBranchChangedCopyWithImpl;
+  @useResult
+  $Res call({String newBranch});
+}
 
-  String get newBranch;
+/// @nodoc
+class _$ProjectNameScreenEventBranchChangedCopyWithImpl<$Res>
+    implements $ProjectNameScreenEventBranchChangedCopyWith<$Res> {
+  _$ProjectNameScreenEventBranchChangedCopyWithImpl(this._self, this._then);
+
+  final ProjectNameScreenEventBranchChanged _self;
+  final $Res Function(ProjectNameScreenEventBranchChanged) _then;
 
   /// Create a copy of ProjectNameScreenEvent
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProjectNameScreenEventBranchChangedImplCopyWith<
-          _$ProjectNameScreenEventBranchChangedImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $Res call({
+    Object? newBranch = null,
+  }) {
+    return _then(ProjectNameScreenEventBranchChanged(
+      newBranch: null == newBranch
+          ? _self.newBranch
+          : newBranch // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
 }
 
 /// @nodoc
 mixin _$ProjectNameScreenSR {
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProjectNameScreenSRStub value) init,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProjectNameScreenSRStub value)? init,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProjectNameScreenSRStub value)? init,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class $ProjectNameScreenSRCopyWith<$Res> {
-  factory $ProjectNameScreenSRCopyWith(
-          ProjectNameScreenSR value, $Res Function(ProjectNameScreenSR) then) =
-      _$ProjectNameScreenSRCopyWithImpl<$Res, ProjectNameScreenSR>;
-}
-
-/// @nodoc
-class _$ProjectNameScreenSRCopyWithImpl<$Res, $Val extends ProjectNameScreenSR>
-    implements $ProjectNameScreenSRCopyWith<$Res> {
-  _$ProjectNameScreenSRCopyWithImpl(this._value, this._then);
-
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
-
-  /// Create a copy of ProjectNameScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-abstract class _$$ProjectNameScreenSRStubImplCopyWith<$Res> {
-  factory _$$ProjectNameScreenSRStubImplCopyWith(
-          _$ProjectNameScreenSRStubImpl value,
-          $Res Function(_$ProjectNameScreenSRStubImpl) then) =
-      __$$ProjectNameScreenSRStubImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$ProjectNameScreenSRStubImplCopyWithImpl<$Res>
-    extends _$ProjectNameScreenSRCopyWithImpl<$Res,
-        _$ProjectNameScreenSRStubImpl>
-    implements _$$ProjectNameScreenSRStubImplCopyWith<$Res> {
-  __$$ProjectNameScreenSRStubImplCopyWithImpl(
-      _$ProjectNameScreenSRStubImpl _value,
-      $Res Function(_$ProjectNameScreenSRStubImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ProjectNameScreenSR
-  /// with the given fields replaced by the non-null parameter values.
-}
-
-/// @nodoc
-
-class _$ProjectNameScreenSRStubImpl implements ProjectNameScreenSRStub {
-  const _$ProjectNameScreenSRStubImpl();
-
-  @override
-  String toString() {
-    return 'ProjectNameScreenSR.init()';
-  }
-
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$ProjectNameScreenSRStubImpl);
+        (other.runtimeType == runtimeType && other is ProjectNameScreenSR);
   }
 
   @override
   int get hashCode => runtimeType.hashCode;
 
   @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() init,
-  }) {
-    return init();
+  String toString() {
+    return 'ProjectNameScreenSR()';
   }
+}
 
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? init,
-  }) {
-    return init?.call();
-  }
+/// @nodoc
+class $ProjectNameScreenSRCopyWith<$Res> {
+  $ProjectNameScreenSRCopyWith(
+      ProjectNameScreenSR _, $Res Function(ProjectNameScreenSR) __);
+}
 
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? init,
-    required TResult orElse(),
-  }) {
-    if (init != null) {
-      return init();
-    }
-    return orElse();
-  }
+/// Adds pattern-matching-related methods to [ProjectNameScreenSR].
+extension ProjectNameScreenSRPatterns on ProjectNameScreenSR {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProjectNameScreenSRStub value) init,
-  }) {
-    return init(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProjectNameScreenSRStub value)? init,
-  }) {
-    return init?.call(this);
-  }
-
-  @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(ProjectNameScreenSRStub value)? init,
     required TResult orElse(),
   }) {
-    if (init != null) {
-      return init(this);
+    final _that = this;
+    switch (_that) {
+      case ProjectNameScreenSRStub() when init != null:
+        return init(_that);
+      case _:
+        return orElse();
     }
-    return orElse();
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProjectNameScreenSRStub value) init,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ProjectNameScreenSRStub():
+        return init(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProjectNameScreenSRStub value)? init,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ProjectNameScreenSRStub() when init != null:
+        return init(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? init,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ProjectNameScreenSRStub() when init != null:
+        return init();
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() init,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ProjectNameScreenSRStub():
+        return init();
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function()? init,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ProjectNameScreenSRStub() when init != null:
+        return init();
+      case _:
+        return null;
+    }
   }
 }
 
-abstract class ProjectNameScreenSRStub implements ProjectNameScreenSR {
-  const factory ProjectNameScreenSRStub() = _$ProjectNameScreenSRStubImpl;
+/// @nodoc
+
+class ProjectNameScreenSRStub implements ProjectNameScreenSR {
+  const ProjectNameScreenSRStub();
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ProjectNameScreenSRStub);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  String toString() {
+    return 'ProjectNameScreenSR.init()';
+  }
 }
 
 /// @nodoc
 mixin _$ProjectNameScreenState {
-  Config get config => throw _privateConstructorUsedError;
-  bool get isValidProjectName => throw _privateConstructorUsedError;
-  bool get isValidOrganizationName => throw _privateConstructorUsedError;
-  List<String> get branches => throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Config config, bool isValidProjectName,
-            bool isValidOrganizationName, List<String> branches)
-        data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config, bool isValidProjectName,
-            bool isValidOrganizationName, List<String> branches)?
-        data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config, bool isValidProjectName,
-            bool isValidOrganizationName, List<String> branches)?
-        data,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProjectNameScreenStateData value) data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProjectNameScreenStateData value)? data,
-  }) =>
-      throw _privateConstructorUsedError;
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProjectNameScreenStateData value)? data,
-    required TResult orElse(),
-  }) =>
-      throw _privateConstructorUsedError;
+  Config get config;
+  bool get isValidProjectName;
+  bool get isValidOrganizationName;
+  List<String> get branches;
 
   /// Create a copy of ProjectNameScreenState
   /// with the given fields replaced by the non-null parameter values.
   @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
   $ProjectNameScreenStateCopyWith<ProjectNameScreenState> get copyWith =>
-      throw _privateConstructorUsedError;
+      _$ProjectNameScreenStateCopyWithImpl<ProjectNameScreenState>(
+          this as ProjectNameScreenState, _$identity);
+
+  @override
+  bool operator ==(Object other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is ProjectNameScreenState &&
+            (identical(other.config, config) || other.config == config) &&
+            (identical(other.isValidProjectName, isValidProjectName) ||
+                other.isValidProjectName == isValidProjectName) &&
+            (identical(
+                    other.isValidOrganizationName, isValidOrganizationName) ||
+                other.isValidOrganizationName == isValidOrganizationName) &&
+            const DeepCollectionEquality().equals(other.branches, branches));
+  }
+
+  @override
+  int get hashCode => Object.hash(runtimeType, config, isValidProjectName,
+      isValidOrganizationName, const DeepCollectionEquality().hash(branches));
+
+  @override
+  String toString() {
+    return 'ProjectNameScreenState(config: $config, isValidProjectName: $isValidProjectName, isValidOrganizationName: $isValidOrganizationName, branches: $branches)';
+  }
 }
 
 /// @nodoc
-abstract class $ProjectNameScreenStateCopyWith<$Res> {
+abstract mixin class $ProjectNameScreenStateCopyWith<$Res> {
   factory $ProjectNameScreenStateCopyWith(ProjectNameScreenState value,
-          $Res Function(ProjectNameScreenState) then) =
-      _$ProjectNameScreenStateCopyWithImpl<$Res, ProjectNameScreenState>;
+          $Res Function(ProjectNameScreenState) _then) =
+      _$ProjectNameScreenStateCopyWithImpl;
   @useResult
   $Res call(
       {Config config,
@@ -968,15 +745,12 @@ abstract class $ProjectNameScreenStateCopyWith<$Res> {
 }
 
 /// @nodoc
-class _$ProjectNameScreenStateCopyWithImpl<$Res,
-        $Val extends ProjectNameScreenState>
+class _$ProjectNameScreenStateCopyWithImpl<$Res>
     implements $ProjectNameScreenStateCopyWith<$Res> {
-  _$ProjectNameScreenStateCopyWithImpl(this._value, this._then);
+  _$ProjectNameScreenStateCopyWithImpl(this._self, this._then);
 
-  // ignore: unused_field
-  final $Val _value;
-  // ignore: unused_field
-  final $Res Function($Val) _then;
+  final ProjectNameScreenState _self;
+  final $Res Function(ProjectNameScreenState) _then;
 
   /// Create a copy of ProjectNameScreenState
   /// with the given fields replaced by the non-null parameter values.
@@ -988,24 +762,24 @@ class _$ProjectNameScreenStateCopyWithImpl<$Res,
     Object? isValidOrganizationName = null,
     Object? branches = null,
   }) {
-    return _then(_value.copyWith(
+    return _then(_self.copyWith(
       config: null == config
-          ? _value.config
+          ? _self.config
           : config // ignore: cast_nullable_to_non_nullable
               as Config,
       isValidProjectName: null == isValidProjectName
-          ? _value.isValidProjectName
+          ? _self.isValidProjectName
           : isValidProjectName // ignore: cast_nullable_to_non_nullable
               as bool,
       isValidOrganizationName: null == isValidOrganizationName
-          ? _value.isValidOrganizationName
+          ? _self.isValidOrganizationName
           : isValidOrganizationName // ignore: cast_nullable_to_non_nullable
               as bool,
       branches: null == branches
-          ? _value.branches
+          ? _self.branches
           : branches // ignore: cast_nullable_to_non_nullable
               as List<String>,
-    ) as $Val);
+    ));
   }
 
   /// Create a copy of ProjectNameScreenState
@@ -1013,76 +787,182 @@ class _$ProjectNameScreenStateCopyWithImpl<$Res,
   @override
   @pragma('vm:prefer-inline')
   $ConfigCopyWith<$Res> get config {
-    return $ConfigCopyWith<$Res>(_value.config, (value) {
-      return _then(_value.copyWith(config: value) as $Val);
+    return $ConfigCopyWith<$Res>(_self.config, (value) {
+      return _then(_self.copyWith(config: value));
     });
   }
 }
 
-/// @nodoc
-abstract class _$$ProjectNameScreenStateDataImplCopyWith<$Res>
-    implements $ProjectNameScreenStateCopyWith<$Res> {
-  factory _$$ProjectNameScreenStateDataImplCopyWith(
-          _$ProjectNameScreenStateDataImpl value,
-          $Res Function(_$ProjectNameScreenStateDataImpl) then) =
-      __$$ProjectNameScreenStateDataImplCopyWithImpl<$Res>;
-  @override
-  @useResult
-  $Res call(
-      {Config config,
-      bool isValidProjectName,
-      bool isValidOrganizationName,
-      List<String> branches});
+/// Adds pattern-matching-related methods to [ProjectNameScreenState].
+extension ProjectNameScreenStatePatterns on ProjectNameScreenState {
+  /// A variant of `map` that fallback to returning `orElse`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
 
-  @override
-  $ConfigCopyWith<$Res> get config;
-}
-
-/// @nodoc
-class __$$ProjectNameScreenStateDataImplCopyWithImpl<$Res>
-    extends _$ProjectNameScreenStateCopyWithImpl<$Res,
-        _$ProjectNameScreenStateDataImpl>
-    implements _$$ProjectNameScreenStateDataImplCopyWith<$Res> {
-  __$$ProjectNameScreenStateDataImplCopyWithImpl(
-      _$ProjectNameScreenStateDataImpl _value,
-      $Res Function(_$ProjectNameScreenStateDataImpl) _then)
-      : super(_value, _then);
-
-  /// Create a copy of ProjectNameScreenState
-  /// with the given fields replaced by the non-null parameter values.
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? config = null,
-    Object? isValidProjectName = null,
-    Object? isValidOrganizationName = null,
-    Object? branches = null,
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(ProjectNameScreenStateData value)? data,
+    required TResult orElse(),
   }) {
-    return _then(_$ProjectNameScreenStateDataImpl(
-      config: null == config
-          ? _value.config
-          : config // ignore: cast_nullable_to_non_nullable
-              as Config,
-      isValidProjectName: null == isValidProjectName
-          ? _value.isValidProjectName
-          : isValidProjectName // ignore: cast_nullable_to_non_nullable
-              as bool,
-      isValidOrganizationName: null == isValidOrganizationName
-          ? _value.isValidOrganizationName
-          : isValidOrganizationName // ignore: cast_nullable_to_non_nullable
-              as bool,
-      branches: null == branches
-          ? _value._branches
-          : branches // ignore: cast_nullable_to_non_nullable
-              as List<String>,
-    ));
+    final _that = this;
+    switch (_that) {
+      case ProjectNameScreenStateData() when data != null:
+        return data(_that);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// Callbacks receives the raw object, upcasted.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case final Subclass2 value:
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(ProjectNameScreenStateData value) data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ProjectNameScreenStateData():
+        return data(_that);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `map` that fallback to returning `null`.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case final Subclass value:
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult? Function(ProjectNameScreenStateData value)? data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ProjectNameScreenStateData() when data != null:
+        return data(_that);
+      case _:
+        return null;
+    }
+  }
+
+  /// A variant of `when` that fallback to an `orElse` callback.
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return orElse();
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Config config, bool isValidProjectName,
+            bool isValidOrganizationName, List<String> branches)?
+        data,
+    required TResult orElse(),
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ProjectNameScreenStateData() when data != null:
+        return data(_that.config, _that.isValidProjectName,
+            _that.isValidOrganizationName, _that.branches);
+      case _:
+        return orElse();
+    }
+  }
+
+  /// A `switch`-like method, using callbacks.
+  ///
+  /// As opposed to `map`, this offers destructuring.
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case Subclass2(:final field2):
+  ///     return ...;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Config config, bool isValidProjectName,
+            bool isValidOrganizationName, List<String> branches)
+        data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ProjectNameScreenStateData():
+        return data(_that.config, _that.isValidProjectName,
+            _that.isValidOrganizationName, _that.branches);
+      case _:
+        throw StateError('Unexpected subclass');
+    }
+  }
+
+  /// A variant of `when` that fallback to returning `null`
+  ///
+  /// It is equivalent to doing:
+  /// ```dart
+  /// switch (sealedClass) {
+  ///   case Subclass(:final field):
+  ///     return ...;
+  ///   case _:
+  ///     return null;
+  /// }
+  /// ```
+
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult? Function(Config config, bool isValidProjectName,
+            bool isValidOrganizationName, List<String> branches)?
+        data,
+  }) {
+    final _that = this;
+    switch (_that) {
+      case ProjectNameScreenStateData() when data != null:
+        return data(_that.config, _that.isValidProjectName,
+            _that.isValidOrganizationName, _that.branches);
+      case _:
+        return null;
+    }
   }
 }
 
 /// @nodoc
 
-class _$ProjectNameScreenStateDataImpl extends ProjectNameScreenStateData {
-  const _$ProjectNameScreenStateDataImpl(
+class ProjectNameScreenStateData extends ProjectNameScreenState {
+  const ProjectNameScreenStateData(
       {required this.config,
       this.isValidProjectName = false,
       this.isValidOrganizationName = false,
@@ -1107,16 +987,21 @@ class _$ProjectNameScreenStateDataImpl extends ProjectNameScreenStateData {
     return EqualUnmodifiableListView(_branches);
   }
 
+  /// Create a copy of ProjectNameScreenState
+  /// with the given fields replaced by the non-null parameter values.
   @override
-  String toString() {
-    return 'ProjectNameScreenState.data(config: $config, isValidProjectName: $isValidProjectName, isValidOrganizationName: $isValidOrganizationName, branches: $branches)';
-  }
+  @JsonKey(includeFromJson: false, includeToJson: false)
+  @pragma('vm:prefer-inline')
+  $ProjectNameScreenStateDataCopyWith<ProjectNameScreenStateData>
+      get copyWith =>
+          _$ProjectNameScreenStateDataCopyWithImpl<ProjectNameScreenStateData>(
+              this, _$identity);
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$ProjectNameScreenStateDataImpl &&
+            other is ProjectNameScreenStateData &&
             (identical(other.config, config) || other.config == config) &&
             (identical(other.isValidProjectName, isValidProjectName) ||
                 other.isValidProjectName == isValidProjectName) &&
@@ -1130,101 +1015,77 @@ class _$ProjectNameScreenStateDataImpl extends ProjectNameScreenStateData {
   int get hashCode => Object.hash(runtimeType, config, isValidProjectName,
       isValidOrganizationName, const DeepCollectionEquality().hash(_branches));
 
+  @override
+  String toString() {
+    return 'ProjectNameScreenState.data(config: $config, isValidProjectName: $isValidProjectName, isValidOrganizationName: $isValidOrganizationName, branches: $branches)';
+  }
+}
+
+/// @nodoc
+abstract mixin class $ProjectNameScreenStateDataCopyWith<$Res>
+    implements $ProjectNameScreenStateCopyWith<$Res> {
+  factory $ProjectNameScreenStateDataCopyWith(ProjectNameScreenStateData value,
+          $Res Function(ProjectNameScreenStateData) _then) =
+      _$ProjectNameScreenStateDataCopyWithImpl;
+  @override
+  @useResult
+  $Res call(
+      {Config config,
+      bool isValidProjectName,
+      bool isValidOrganizationName,
+      List<String> branches});
+
+  @override
+  $ConfigCopyWith<$Res> get config;
+}
+
+/// @nodoc
+class _$ProjectNameScreenStateDataCopyWithImpl<$Res>
+    implements $ProjectNameScreenStateDataCopyWith<$Res> {
+  _$ProjectNameScreenStateDataCopyWithImpl(this._self, this._then);
+
+  final ProjectNameScreenStateData _self;
+  final $Res Function(ProjectNameScreenStateData) _then;
+
   /// Create a copy of ProjectNameScreenState
   /// with the given fields replaced by the non-null parameter values.
-  @JsonKey(includeFromJson: false, includeToJson: false)
   @override
   @pragma('vm:prefer-inline')
-  _$$ProjectNameScreenStateDataImplCopyWith<_$ProjectNameScreenStateDataImpl>
-      get copyWith => __$$ProjectNameScreenStateDataImplCopyWithImpl<
-          _$ProjectNameScreenStateDataImpl>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function(Config config, bool isValidProjectName,
-            bool isValidOrganizationName, List<String> branches)
-        data,
+  $Res call({
+    Object? config = null,
+    Object? isValidProjectName = null,
+    Object? isValidOrganizationName = null,
+    Object? branches = null,
   }) {
-    return data(config, isValidProjectName, isValidOrganizationName, branches);
+    return _then(ProjectNameScreenStateData(
+      config: null == config
+          ? _self.config
+          : config // ignore: cast_nullable_to_non_nullable
+              as Config,
+      isValidProjectName: null == isValidProjectName
+          ? _self.isValidProjectName
+          : isValidProjectName // ignore: cast_nullable_to_non_nullable
+              as bool,
+      isValidOrganizationName: null == isValidOrganizationName
+          ? _self.isValidOrganizationName
+          : isValidOrganizationName // ignore: cast_nullable_to_non_nullable
+              as bool,
+      branches: null == branches
+          ? _self._branches
+          : branches // ignore: cast_nullable_to_non_nullable
+              as List<String>,
+    ));
   }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function(Config config, bool isValidProjectName,
-            bool isValidOrganizationName, List<String> branches)?
-        data,
-  }) {
-    return data?.call(
-        config, isValidProjectName, isValidOrganizationName, branches);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Config config, bool isValidProjectName,
-            bool isValidOrganizationName, List<String> branches)?
-        data,
-    required TResult orElse(),
-  }) {
-    if (data != null) {
-      return data(
-          config, isValidProjectName, isValidOrganizationName, branches);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(ProjectNameScreenStateData value) data,
-  }) {
-    return data(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(ProjectNameScreenStateData value)? data,
-  }) {
-    return data?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(ProjectNameScreenStateData value)? data,
-    required TResult orElse(),
-  }) {
-    if (data != null) {
-      return data(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ProjectNameScreenStateData extends ProjectNameScreenState {
-  const factory ProjectNameScreenStateData(
-      {required final Config config,
-      final bool isValidProjectName,
-      final bool isValidOrganizationName,
-      final List<String> branches}) = _$ProjectNameScreenStateDataImpl;
-  const ProjectNameScreenStateData._() : super._();
-
-  @override
-  Config get config;
-  @override
-  bool get isValidProjectName;
-  @override
-  bool get isValidOrganizationName;
-  @override
-  List<String> get branches;
 
   /// Create a copy of ProjectNameScreenState
   /// with the given fields replaced by the non-null parameter values.
   @override
-  @JsonKey(includeFromJson: false, includeToJson: false)
-  _$$ProjectNameScreenStateDataImplCopyWith<_$ProjectNameScreenStateDataImpl>
-      get copyWith => throw _privateConstructorUsedError;
+  @pragma('vm:prefer-inline')
+  $ConfigCopyWith<$Res> get config {
+    return $ConfigCopyWith<$Res>(_self.config, (value) {
+      return _then(_self.copyWith(config: value));
+    });
+  }
 }
+
+// dart format on

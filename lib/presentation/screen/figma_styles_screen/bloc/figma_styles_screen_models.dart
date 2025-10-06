@@ -4,7 +4,7 @@ import 'package:onix_flutter_bricks/domain/entity/config/config.dart';
 part 'figma_styles_screen_models.freezed.dart';
 
 @freezed
-class FigmaStylesScreenEvent with _$FigmaStylesScreenEvent {
+sealed class FigmaStylesScreenEvent with _$FigmaStylesScreenEvent {
   const factory FigmaStylesScreenEvent.init() = FigmaStylesScreenEventInit;
 
   const factory FigmaStylesScreenEvent.onGetStyles({
@@ -17,7 +17,7 @@ class FigmaStylesScreenEvent with _$FigmaStylesScreenEvent {
 }
 
 @freezed
-class FigmaStylesScreenSR with _$FigmaStylesScreenSR {
+sealed class FigmaStylesScreenSR with _$FigmaStylesScreenSR {
   const factory FigmaStylesScreenSR.loadFinished() = _LoadFinished;
 
   const factory FigmaStylesScreenSR.error({
@@ -26,7 +26,7 @@ class FigmaStylesScreenSR with _$FigmaStylesScreenSR {
 }
 
 @freezed
-class FigmaStylesScreenState with _$FigmaStylesScreenState {
+sealed class FigmaStylesScreenState with _$FigmaStylesScreenState {
   const factory FigmaStylesScreenState.data({
     required Config config,
   }) = FigmaStylesScreenStateData;

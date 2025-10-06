@@ -21,8 +21,10 @@ class ProjectSettingsScreen extends StatefulWidget {
   State<ProjectSettingsScreen> createState() => _ProjectSettingsScreenState();
 }
 
-class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
-    ProjectSettingsScreenBloc, ProjectSettingsScreenSR, ProjectSettingsScreen> {
+class _ProjectSettingsScreenState extends State<ProjectSettingsScreen>
+    with
+        BaseBlocState<ProjectSettingsScreenState, ProjectSettingsScreenBloc,
+            ProjectSettingsScreenSR, ProjectSettingsScreen> {
   final TextEditingController _flavorsController = TextEditingController();
 
   @override
@@ -48,9 +50,9 @@ class _ProjectSettingsScreenState extends BaseState<ProjectSettingsScreenState,
   }
 
   @override
-  void onBlocCreated(BuildContext context, ProjectSettingsScreenBloc bloc) {
+  void onBlocReady(BuildContext context, ProjectSettingsScreenBloc bloc) {
     bloc.add(const ProjectSettingsScreenEvent.init());
-    super.onBlocCreated(context, bloc);
+    super.onBlocReady(context, bloc);
   }
 
   void _onSingleResult(
