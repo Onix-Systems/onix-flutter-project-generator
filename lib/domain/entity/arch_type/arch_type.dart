@@ -56,7 +56,7 @@ extension ArchTypeX on ArchType {
       case ArchType.clean:
         return 'lib/core/arch/data/remote/graph_ql';
       case ArchType.basic:
-        return 'lib/app/arch';
+        return 'lib/app/arch/graph_ql';
     }
   }
 

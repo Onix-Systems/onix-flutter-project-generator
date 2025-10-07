@@ -100,7 +100,7 @@ class ComponentGeneratorService
         sourceComponent.getDeclarationFilePath(projectLibFolder);
 
     final declarationBody =
-        sourceComponent.getSourceDeclarationBody(projectName);
+        sourceComponent.getSourceDeclarationBody(projectName, arch);
 
     final createSourceDeclarationResult = await createFile(
       filePath: declarationFilePath,
@@ -121,7 +121,7 @@ class ComponentGeneratorService
         sourceComponent.getImplementationFilePath(projectLibFolder);
 
     final implementationBody =
-        sourceComponent.getSourceImplementationBody(projectName);
+        sourceComponent.getSourceImplementationBody(projectName, arch);
     final createSourceImplementationResult = await createFile(
       filePath: implementationFilePath,
       fileBody: implementationBody,

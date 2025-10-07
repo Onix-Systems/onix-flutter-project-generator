@@ -85,11 +85,11 @@ class SourceComponent {
     return "import 'package:$projectName/${arch.getEnumPath()}/${type.toString().snakeCase}.dart';";
   }
 
-  String getSourceDeclarationBody(String projectName) {
+  String getSourceDeclarationBody(String projectName, ArchType arch) {
     final codeLines = List<String>.empty(growable: true);
 
     ///Add Imports
-    final modelImports = _buildSourceImports(projectName);
+    final modelImports = _buildSourceImports(projectName, arch);
     codeLines
       ..add(modelImports)
       ..addNewLine()
@@ -106,7 +106,7 @@ class SourceComponent {
     return codeLines.join('\n');
   }
 
-  String getSourceImplementationBody(String projectName) {
+  String getSourceImplementationBody(String projectName, ArchType arch) {
     final codeLines = List<String>.empty(growable: true)
       ..add("import 'package:dio/dio.dart';")
       ..add(
@@ -114,7 +114,7 @@ class SourceComponent {
       );
 
     ///Add imports
-    final modelImports = _buildSourceImports(projectName);
+    final modelImports = _buildSourceImports(projectName, arch);
     codeLines
       ..add(modelImports)
       ..add(
@@ -313,12 +313,15 @@ class SourceComponent {
     }
   }
 
-  String _buildSourceImports(String projectName) {
+  String _buildSourceImports(String projectName, ArchType arch) {
     final imports = <String>{}
       ..add(
           "import 'package:onix_flutter_core/onix_flutter_core.dart' hide OperationStatus;")
       ..add(
-          "import 'package:$projectName/core/arch/domain/entity/common/operation_status.dart';");
+        arch == ArchType.clean
+            ? "import 'package:$projectName/core/arch/domain/entity/common/operation_status.dart';"
+            : "import 'package:$projectName/app/arch/entity/common/operation_status.dart';",
+      );
 
     for (final request in requests) {
       ///build response imports
@@ -395,10 +398,14 @@ class SourceComponent {
         "import 'package:onix_flutter_core_models/onix_flutter_core_models.dart' hide Result;",
       )
       ..add(
-        "import 'package:$projectName/core/arch/result/result.dart';",
+        arch == ArchType.clean
+            ? "import 'package:$projectName/core/arch/result/result.dart';"
+            : "import 'package:$projectName/app/arch/result/result.dart';",
       )
       ..add(
-        "import 'package:$projectName/core/arch/domain/entity/common/operation_status.dart';",
+        arch == ArchType.clean
+            ? "import 'package:$projectName/core/arch/domain/entity/common/operation_status.dart';"
+            : "import 'package:$projectName/app/arch/entity/common/operation_status.dart';",
       )
       ..add(
         arch == ArchType.clean
