@@ -145,8 +145,6 @@ extension DataVariableComponentPatterns on DataVariableComponent {
     switch (_that) {
       case _DataVariableComponent():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -226,8 +224,6 @@ extension DataVariableComponentPatterns on DataVariableComponent {
     switch (_that) {
       case _DataVariableComponent():
         return $default(_that.name, _that.type, _that.isRequired, _that.isEnum);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

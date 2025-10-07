@@ -142,8 +142,6 @@ extension PaintPropertyPatterns on PaintProperty {
     switch (_that) {
       case _PaintProperty():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -219,8 +217,6 @@ extension PaintPropertyPatterns on PaintProperty {
     switch (_that) {
       case _PaintProperty():
         return $default(_that.color, _that.type);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

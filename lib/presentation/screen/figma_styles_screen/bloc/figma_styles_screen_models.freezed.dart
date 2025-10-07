@@ -97,8 +97,6 @@ extension FigmaStylesScreenEventPatterns on FigmaStylesScreenEvent {
         return onGetStyles(_that);
       case FigmaStylesScreenEventOnClear():
         return onClear(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -192,8 +190,6 @@ extension FigmaStylesScreenEventPatterns on FigmaStylesScreenEvent {
         return onGetStyles(_that.figmaId, _that.token);
       case FigmaStylesScreenEventOnClear():
         return onClear();
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -423,8 +419,6 @@ extension FigmaStylesScreenSRPatterns on FigmaStylesScreenSR {
         return loadFinished(_that);
       case _Error():
         return error(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -509,8 +503,6 @@ extension FigmaStylesScreenSRPatterns on FigmaStylesScreenSR {
         return loadFinished();
       case _Error():
         return error(_that.error);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -748,8 +740,6 @@ extension FigmaStylesScreenStatePatterns on FigmaStylesScreenState {
     switch (_that) {
       case FigmaStylesScreenStateData():
         return data(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -825,8 +815,6 @@ extension FigmaStylesScreenStatePatterns on FigmaStylesScreenState {
     switch (_that) {
       case FigmaStylesScreenStateData():
         return data(_that.config);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

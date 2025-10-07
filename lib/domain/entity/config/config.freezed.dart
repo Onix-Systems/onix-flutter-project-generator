@@ -32,8 +32,9 @@ mixin _$Config {
   ProjectRouter get router;
   ProjectLocalization get localization;
   ProjectTheming get theming;
+  @JsonKey(includeFromJson: false, includeToJson: false)
   List<String> get signingVars;
-  Set<Screen> get screens; // ignore: invalid_annotation_target
+  Set<Screen> get screens;
   @JsonKey(includeFromJson: false, includeToJson: false)
   List<AppStyle> get styles;
   String get swaggerUrl;
@@ -153,6 +154,7 @@ abstract mixin class $ConfigCopyWith<$Res> {
       ProjectRouter router,
       ProjectLocalization localization,
       ProjectTheming theming,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       List<String> signingVars,
       Set<Screen> screens,
       @JsonKey(includeFromJson: false, includeToJson: false)
@@ -366,8 +368,6 @@ extension ConfigPatterns on Config {
     switch (_that) {
       case _Config():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -429,6 +429,7 @@ extension ConfigPatterns on Config {
             ProjectRouter router,
             ProjectLocalization localization,
             ProjectTheming theming,
+            @JsonKey(includeFromJson: false, includeToJson: false)
             List<String> signingVars,
             Set<Screen> screens,
             @JsonKey(includeFromJson: false, includeToJson: false)
@@ -504,6 +505,7 @@ extension ConfigPatterns on Config {
             ProjectRouter router,
             ProjectLocalization localization,
             ProjectTheming theming,
+            @JsonKey(includeFromJson: false, includeToJson: false)
             List<String> signingVars,
             Set<Screen> screens,
             @JsonKey(includeFromJson: false, includeToJson: false)
@@ -539,8 +541,6 @@ extension ConfigPatterns on Config {
             _that.styles,
             _that.swaggerUrl,
             _that.sentry);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -577,6 +577,7 @@ extension ConfigPatterns on Config {
             ProjectRouter router,
             ProjectLocalization localization,
             ProjectTheming theming,
+            @JsonKey(includeFromJson: false, includeToJson: false)
             List<String> signingVars,
             Set<Screen> screens,
             @JsonKey(includeFromJson: false, includeToJson: false)
@@ -640,6 +641,7 @@ class _Config extends Config {
       this.router = ProjectRouter.goRouter,
       this.localization = ProjectLocalization.intl,
       this.theming = ProjectTheming.manual,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       final List<String> signingVars = AppConsts.defaultSigningVars,
       final Set<Screen> screens = const {},
       @JsonKey(includeFromJson: false, includeToJson: false)
@@ -708,7 +710,7 @@ class _Config extends Config {
   final ProjectTheming theming;
   final List<String> _signingVars;
   @override
-  @JsonKey()
+  @JsonKey(includeFromJson: false, includeToJson: false)
   List<String> get signingVars {
     if (_signingVars is EqualUnmodifiableListView) return _signingVars;
     // ignore: implicit_dynamic_type
@@ -724,9 +726,7 @@ class _Config extends Config {
     return EqualUnmodifiableSetView(_screens);
   }
 
-// ignore: invalid_annotation_target
   final List<AppStyle> _styles;
-// ignore: invalid_annotation_target
   @override
   @JsonKey(includeFromJson: false, includeToJson: false)
   List<AppStyle> get styles {
@@ -862,6 +862,7 @@ abstract mixin class _$ConfigCopyWith<$Res> implements $ConfigCopyWith<$Res> {
       ProjectRouter router,
       ProjectLocalization localization,
       ProjectTheming theming,
+      @JsonKey(includeFromJson: false, includeToJson: false)
       List<String> signingVars,
       Set<Screen> screens,
       @JsonKey(includeFromJson: false, includeToJson: false)

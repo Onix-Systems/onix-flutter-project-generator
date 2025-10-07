@@ -157,8 +157,6 @@ extension ConnectorNodeEntityPatterns on ConnectorNodeEntity {
     switch (_that) {
       case _ConnectorNodeEntity():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -240,8 +238,6 @@ extension ConnectorNodeEntityPatterns on ConnectorNodeEntity {
       case _ConnectorNodeEntity():
         return $default(
             _that.id, _that.key, _that.name, _that.type, _that.fills);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

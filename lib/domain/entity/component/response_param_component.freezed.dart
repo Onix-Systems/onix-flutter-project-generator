@@ -159,8 +159,6 @@ extension ResponseParamComponentPatterns on ResponseParamComponent {
     switch (_that) {
       case _ResponseParamComponent():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -242,8 +240,6 @@ extension ResponseParamComponentPatterns on ResponseParamComponent {
       case _ResponseParamComponent():
         return $default(_that.name, _that.type, _that.isRequired, _that.isEnum,
             _that.fromSwagger);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

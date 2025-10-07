@@ -144,8 +144,6 @@ extension ColorPropertyPatterns on ColorProperty {
     switch (_that) {
       case _ColorProperty():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -221,8 +219,6 @@ extension ColorPropertyPatterns on ColorProperty {
     switch (_that) {
       case _ColorProperty():
         return $default(_that.r, _that.g, _that.b, _that.a);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

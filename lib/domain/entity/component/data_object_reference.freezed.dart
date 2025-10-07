@@ -131,8 +131,6 @@ extension DataObjectReferencePatterns on DataObjectReference {
     switch (_that) {
       case _DataObjectReference():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -210,8 +208,6 @@ extension DataObjectReferencePatterns on DataObjectReference {
     switch (_that) {
       case _DataObjectReference():
         return $default(_that.type, _that.fileReference);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

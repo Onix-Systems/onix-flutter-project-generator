@@ -157,8 +157,6 @@ extension DocumentNodeEntityPatterns on DocumentNodeEntity {
     switch (_that) {
       case _DocumentNodeEntity():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -240,8 +238,6 @@ extension DocumentNodeEntityPatterns on DocumentNodeEntity {
       case _DocumentNodeEntity():
         return $default(
             _that.id, _that.key, _that.name, _that.type, _that.children);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

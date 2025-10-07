@@ -135,8 +135,6 @@ extension OutputLinePatterns on OutputLine {
     switch (_that) {
       case _OutputLine():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -212,8 +210,6 @@ extension OutputLinePatterns on OutputLine {
     switch (_that) {
       case _OutputLine():
         return $default(_that.line, _that.color, _that.tag);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

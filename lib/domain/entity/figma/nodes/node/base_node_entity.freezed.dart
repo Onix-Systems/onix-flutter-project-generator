@@ -144,8 +144,6 @@ extension BaseNodeEntityPatterns on BaseNodeEntity {
     switch (_that) {
       case _BaseNodeEntity():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -222,8 +220,6 @@ extension BaseNodeEntityPatterns on BaseNodeEntity {
     switch (_that) {
       case _BaseNodeEntity():
         return $default(_that.id, _that.key, _that.name, _that.type);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

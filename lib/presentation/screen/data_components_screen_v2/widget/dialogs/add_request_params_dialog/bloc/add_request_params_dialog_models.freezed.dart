@@ -84,8 +84,6 @@ extension AddRequestParamsDialogSRPatterns on AddRequestParamsDialogSR {
     switch (_that) {
       case _AddRequestParamsDialogSRSuccess():
         return success(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -161,8 +159,6 @@ extension AddRequestParamsDialogSRPatterns on AddRequestParamsDialogSR {
     switch (_that) {
       case _AddRequestParamsDialogSRSuccess():
         return success();
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -336,8 +332,6 @@ extension AddRequestParamsDialogStatePatterns on AddRequestParamsDialogState {
     switch (_that) {
       case _AddRequestParamsDialogState():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -415,8 +409,6 @@ extension AddRequestParamsDialogStatePatterns on AddRequestParamsDialogState {
     switch (_that) {
       case _AddRequestParamsDialogState():
         return $default(_that.params, _that.types);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

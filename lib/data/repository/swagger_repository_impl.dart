@@ -11,6 +11,7 @@ import 'package:onix_flutter_bricks/data/model/swagger/model_variable/swagger_mo
 import 'package:onix_flutter_bricks/data/model/swagger/types/swagger_type.dart';
 import 'package:onix_flutter_bricks/data/source/remote/swagger/swagger_remote_source.dart';
 import 'package:onix_flutter_bricks/domain/entity/arch_type/arch_type.dart';
+import 'package:onix_flutter_bricks/domain/entity/common/operation_status.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/component.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/components.dart';
 import 'package:onix_flutter_bricks/domain/entity/component/data_object_component.dart';
@@ -21,7 +22,6 @@ import 'package:onix_flutter_bricks/domain/entity/component/response_param_compo
 import 'package:onix_flutter_bricks/domain/entity/component/source_component.dart';
 import 'package:onix_flutter_bricks/domain/entity/failure/swagger_parser_failure.dart';
 import 'package:onix_flutter_bricks/domain/repository/swagger_repository.dart';
-import 'package:onix_flutter_core/onix_flutter_core.dart';
 
 class SwaggerRepositoryImpl implements SwaggerRepository {
   Components _components = Components.empty();
@@ -204,7 +204,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       ],
     );
 
-    return Result.ok(OperationStatus.success);
+    return Result.status();
   }
 
   @override
@@ -223,7 +223,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
           .toList(),
     );
 
-    return Result.ok(OperationStatus.success);
+    return Result.status();
   }
 
   @override
@@ -262,7 +262,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       ],
     );
 
-    return Result.ok(OperationStatus.success);
+    return Result.status();
   }
 
   @override
@@ -311,7 +311,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       ],
     );
 
-    return Result.ok(OperationStatus.success);
+    return Result.status();
   }
 
   @override
@@ -357,7 +357,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       ],
     );
 
-    return Result.ok(OperationStatus.success);
+    return Result.status();
   }
 
   @override
@@ -401,7 +401,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       ],
     );
 
-    return Result.ok(OperationStatus.success);
+    return Result.status();
   }
 
   @override
@@ -432,7 +432,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
       );
     }
 
-    return Result.ok(OperationStatus.success);
+    return Result.status();
   }
 
   @override
@@ -524,7 +524,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
 
     _updateRequests(oldName, component);
 
-    return Result.ok(OperationStatus.success);
+    return Result.status();
   }
 
   @override
@@ -567,7 +567,7 @@ class SwaggerRepositoryImpl implements SwaggerRepository {
 
     _updateRequests(component.name, component);
 
-    return Result.ok(OperationStatus.success);
+    return Result.status();
   }
 
   void _editComponentObject(Component component, String oldName) {

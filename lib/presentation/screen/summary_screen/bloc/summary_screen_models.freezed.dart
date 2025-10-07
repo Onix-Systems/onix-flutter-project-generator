@@ -84,8 +84,6 @@ extension SummaryScreenEventPatterns on SummaryScreenEvent {
     switch (_that) {
       case SummaryScreenEventInit():
         return init(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -161,8 +159,6 @@ extension SummaryScreenEventPatterns on SummaryScreenEvent {
     switch (_that) {
       case SummaryScreenEventInit():
         return init();
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -284,8 +280,6 @@ extension SummaryScreenSRPatterns on SummaryScreenSR {
     switch (_that) {
       case _LoadFinished():
         return loadFinished(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -361,8 +355,6 @@ extension SummaryScreenSRPatterns on SummaryScreenSR {
     switch (_that) {
       case _LoadFinished():
         return loadFinished();
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -535,8 +527,6 @@ extension SummaryScreenStatePatterns on SummaryScreenState {
     switch (_that) {
       case SummaryScreenStateData():
         return data(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -612,8 +602,6 @@ extension SummaryScreenStatePatterns on SummaryScreenState {
     switch (_that) {
       case SummaryScreenStateData():
         return data(_that.config);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

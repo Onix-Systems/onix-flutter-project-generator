@@ -93,8 +93,6 @@ extension PlatformsScreenEventPatterns on PlatformsScreenEvent {
         return init(_that);
       case PlatformsScreenEventOnPlatformsChange():
         return onPlatformsChange(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -182,8 +180,6 @@ extension PlatformsScreenEventPatterns on PlatformsScreenEvent {
         return init();
       case PlatformsScreenEventOnPlatformsChange():
         return onPlatformsChange(_that.item);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -427,8 +423,6 @@ extension PlatformsScreenStatePatterns on PlatformsScreenState {
     switch (_that) {
       case PlatformsScreenStateData():
         return data(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -504,8 +498,6 @@ extension PlatformsScreenStatePatterns on PlatformsScreenState {
     switch (_that) {
       case PlatformsScreenStateData():
         return data(_that.config);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

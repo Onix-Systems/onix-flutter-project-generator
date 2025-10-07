@@ -150,8 +150,6 @@ extension TypeStyleMetadataPatterns on TypeStyleMetadata {
     switch (_that) {
       case _TypeStyleMetadata():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -233,8 +231,6 @@ extension TypeStyleMetadataPatterns on TypeStyleMetadata {
       case _TypeStyleMetadata():
         return $default(_that.fontFamily, _that.fontWeight, _that.fontSize,
             _that.letterSpacing);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

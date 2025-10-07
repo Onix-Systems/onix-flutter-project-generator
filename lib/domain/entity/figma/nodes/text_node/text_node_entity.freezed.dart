@@ -177,8 +177,6 @@ extension TextNodeEntityPatterns on TextNodeEntity {
     switch (_that) {
       case _TextNodeEntity():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -260,8 +258,6 @@ extension TextNodeEntityPatterns on TextNodeEntity {
       case _TextNodeEntity():
         return $default(_that.style, _that.id, _that.key, _that.name,
             _that.type, _that.fills);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

@@ -159,8 +159,6 @@ extension PlatformsListPatterns on PlatformsList {
     switch (_that) {
       case _PlatformsList():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -242,8 +240,6 @@ extension PlatformsListPatterns on PlatformsList {
       case _PlatformsList():
         return $default(_that.android, _that.ios, _that.web, _that.macos,
             _that.windows, _that.linux);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

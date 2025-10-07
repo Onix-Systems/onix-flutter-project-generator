@@ -157,8 +157,6 @@ extension SectionNodeEntityPatterns on SectionNodeEntity {
     switch (_that) {
       case _SectionNodeEntity():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -240,8 +238,6 @@ extension SectionNodeEntityPatterns on SectionNodeEntity {
       case _SectionNodeEntity():
         return $default(
             _that.fills, _that.id, _that.key, _that.name, _that.type);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

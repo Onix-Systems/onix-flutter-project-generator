@@ -96,8 +96,6 @@ extension SwaggerParserScreenEventPatterns on SwaggerParserScreenEvent {
         return parse(_that);
       case SwaggerParserScreenEventOnCancel():
         return onCancel(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -191,8 +189,6 @@ extension SwaggerParserScreenEventPatterns on SwaggerParserScreenEvent {
         return parse(_that.url, _that.overwrite);
       case SwaggerParserScreenEventOnCancel():
         return onCancel();
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -422,8 +418,6 @@ extension SwaggerParserScreenSRPatterns on SwaggerParserScreenSR {
         return init(_that);
       case _OnContinue():
         return onContinue(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -508,8 +502,6 @@ extension SwaggerParserScreenSRPatterns on SwaggerParserScreenSR {
         return init();
       case _OnContinue():
         return onContinue();
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -725,8 +717,6 @@ extension SwaggerParserScreenStatePatterns on SwaggerParserScreenState {
     switch (_that) {
       case SwaggerParserScreenStateData():
         return data(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -803,8 +793,6 @@ extension SwaggerParserScreenStatePatterns on SwaggerParserScreenState {
     switch (_that) {
       case SwaggerParserScreenStateData():
         return data(_that.config, _that.componentsBeforeParsing);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

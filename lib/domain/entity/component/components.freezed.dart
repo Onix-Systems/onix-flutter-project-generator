@@ -143,8 +143,6 @@ extension ComponentsPatterns on Components {
     switch (_that) {
       case _Components():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -228,8 +226,6 @@ extension ComponentsPatterns on Components {
     switch (_that) {
       case _Components():
         return $default(_that.sources, _that.enums, _that.dataObjects);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

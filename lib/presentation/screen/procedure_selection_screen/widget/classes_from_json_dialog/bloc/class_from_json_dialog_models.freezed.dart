@@ -124,8 +124,6 @@ extension ClassFromJsonDialogSRPatterns on ClassFromJsonDialogSR {
     switch (_that) {
       case _ClassFromJsonDialogSRSuccess():
         return success(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -201,8 +199,6 @@ extension ClassFromJsonDialogSRPatterns on ClassFromJsonDialogSR {
     switch (_that) {
       case _ClassFromJsonDialogSRSuccess():
         return success(_that.generatedCode);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

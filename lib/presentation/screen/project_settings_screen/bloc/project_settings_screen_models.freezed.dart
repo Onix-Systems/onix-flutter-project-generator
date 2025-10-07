@@ -207,8 +207,6 @@ extension ProjectSettingsScreenEventPatterns on ProjectSettingsScreenEvent {
         return sentryChange(_that);
       case ProjectSettingsScreenEventArchChange():
         return archChange(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -440,8 +438,6 @@ extension ProjectSettingsScreenEventPatterns on ProjectSettingsScreenEvent {
         return sentryChange();
       case ProjectSettingsScreenEventArchChange():
         return archChange(_that.arch);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -1173,8 +1169,6 @@ extension ProjectSettingsScreenSRPatterns on ProjectSettingsScreenSR {
     switch (_that) {
       case _LoadFinished():
         return loadFinished(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -1250,8 +1244,6 @@ extension ProjectSettingsScreenSRPatterns on ProjectSettingsScreenSR {
     switch (_that) {
       case _LoadFinished():
         return loadFinished();
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -1425,8 +1417,6 @@ extension ProjectSettingsScreenStatePatterns on ProjectSettingsScreenState {
     switch (_that) {
       case ProjectSettingsScreenStateData():
         return data(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -1502,8 +1492,6 @@ extension ProjectSettingsScreenStatePatterns on ProjectSettingsScreenState {
     switch (_that) {
       case ProjectSettingsScreenStateData():
         return data(_that.config);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

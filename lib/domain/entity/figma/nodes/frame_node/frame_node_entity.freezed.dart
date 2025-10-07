@@ -157,8 +157,6 @@ extension FrameNodeEntityPatterns on FrameNodeEntity {
     switch (_that) {
       case _FrameNodeEntity():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -240,8 +238,6 @@ extension FrameNodeEntityPatterns on FrameNodeEntity {
       case _FrameNodeEntity():
         return $default(
             _that.fills, _that.id, _that.key, _that.name, _that.type);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

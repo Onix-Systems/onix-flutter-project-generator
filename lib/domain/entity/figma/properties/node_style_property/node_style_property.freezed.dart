@@ -145,8 +145,6 @@ extension NodeStylePropertyPatterns on NodeStyleProperty {
     switch (_that) {
       case _NodeStyleProperty():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -226,8 +224,6 @@ extension NodeStylePropertyPatterns on NodeStyleProperty {
     switch (_that) {
       case _NodeStyleProperty():
         return $default(_that.key, _that.name, _that.description, _that.style);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

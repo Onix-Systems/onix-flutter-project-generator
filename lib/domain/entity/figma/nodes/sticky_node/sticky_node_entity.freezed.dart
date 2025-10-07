@@ -157,8 +157,6 @@ extension StickyNodeEntityPatterns on StickyNodeEntity {
     switch (_that) {
       case _StickyNodeEntity():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -240,8 +238,6 @@ extension StickyNodeEntityPatterns on StickyNodeEntity {
       case _StickyNodeEntity():
         return $default(
             _that.id, _that.key, _that.name, _that.type, _that.fills);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

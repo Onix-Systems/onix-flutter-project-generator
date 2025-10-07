@@ -143,8 +143,6 @@ extension BranchConfigPatterns on BranchConfig {
     switch (_that) {
       case _BranchConfig():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -222,8 +220,6 @@ extension BranchConfigPatterns on BranchConfig {
     switch (_that) {
       case _BranchConfig():
         return $default(_that.branch, _that.localVersion, _that.remoteVersion);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

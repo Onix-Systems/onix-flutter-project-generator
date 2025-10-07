@@ -98,8 +98,6 @@ extension GenerationScreenEventPatterns on GenerationScreenEvent {
         return generateProject(_that);
       case GenerationScreenEventOpenProject():
         return open(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -194,8 +192,6 @@ extension GenerationScreenEventPatterns on GenerationScreenEvent {
         return generateProject();
       case GenerationScreenEventOpenProject():
         return open();
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -366,8 +362,6 @@ extension GenerationScreenSRPatterns on GenerationScreenSR {
     switch (_that) {
       case _StubSR():
         return stub(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -443,8 +437,6 @@ extension GenerationScreenSRPatterns on GenerationScreenSR {
     switch (_that) {
       case _StubSR():
         return stub();
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -616,8 +608,6 @@ extension GenerationScreenStatePatterns on GenerationScreenState {
     switch (_that) {
       case GenerationScreenStateData():
         return data(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -697,8 +687,6 @@ extension GenerationScreenStatePatterns on GenerationScreenState {
     switch (_that) {
       case GenerationScreenStateData():
         return data(_that.generatingState, _that.outputStream);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

@@ -128,8 +128,6 @@ extension FingerprintPatterns on Fingerprint {
     switch (_that) {
       case _Fingerprint():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -205,8 +203,6 @@ extension FingerprintPatterns on Fingerprint {
     switch (_that) {
       case _Fingerprint():
         return $default(_that.type, _that.value);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

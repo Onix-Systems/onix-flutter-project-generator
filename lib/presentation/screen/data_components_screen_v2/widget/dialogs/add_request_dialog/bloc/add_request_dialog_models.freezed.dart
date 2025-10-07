@@ -84,8 +84,6 @@ extension AddRequestDialogSRPatterns on AddRequestDialogSR {
     switch (_that) {
       case _AddRequestDialogSRSuccess():
         return success(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -161,8 +159,6 @@ extension AddRequestDialogSRPatterns on AddRequestDialogSR {
     switch (_that) {
       case _AddRequestDialogSRSuccess():
         return success();
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -408,8 +404,6 @@ extension AddRequestDialogStatePatterns on AddRequestDialogState {
     switch (_that) {
       case _AddRequestDialogState():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -519,8 +513,6 @@ extension AddRequestDialogStatePatterns on AddRequestDialogState {
             _that.tempBodyComponent,
             _that.responseComponent,
             _that.tempResponseComponent);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

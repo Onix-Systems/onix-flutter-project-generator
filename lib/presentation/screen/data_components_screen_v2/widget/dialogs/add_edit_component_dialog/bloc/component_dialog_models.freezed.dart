@@ -181,8 +181,6 @@ extension ComponentDialogStatePatterns on ComponentDialogState {
     switch (_that) {
       case _ComponentDialogState():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -272,8 +270,6 @@ extension ComponentDialogStatePatterns on ComponentDialogState {
       case _ComponentDialogState():
         return $default(_that.component, _that.components, _that.componentNames,
             _that.variables, _that.children);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

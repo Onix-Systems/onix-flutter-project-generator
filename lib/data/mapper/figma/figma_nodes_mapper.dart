@@ -11,6 +11,7 @@ import 'package:onix_flutter_bricks/data/model/figma/nodes/text/text_node_data_m
 import 'package:onix_flutter_bricks/data/model/figma/nodes/vector/vector_node_data_model.dart';
 import 'package:onix_flutter_bricks/data/model/figma/properties/paint/paint_property_data_model.dart';
 import 'package:onix_flutter_bricks/data/model/figma/properties/type_style/figma_type_style.dart';
+import 'package:onix_flutter_bricks/domain/common/converter/mapper.dart';
 import 'package:onix_flutter_bricks/domain/entity/figma/nodes/connector_node/connector_node_entity.dart';
 import 'package:onix_flutter_bricks/domain/entity/figma/nodes/document_node/document_node_entity.dart';
 import 'package:onix_flutter_bricks/domain/entity/figma/nodes/frame_node/frame_node_entity.dart';
@@ -23,7 +24,6 @@ import 'package:onix_flutter_bricks/domain/entity/figma/nodes/table_cell_node/ta
 import 'package:onix_flutter_bricks/domain/entity/figma/nodes/text_node/text_node_entity.dart';
 import 'package:onix_flutter_bricks/domain/entity/figma/nodes/vector_node/vector_node_entity.dart';
 import 'package:onix_flutter_bricks/domain/entity/figma/properties/paint_property/paint_property.dart';
-import 'package:onix_flutter_core/onix_flutter_core.dart';
 
 class FigmaNodesMapper {
   List<BaseNode> mapNodesDataModelToEntity(List<NodeDataModel> from) =>

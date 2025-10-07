@@ -222,8 +222,6 @@ extension RequestComponentPatterns on RequestComponent {
     switch (_that) {
       case _RequestComponent():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -341,8 +339,6 @@ extension RequestComponentPatterns on RequestComponent {
             _that.pathParams,
             _that.response,
             _that.fromSwagger);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

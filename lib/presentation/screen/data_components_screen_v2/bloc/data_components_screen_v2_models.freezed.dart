@@ -121,8 +121,6 @@ extension DataComponentsScreenV2EventPatterns on DataComponentsScreenV2Event {
         return deleteComponent(_that);
       case DataComponentsScreenV2DeleteRequest():
         return deleteRequest(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -251,8 +249,6 @@ extension DataComponentsScreenV2EventPatterns on DataComponentsScreenV2Event {
       case DataComponentsScreenV2DeleteRequest():
         return deleteRequest(_that.sourceName, _that.request,
             _that.deleteRequestBodyComponent, _that.deleteResponseComponent);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -832,8 +828,6 @@ extension DataComponentsScreenV2SRPatterns on DataComponentsScreenV2SR {
     switch (_that) {
       case _Error():
         return error(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -909,8 +903,6 @@ extension DataComponentsScreenV2SRPatterns on DataComponentsScreenV2SR {
     switch (_that) {
       case _Error():
         return error(_that.message);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -1149,8 +1141,6 @@ extension DataComponentsScreenV2StatePatterns on DataComponentsScreenV2State {
     switch (_that) {
       case DataComponentsScreenV2StateData():
         return data(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -1232,8 +1222,6 @@ extension DataComponentsScreenV2StatePatterns on DataComponentsScreenV2State {
       case DataComponentsScreenV2StateData():
         return data(
             _that.components, _that.projectExists, _that.swaggerUrlExists);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

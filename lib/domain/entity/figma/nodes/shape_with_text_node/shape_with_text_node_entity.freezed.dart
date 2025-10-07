@@ -157,8 +157,6 @@ extension ShapeWithTextNodeEntityPatterns on ShapeWithTextNodeEntity {
     switch (_that) {
       case _ShapeWithTextNodeEntity():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -240,8 +238,6 @@ extension ShapeWithTextNodeEntityPatterns on ShapeWithTextNodeEntity {
       case _ShapeWithTextNodeEntity():
         return $default(
             _that.id, _that.key, _that.name, _that.type, _that.fills);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

@@ -1,11 +1,11 @@
 import 'package:onix_flutter_bricks/data/model/figma/properties/node_style/figma_node_style.dart';
 import 'package:onix_flutter_bricks/data/model/figma/properties/paint/paint_property_data_model.dart';
 import 'package:onix_flutter_bricks/data/model/figma/properties/type_style/figma_type_style.dart';
+import 'package:onix_flutter_bricks/domain/common/converter/mapper.dart';
 import 'package:onix_flutter_bricks/domain/entity/figma/properties/color_property/color_property.dart';
 import 'package:onix_flutter_bricks/domain/entity/figma/properties/node_style_property/node_style_property.dart';
 import 'package:onix_flutter_bricks/domain/entity/figma/properties/paint_property/paint_property.dart';
 import 'package:onix_flutter_bricks/domain/entity/figma/properties/type_style/type_style_metadata.dart';
-import 'package:onix_flutter_core/onix_flutter_core.dart';
 
 class PropertyMapper {
   Iterable<PaintProperty> mapPaintPropertyDataModelToEntity(

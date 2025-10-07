@@ -113,8 +113,6 @@ extension ScreensScreenEventPatterns on ScreensScreenEvent {
         return onScreenModify(_that);
       case ScreensScreenEventOnScreenChangeInitial():
         return onScreenChangeInitial(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -229,8 +227,6 @@ extension ScreensScreenEventPatterns on ScreensScreenEvent {
         return onScreenModify(_that.screen, _that.oldName);
       case ScreensScreenEventOnScreenChangeInitial():
         return onScreenChangeInitial(_that.screen);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -645,8 +641,6 @@ extension ScreensScreenSRPatterns on ScreensScreenSR {
         return existsError(_that);
       case _WrongNameError():
         return wrongNameError(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -731,8 +725,6 @@ extension ScreensScreenSRPatterns on ScreensScreenSR {
         return existsError();
       case _WrongNameError():
         return wrongNameError();
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -936,8 +928,6 @@ extension ScreensScreenStatePatterns on ScreensScreenState {
     switch (_that) {
       case ScreensScreenStateData():
         return data(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -1013,8 +1003,6 @@ extension ScreensScreenStatePatterns on ScreensScreenState {
     switch (_that) {
       case ScreensScreenStateData():
         return data(_that.config, _that.stateUpdate);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

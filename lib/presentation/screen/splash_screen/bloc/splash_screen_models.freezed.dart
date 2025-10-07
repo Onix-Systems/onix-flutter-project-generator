@@ -93,8 +93,6 @@ extension SplashScreenEventPatterns on SplashScreenEvent {
         return init(_that);
       case SplashScreenEventOnAnimationFinished():
         return onAnimationFinished(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -182,8 +180,6 @@ extension SplashScreenEventPatterns on SplashScreenEvent {
         return init();
       case SplashScreenEventOnAnimationFinished():
         return onAnimationFinished();
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -335,8 +331,6 @@ extension SplashScreenSRPatterns on SplashScreenSR {
         return onNeedUpdate(_that);
       case _onContinue():
         return onContinue(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -421,8 +415,6 @@ extension SplashScreenSRPatterns on SplashScreenSR {
         return onNeedUpdate(_that.latestReleaseUrl);
       case _onContinue():
         return onContinue();
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -669,8 +661,6 @@ extension SplashScreenStatePatterns on SplashScreenState {
     switch (_that) {
       case Data():
         return data(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -750,8 +740,6 @@ extension SplashScreenStatePatterns on SplashScreenState {
     switch (_that) {
       case Data():
         return data(_that.remoteVersion, _that.localVersion, _that.logoVisible);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

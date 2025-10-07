@@ -109,8 +109,6 @@ extension ProjectNameScreenEventPatterns on ProjectNameScreenEvent {
         return organizationChanged(_that);
       case ProjectNameScreenEventBranchChanged():
         return branchChanged(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -219,8 +217,6 @@ extension ProjectNameScreenEventPatterns on ProjectNameScreenEvent {
         return organizationChanged(_that.organization);
       case ProjectNameScreenEventBranchChanged():
         return branchChanged(_that.newBranch);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -562,8 +558,6 @@ extension ProjectNameScreenSRPatterns on ProjectNameScreenSR {
     switch (_that) {
       case ProjectNameScreenSRStub():
         return init(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -639,8 +633,6 @@ extension ProjectNameScreenSRPatterns on ProjectNameScreenSR {
     switch (_that) {
       case ProjectNameScreenSRStub():
         return init();
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -842,8 +834,6 @@ extension ProjectNameScreenStatePatterns on ProjectNameScreenState {
     switch (_that) {
       case ProjectNameScreenStateData():
         return data(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -925,8 +915,6 @@ extension ProjectNameScreenStatePatterns on ProjectNameScreenState {
       case ProjectNameScreenStateData():
         return data(_that.config, _that.isValidProjectName,
             _that.isValidOrganizationName, _that.branches);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

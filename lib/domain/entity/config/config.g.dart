@@ -37,10 +37,6 @@ _Config _$ConfigFromJson(Map<String, dynamic> json) => _Config(
           ProjectLocalization.intl,
       theming: $enumDecodeNullable(_$ProjectThemingEnumMap, json['theming']) ??
           ProjectTheming.manual,
-      signingVars: (json['signingVars'] as List<dynamic>?)
-              ?.map((e) => e as String)
-              .toList() ??
-          AppConsts.defaultSigningVars,
       screens: (json['screens'] as List<dynamic>?)
               ?.map((e) => Screen.fromJson(e as Map<String, dynamic>))
               .toSet() ??
@@ -68,7 +64,6 @@ Map<String, dynamic> _$ConfigToJson(_Config instance) => <String, dynamic>{
       'router': _$ProjectRouterEnumMap[instance.router]!,
       'localization': _$ProjectLocalizationEnumMap[instance.localization]!,
       'theming': _$ProjectThemingEnumMap[instance.theming]!,
-      'signingVars': instance.signingVars,
       'screens': instance.screens.toList(),
       'swaggerUrl': instance.swaggerUrl,
       'sentry': instance.sentry,

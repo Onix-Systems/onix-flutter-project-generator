@@ -157,8 +157,6 @@ extension VectorNodeEntityPatterns on VectorNodeEntity {
     switch (_that) {
       case _VectorNodeEntity():
         return $default(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -240,8 +238,6 @@ extension VectorNodeEntityPatterns on VectorNodeEntity {
       case _VectorNodeEntity():
         return $default(
             _that.id, _that.key, _that.name, _that.type, _that.fills);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 

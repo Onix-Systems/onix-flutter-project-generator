@@ -153,8 +153,6 @@ extension ProcedureSelectionScreenEventPatterns
         return onOpenInStudio(_that);
       case ProcedureSelectionScreenEventOnFlavorizrOutputClose():
         return onFlavorizrOutputClose(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -323,8 +321,6 @@ extension ProcedureSelectionScreenEventPatterns
         return onOpenInStudio();
       case ProcedureSelectionScreenEventOnFlavorizrOutputClose():
         return onFlavorizrOutputClose();
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -938,8 +934,6 @@ extension ProcedureSelectionScreenSRPatterns on ProcedureSelectionScreenSR {
         return onNewProject(_that);
       case _onAndroidSigningCreated():
         return onAndroidSigningCreated(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -1043,8 +1037,6 @@ extension ProcedureSelectionScreenSRPatterns on ProcedureSelectionScreenSR {
         return onNewProject();
       case _onAndroidSigningCreated():
         return onAndroidSigningCreated(_that.fingerprints);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -1396,8 +1388,6 @@ extension ProcedureSelectionScreenStatePatterns
     switch (_that) {
       case ProcedureSelectionScreenStateData():
         return data(_that);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
@@ -1499,8 +1489,6 @@ extension ProcedureSelectionScreenStatePatterns
             _that.outputStream,
             _that.flavorizrOutputVisible,
             _that.isGenerating);
-      case _:
-        throw StateError('Unexpected subclass');
     }
   }
 
