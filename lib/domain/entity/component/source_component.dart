@@ -315,7 +315,10 @@ class SourceComponent {
 
   String _buildSourceImports(String projectName) {
     final imports = <String>{}
-      ..add("import 'package:onix_flutter_core/onix_flutter_core.dart';");
+      ..add(
+          "import 'package:onix_flutter_core/onix_flutter_core.dart' hide OperationStatus;")
+      ..add(
+          "import 'package:$projectName/core/arch/domain/entity/common/operation_status.dart';");
 
     for (final request in requests) {
       ///build response imports
@@ -388,9 +391,14 @@ class SourceComponent {
 
   String _buildRepositoryImports(String projectName, ArchType arch) {
     final imports = <String>{}
-      ..add("import 'package:onix_flutter_core/onix_flutter_core.dart';")
       ..add(
-        "import 'package:onix_flutter_bricks/core/arch/result/result.dart';",
+        "import 'package:onix_flutter_core_models/onix_flutter_core_models.dart' hide Result;",
+      )
+      ..add(
+        "import 'package:$projectName/core/arch/result/result.dart';",
+      )
+      ..add(
+        "import 'package:$projectName/core/arch/domain/entity/common/operation_status.dart';",
       )
       ..add(
         arch == ArchType.clean

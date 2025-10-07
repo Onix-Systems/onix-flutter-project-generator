@@ -363,10 +363,10 @@ sealed class RequestComponent with _$RequestComponent {
           )
           ..add('return Result.ok(${responseName}Objects);');
       } else {
-        codeLines.add('return Result.ok(result.data);');
+        codeLines.add('return Result.status();');
       }
     } else {
-      codeLines.add('return Result.ok(result.data);');
+      codeLines.add('return Result.status();');
     }
     codeLines
       ..add('} else {')

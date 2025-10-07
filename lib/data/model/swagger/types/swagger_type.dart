@@ -341,7 +341,7 @@ class SwaggerOperationDefault extends SwaggerType {
 
   @override
   String getDefaultParserClosure(DataFileType fileType) =>
-      'return OperationStatus();';
+      'return const OperationStatus();';
 
   @override
   String? getFileImportName(DataFileType fileType, ArchType arch) => null;
