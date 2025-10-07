@@ -1,3 +1,5 @@
+import 'package:{{project_name}}/core/arch/domain/entity/common/operation_status.dart';
+
 abstract class Result<T> {
   const Result();
 
@@ -5,7 +7,9 @@ abstract class Result<T> {
 
   factory Result.error({required Exception error}) => Error<T>(error);
 
-  bool get isOk => this is Ok<T>;
+  factory Result.status() => const Status() as Result<T>;
+
+  bool get isOk => this is Ok<T> || this is Status;
 
   bool get isError => this is Error<T>;
 
@@ -78,5 +82,17 @@ final class Error<T> extends Result<T> {
   @override
   B fold<B>(B Function(T data) onOk, B Function(Error<T> error) onError) {
     return onError(this);
+  }
+}
+
+final class Status extends Result<OperationStatus> {
+  const Status();
+
+  @override
+  B fold<B>(
+    Function(OperationStatus data) onOk,
+    Function(Error<OperationStatus> error) onError,
+  ) {
+    return onOk(const OperationStatus());
   }
 }
