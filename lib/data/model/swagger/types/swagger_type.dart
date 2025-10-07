@@ -341,7 +341,7 @@ class SwaggerOperationDefault extends SwaggerType {
 
   @override
   String getDefaultParserClosure(DataFileType fileType) =>
-      'return OperationStatus.success;';
+      'return OperationStatus();';
 
   @override
   String? getFileImportName(DataFileType fileType, ArchType arch) => null;
@@ -355,8 +355,7 @@ class SwaggerOperationDefault extends SwaggerType {
       'onix_flutter_core';
 
   @override
-  String? getDefaultReturnType(DataFileType fileType) =>
-      'OperationStatus.success';
+  String? getDefaultReturnType(DataFileType fileType) => 'OperationStatus()';
 
   @override
   String? getFullFileImport(
