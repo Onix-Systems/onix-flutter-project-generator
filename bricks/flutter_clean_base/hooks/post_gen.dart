@@ -10,7 +10,7 @@ late String name;
 const flavorizrInjectKey = '#{flavorizer_injection_config}';
 
 const onix_flutter_core = 'onix_flutter_core: 0.0.6-beta.4';
-// const onix_flutter_core_models = 'onix_flutter_core_models: 0.0.3-beta.1';
+const onix_flutter_core_models = 'onix_flutter_core_models: 0.0.3-beta.1';
 const onix_flutter_bloc = 'onix_flutter_bloc: 0.0.5-beta.1';
 const onix_flutter_provider = 'onix_flutter_provider: 0.0.3-beta.1';
 const onix_flutter_signals = 'onix_flutter_signals: 0.0.1';
@@ -184,9 +184,9 @@ Future<void> getDependencies(HookContext context) async {
     case 'base':
   }
 
-  // if (stateManager != 'base') {
-  //   dependencies.add(onix_flutter_core_models);
-  // }
+  if (stateManager != 'base') {
+    dependencies.add(onix_flutter_core_models);
+  }
 
   if (!context.vars['web_only']) {
     if (context.vars['screen_util']) {
