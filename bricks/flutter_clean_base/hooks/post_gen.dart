@@ -144,7 +144,7 @@ Future<void> getDependencies(HookContext context) async {
     'freezed_annotation',
     'json_annotation',
     'get_it',
-    'flutter_secure_storage:^9.0.0',
+    'flutter_secure_storage',
     'shared_preferences',
     'path_provider',
     'logger',
@@ -202,8 +202,8 @@ Future<void> getDependencies(HookContext context) async {
   }
 
   if (context.vars['theme_generate']) {
-    dependencies.add('theme_tailor_annotation:3.0.1');
-    devDependencies.add('theme_tailor:3.0.1');
+    dependencies.add('theme_tailor_annotation');
+    devDependencies.add('theme_tailor');
   }
 
   switch (context.vars['navigation']) {
